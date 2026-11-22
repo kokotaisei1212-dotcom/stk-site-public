@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>STK — Checked against the law.</title>
+<title>STK — Safe decisions.</title>
 <meta name="description" content="Which decisions an AI may finish alone, and which a person must make — published in the open, so no one is decided about by a machine alone.">
 <link rel="canonical" href="https://stk-evidence.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="STK">
 <meta property="og:url" content="https://stk-evidence.com/">
-<meta property="og:title" content="STK — Checked against the law.">
+<meta property="og:title" content="STK — Safe decisions.">
 <meta property="og:description" content="Which decisions an AI may finish alone, and which a person must make — published in the open, so no one is decided about by a machine alone.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="STK — Checked against the law.">
+<meta name="twitter:title" content="STK — Safe decisions.">
 <meta name="twitter:description" content="Which decisions an AI may finish alone, and which a person must make — published in the open, so no one is decided about by a machine alone.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon-32-dark.png" type="image/png" sizes="32x32">
@@ -42,38 +42,38 @@
 /* One measure for this page (CEO 2026-11-22): spaces are 8, 16, 24, 40, 64 or 96 px only.
    Gutter = var(--pad) (24 px; 48 px from 900 px, site.css). Content at most 720 px wide. Sections 64 px above and below; 96 px from 900 px.
    Black surfaces stand off the edges by the gutter, corners 20 px (28 px from 900 px). */
-:root{--sec:64px;--measure:720px;--round:20px}
-@media (min-width:900px){:root{--sec:96px;--round:28px}}
+:root{--sec:96px;--measure:720px;--round:20px}   /* sections 96 px; 144 px from 900 px (CEO 2026-11-22: x1.5) */
+@media (min-width:900px){:root{--sec:144px;--round:28px}}
 main.wrap{max-width:none;padding-inline:0}   /* this page measures from the screen's edge: the gutter, then the content */
 .bar .wrap,footer .wrap{max-width:none}       /* the logo and the footer on the same gutter */
 main > *{box-sizing:border-box}
 .hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:calc(var(--bar) / 2 + 20px + var(--sec)) var(--pad) var(--sec)}   /* the logo ends at half the bar + 20 px (site.css): then one section space */
-.hero .name{margin:0 0 24px;font-size:15px;font-weight:500;letter-spacing:.04em}
-.hero h1{margin:0;font-size:34px;font-weight:400;line-height:1.15;letter-spacing:-.025em;max-width:22em;text-wrap:balance}
-@media (min-width:768px){.hero h1{font-size:64px}}
-.hero .sub{margin:16px 0 0;font-size:17px;line-height:1.45;color:var(--muted);max-width:var(--measure);text-wrap:balance}
-.entries{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 40px;margin-top:24px;max-width:var(--measure)}
+.hero .name{margin:0 0 24px;font-size:17.25px;line-height:1.5;font-weight:500;letter-spacing:.04em}
+.hero h1{margin:0;font-size:47.6px;font-weight:400;line-height:1.5;letter-spacing:-.025em;max-width:22em;text-wrap:balance}
+@media (min-width:768px){.hero h1{font-size:89.6px}}
+.hero .sub{margin:16px 0 0;font-size:19.55px;line-height:1.5;color:var(--muted);max-width:var(--measure);text-wrap:balance}
+.entries{font-size:17.25px;line-height:1.5;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 40px;margin-top:24px;max-width:var(--measure)}
 .entries a{flex:1 1 0;min-width:200px;max-width:320px;text-align:center}
 .tool,.three{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad)}
-.tool h2,.three h2{margin:0 0 16px;font-size:13px;font-weight:400;color:var(--muted);letter-spacing:.04em}
-.tool p{margin:16px 0 0;font-size:15px;line-height:1.55}
-.tool #keysout{box-sizing:border-box;width:100%;margin:16px 0 0;white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:12px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:16px}
-.tool button,.tool #kf button{font:inherit;font-size:14px;border-radius:4px;padding:8px 16px;color:var(--bg);background:var(--ink);border:1px solid var(--ink);cursor:pointer}
+.tool h2,.three h2{margin:0 0 16px;font-size:14.95px;line-height:1.5;font-weight:400;color:var(--muted);letter-spacing:.04em}
+.tool p{margin:16px 0 0;font-size:17.25px;line-height:1.55}
+.tool #keysout{box-sizing:border-box;width:100%;margin:16px 0 0;white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:13.8px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:16px}
+.tool button,.tool #kf button{font:inherit;font-size:16.1px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--bg);background:var(--ink);border:1px solid var(--ink);cursor:pointer}
 .tool #kf{display:flex;flex-wrap:wrap;gap:16px;margin:0}
-.tool #kf input{flex:1 1 14rem;min-width:0;font:inherit;font-size:16px;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
+.tool #kf input{flex:1 1 14rem;min-width:0;font:inherit;font-size:18.4px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
 .tool #ks:empty{display:none}
 .tool #card{margin-top:16px}
 .three{display:grid;grid-template-columns:1fr;gap:40px}
-.three p{margin:0 0 8px;font-size:15px;line-height:1.55}
-.three .more{margin-top:16px;font-size:14px}
+.three p{margin:0 0 8px;font-size:17.25px;line-height:1.55}
+.three .more{margin-top:16px;font-size:16.1px}
 @media (min-width:768px){.three{grid-template-columns:repeat(2,1fr);gap:64px}}
 .band,.strip{margin:0 var(--pad);border-radius:var(--round);background:#000000}
 .band{color:#FFFFFF;text-align:center;padding:var(--sec) var(--pad);display:flex;align-items:center;justify-content:center}   /* as tall as its words and the padding; the words in the middle */
-.band p{margin:0;font-size:15px;line-height:1.4;letter-spacing:-.01em;max-width:var(--measure);text-wrap:balance}
-@media (min-width:768px){.band p{font-size:22px}}
+.band p{margin:0;font-size:17.25px;line-height:1.5;letter-spacing:-.01em;max-width:var(--measure);text-wrap:balance}
+@media (min-width:768px){.band p{font-size:25.3px}}
 .strip{position:relative;min-height:28vh;overflow:hidden;color:#FFFFFF;text-align:center;padding:40px var(--pad);display:flex;align-items:center;justify-content:center}
-.strip p{position:relative;z-index:1;margin:0;font-size:15px;line-height:1.4;letter-spacing:-.01em;max-width:var(--measure);text-wrap:balance}
-@media (min-width:768px){.strip p{font-size:22px}}
+.strip p{position:relative;z-index:1;margin:0;font-size:17.25px;line-height:1.5;letter-spacing:-.01em;max-width:var(--measure);text-wrap:balance}
+@media (min-width:768px){.strip p{font-size:25.3px}}
 .strip::before,.strip::after{content:"";position:absolute;inset:0}
 .strip::before{background:radial-gradient(ellipse at 50% 0%,#FFFFFF 0%,transparent 70%);opacity:.1}
 .strip::after{background:repeating-linear-gradient(0deg,#FFFFFF 0 1px,transparent 1px 3px);opacity:.012}
@@ -82,14 +82,14 @@ main > *{box-sizing:border-box}
 footer.dark{padding-block:var(--sec)}           /* the links: the same black above and below */
 footer .toplinks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px;justify-content:normal;text-align:left;max-width:var(--measure);margin:0 auto}
 @media (min-width:900px){footer .toplinks{grid-template-columns:repeat(5,minmax(0,1fr));max-width:none}}
-footer .toplinks h2{margin:0 0 16px}
-footer .toplinks li{margin:0 0 8px}
+footer .toplinks h2{margin:0 0 16px;font-size:14.95px;line-height:1.5}
+footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 @media print{.strip{display:none}}
 </style>
 <section class="hero">
 <p class="name">STK</p>
-<h1>Checked against the law. Signed for every decision the AI finishes.</h1>
-<p class="sub">The rule says which decisions a person must make, and the law says why.</p>
+<h1>Safe decisions.</h1>
+<p class="sub">Checked against the law. Signed for every decision the AI finishes.</p>
 <nav class="entries" aria-label="By industry"><a href="/rules-full#health">Health plans</a><a href="/rules-full#finance">Banks, card issuers, lenders, insurers</a></nav>
 </section>
 <div class="strip strip-a"><p>66 of 83 actions an AI may finish alone.<br>17 the law gives to a person.</p></div>
