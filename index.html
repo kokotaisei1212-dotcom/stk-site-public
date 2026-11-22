@@ -39,38 +39,46 @@
 </ul></nav></div>
 <main class="wrap">
 <style>
-.entries{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 32px;margin-top:20px}
-.entries a{flex:1 1 0;min-width:200px;max-width:320px;text-align:center}
-.hero{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-block:var(--bar) 24px}
+/* One measure for this page (CEO 2026-11-22): spaces are 8, 16, 24, 40, 64 or 96 px only.
+   Gutter = var(--pad) (24 px; 48 px from 900 px, site.css). Content at most 720 px wide. Sections 64 px above and below; 96 px from 900 px.
+   Black surfaces stand off the edges by the gutter, corners 20 px (28 px from 900 px). */
+:root{--sec:64px;--measure:720px;--round:20px}
+@media (min-width:900px){:root{--sec:96px;--round:28px}}
+main.wrap{max-width:none;padding-inline:0}   /* this page measures from the screen's edge: the gutter, then the content */
+.bar .wrap,footer .wrap{max-width:none}       /* the logo and the footer on the same gutter */
+main > *{box-sizing:border-box}
+.hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:calc(var(--bar) / 2 + 20px + var(--sec)) var(--pad) var(--sec)}   /* the logo ends at half the bar + 20 px (site.css): then one section space */
+.hero .name{margin:0 0 24px;font-size:15px;font-weight:500;letter-spacing:.04em}
 .hero h1{margin:0;font-size:34px;font-weight:400;line-height:1.15;letter-spacing:-.025em;max-width:22em;text-wrap:balance}
-.hero .sub{margin:16px 0 0;font-size:17px;line-height:1.45;color:var(--muted);max-width:34em;text-wrap:balance}
-.hero .name{margin:0 0 20px;font-size:15px;font-weight:500;letter-spacing:.04em}
-.hero .desc{margin:20px 0 0;font-size:15px;line-height:1.5;color:var(--muted);max-width:34em}
-.hero .ver{margin:32px 0 0;font-size:14px;color:var(--muted);overflow-wrap:anywhere;max-width:100%}
 @media (min-width:768px){.hero h1{font-size:64px}}
-.band{background:#000000;color:#FFFFFF;text-align:center;padding:56px 0;margin:32px 0;box-shadow:0 0 0 100vmax #000000;clip-path:inset(0 -100vmax);display:flex;align-items:center;justify-content:center}   /* as tall as its words and their padding; the words in the middle */
-.band p{margin:0 auto;font-size:15px;line-height:1.4;letter-spacing:-.01em;max-width:46em;text-wrap:balance}
-@media (min-width:768px){.band p{font-size:22px}}
-.tool{max-width:760px;margin:0 auto;padding:48px 0 24px}
-.tool h2{margin:0 0 14px;font-size:13px;font-weight:400;color:var(--muted);letter-spacing:.04em}
-.tool p{margin:0 0 10px;font-size:15px;line-height:1.55}
-.tool #keysout{box-sizing:border-box;width:100%;margin:0;white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:12px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:12px 14px}
-.tool button,.tool #kf button{font:inherit;font-size:14px;border-radius:4px;padding:8px 12px;color:var(--bg);background:var(--ink);border:1px solid var(--ink);cursor:pointer}
-.tool #kf{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
-.tool #kf input{flex:1 1 14rem;min-width:0;font:inherit;font-size:16px;border-radius:4px;padding:10px 12px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
+.hero .sub{margin:16px 0 0;font-size:17px;line-height:1.45;color:var(--muted);max-width:var(--measure);text-wrap:balance}
+.entries{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 40px;margin-top:24px;max-width:var(--measure)}
+.entries a{flex:1 1 0;min-width:200px;max-width:320px;text-align:center}
+.tool,.three{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad)}
+.tool h2,.three h2{margin:0 0 16px;font-size:13px;font-weight:400;color:var(--muted);letter-spacing:.04em}
+.tool p{margin:16px 0 0;font-size:15px;line-height:1.55}
+.tool #keysout{box-sizing:border-box;width:100%;margin:16px 0 0;white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:12px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:16px}
+.tool button,.tool #kf button{font:inherit;font-size:14px;border-radius:4px;padding:8px 16px;color:var(--bg);background:var(--ink);border:1px solid var(--ink);cursor:pointer}
+.tool #kf{display:flex;flex-wrap:wrap;gap:16px;margin:0}
+.tool #kf input{flex:1 1 14rem;min-width:0;font:inherit;font-size:16px;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
 .tool #ks:empty{display:none}
-.tool #card{margin-top:10px}
-.three{display:grid;grid-template-columns:1fr;gap:40px;max-width:1040px;margin:0 auto;padding:48px 0 96px}
-.three h2{margin:0 0 14px;font-size:13px;font-weight:400;color:var(--muted);letter-spacing:.04em}
+.tool #card{margin-top:16px}
+.three{display:grid;grid-template-columns:1fr;gap:40px}
 .three p{margin:0 0 8px;font-size:15px;line-height:1.55}
-.three .more{margin-top:14px;font-size:14px}
-@media (min-width:768px){.three{grid-template-columns:repeat(2,1fr);gap:48px}}
-
-.strip{position:relative;height:40vh;margin-inline:calc(50% - 50vw);background:#000000;overflow:hidden}
+.three .more{margin-top:16px;font-size:14px}
+@media (min-width:768px){.three{grid-template-columns:repeat(2,1fr);gap:64px}}
+.band,.strip{margin:0 var(--pad);border-radius:var(--round);background:#000000}
+.band{color:#FFFFFF;text-align:center;padding:var(--sec) var(--pad);display:flex;align-items:center;justify-content:center}   /* as tall as its words and the padding; the words in the middle */
+.band p{margin:0;font-size:15px;line-height:1.4;letter-spacing:-.01em;max-width:var(--measure);text-wrap:balance}
+@media (min-width:768px){.band p{font-size:22px}}
+.strip{position:relative;height:40vh;overflow:hidden}
 .strip::before,.strip::after{content:"";position:absolute;inset:0}
 .strip::before{background:radial-gradient(ellipse at 50% 0%,#FFFFFF 0%,transparent 70%);opacity:.1}
 .strip::after{background:repeating-linear-gradient(0deg,#FFFFFF 0 1px,transparent 1px 3px);opacity:.012}
 @media (max-width:599px){.strip{height:25vh}}
+.strip-b{margin-bottom:var(--sec)}             /* white between it and the footer, as between every surface */
+footer.dark{padding-block:var(--sec)}           /* the links: the same black above and below */
+footer .toplinks{gap:16px 40px}
 @media print{.strip{display:none}}
 </style>
 <section class="hero">
