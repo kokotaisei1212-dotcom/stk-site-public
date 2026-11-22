@@ -26,6 +26,11 @@
 // is sent as soon as STK answers again, and STK signs it as any seal. The grant gone, or queueMax seals waiting:
 // "escalate", as before. A receipt has two times: recorded_ms, when this file recorded the action (your claim), and
 // time_ms, when STK signed (what STK attests). They are the same moment unless the seal waited in the queue.
+// STK's own trouble never reaches your code as an error: ask() resolves to finish or escalate, and joined() resolves. A
+// starting STK server, or one that cannot read the unpaid state from Stripe, answers 503, and a 429 is the same: STK not
+// reached, so the grant holds as above. A person joining that STK cannot be told is kept (a to_tell line) and told as
+// soon as STK answers, also after a restart; told after 00:10 UTC the day after the finish, it stays billed. After the
+// rules could not be read, ask() escalates at once for rulesRetry ms instead of waiting 2 seconds each time.
 // Try it without a key: node stk.mjs conversation.order.status unknown   (it reads the public rules; it sends nothing)
 // Node 18 or later, nothing to install.
 import { createHash, randomBytes } from "node:crypto";
@@ -39,8 +44,13 @@ export const config = {
   rowsDir: process.env.STK_ROWS_DIR || "stk-rows",
   onRow: null,           // or a function(line): each line, for your own store
   queueMax: 10000,       // seals waiting for STK at most; past it, "escalate"
-  queueRetry: 5000,      // ms between tries to send the queue
+  queueRetry: 5000,      // ms between tries to send the queue, and a person joining STK could not be told yet
+  rulesRetry: 10000,     // ms after the rules could not be read in which ask() escalates without trying again
 };
+const tells = new Map(); // id -> a person joining that STK could not be told yet (a to_tell line)
+let telling = false;
+let rulesFailed = null;  // when the rules last could not be read (performance.now())
+const busy = (st) => st === undefined || st >= 500 || st === 408 || st === 429;   // STK not reached, or busy: try again
 let grant = null;        // the last grant: g, sig, until (performance.now())
 const queue = new Map(); // seal -> its queued line, waiting for STK; in the order recorded
 let offset = 0;          // ms to add to this machine's clock when STK said it is more than a minute off
@@ -130,7 +140,7 @@ async function doneToday() {
             try {
               const l = JSON.parse(t);
               if (l.key) kids.add(l.key.kid);
-              if (l.joined && l.joined.seal) takenOff.add(l.joined.seal);   // told to STK as a person joining
+              for (const k of ["joined", "to_tell"]) if (l[k] && l[k].seal) takenOff.add(l[k].seal);   // told to STK as a person joining, or to be
               if (l.queued && l.queued.row) { const r = JSON.parse(l.queued.row); if ("conversation_id" in r) { set.add(r.conversation_id + "\u0000" + r.intent); seals.set(r.conversation_id + "\u0000" + r.intent, l.queued.seal); } }
               if (l.sig && !l.cancelled) { const r = JSON.parse(l.row); if ("conversation_id" in r) { set.add(r.conversation_id + "\u0000" + r.intent); seals.set(r.conversation_id + "\u0000" + r.intent, l.receipt.seal); } }
             } catch {}
@@ -176,7 +186,8 @@ export async function ask(intent, trigger, { conversationId, ...fields } = {}) {
   if (typeof intent === "string") intent = intent.trim().toLowerCase();   // " Order.Status " is order.status
   if (typeof trigger === "string") trigger = trigger.trim().toLowerCase();
   if (!current) {   // the first ask of this process reads the rules first (up to 2 seconds), outside STK's 300 ms
-    try { await rules(false, 2000); } catch { return "escalate"; }
+    if (rulesFailed !== null && performance.now() - rulesFailed < config.rulesRetry) return "escalate";   // just failed: not 2 s more each ask
+    try { await rules(false, 2000); rulesFailed = null; } catch { rulesFailed = performance.now(); return "escalate"; }
   }
   const state = { late: false, how: null, covered: () => false, settle: null, answer: null };
   const settled = new Promise((r) => (state.settle = r));
@@ -233,13 +244,13 @@ async function ask1(intent, trigger, cid, fields, state, settled, r) {
       a = await http("POST", "/v1/ask", { seal, recorded_ms: recorded });
     }
   } catch (e) {
-    const reached = e.status !== undefined && e.status < 500;
+    const reached = !busy(e.status);
     if (state.how === null) state.how = !reached && g && g.g.rule_version === r.version && performance.now() < g.until && queue.size < config.queueMax ? "grant" : "error";
     if (state.how === "grant" && (g || grant)) {             // STK not reached, the grant holds: finish now, the seal waits in the queue
       await enqueue(cid, intent, text, nonce, seal, recorded, g || grant);
       return state.answer("finish");
     }
-    try { await postJoined("no answer from STK", seal); } catch {} throw e;   // it may have been counted: taken off, never billed
+    try { await postJoined("no answer from STK", seal); } catch {} throw e;   // it may have been counted: taken off; once only (STK most often never had it, and a join lowers the bill)
   }
   keepGrant(a);
   if (!a.sig) {
@@ -257,11 +268,11 @@ async function ask1(intent, trigger, cid, fields, state, settled, r) {
     } catch { result = "escalate"; line.cancelled = "the rules of " + a.rule_version.slice(0, 12) + " could not be read"; }   // taken off
   }
   const key = cid === null ? null : cid + "\u0000" + intent;
-  const tell = async () => { try { await postJoined(line.cancelled, seal); } catch { line.cancelled += "; STK could not be told"; } };
-  if (line.cancelled) await tell();
+  const tellIt = async () => { if (!(await tell(line.cancelled, seal))) line.cancelled += "; STK is told when it answers"; };
+  if (line.cancelled) await tellIt();
   try { await write(line); }                                 // kept before the answer: a process stopped right after it still has it
   catch (e) {                                                // not kept: never a permission you cannot prove; taken off, escalate
-    if (!line.cancelled) { line.cancelled = "the line could not be kept"; await tell(); }
+    if (!line.cancelled) { line.cancelled = "the line could not be kept"; await tellIt(); }
     throw e;
   }
   if (!line.cancelled && key !== null && done.day === today()) { done.set.add(key); done.seals.set(key, seal); }
@@ -269,8 +280,7 @@ async function ask1(intent, trigger, cid, fields, state, settled, r) {
   await settled;                                             // ask() has returned, on time or not
   if (result === "finish" && state.late) {                   // too late: your code has handed it to a person
     if (key !== null) { done.set.delete(key); done.seals.delete(key); }
-    try { await postJoined("the answer came after ask() returned", seal); }   // its joined line takes it off your count too
-    catch { await write({ not_told: { time_ms: Date.now(), seal, why: "the answer came after ask() returned; STK could not be told, it stays billed" } }); }
+    await tell("the answer came after ask() returned", seal);   // its joined line takes it off your count too
   }
   await saveKey(line.receipt.kid);
 }
@@ -298,7 +308,7 @@ async function sendQueue() {
     let a;
     try { a = await http("POST", "/v1/ask", { seal, recorded_ms: q.recorded_ms, grant: q.grant, grant_sig: q.grant_sig }); }
     catch (e) {
-      if (e.status === undefined || e.status >= 500) return;   // not reached: tried again in queueRetry ms
+      if (busy(e.status)) return;                               // not reached: tried again in queueRetry ms
       await write({ not_signed: { seal, recorded_ms: q.recorded_ms, why: "STK refused it: " + e.status } });
       queue.delete(seal); continue;
     }
@@ -320,8 +330,8 @@ export async function flush(ms = 30000) {
   return !queue.size;
 }
 
-async function reloadQueue() {   // after a restart: queued lines of today and yesterday with no signed line yet go back in the queue
-  const waiting = new Map(), gone = new Set();
+async function reloadQueue() {   // after a restart: queued lines of today and yesterday with no signed line yet go back in the queue, and to_tell lines not yet told are told
+  const waiting = new Map(), gone = new Set(), kept = new Map(), told = new Set();
   for (const d of [new Date(Date.now() - 86400000).toISOString().slice(0, 10), today()]) {
     try {
       for (const t of (await readFile(join(config.rowsDir, d + ".jsonl"), "utf8")).split("\n")) {
@@ -330,12 +340,16 @@ async function reloadQueue() {   // after a restart: queued lines of today and y
           if (l.queued && l.queued.seal) waiting.set(l.queued.seal, l.queued);
           else if (l.receipt) gone.add(l.receipt.seal);
           for (const k of ["not_signed", "dequeued", "joined"]) if (l[k] && l[k].seal) gone.add(l[k].seal);
+          if (l.to_tell && l.to_tell.id) kept.set(l.to_tell.id, l.to_tell);
+          for (const k of ["joined", "not_told"]) if (l[k] && l[k].of) told.add(l[k].of);
         } catch {}
       }
     } catch {}
   }
   for (const [s, q] of waiting) if (!gone.has(s) && !queue.has(s)) queue.set(s, q);
+  for (const [id, t] of kept) if (!told.has(id) && !tells.has(id)) tells.set(id, t);
   startSender();
+  startTeller();
 }
 
 async function saveKey(kid) {   // the receipt's public key, once a day: the lines can be checked with nothing of STK running
@@ -346,8 +360,14 @@ async function saveKey(kid) {   // the receipt's public key, once a day: the lin
   catch { done.kids.delete(kid); }
 }
 
+// A person joined: told once for each finish this file knows the conversation got today (with its seal), or once
+// without one. It never throws: STK not reached, it is told as soon as STK answers (a to_tell line until then).
+// true, or false if your onRow function threw.
 export async function joined(conversationId) {
-  // told once for each finish this file knows the conversation got today (with its seal), or once without one
+  try { return await joinedNow(conversationId); } catch { return false; }
+}
+
+async function joinedNow(conversationId) {
   let seals = [null];
   const cid = conversationId === undefined || conversationId === null ? null : String(conversationId);
   if (cid !== null) {
@@ -363,7 +383,7 @@ export async function joined(conversationId) {
     if (s !== null && queue.has(s)) {                        // still in the queue: never sent, never billed
       queue.delete(s);
       await write({ dequeued: { time_ms: Date.now(), seal: s, why: "joined(" + (conversationId ?? "") + ") before STK signed it" } });
-    } else await postJoined("joined(" + (conversationId ?? "") + ")", s);   // throws if STK cannot be told: call it again
+    } else await tell("joined(" + (conversationId ?? "") + ")", s);   // STK not reached: told as soon as it answers
     for (const book of [done.seals, done.yesterday]) for (const [x, v] of [...book]) if (s !== null && v === s) { book.delete(x); done.set.delete(x); }
     if (s === null && cid !== null) for (const x of [...done.set]) if (x.startsWith(cid + "\u0000")) done.set.delete(x);
   }
@@ -371,9 +391,37 @@ export async function joined(conversationId) {
   return true;
 }
 
-async function postJoined(why, seal = null) {   // POST /v1/joined (with the seal: it counts for that permission's day), and a line for it
+async function postJoined(why, seal = null, of = null) {   // POST /v1/joined (with the seal: it counts for that permission's day), and a line for it
   const a = await http("POST", "/v1/joined", seal ? { seal } : {});
-  await write({ joined: { time_ms: Date.now(), day: a.day ?? null, seal, why } });
+  try { await write({ joined: { time_ms: Date.now(), day: a.day ?? null, seal, why, ...(of ? { of } : {}) } }); } catch {}   // told; only your onRow threw
+}
+
+// STK told a person joined, now: true. Not reached: kept as a to_tell line and told as soon as STK answers (false).
+async function tell(why, seal = null) {
+  try { await postJoined(why, seal); return true; } catch {}
+  const t = { id: randomBytes(8).toString("hex"), time_ms: Date.now(), seal, why };
+  try { await write({ to_tell: t }); } catch {}             // your onRow threw: kept while this process runs
+  tells.set(t.id, t);
+  startTeller();
+  return false;
+}
+
+function startTeller() {
+  if (telling || !tells.size) return;
+  telling = true;
+  sendTells().finally(() => { telling = false; if (tells.size) setTimeout(startTeller, config.queueRetry).unref?.(); });
+}
+
+async function sendTells() {   // in the order kept, as soon as STK answers: a joined line with of
+  while (tells.size) {
+    const [id, t] = tells.entries().next().value;
+    try { await postJoined(t.why, t.seal ?? null, id); }
+    catch (e) {
+      if (busy(e.status)) return;                            // tried again in queueRetry ms
+      try { await write({ not_told: { time_ms: Date.now(), seal: t.seal ?? null, of: id, why: "STK refused it: " + e.status } }); } catch {}
+    }
+    tells.delete(id);
+  }
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

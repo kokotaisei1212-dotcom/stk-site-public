@@ -39,6 +39,12 @@ sent as soon as STK answers again, and STK signs it as it signs any seal. The gr
 "escalate", as before. A receipt has two times: recorded_ms, when this file recorded the action (your claim), and
 time_ms, when STK signed (what STK attests). They are the same moment unless the seal waited in the queue.
 
+STK's own trouble never reaches your code as an error: ask() returns finish or escalate, and joined() returns. A
+starting STK server, or one that cannot read the unpaid state from Stripe, answers 503, and a 429 is the same: STK not
+reached, so the grant holds as above. A person joining that STK cannot be told is kept (a to_tell line) and told as
+soon as STK answers, also after a restart; told after 00:10 UTC the day after the finish, it stays billed. After the
+rules could not be read, ask() escalates at once for RULES_RETRY seconds instead of waiting 2 seconds each time.
+
 Try it without a key: python3 stk.py conversation.order.status unknown   (it reads the public rules and decides; it sends nothing)
 Python 3.8 or later, nothing to install."""
 import hashlib, json, os, re, secrets, sys, threading, time, urllib.error, urllib.request
@@ -47,7 +53,8 @@ KEY = os.environ.get("STK_KEY", "")   # your key, from the environment (STK_KEY)
 API = os.environ.get("STK_API", "https://api.stk-evidence.com")
 TIMEOUT = 0.3
 QUEUE_MAX = 10000      # seals waiting for STK at most; past it, "escalate"
-QUEUE_RETRY = 5        # seconds between tries to send the queue
+QUEUE_RETRY = 5        # seconds between tries to send the queue, and a person joining STK could not be told yet
+RULES_RETRY = 10       # seconds after the rules could not be read in which ask() escalates without trying again
 ROWS_DIR = os.environ.get("STK_ROWS_DIR", "stk-rows")
 ON_ROW = None          # or a function(line: dict): each line, for your own store
 _lock = threading.Lock()
@@ -57,6 +64,9 @@ GRACE = 600                               # seconds after midnight (UTC) in whic
 _asking = {}                              # (conversation_id, intent) being asked now: one call to STK for them
 _grant = {}                               # the last grant: g, sig, and until (this process's monotonic clock)
 _queue = {}                               # seal -> its queued line, waiting for STK; in the order recorded
+_tells = {}                               # id -> a person joining that STK could not be told yet (a to_tell line)
+_teller = {"on": False}
+_rules_failed = {"at": None}              # when the rules last could not be read (this process's monotonic clock)
 _clock = {"offset": 0}                    # ms to add to this machine's clock, if it is more than 30 s from STK's
 _sender = {"on": False}
 
@@ -225,8 +235,9 @@ def _done_today():
                                 line = json.loads(text)
                                 if "key" in line:
                                     _finished["kids"].add(line["key"]["kid"])
-                                if (line.get("joined") or {}).get("seal"):
-                                    taken_off.add(line["joined"]["seal"])     # told to STK as a person joining
+                                for k in ("joined", "to_tell"):
+                                    if isinstance(line.get(k), dict) and line[k].get("seal"):
+                                        taken_off.add(line[k]["seal"])        # told to STK as a person joining, or to be
                                 if line.get("queued") and isinstance(line["queued"], dict):
                                     r = json.loads(line["queued"]["row"])
                                     if "conversation_id" in r:
@@ -253,8 +264,9 @@ def _done_today():
 
 
 def _reload_queue():
-    """After a restart: the queued lines of today and yesterday with no signed or not_signed line yet go back in the queue."""
-    waiting, gone = {}, set()
+    """After a restart: the queued lines of today and yesterday with no signed or not_signed line yet go back in the queue,
+    and their to_tell lines with no joined or not_told line of them yet are told."""
+    waiting, gone, tells, told = {}, set(), {}, set()
     for d in (time.strftime("%Y-%m-%d", time.gmtime(time.time() - 86400)), _today()):
         try:
             with open(os.path.join(ROWS_DIR, d + ".jsonl"), encoding="utf-8") as f:
@@ -270,13 +282,22 @@ def _reload_queue():
                     for k in ("not_signed", "dequeued", "joined"):
                         if isinstance(line.get(k), dict):
                             gone.add(line[k].get("seal"))
+                    if isinstance(line.get("to_tell"), dict) and line["to_tell"].get("id"):
+                        tells[line["to_tell"]["id"]] = line["to_tell"]
+                    for k in ("joined", "not_told"):
+                        if isinstance(line.get(k), dict) and line[k].get("of"):
+                            told.add(line[k]["of"])
         except OSError:
             pass
     with _lock:
         for seal, q in waiting.items():
             if seal not in gone:
                 _queue.setdefault(seal, q)
+        for tid, t in tells.items():
+            if tid not in told:
+                _tells.setdefault(tid, t)
     _start_sender()
+    _start_teller()
 
 
 def seal_of(nonce: bytes, row_text: str) -> str:
@@ -287,9 +308,14 @@ def ask(intent, trigger, conversation_id=None, **fields):
     intent = intent.strip().lower() if isinstance(intent, str) else intent      # " Order.Status " is order.status
     trigger = trigger.strip().lower() if isinstance(trigger, str) else trigger
     if not _rules:                            # the first ask of this process reads the rules first (up to 2 seconds),
-        try:                                  # outside the 300 ms that STK's answer has
+        at = _rules_failed["at"]              # outside the 300 ms that STK's answer has
+        if at is not None and time.monotonic() - at < RULES_RETRY:
+            return "escalate"                 # just failed: not 2 seconds more for each ask while STK is away
+        try:
             rules(timeout=2)
+            _rules_failed["at"] = None
         except Exception:
+            _rules_failed["at"] = time.monotonic()
             return "escalate"
     got, ready, decided, late = {}, threading.Event(), threading.Event(), [None, None]
 
@@ -363,7 +389,7 @@ def _ask_stk(intent, trigger, cid, fields, r, answer, decided, late):
             recorded = _now_ms()
             a = _http("POST", "/v1/ask", {"seal": seal, "recorded_ms": recorded})
     except Exception as e:
-        reached = isinstance(e, urllib.error.HTTPError) and e.code < 500
+        reached = isinstance(e, urllib.error.HTTPError) and e.code < 500 and e.code not in (408, 429)   # STK busy: not reached
         with _lock:
             if late[0] is None:
                 late[0] = "grant" if not reached and g and g["g"]["rule_version"] == r["version"] \
@@ -374,7 +400,10 @@ def _ask_stk(intent, trigger, cid, fields, r, answer, decided, late):
         if how == "grant" and g:                    # STK not reached, the grant holds: finish now, the seal waits in the queue
             _enqueue(cid, intent, text, nonce, seal, recorded, g)
             return answer("finish")
-        _tell_joined({"cancelled": "no answer from STK", "receipt": {"seal": seal}})   # it may have been signed and counted: taken off
+        try:                                  # it may have been signed and counted: taken off. Once only: STK most often
+            _post_joined("no answer from STK", seal)    # never had it, and a join lowers the day's bill
+        except Exception:
+            pass
         raise
     _keep_grant(a)
     _learn_receipt_clock(a)
@@ -413,10 +442,7 @@ def _ask_stk(intent, trigger, cid, fields, r, answer, decided, late):
         with _lock:
             _finished["done"].discard((cid, intent))
             _finished["seals"].pop((cid, intent), None)
-        try:
-            _post_joined("the answer came after ask() returned", seal)    # its joined line takes it off your count too
-        except Exception:
-            _write({"not_told": {"time_ms": int(time.time() * 1000), "seal": seal, "why": "the answer came after ask() returned; STK could not be told, it stays billed"}})
+        _tell("the answer came after ask() returned", seal)    # its joined line takes it off your count too
     _save_key(line["receipt"]["kid"])
 
 
@@ -459,7 +485,7 @@ def _send_queue():
             try:
                 a = _http("POST", "/v1/ask", {"seal": seal, "recorded_ms": q["recorded_ms"], "grant": q["grant"], "grant_sig": q["grant_sig"]})
             except urllib.error.HTTPError as e:
-                if e.code >= 500:
+                if e.code >= 500 or e.code in (408, 429):
                     time.sleep(QUEUE_RETRY); continue
                 _write({"not_signed": {"seal": seal, "recorded_ms": q["recorded_ms"], "why": "STK refused it: " + str(e.code)}})
                 with _lock:
@@ -512,23 +538,94 @@ def _save_key(kid):
 
 
 def _tell_joined(line):
-    try:
-        _post_joined(line["cancelled"], line.get("receipt", {}).get("seal"))   # a person has it: taken off its day's bill
-    except Exception:
-        line["cancelled"] += "; STK could not be told"
+    if not _tell(line["cancelled"], line.get("receipt", {}).get("seal")):   # a person has it: taken off its day's bill
+        line["cancelled"] += "; STK is told when it answers"
 
 
-def _post_joined(why, seal=None):
+def _post_joined(why, seal=None, of=None):
     """POST /v1/joined (with the permission's seal when known: it counts for that permission's day), and a line for
     it: your count of people joining is your joined lines."""
     a = _http("POST", "/v1/joined", {"seal": seal} if seal else {})
-    _write({"joined": {"time_ms": int(time.time() * 1000), "day": a.get("day"), "seal": seal, "why": why}})
+    _joined_line(a, why, seal, of)
+
+
+def _joined_line(a, why, seal, of=None):
+    j = {"time_ms": int(time.time() * 1000), "day": a.get("day"), "seal": seal, "why": why}
+    if of:
+        j["of"] = of                          # the to_tell line it was kept as
+    try:
+        _write({"joined": j})
+    except Exception:
+        pass                                  # STK was told; only your ON_ROW raised
+
+
+def _tell(why, seal=None):
+    """STK told a person joined, now: True. Not reached: kept as a to_tell line and told as soon as STK answers
+    (False). Never raises."""
+    try:
+        _post_joined(why, seal)               # a line it cannot keep does not raise: STK is told once only
+        return True
+    except Exception:
+        pass
+    t = {"id": secrets.token_hex(8), "time_ms": int(time.time() * 1000), "seal": seal, "why": why}
+    try:
+        _write({"to_tell": t})
+    except Exception:
+        pass                                  # your ON_ROW raised: kept while this process runs
+    with _lock:
+        _tells[t["id"]] = t
+    _start_teller()
+    return False
+
+
+def _start_teller():
+    with _lock:
+        if _teller["on"] or not _tells:
+            return
+        _teller["on"] = True
+    threading.Thread(target=_send_tells, daemon=True).start()
+
+
+def _send_tells():
+    """Each person joining STK could not be told, in the order kept, as soon as STK answers: a joined line with of."""
+    try:
+        while True:
+            with _lock:
+                if not _tells:
+                    return
+                tid, t = next(iter(_tells.items()))
+            try:
+                _post_joined(t["why"], t.get("seal"), tid)
+            except urllib.error.HTTPError as e:
+                if e.code >= 500 or e.code in (408, 429):
+                    time.sleep(QUEUE_RETRY); continue
+                try:                          # STK refused it (a key stopped, for one): not told, and said so
+                    _write({"not_told": {"time_ms": int(time.time() * 1000), "seal": t.get("seal"), "of": tid, "why": "STK refused it: " + str(e.code)}})
+                except Exception:
+                    pass
+            except Exception:
+                time.sleep(QUEUE_RETRY); continue
+            with _lock:
+                _tells.pop(tid, None)
+    finally:
+        with _lock:
+            _teller["on"] = False
+        if _tells:
+            _start_teller()
 
 
 def joined(conversation_id=None):
     """A person joined a conversation: STK is told, once for each finish this file knows the conversation got today
     (with its seal), or once without one. It counts for the day of the finish, or for today (UTC). Called again the
-    same day for the same conversation with no finish of it since: STK is not told again."""
+    same day for the same conversation with no finish of it since: STK is not told again. It never raises: STK not
+    reached, it is told as soon as STK answers (a to_tell line until then). True, or False if your ON_ROW raised."""
+    try:
+        return _joined(conversation_id)
+    except Exception:
+        return False
+
+
+def _joined(conversation_id):
     cid = None if conversation_id is None else str(conversation_id)
     seals = [None]
     if cid is not None:
@@ -548,7 +645,7 @@ def joined(conversation_id=None):
         if waiting is not None:               # still in the queue: never sent, never billed
             _write({"dequeued": {"time_ms": int(time.time() * 1000), "seal": s, "why": "joined(" + ("" if cid is None else cid) + ") before STK signed it"}})
         else:
-            _post_joined("joined(" + ("" if cid is None else cid) + ")", s)    # raises if STK cannot be told: call it again
+            _tell("joined(" + ("" if cid is None else cid) + ")", s)    # STK not reached: told as soon as it answers
         with _lock:                                                      # told: not told again for it
             for book in (_finished["seals"], _finished["yesterday"]):
                 for x in [x for x, v in book.items() if v == s and s is not None]:
