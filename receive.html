@@ -82,7 +82,7 @@ Connection: close
 <p>Of your account: the email address and the keys' hashes, with Stripe, until 7 years after its last day with an ask or a person joining (30 days after it was made, if its live key was never used); each billed day's count of permissions and of people joining, and what was billed, on Stripe's invoices, which Stripe keeps as payment records. Each report you make: its date and the intent you give with it, public, and the seal of the permission reported, with Stripe, 7 years.</p>
 
 <h2 id="others">Who else sees it</h2>
-<p>Stripe: your email address and the keys' hashes, each day's count and amount, the invoices, STK's public keys and the reports. Render runs STK's server, so the requests pass through it. Vercel serves this site. Nobody else. The site loads nothing from any other company: no font, script or style; a test checks every page of it before it is published. <a href="/subprocessors">Subprocessors</a></p>
+<p>Stripe: your email address and the keys' hashes, each day's count and amount, the invoices, STK's public keys and the reports. Render runs STK's server, so the requests pass through it. Render serves this site. Nobody else. The site loads nothing from any other company: no font, script or style; a test checks every page of it before it is published. <a href="/subprocessors">Subprocessors</a></p>
 
 <h2 id="rtt">Round trip</h2>
 <div class="table"><table><thead><tr><th>From</th><th>Calls</th><th>Median</th><th>90%</th><th>On</th></tr></thead><tbody><tr><td>A Mac, home internet (JP)</td><td>30</td><td>149 ms</td><td>156 ms</td><td>2026-11-17</td></tr></tbody></table></div><p>Each call: <code>POST /v1/ask</code> with a test key, from the first byte sent to the last byte of the answer, over a connection already open.</p>
