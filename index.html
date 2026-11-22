@@ -66,6 +66,13 @@
 .three .more{margin-top:14px;font-size:14px}
 @media (min-width:768px){.three{grid-template-columns:repeat(2,1fr);gap:48px}}
 
+.strip{position:relative;height:48vh;margin-inline:calc(50% - 50vw);background:#000000;overflow:hidden}
+.strip::before,.strip::after{content:"";position:absolute;inset:0}
+.strip::before{background:radial-gradient(ellipse at 50% 0%,#FFFFFF 0%,transparent 70%);opacity:.1}
+.strip::after{background:repeating-linear-gradient(0deg,#FFFFFF 0 1px,transparent 1px 3px);opacity:.012}
+.strip-a{margin-top:-33px}                    /* joined to the band above it, over its last pixel: black meets black */
+.strip-a::before{background:radial-gradient(ellipse at 50% 100%,#FFFFFF 0%,transparent 70%)}   /* light at the foot, black at the band */
+@media print{.strip{display:none}}
 </style>
 <section class="hero">
 <p class="name">STK</p>
@@ -123,6 +130,7 @@
 })();
 </script>
 <div class="band" role="presentation"><p>Where the law says a person must decide, we don't sign and we don't charge.</p></div>
+<div class="strip strip-a" aria-hidden="true"></div>
 <section class="three wrap" aria-label="STK">
 <div><h2>The rules</h2>
 <p>Each of 83 actions is on one side: completed without human review, or human review required.</p>
@@ -135,6 +143,7 @@
 <p>No version is deleted: replaced and withdrawn ones stay published in full.</p>
 <p class="more"><a href="/rules-full#release">How a version is published</a></p></div>
 </section>
+<div class="strip strip-b" aria-hidden="true"></div>
 
 </main>
 <footer class="dark"><div class="wrap">
