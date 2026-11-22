@@ -63,6 +63,8 @@ main > *{box-sizing:border-box}
 .tool #kf input{flex:1 1 14rem;min-width:0;font:inherit;font-size:18.4px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
 .tool #ks:empty{display:none}
 .tool #card{margin-top:16px}
+.tool #pricenote{margin:16px 0 0;font-size:14.95px;line-height:1.5;color:var(--muted)}   /* the price, small and grey, between the keys and the card button */
+.tool #pricenote a{color:inherit}
 .three{display:grid;grid-template-columns:1fr;gap:40px}
 .three p{margin:0 0 8px;font-size:17.25px;line-height:1.55}
 .three .more{margin-top:16px;font-size:16.1px}
@@ -128,7 +130,13 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
       var b = document.createElement('button');
       b.type = 'button'; b.id = 'card'; b.textContent = 'Register a card';
       b.onclick = function(){ window.open(url, '_blank'); };
-      k.after(b);
+      var n = document.getElementById('pricenote');
+      if (!n) {
+        n = document.createElement('p'); n.id = 'pricenote';
+        n.innerHTML = '35% of what a person costs to make the same decision.<br>Nothing where the law requires a person.<br>Nothing until you use it.<br><a href="/price">Price</a>';
+        k.after(n);
+      }
+      n.after(b);
       function check(id){                         // the card done: the live key, if it was not given at once
         if (done || !m || (id && id !== m[0])) return;
         if (v.live) { if (id) { done = true; b.remove(); } return; }
