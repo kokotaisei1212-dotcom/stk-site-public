@@ -43,12 +43,14 @@
 .entries a{flex:1 1 0;min-width:200px;max-width:320px;text-align:center}
 .hero{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-block:var(--bar) 24px}
 .hero h1{margin:0;font-size:34px;font-weight:400;line-height:1.15;letter-spacing:-.025em;max-width:22em;text-wrap:balance}
+.hero .sub{margin:16px 0 0;font-size:17px;line-height:1.45;color:var(--muted);max-width:34em;text-wrap:balance}
 .hero .name{margin:0 0 20px;font-size:15px;font-weight:500;letter-spacing:.04em}
 .hero .desc{margin:20px 0 0;font-size:15px;line-height:1.5;color:var(--muted);max-width:34em}
 .hero .ver{margin:32px 0 0;font-size:14px;color:var(--muted);overflow-wrap:anywhere;max-width:100%}
 @media (min-width:768px){.hero h1{font-size:64px}}
 .band{background:#000000;color:#FFFFFF;text-align:center;padding:56px 0;margin:32px 0;box-shadow:0 0 0 100vmax #000000;clip-path:inset(0 -100vmax)}
-.band p{margin:0;font-size:22px;line-height:1.35;letter-spacing:-.01em}
+.band p{margin:0 auto;font-size:18px;line-height:1.4;letter-spacing:-.01em;max-width:46em;text-wrap:balance}
+@media (min-width:768px){.band p{font-size:22px}}
 .tool{max-width:760px;margin:0 auto;padding:48px 0 24px}
 .tool h2{margin:0 0 14px;font-size:13px;font-weight:400;color:var(--muted);letter-spacing:.04em}
 .tool p{margin:0 0 10px;font-size:15px;line-height:1.55}
@@ -67,7 +69,8 @@
 </style>
 <section class="hero">
 <p class="name">STK</p>
-<h1>Published rules for what an AI may finish alone,<br> and signed proof you followed them.</h1>
+<h1>Safe decisions.</h1>
+<p class="sub">The rule says which decisions a person must make, and the law says why.</p>
 <nav class="entries" aria-label="By industry"><a href="/rules-full#health">Health plans</a><a href="/rules-full#finance">Banks, card issuers, lenders, insurers</a></nav>
 </section>
 
@@ -119,7 +122,7 @@
   };
 })();
 </script>
-<div class="band" role="presentation"><p>The line between AI and a person.</p></div>
+<div class="band" role="presentation"><p>To make every automated decision safe by publishing, in the open, which decisions an AI may finish alone and which a person must make — so companies can automate with confidence, and no one is decided about by a machine alone.</p></div>
 <section class="three wrap" aria-label="STK">
 <div><h2>The rules</h2>
 <p>Each of 83 actions is on one side: completed without human review, or human review required.</p>
