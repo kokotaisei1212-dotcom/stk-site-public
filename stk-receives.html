@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>What STK receives · STK</title>
+<meta name="description" content="For each permission STK receives a 32-byte SHA-256 seal, the time your library recorded it, and your key. Nothing of the decision, the patient or your customer.">
+<link rel="canonical" href="https://stk-evidence.com/stk-receives">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="STK">
+<meta property="og:url" content="https://stk-evidence.com/stk-receives">
+<meta property="og:title" content="What STK receives · STK">
+<meta property="og:description" content="For each permission STK receives a 32-byte SHA-256 seal, the time your library recorded it, and your key. Nothing of the decision, the patient or your customer.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="What STK receives · STK">
+<meta name="twitter:description" content="For each permission STK receives a 32-byte SHA-256 seal, the time your library recorded it, and your key. Nothing of the decision, the patient or your customer.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon-32-dark.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/stk-icon-512-dark.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body class="page">
+<header class="bar" id="bar"><div class="wrap">
+<a class="mark" href="/" aria-label="STK, the first page"><span class="case"><span class="cell">STK</span></span><span class="nub"></span></a>
+<button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+</div></header>
+<div class="menu" id="menu" hidden><nav class="wrap" aria-label="Pages"><ul>
+<li><a href="/rules">Rules</a></li>
+<li><a href="/ledger#check">How to check a row</a></li>
+<li><a href="/receive">What we receive</a></li>
+<li><a href="/when">What happens when</a></li>
+<li><a href="/docs">Docs</a></li>
+<li><a href="/docs#setup">Setup guides</a></li>
+<li><a href="/vendors">For AI vendors</a></li>
+<li><a href="/price">Price</a></li>
+<li><a href="/limits">Known limits</a></li>
+<li><a href="/changelog">Changelog</a></li>
+</ul></nav></div>
+<main class="wrap">
+<div class="doc">
+<div class="eyebrow">Docs</div>
+<h1>What STK receives</h1>
+<p class="lead">For each permission STK receives a 32-byte SHA-256 seal, the time your library recorded it, and your key. Nothing of the decision, the patient or your customer.</p>
+
+<h2>For each permission</h2>
+<ul>
+<li><b>The seal.</b> 32 bytes: the SHA-256 of 32 random bytes and your row. The random bytes and the row stay with you. A call with any other field is refused.</li>
+<li><b>When your library recorded it.</b> <code>recorded_ms</code>, your library's own time. For a seal that waited in the library's queue while STK could not be reached, also the grant STK signed earlier, which the library sends back.</li>
+<li><b>Your key.</b> In the header <code>X-STK-Key</code>: whose permission it is, and whether it is billed.</li>
+</ul>
+<p>STK adds its own time when the seal arrives, and signs the seal, both times and the version of the rules. When a person joins a conversation, STK receives a count, with no body or with the seal of the permission it is for. At signup STK receives the email address the invoices go to; the card is entered on Stripe's page and STK never receives its number.</p>
+
+<h2>What STK does not receive</h2>
+<p>The content of the decision: the intent, the trigger, the words of the conversation in text or audio. Patient information: no name, date of birth, member ID, diagnosis, service or claim. Your customer's data: no name, email address, phone number, account number or any other ID. The one exception is a report you choose to make: <code>POST /v1/incident</code> carries the intent you give with it.</p>
+<p>The seal cannot be turned back into the row: SHA-256 cannot be run backwards, and without the 32 random bytes that stay with you, a guess at the row cannot be checked against it.</p>
+
+<h2>What STK keeps</h2>
+<p>STK has no database. What STK keeps is kept on Stripe: each company's email address and the hashes of its keys, each billed day's counts, the invoices, and STK's signing keys (the private halves encrypted). The seals are not written down, except the seal of a permission you report. Who keeps what, and for how long: <a href="/receive">What we receive</a>.</p>
+
+<h2>HIPAA</h2>
+<p>STK receives no protected health information, so STK's view is that a HIPAA business associate agreement is not needed. This is STK's reading, not legal advice: we recommend that your own counsel confirm it for your organization before you use STK.</p>
+
+<h2>Signing keys</h2>
+<ul>
+<li><b>Method.</b> Ed25519.</li>
+<li><b>Rotation.</b> Two signing keys for each day (UTC). The first signs that day; the second signs the rest of the day only if the first is made invalid. Each day's keys are made 200 days ahead.</li>
+<li><b>Where the public keys are.</b> <code>https://api.stk-evidence.com/v1/rules?keys=1</code>; <a href="/keys.json">stk-evidence.com/keys.json</a>; the same file in the public repository <code>github.com/kokotaisei1212-dotcom/stk-site-public</code>. Your library also writes the public key of each receipt's key into your own rows file, beside the receipt.</li>
+</ul>
+
+<h2>If STK stops</h2>
+<p>Receipts already signed can still be checked. A receipt is checked with STK's public key, and the public keys stay where they were published, in the copies above and in your own rows file. Checking needs nothing from STK's server.</p>
+
+<h2>Checking offline</h2>
+<p><a href="/stk_verify.py" download>stk_verify.py</a> checks a receipt with no network:</p>
+<pre class="code">pip install cryptography
+python3 stk_verify.py --from-file rows.jsonl          # the keys and rules your file kept
+python3 stk_verify.py --receipt receipt.json keys.json   # one receipt, with a copy of the public keys</pre>
+<p>For each line it checks three things: the seal is the SHA-256 of the random bytes and the row; STK's public key checks the signature; the version of the rules named in the receipt answers finish for the row.</p>
+</div>
+</main>
+<footer class="dark"><div class="wrap">
+<div class="top">
+<div class="brand"><a class="mark" href="/" aria-label="STK, the first page"><span class="case"><span class="cell">STK.</span></span><span class="nub"></span></a></div>
+<div><h2>The rule</h2><ul><li><a href="/rules">Rules</a></li><li><a href="/changelog">Changelog</a></li></ul></div>
+<div><h2>Check</h2><ul><li><a href="/ledger#check">How to check a row</a></li><li><a href="/receive">What we receive</a></li><li><a href="/when">What happens when</a></li></ul></div>
+<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/docs#setup">Setup guides</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
+<div><h2>Terms</h2><ul><li><a href="/price">Price</a></li><li><a href="/limits">Known limits</a></li><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/dpa">DPA</a></li><li><a href="/security">Security</a></li><li><a href="/subprocessors">Subprocessors</a></li><li><a href="/trust">Trust</a></li><li><a href="/review">Review</a></li><li><a href="/vendor-review">Vendor review</a></li><li><a href="/msa">MSA</a></li></ul></div>
+<div><h2>Contact</h2><ul><li><a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a></li><li><a href="https://www.linkedin.com/in/taisei-izawa-8140123b9">LinkedIn</a></li></ul></div>
+</div>
+<div class="end"><p>© 2026 STK</p>
+<p class="last">Safe decisions.</p></div>
+</div></footer>
+<script>
+(function(){
+  var bar = document.getElementById('bar'), menu = document.getElementById('menu'), btn = document.getElementById('burger');
+  function line(){ bar.classList.toggle('scrolled', window.scrollY > 0); }
+  window.addEventListener('scroll', line, {passive: true}); line();
+  function open(v){ menu.hidden = !v; btn.setAttribute('aria-expanded', v ? 'true' : 'false'); document.documentElement.classList.toggle('locked', v); }
+  btn.addEventListener('click', function(){ open(menu.hidden); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); } });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) open(false); });
+})();
+</script>
+</body>
+</html>
