@@ -29,8 +29,8 @@ Each line is checked alone, three things, no secret needed:
                        does not.
 
 Public keys: https://api.stk-evidence.com/v1/rules?keys=1 (or keys.json). Rules: /v1/rules?history=1 (or rules.json).
-Other lines in the file (the rules applied, a public key, a person joining, not_listed, not_told, to_tell) are not permissions
-and are skipped. A line marked "cancelled" was told to STK as a person joining: shown, not counted as a failure."""
+Other lines in the file (the rules applied, a public key, a person joining, not_listed, not_told, to_tell, grant) are not
+permissions and are skipped. A line marked "cancelled" was told to STK as a person joining: shown, not counted as a failure."""
 import base64, hashlib, json, re, sys, urllib.request
 from functools import lru_cache
 
@@ -44,6 +44,7 @@ NOT_PERMISSIONS = {
     "joined": "a person joined, told to STK (a count, not a permission)",
     "not_listed": "an intent on no list of the rules, kept for your own count (not a permission)",
     "not_told": "a person joining STK refused to be told of, or (files before 2026-11-22) a late permission STK could not be told about: it stays billed (not a permission line)",
+    "grant": "a grant from STK's last answer, kept for a restart (not a permission)",
     "to_tell": "a person joining that STK could not be told yet: told as soon as STK answers (its joined line has of)",
     "queued": "a seal waiting for STK, finished under a grant (its signed line follows when STK signs it)",
     "not_signed": "a queued seal STK did not sign (not a permission)",

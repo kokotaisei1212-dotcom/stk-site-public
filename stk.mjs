@@ -20,7 +20,10 @@
 // say escalate, it escalates and tells STK a person has it, so it is not billed. The same conversation and intent that
 // got finish today (UTC) gets finish again without calling STK. Without an answer within 300 ms, or on any error,
 // ask() escalates; a late permission is told to STK as a person joining, so it is not billed.
-// Each answer of STK's also brings a grant, signed by STK, for this account and this version of the rules, for 10 minutes.
+// Each answer of STK's also brings a grant, signed by STK, for this account and this version of the rules, for 1 hour
+// (never past the next April 15 or October 15, 00:00 UTC, the only days a restriction takes effect, nor past the moment
+// the account would be unpaid 60 days). It is kept in the rows folder (a grant line, at most every 5 minutes), with the
+// rules it names, so a process started again while STK cannot be reached finishes under it too (not with onRow).
 // If STK cannot be reached (no answer within 300 ms, or an error reaching it) while the last grant holds, the rules here
 // say finish and the queue is not full, ask() returns "finish" and the seal waits in a queue, kept as a queued line; it
 // is sent as soon as STK answers again, and STK signs it as any seal. The grant gone, or queueMax seals waiting:
@@ -50,6 +53,8 @@ export const config = {
 const tells = new Map(); // id -> a person joining that STK could not be told yet (a to_tell line)
 let telling = false;
 let rulesFailed = null;  // when the rules last could not be read (performance.now())
+const saved = { read: false, rules: new Map(), grantAt: null, rulesDay: null };   // read back from the rows folder
+const GRANT_SAVE = 300000;   // ms between grant lines kept in the rows folder
 const busy = (st) => st === undefined || st >= 500 || st === 408 || st === 429;   // STK not reached, or busy: try again
 let grant = null;        // the last grant: g, sig, until (performance.now())
 const queue = new Map(); // seal -> its queued line, waiting for STK; in the order recorded
@@ -58,7 +63,18 @@ let sending = false;
 const nowMs = () => Date.now() + offset;
 const grantOk = (version) => !!grant && grant.g.rule_version === version && performance.now() < grant.until && queue.size < config.queueMax;
 function keepGrant(a) {
-  if (a && a.grant && a.grant_sig) grant = { g: a.grant, sig: a.grant_sig, until: performance.now() + (a.grant.expires_ms - a.grant.issued_ms) };
+  if (a && a.grant && a.grant_sig) {
+    const prev = grant;
+    grant = { g: a.grant, sig: a.grant_sig, until: performance.now() + (a.grant.expires_ms - a.grant.issued_ms) };
+    if (!config.onRow && (saved.grantAt === null || performance.now() - saved.grantAt >= GRANT_SAVE || !prev || prev.g.rule_version !== a.grant.rule_version)) {
+      saved.grantAt = performance.now();
+      const g = { g: a.grant, sig: a.grant_sig };
+      (async () => {
+        if (saved.rulesDay !== today() && current) { await write({ rules: current }); saved.rulesDay = today(); }   // today's file has the rules a grant names
+        await write({ grant: g });                                                                           // read back after a restart
+      })().catch(() => {});
+    }
+  }
   if (a && a.receipt) { const d = a.receipt.time_ms - Date.now(); offset = Math.abs(d) > 30000 ? d : 0; }
 }
 export function setOnRow(fn) { config.onRow = fn; }
@@ -122,7 +138,7 @@ export async function rules(fresh = false, ms = 10000) {
   decide(r.text, "", "unknown");
   const isNew = !current || current.version !== r.version;
   current = r;
-  if (isNew) await write({ rules: r });
+  if (isNew) { await write({ rules: r }); saved.rulesDay = today(); }
   return r;
 }
 
@@ -186,8 +202,12 @@ export async function ask(intent, trigger, { conversationId, ...fields } = {}) {
   if (typeof intent === "string") intent = intent.trim().toLowerCase();   // " Order.Status " is order.status
   if (typeof trigger === "string") trigger = trigger.trim().toLowerCase();
   if (!current) {   // the first ask of this process reads the rules first (up to 2 seconds), outside STK's 300 ms
-    if (rulesFailed !== null && performance.now() - rulesFailed < config.rulesRetry) return "escalate";   // just failed: not 2 s more each ask
-    try { await rules(false, 2000); rulesFailed = null; } catch { rulesFailed = performance.now(); return "escalate"; }
+    try { await readSaved(); } catch {}
+    if (rulesFailed !== null && performance.now() - rulesFailed < config.rulesRetry) { if (!rulesUnderGrant()) return "escalate"; }   // just failed: not 2 s more each ask
+    else {
+      try { await rules(false, 2000); rulesFailed = null; }
+      catch { rulesFailed = performance.now(); if (!rulesUnderGrant()) return "escalate"; }   // a restart while STK is away: the kept grant and its rules
+    }
   }
   const state = { late: false, how: null, covered: () => false, settle: null, answer: null };
   const settled = new Promise((r) => (state.settle = r));
@@ -328,6 +348,40 @@ export async function flush(ms = 30000) {
     await new Promise((r) => setTimeout(r, 50));
   }
   return !queue.size;
+}
+
+// Once, at the first ask: the last grant line of today's and yesterday's files, if it still holds by this machine's
+// clock, and the rules lines kept with it.
+async function readSaved() {
+  if (saved.read || config.onRow) return;
+  saved.read = true;
+  let last = null; const rs = new Map();
+  for (const d of [new Date(Date.now() - 86400000).toISOString().slice(0, 10), today()]) {
+    let text = "";
+    try { text = await readFile(join(config.rowsDir, d + ".jsonl"), "utf8"); } catch { continue; }
+    for (const t of text.split("\n")) {
+      if (!t.includes('"grant"') && !t.includes('"rules"')) continue;
+      try {
+        const l = JSON.parse(t);
+        if (l.grant && l.grant.g && l.grant.sig && Object.keys(l.grant).length === 2) last = l.grant;
+        if (l.rules && l.rules.version) rs.set(l.rules.version, l.rules);
+      } catch {}
+    }
+  }
+  for (const [v, r] of rs) {
+    try { if (createHash("sha256").update(r.text, "utf8").digest("hex") === v) { decide(r.text, "", "unknown"); saved.rules.set(v, r); } } catch {}
+  }
+  const now = nowMs();
+  if (last && !grant && last.g.issued_ms - 30000 <= now && now < last.g.expires_ms)
+    grant = { g: last.g, sig: last.sig, until: performance.now() + (last.g.expires_ms - now) };
+}
+
+function rulesUnderGrant() {   // STK not reached at the first ask: the rules the kept grant names, if it holds and they were kept
+  if (!grant || performance.now() >= grant.until) return false;
+  const r = saved.rules.get(grant.g.rule_version);
+  if (!r) return false;
+  current = r;
+  return true;
 }
 
 async function reloadQueue() {   // after a restart: queued lines of today and yesterday with no signed line yet go back in the queue, and to_tell lines not yet told are told

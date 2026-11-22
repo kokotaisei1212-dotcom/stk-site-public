@@ -32,7 +32,10 @@ conversation and intent that got finish today (UTC) gets finish again without ca
 file is read again; with ON_ROW only while the process runs). Without an answer within 300 ms, or on any error, ask()
 returns "escalate"; if a late answer was a permission, STK is told a person has it, so it is not billed.
 
-Each answer of STK's also brings a grant, signed by STK, for this account and this version of the rules, for 10 minutes. If
+Each answer of STK's also brings a grant, signed by STK, for this account and this version of the rules, for 1 hour (never
+past the next April 15 or October 15, 00:00 UTC, the only days a restriction takes effect, nor past the moment the
+account would be unpaid 60 days). It is kept in the rows folder (a grant line, at most every 5 minutes), with the rules
+it names, so a process started again while STK cannot be reached finishes under it too (not with ON_ROW). If
 STK cannot be reached (no answer within 300 ms, or an error reaching it) while the last grant holds, the rules here say
 finish and the queue is not full, ask() returns "finish" and the seal waits in a queue, kept as a queued line; it is
 sent as soon as STK answers again, and STK signs it as it signs any seal. The grant gone, or QUEUE_MAX seals waiting:
@@ -55,6 +58,7 @@ TIMEOUT = 0.3
 QUEUE_MAX = 10000      # seals waiting for STK at most; past it, "escalate"
 QUEUE_RETRY = 5        # seconds between tries to send the queue, and a person joining STK could not be told yet
 RULES_RETRY = 10       # seconds after the rules could not be read in which ask() escalates without trying again
+GRANT_SAVE = 300       # seconds between grant lines kept in the rows folder
 ROWS_DIR = os.environ.get("STK_ROWS_DIR", "stk-rows")
 ON_ROW = None          # or a function(line: dict): each line, for your own store
 _lock = threading.Lock()
@@ -67,6 +71,7 @@ _queue = {}                               # seal -> its queued line, waiting for
 _tells = {}                               # id -> a person joining that STK could not be told yet (a to_tell line)
 _teller = {"on": False}
 _rules_failed = {"at": None}              # when the rules last could not be read (this process's monotonic clock)
+_saved = {"read": False, "rules": {}, "grant_at": None}   # read back from the rows folder: rules by version; when a grant line was last kept
 _clock = {"offset": 0}                    # ms to add to this machine's clock, if it is more than 30 s from STK's
 _sender = {"on": False}
 
@@ -182,7 +187,77 @@ def _keep_grant(a):
     g, sig = a.get("grant"), a.get("grant_sig")
     if g and sig:
         with _lock:
+            prev = _grant.get("g")
             _grant.update(g=g, sig=sig, until=time.monotonic() + (g["expires_ms"] - g["issued_ms"]) / 1000)
+            due = ON_ROW is None and (_saved["grant_at"] is None or time.monotonic() - _saved["grant_at"] >= GRANT_SAVE
+                                      or not prev or prev["rule_version"] != g["rule_version"])
+            if due:
+                _saved["grant_at"] = time.monotonic()
+        if due:
+            try:
+                if _saved.get("rules_day") != _today() and _rules:
+                    _write({"rules": dict(_rules)})          # today's file has the rules a grant names, for a restart
+                    _saved["rules_day"] = _today()
+                _write({"grant": {"g": g, "sig": sig}})     # read back after a restart
+            except Exception:
+                pass
+
+
+def _read_saved():
+    """Once, at the first ask: the last grant line of today's and yesterday's files, if it still holds by this machine's
+    clock, and the rules lines kept with it."""
+    with _lock:
+        if _saved["read"] or ON_ROW is not None:
+            return
+        _saved["read"] = True
+    last, rs = None, {}
+    for d in (time.strftime("%Y-%m-%d", time.gmtime(time.time() - 86400)), _today()):
+        try:
+            with open(os.path.join(ROWS_DIR, d + ".jsonl"), encoding="utf-8") as f:
+                for text in f:
+                    if '"grant"' not in text and '"rules"' not in text:
+                        continue
+                    try:
+                        line = json.loads(text)
+                    except Exception:
+                        continue
+                    if isinstance(line.get("grant"), dict) and set(line["grant"]) == {"g", "sig"}:
+                        last = line["grant"]
+                    if isinstance(line.get("rules"), dict) and line["rules"].get("version"):
+                        rs[line["rules"]["version"]] = line["rules"]
+        except OSError:
+            pass
+    good = {}
+    for v, r in rs.items():
+        try:
+            if hashlib.sha256(r["text"].encode("utf-8")).hexdigest() == v:
+                decide(r["text"], "", "unknown")    # it reads as STK's rules, or this raises
+                good[v] = r
+        except Exception:
+            continue
+    now = _now_ms()
+    with _lock:
+        _saved["rules"] = good
+        if last and not _grant.get("g"):
+            g = last["g"]
+            try:
+                if g["issued_ms"] - 30000 <= now < g["expires_ms"]:
+                    _grant.update(g=g, sig=last["sig"], until=time.monotonic() + (g["expires_ms"] - now) / 1000)
+            except Exception:
+                pass
+
+
+def _rules_under_grant():
+    """STK not reached at the first ask: the rules the kept grant names, if it holds and they were kept."""
+    with _lock:
+        g = _grant.get("g")
+        if not g or time.monotonic() >= _grant["until"]:
+            return False
+        r = _saved["rules"].get(g["rule_version"])
+        if not r:
+            return False
+        _rules.clear(); _rules.update(r)
+    return True
 
 
 def rules(fresh=False, timeout=10):
@@ -197,6 +272,7 @@ def rules(fresh=False, timeout=10):
         _rules.clear(); _rules.update(r)
     if new:
         _write({"rules": r})                  # the signed rules applied, kept with the rows
+        _saved["rules_day"] = _today()
     return dict(r)
 
 
@@ -308,15 +384,22 @@ def ask(intent, trigger, conversation_id=None, **fields):
     intent = intent.strip().lower() if isinstance(intent, str) else intent      # " Order.Status " is order.status
     trigger = trigger.strip().lower() if isinstance(trigger, str) else trigger
     if not _rules:                            # the first ask of this process reads the rules first (up to 2 seconds),
-        at = _rules_failed["at"]              # outside the 300 ms that STK's answer has
-        if at is not None and time.monotonic() - at < RULES_RETRY:
-            return "escalate"                 # just failed: not 2 seconds more for each ask while STK is away
-        try:
-            rules(timeout=2)
-            _rules_failed["at"] = None
+        try:                                  # outside the 300 ms that STK's answer has
+            _read_saved()
         except Exception:
-            _rules_failed["at"] = time.monotonic()
-            return "escalate"
+            pass
+        at = _rules_failed["at"]
+        if at is not None and time.monotonic() - at < RULES_RETRY:
+            if not _rules_under_grant():
+                return "escalate"             # just failed: not 2 seconds more for each ask while STK is away
+        else:
+            try:
+                rules(timeout=2)
+                _rules_failed["at"] = None
+            except Exception:
+                _rules_failed["at"] = time.monotonic()
+                if not _rules_under_grant():  # a restart while STK is away: the kept grant and its rules, or escalate
+                    return "escalate"
     got, ready, decided, late = {}, threading.Event(), threading.Event(), [None, None]
 
     def answer(d):                            # the result, handed over before anything that may wait
