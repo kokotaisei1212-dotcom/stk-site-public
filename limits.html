@@ -68,7 +68,7 @@
 <p><strong>Who pays.</strong> Nobody is billed for an intent that is not permitted: the file does not call STK for it.</p>
 
 <h2>A leaked key works until you replace it</h2>
-<p><strong>What happens.</strong> STK cannot tell a leaked key from yours. Until you replace it, a leaked live key can get up to 20,000,000 permissions a day signed (UTC), billed to you at its use's price ($100,000,000 at $5; $280,000,000 at $14); 10,000 a day ($50,000 at $5; $140,000 at $14) until an invoice of yours has been paid.</p>
+<p><strong>What happens.</strong> STK cannot tell a leaked key from yours. Until you replace it, a leaked live key can get up to 20,000,000 permissions a day signed (UTC), billed to you at its use's price ($100,000,000 at $5; $140,000,000 at $7); 10,000 a day ($50,000 at $5; $70,000 at $7) until an invoice of yours has been paid.</p>
 <p><strong>What you can do.</strong> To replace your keys, leaked or not: <code>POST /v1/keys</code> with your account's email and your live key in <code>X-STK-Key</code>. The new keys come back once; the old ones stop at once. If your live key itself leaked, whoever has it can do the same.</p>
 
 <h2 id="rows">STK cannot give a row back</h2>

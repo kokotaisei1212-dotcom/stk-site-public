@@ -61,7 +61,11 @@ main > *{box-sizing:border-box}
 .tool #keysout{box-sizing:border-box;width:100%;margin:16px 0 0;white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:13.8px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:16px}
 .tool button,.tool #kf button{font:inherit;font-size:16.1px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--bg);background:var(--ink);border:1px solid var(--ink);cursor:pointer}
 .tool #kf{display:flex;flex-wrap:wrap;gap:16px;margin:0}
-.tool #kf select{flex:1 1 14rem;min-width:0;font:inherit;font-size:18.4px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
+.tool #use{flex:1 1 100%;border:0;margin:0;padding:0;display:grid;gap:16px}
+.tool #use legend{padding:0;margin:0 0 8px;font-size:14.95px;line-height:1.5;color:var(--muted)}
+.tool #use input{accent-color:var(--ink);margin:0}
+.tool #use label{display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:baseline;font-size:17.25px;line-height:1.5;cursor:pointer}
+.tool #use small{grid-column:2;font-size:14.95px;line-height:1.5;color:var(--muted)}
 .tool #kf input{flex:1 1 14rem;min-width:0;font:inherit;font-size:18.4px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
 .tool #ks:empty{display:none}
 .tool #card{margin-top:16px}
@@ -110,8 +114,13 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 (function(){
   var f = document.getElementById('kf'), s = document.getElementById('ks'), k = document.getElementById('keysout');
   var API = 'https://api.stk-evidence.com/v1/keys', ch = window.BroadcastChannel ? new BroadcastChannel('stk_card') : null;
-  var u = document.createElement('select'); u.id = 'use'; u.setAttribute('aria-label', 'use');   // the keys' use: its price (Price)
-  [["conversations", "Other", 5], ["claims", "Claims adjudication", 14], ["priorauth", "Prior authorization", 7], ["disputes", "Card disputes", 3], ["insurance", "Insurance claims", 5]].forEach(function(o){ var x = document.createElement('option'); x.value = o[0]; x.textContent = o[1]; u.appendChild(x); });
+  var u = document.createElement('fieldset'); u.id = 'use';                // the keys' use, by industry (its price: Price)
+  var lg = document.createElement('legend'); lg.textContent = 'Use'; u.appendChild(lg);
+  [["claims", "Health plans and review organizations", "Health insurers, Medicaid managed care plans, third-party administrators and independent review organizations."], ["lending", "Banks, lenders and collectors", "Banks, credit unions, non-bank lenders, fintechs and debt collectors."], ["disputes", "Card issuers and payment providers", "Card issuers, payment processors and money transmitters: disputes, fraud claims and transfer errors."], ["insurance", "Insurers (property, casualty and life)", "Property, casualty and life insurers, and their adjusters."], ["conversations", "Everything else", "Any other business, and every key taken with no use."]].forEach(function(o){
+    var l = document.createElement('label'), r = document.createElement('input'), t = document.createElement('span'), w = document.createElement('small');
+    r.type = 'radio'; r.name = 'use'; r.value = o[0]; r.checked = o[0] === "conversations";
+    t.textContent = o[1]; w.textContent = o[2]; l.append(r, t, w); u.appendChild(l);
+  });
   f.insertBefore(u, f.querySelector('button'));
   function post(body, key){
     var h = {'Content-Type': 'application/json'}; if (key) h['X-STK-Key'] = key;
@@ -130,7 +139,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
   f.onsubmit = function(e){
     e.preventDefault(); s.textContent = '';
     var em = document.getElementById('em').value;
-    post({email: em, use: u.value}).then(function(a){
+    post({email: em, use: (u.querySelector('input:checked') || {}).value}).then(function(a){
       if (a[0] !== 200) { s.textContent = a[0] === 409 ? 'This address has keys. New ones: POST /v1/keys with its live key (Docs).' : (a[1] && a[1].message) || 'STK cannot do this just now. Try again in a minute.'; return; }
       var v = {test: a[1].test_key, live: a[1].live_key || ''}, url = a[1].card_url, m = (url || '').match(/cs_(live|test)_[A-Za-z0-9]+/), done = false;
       show(v);
