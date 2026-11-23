@@ -143,6 +143,8 @@ function subjectsOf(text) {
 // which wrote no days): every law applies from the day it is cited.
 export function decideAt(text, intent, trigger, where = null, day = null) {
   const strict = decide(text, intent, trigger);
+  if (where !== null && where !== undefined && intent !== "other" && !listed(text, intent))
+    return { answer: strict, status: "not published" };   // an action these rules do not publish: a person, and STK claims nothing of it
   day = day || today();
   const codes = jurisdictions(where);
   if (items(text, H10) === null) {                       // Rule 9 or older

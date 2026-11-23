@@ -69,6 +69,8 @@ main > *{box-sizing:border-box}
 .three{display:grid;grid-template-columns:1fr;gap:40px}
 .three p{margin:0 0 8px;font-size:17.25px;line-height:1.55}
 .three .more{margin-top:16px;font-size:16.1px}
+.three .entries{justify-content:flex-start;margin:0 0 24px;gap:8px 24px;max-width:none}
+.three .entries a{flex:0 1 auto;min-width:0;max-width:none;text-align:left}
 @media (min-width:768px){.three{grid-template-columns:repeat(2,1fr);gap:64px}}
 .band,.strip{margin:0 var(--pad);border-radius:var(--round);background:#000000}
 .band{color:#FFFFFF;text-align:center;padding:var(--sec) var(--pad);display:flex;align-items:center;justify-content:center}   /* as tall as its words and the padding; the words in the middle */
@@ -93,7 +95,6 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <p class="name">STK</p>
 <h1>Safe decisions.</h1>
 <p class="sub">Checked against the law. Signed for every decision the AI finishes.<br>Move decisions to AI, safely.</p>
-<nav class="entries" aria-label="By industry"><a href="/rules-full#health">What a health plan may automate</a><a href="/rules-full#finance">What a bank or lender may automate</a></nav>
 </section>
 <div class="strip strip-a"><p>66 of 83 actions an AI may finish alone.<br>17 the law gives to a person.</p></div>
 
@@ -108,7 +109,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
   var f = document.getElementById('kf'), s = document.getElementById('ks'), k = document.getElementById('keysout');
   var API = 'https://api.stk-evidence.com/v1/keys', ch = window.BroadcastChannel ? new BroadcastChannel('stk_card') : null;
   var u = document.createElement('select'); u.id = 'use'; u.setAttribute('aria-label', 'use');   // the keys' use: its price (Price)
-  [["conversations", "Other", 5], ["claims", "Claims adjudication", 14], ["priorauth", "Prior authorization", 7], ["disputes", "Card disputes", 3]].forEach(function(o){ var x = document.createElement('option'); x.value = o[0]; x.textContent = o[1] + ' · $' + o[2]; u.appendChild(x); });
+  [["conversations", "Other", 5], ["claims", "Claims adjudication", 14], ["priorauth", "Prior authorization", 7], ["disputes", "Card disputes", 3]].forEach(function(o){ var x = document.createElement('option'); x.value = o[0]; x.textContent = o[1]; u.appendChild(x); });
   f.insertBefore(u, f.querySelector('button'));
   function post(body, key){
     var h = {'Content-Type': 'application/json'}; if (key) h['X-STK-Key'] = key;
@@ -157,6 +158,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <div class="band" role="presentation"><p>Where the law says a person must decide, we don't sign and we don't charge.</p></div>
 <section class="three wrap" aria-label="STK">
 <div><h2>The rules</h2>
+<nav class="entries" aria-label="By industry"><a href="/rules-full#health">What a health plan may automate</a><a href="/rules-full#finance">What a bank or lender may automate</a></nav>
 <p>Each of 83 actions: AI or a person.</p>
 <p>A person only if a law or a trigger says so.</p>
 <p>One signed text for all.</p>

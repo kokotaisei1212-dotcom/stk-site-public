@@ -138,11 +138,23 @@ def _day_now():
     return _today()                           # this file's day (UTC), on STK's clock
 
 
+def _published(text, intent):
+    """The intent is on a list of the rules (Never, Permitted, Closed), with or without its domain."""
+    for name in ("Never", "Permitted", "Closed"):
+        m = re.search(r"^" + name + r" \((\d+)\): (.*)$", text, re.M)
+        items = [] if not m or m.group(2) == "none" else [x.strip().split(" (closed")[0] for x in m.group(2).split(",")]
+        if intent in items or (isinstance(intent, str) and intent.startswith("conversation.") and intent[13:] in items):
+            return True
+    return False
+
+
 def decide_at(text, intent, trigger, where=None, day=None):
     """(answer, status) on a day (YYYY-MM-DD, UTC; today when None). status: None when no jurisdiction is given; else "read",
-    "none found" or "not checked". Only "read" can answer less strictly than with none given. Rules older than Rule 9 (or
+    "none found", "not checked", or "not published" for an action the rules do not list (answered escalate). Only "read" can answer less strictly than with none given. Rules older than Rule 9 (or
     Rule 9's, which wrote no days): every law applies from the day it is cited."""
     strict = decide(text, intent, trigger)
+    if where is not None and intent != "other" and not _published(text, intent):
+        return strict, "not published"                  # an action these rules do not publish: a person, and STK claims nothing of it
     day = day or _day_now()
     codes = jurisdictions(where)
     if _items(text, _H10) is None:                       # Rule 9 or older
@@ -512,7 +524,8 @@ def ask(intent, trigger, conversation_id=None, **fields):
 def ask_where(intent, trigger, jurisdiction, conversation_id=None, **fields):
     """ask(), for the jurisdictions whose laws apply to this decision (from Rule 9): a code or a list of codes, ISO 3166-1
     (US, GB), ISO 3166-2 (US-WA) or EU; UK is read as GB. Returns {"answer": "finish" or "escalate", "read": True or
-    False, "status": "read", "none found" or "not checked"}. Only "read" (a law that names a person was found; read True)
+    False, "status": "read", "none found", "not checked" or "not published"}. "not published": an action the rules do not
+    list, answered "escalate"; STK claims nothing of it. Only "read" (a law that names a person was found; read True)
     answers by those jurisdictions' laws; "none found" (read, no such law found) and "not checked" answer as ask(), the
     strictest. The codes are kept in the row, as "jurisdiction"; STK still receives only the seal."""
     where = jurisdictions(jurisdiction)
