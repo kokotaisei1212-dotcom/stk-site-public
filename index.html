@@ -60,6 +60,7 @@ main > *{box-sizing:border-box}
 .tool #keysout{box-sizing:border-box;width:100%;margin:16px 0 0;white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:13.8px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:16px}
 .tool button,.tool #kf button{font:inherit;font-size:16.1px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--bg);background:var(--ink);border:1px solid var(--ink);cursor:pointer}
 .tool #kf{display:flex;flex-wrap:wrap;gap:16px;margin:0}
+.tool #kf select{flex:1 1 14rem;min-width:0;font:inherit;font-size:18.4px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
 .tool #kf input{flex:1 1 14rem;min-width:0;font:inherit;font-size:18.4px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
 .tool #ks:empty{display:none}
 .tool #card{margin-top:16px}
@@ -106,6 +107,9 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 (function(){
   var f = document.getElementById('kf'), s = document.getElementById('ks'), k = document.getElementById('keysout');
   var API = 'https://api.stk-evidence.com/v1/keys', ch = window.BroadcastChannel ? new BroadcastChannel('stk_card') : null;
+  var u = document.createElement('select'); u.id = 'use'; u.setAttribute('aria-label', 'use');   // the keys' use: its price (Price)
+  [["conversations", "Customer conversations", 5], ["claims", "Claims adjudication", 14], ["priorauth", "Prior authorization", 7], ["disputes", "Card disputes", 3]].forEach(function(o){ var x = document.createElement('option'); x.value = o[0]; x.textContent = o[1] + ' · $' + o[2]; u.appendChild(x); });
+  f.insertBefore(u, f.querySelector('button'));
   function post(body, key){
     var h = {'Content-Type': 'application/json'}; if (key) h['X-STK-Key'] = key;
     return fetch(API, {method: 'POST', headers: h, body: JSON.stringify(body)}).then(function(r){ return r.json().then(function(j){ return [r.status, j]; }); });
@@ -123,7 +127,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
   f.onsubmit = function(e){
     e.preventDefault(); s.textContent = '';
     var em = document.getElementById('em').value;
-    post({email: em}).then(function(a){
+    post({email: em, use: u.value}).then(function(a){
       if (a[0] !== 200) { s.textContent = a[0] === 409 ? 'This address has keys. New ones: POST /v1/keys with its live key (Docs).' : (a[1] && a[1].message) || 'STK cannot do this just now. Try again in a minute.'; return; }
       var v = {test: a[1].test_key, live: a[1].live_key || ''}, url = a[1].card_url, m = (url || '').match(/cs_(live|test)_[A-Za-z0-9]+/), done = false;
       show(v);

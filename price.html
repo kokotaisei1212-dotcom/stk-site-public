@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Price · STK</title>
-<meta name="description" content="35% of the cost of a contact handled by a person, rounded: in conversations, $5 a permission. A person joining the same day (UTC): not billed. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars.">
+<meta name="description" content="35% of what a person costs for the same work, rounded to the dollar, by the use of the key: $14 claims adjudication, $7 prior authorization, $3 card disputes, $5 everything else, a permission. A person joining the same day (UTC): not billed. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars.">
 <link rel="canonical" href="https://stk-evidence.com/price">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="STK">
 <meta property="og:url" content="https://stk-evidence.com/price">
 <meta property="og:title" content="Price · STK">
-<meta property="og:description" content="35% of the cost of a contact handled by a person, rounded: in conversations, $5 a permission. A person joining the same day (UTC): not billed. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars.">
+<meta property="og:description" content="35% of what a person costs for the same work, rounded to the dollar, by the use of the key: $14 claims adjudication, $7 prior authorization, $3 card disputes, $5 everything else, a permission. A person joining the same day (UTC): not billed. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Price · STK">
-<meta name="twitter:description" content="35% of the cost of a contact handled by a person, rounded: in conversations, $5 a permission. A person joining the same day (UTC): not billed. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars.">
+<meta name="twitter:description" content="35% of what a person costs for the same work, rounded to the dollar, by the use of the key: $14 claims adjudication, $7 prior authorization, $3 card disputes, $5 everything else, a permission. A person joining the same day (UTC): not billed. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon-32-dark.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/stk-icon-512-dark.png" type="image/png" sizes="512x512">
@@ -41,10 +41,10 @@
 <div class="doc">
 <div class="eyebrow">Price</div>
 <h1>Price</h1>
-<p id="rules-free"><strong>The rules are free. The $5 is for a receipt.</strong> The rules are published under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, and using them costs nothing, with STK or without it (<a href="/rules#licence">the licence</a>). What is priced is the receipt: an optional proof of conformity by a third party, STK, signed for one action. The receipt is not part of the rules, and following the rules does not need one.</p>
+<p id="rules-free"><strong>The rules are free. The price is for a receipt.</strong> The rules are published under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, and using them costs nothing, with STK or without it (<a href="/rules#licence">the licence</a>). What is priced is the receipt: an optional proof of conformity by a third party, STK, signed for one action. The receipt is not part of the rules, and following the rules does not need one.</p>
 <ul class="no">
-  <li><strong>Price is 35% of the published cost of the same action performed by a person.</strong> <a href="#why-5">The table</a>.</li>
-  <li><strong>Conversations: $5 for each permission</strong> under these rules (the domain <code>conversation</code>, <a href="/rules-full#scope">what it covers</a>): each seal your live key sends that STK signs.</li>
+  <li><strong>Price is 35% of the published cost of the same action performed by a person.</strong> <a href="#uses">The table</a>.</li>
+  <li><strong>By the key's use: $14, $7, $3 or $5 for each permission</strong> (<a href="#uses">the table</a>; a key with no use, $5) under these rules (the domain <code>conversation</code>, <a href="/rules-full#scope">what it covers</a>): each seal your live key sends that STK signs.</li>
   <li><strong>$0 when a person joins it the same day (UTC).</strong> Told by 00:10 UTC the day after, with the permission's seal (stk.py and stk.mjs send it while the process that got the permission still runs), it still counts for its day. Told on a later day after that: it stays billed.</li>
   <li>Each Monday, Stripe makes the invoice for the week before (Monday to Sunday, UTC) and charges it the same day to the card you registered when you took your live key. STK has no screen for it and sends no email about it. It is due when issued.</li>
 </ul>
@@ -83,19 +83,18 @@
 
 <h2 id="charges">What STK charges for</h2>
 <p>STK charges for one thing: a permission it signed. Nothing else.</p>
-<p>STK does not decide what a company routes through it. Every action it routes that STK signs is billed the same.</p>
+<p>STK does not decide what a company routes through it. Every permission signed with a key is billed at the price of the key's use, whatever the action.</p>
 
-<h2 id="domains">The same 35% in every domain</h2>
-<p>The ratio is fixed at 35%. What changes is the action. Each domain has its own published cost for the same action performed by a person. The price for that domain is 35% of it, rounded to the dollar. A domain stays blank here until a published source for that cost exists. We do not estimate.</p>
-<div class="table"><table><thead><tr><th>Domain</th><th>Published cost of the action by a person</th><th>What the cost counts</th><th>× 35%</th><th>Price</th></tr></thead><tbody>
-<tr><td>conversation</td><td>$13.50 (<a href="https://www.gartner.com/en/documents/5164231">Gartner, February 2024</a>)</td><td>The median cost of one contact in an assisted channel (handled by a person). What the median includes beyond that is not stated in Gartner's public abstract.</td><td>$4.73</td><td>$5</td></tr>
-<tr><td>claims adjudication</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>prior authorization</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>underwriting</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>credit decision</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>internal approval</td><td></td><td></td><td></td><td></td></tr>
+<h2 id="uses">The price of each use</h2>
+<p>When you take keys you choose their use, one for each key. Every permission signed with a key is billed at its use's price, whatever the action: STK never learns the action. One account holds keys of several uses, on one card and one invoice: <code>POST /v1/keys</code> with your live key and a <code>use</code> gives keys of another use (<a href="/docs#keys">Docs</a>). A key taken before uses, or with none chosen, is of the use Customer conversations, $5, as before.</p>
+<div class="table"><table id="uses"><thead><tr><th>Use</th><th>Actions</th><th>Cost of the work by a person</th><th>× 35%</th><th>Source</th><th>Price</th></tr></thead><tbody>
+<tr><td>Claims adjudication</td><td><code>claim.*</code></td><td>$40</td><td>$14.00</td><td>Published: <a href="https://doi.org/10.1093/haschl/qxad053">Sahni et al., Health Affairs Scholar 1(5):qxad053, 2023</a>. The source gives $40 to $50 for a claim adjudicated by a person; the low end is used. It counts adjudication; a Claims key pays $14 for every permission signed under it, claim.status and claim.new among them.</td><td>$14</td></tr>
+<tr><td>Prior authorization</td><td><code>priorauth.*</code></td><td>$20.24</td><td>$7.08</td><td>Derived: <a href="https://www.bls.gov/oes/current/oes291141.htm">BLS OEWS, May 2025: registered nurses&#x27; median annual wage, $97,550; BLS ECEC, December 2025: total compensation 1.4265 times wages; 6,875 prior authorizations a year by one reviewer</a>. Derived: $97,550 × 1.4265 ÷ 6,875 = $20.24.</td><td>$7</td></tr>
+<tr><td>Card disputes</td><td><code>dispute.*</code></td><td>$9.08</td><td>$3.18</td><td>Published: Datos Insights, 2025. Lower than the $5 of a key with no use chosen.</td><td>$3</td></tr>
+<tr><td>Customer conversations</td><td><code>every other action</code></td><td>$13.50</td><td>$4.72</td><td>Published: <a href="https://www.gartner.com/en/documents/5164231">Gartner, February 2024: the median cost of one contact in an assisted channel</a>. Every action outside the three families above.</td><td>$5</td></tr>
 </tbody></table></div>
-<p>Only the domain conversation has rules and a price. A rule that covers other acts will have its price worked out with the same 35%, rounded the same way, and published, with what its published cost counts.</p>
+<p>An action that requires human review is never signed, so it costs $0 under every use. A Claims key pays $14 for every permission signed with it, <code>claim.status</code> and <code>claim.new</code> among them, though its cost is that of adjudication. Card disputes cost $3, less than the $5 of a key with no use.</p>
+<p>STK does not verify the use. It is your declaration and your responsibility; running actions under a key of another use breaks the <a href="/terms">Terms</a>. The rows that would show it stay with you, and STK never sees them.</p>
 
 <h2 id="why-card">Why a card, not an invoice</h2>
 <ul>
@@ -122,7 +121,7 @@
 </ul>
 
 <h2 id="currency">Currency and tax</h2>
-<p>US dollars. The invoice is $5 times the week's count of permissions in conversations. STK adds no tax to it.</p>
+<p>US dollars. The invoice is, for each key's use, its price times the week's count of permissions in conversations. STK adds no tax to it.</p>
 </div>
 </main>
 <footer class="dark"><div class="wrap">
