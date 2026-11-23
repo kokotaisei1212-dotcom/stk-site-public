@@ -65,7 +65,7 @@
 <li>A name, an email address, a phone number, a member number, an account number or any other identifier of the company's customers.</li>
 <li>Health or medical information.</li>
 <li>A card number or a bank account number, of anyone. The company's own card is registered on Stripe's page and kept by Stripe.</li>
-<li>The intent and the trigger, unless the company reports a permission with <code>POST /v1/incident</code>.</li>
+<li>The intent and the trigger. A report (the company's choice) carries the intent, and the jurisdictions if given, with <code>POST /v1/incident</code>.</li>
 <li>A confidence number, the AI's name or version, or the row in any form.</li>
 </ul>
 <p>Every HTTPS request also carries the address it comes from and its headers. STK writes neither down for <code>POST /v1/ask</code>.</p>
@@ -78,7 +78,7 @@
 <h2 id="questionnaire">Security questionnaire, answered</h2>
 <div class="table"><table><thead><tr><th>Question</th><th>Answer</th></tr></thead><tbody>
 <tr><td>Where is data stored?</td><td>STK's records: Stripe. The API runs on Render in Singapore and keeps the day's seal set in memory only. <a href="/subprocessors">Subprocessors</a></td></tr>
-<tr><td>How long is it kept?</td><td>A seal: not written down; the day's set in memory is let go 10 minutes after the day ends (UTC). The account's email address and keys' hashes: until 7 years after its last day with an ask or a person joining, or 30 days after it was made if its live key was never used. Billing records: kept by Stripe as payment records. Reports: 7 years.</td></tr>
+<tr><td>How long is it kept?</td><td>A seal: not written down, except the seal of a permission reported; the day's set in memory is let go 10 minutes after the day ends (UTC). The account's email address and keys' hashes: until 7 years after its last day with an ask or a person joining, or 30 days after it was made if its live key was never used. Billing records: kept by Stripe as payment records. Reports: 7 years.</td></tr>
 <tr><td>Encryption in transit</td><td>HTTPS only, port 443. Every answer carries Strict-Transport-Security.</td></tr>
 <tr><td>Encryption at rest</td><td>STK stores nothing at rest of its own. Its records are held by Stripe under Stripe's terms; STK does not encrypt them itself.</td></tr>
 <tr><td>Access management</td><td>One person operates STK and is the only one with access to Render, Stripe, GitHub and the domain. Secrets are kept as owner-only files and in Render's environment, never in a repository. Whether each account uses multi-factor authentication is not recorded here: cannot answer.</td></tr>

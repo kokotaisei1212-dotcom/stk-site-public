@@ -54,7 +54,7 @@
 <tr><td><code>rule_version</code></td><td>The SHA-256 of the full text of the rules in use when STK signed it. <a href="/rules-full#all-texts">The rules</a></td></tr>
 <tr><td><code>account</code></td><td>Your account's id at STK.</td></tr>
 <tr><td><code>which_key</code></td><td><code>test</code> or <code>live</code>. Only <code>live</code> is billed.</td></tr>
-<tr><td><code>kid</code></td><td>The key that signed it: one or more a day (UTC); a new STK process makes a new one.</td></tr>
+<tr><td><code>kid</code></td><td>The key that signed it: one of the two keys made for its day (UTC), 200 days ahead; a server that starts again signs with the same keys.</td></tr>
 </tbody>
 </table></div>
 <p>Beside the receipt, in what your code keeps: <code>row</code> (your row, as the text that was sealed: <code>intent</code>, <code>trigger</code> and any fields of yours), <code>nonce</code> (the 32 random bytes, hex), <code>sig</code>, and <code>cancelled</code> when your file told STK a person has it before it answered (newer rules say <code>escalate</code>, or it could not be kept).</p>

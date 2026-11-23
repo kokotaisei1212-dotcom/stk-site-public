@@ -53,7 +53,7 @@
 
 
 <h2>3. Your customers' conversations</h2>
-<p>For these we act as your processor under the <a href="/dpa">DPA</a>. STK receives, for each permission, the seal: SHA-256 of 32 random bytes and your row, from which nothing can be read back; and the time your library recorded the action (for a seal from its queue, also the grant STK signed). Not the intent, not the trigger, not an id, no words of a conversation: your code decides from the public rules on your side, and a request with any other field is refused. A person joining is a call with no body, or with the seal of the permission it is for. STK keeps no row and never receives one (<a href="/ledger">The ledger</a>); it keeps each day's counts.</p>
+<p>For these we act as your processor under the <a href="/dpa">DPA</a>. STK receives, for each permission, the seal: SHA-256 of 32 random bytes and your row, from which nothing can be read back; and the time your library recorded the action (for a seal from its queue, also the grant STK signed). Not the intent, not the trigger, not an id, no words of a conversation: your code decides from the public rules on your side, and a request with any other field is refused. A report you choose to make (<code>POST /v1/incident</code>) carries the intent you report and, if you give them, its jurisdictions. A person joining is a call with no body, or with the seal of the permission it is for. STK keeps no row and never receives one (<a href="/ledger">The ledger</a>); it keeps each day's counts.</p>
 
 <h2>4. This website</h2>
 <p>The site is served by Render (a static site, from 2026-11-22), which receives your IP address. It sets no tracking cookies, runs no analytics and loads nothing from anyone else.</p>

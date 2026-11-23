@@ -55,7 +55,7 @@
   <tbody>
     <tr><td><strong>Purpose</strong></td><td>To sign, for each permission your code decides from the published rules, its seal (SHA-256 of 32 random bytes and your row, both kept by you) with the time and the rules version; to keep each day's counts; and to count the permissions, for the bill.</td></tr>
     <tr><td><strong>Data subjects</strong></td><td>The customers who contact you, only through what your code puts in its rows; STK receives no row, only its seal.</td></tr>
-    <tr><td><strong>Personal data</strong></td><td>None is asked for. No text, no audio, no customer id: a request carries the seal and the time the library recorded the action (and, for a seal from the library's queue, the grant STK signed); with any other field it is refused.</td></tr>
+    <tr><td><strong>Personal data</strong></td><td>None is asked for. No text, no audio, no customer id: a request carries the seal and the time the library recorded the action (and, for a seal from the library's queue, the grant STK signed); with any other field it is refused. A report the Company chooses to make (<code>POST /v1/incident</code>) carries the intent reported and, if given, its jurisdictions.</td></tr>
     <tr><td><strong>Special categories</strong></td><td>Not intended. Do not put health or other special-category data in any field.</td></tr>
     <tr><td><strong>Duration</strong></td><td>Rows of asks: none kept by STK. Each billed day's counts and each invoice: kept by Stripe as payment records. Each report: deleted 7 years after it was made. The account: deleted 7 years after its last day with an ask or a person joining (30 days after it was made, if its live key was never used).</td></tr>
   </tbody>

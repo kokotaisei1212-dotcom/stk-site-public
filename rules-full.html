@@ -267,7 +267,7 @@ official text and the reasons published with it.
 <h2 id="change">When the Rule changes</h2>
 <p>A conversation your code is in the middle of is decided by the Rule stk.py or stk.mjs holds. When STK's answer names a newer Rule, the file reads it and applies it again at once: if the newer Rule says <code>escalate</code>, the file returns <code>escalate</code>, your code hands the conversation over, and that permission is taken off the bill. From then on every ask is decided by the newer Rule. <a href="/when">What happens when</a></p>
 
-<h2 id="triggers">The 11 triggers</h2>
+<h2 id="triggers">The 6 triggers</h2>
 <p>Whatever the intent, a conversation in which one of these happened is answered <code>escalate</code>. Your code passes the trigger's name; it passes <code>unknown</code> only when none of them happened. Each one says what counts, so that no one reads it wider or narrower.</p>
 <div class="table"><table><thead><tr><th>Trigger</th><th>Pass it when</th></tr></thead><tbody>
 <tr><td><code>customer_asked</code></td><td>the customer asked for a person (a human, an agent, a representative, a supervisor, a manager), or said they do not want to deal with the AI, in any words, once.</td></tr>
@@ -276,11 +276,6 @@ official text and the reasons published with it.
 <tr><td><code>bereavement</code></td><td>the customer said that someone has died, or the conversation is about the account, the plan or the affairs of someone who has died.</td></tr>
 <tr><td><code>threat</code></td><td>the customer threatened harm to anyone or to property, or said someone is threatening or forcing them.</td></tr>
 <tr><td><code>legal_claim</code></td><td>the customer spoke of a lawyer, a lawsuit, a court, a regulator or an ombudsman, a formal complaint or a formal appeal, or of taking legal action.</td></tr>
-<tr><td><code>health</code></td><td>claim.decide, claim.deny_medical, claim.new, claim.refuse, claim.status, coverage.benefits, coverage.decide, coverage.deny_medical, coverage.refuse, decision.appeal, eligibility.check, priorauth.decide, priorauth.deny_medical, priorauth.refuse, priorauth.status, provider.find</td></tr>
-<tr><td><code>credit</code></td><td>account.open, account.refuse, collections.balance, collections.dispute, collections.refuse, credit.decide, credit.refuse, limit.change, limit.lower, loan.details</td></tr>
-<tr><td><code>payments</code></td><td>account.transactions, balance.inquiry, card.activate, card.block, dispute.decide, dispute.file, dispute.refuse, fraud.decide, fraud.refuse, fraud.report, payment.stop, transfer.error_decide, transfer.error_refuse, transfer.send, transfer.status</td></tr>
-<tr><td><code>insurance</code></td><td>insclaim.decide, insclaim.partial, insclaim.refuse, liability.decide, policy.cancel, policy.nonrenew, policy.refuse, totalloss.decide</td></tr>
-<tr><td><code>general</code></td><td>account.close, account.login, account.password_reset, account.update, account.username, appointment.book, appointment.change, billing.payment_arrangement, billing.question, booking.cancel, booking.change, booking.new, complaint.record, decision.review, delivery.issue, denial.reason, feedback.general, info.hours_location, loyalty.rewards, order.cancel, order.change, order.new, order.status, payment.method, payment.status, payment_arrangement.refuse, pricing.promotion, privacy.change, privacy.read, product.availability, product.defect, product.question, refund.refuse, refund.request, refund.status, request.status, return.exchange, service.outage, subscription.cancel, subscription.change, tech.setup, tech.troubleshoot</td></tr>
 </tbody></table></div>
 
 <!-- intents: from permit/vocab.json -->
@@ -290,8 +285,8 @@ official text and the reasons published with it.
 <h2 id="applies">Which version applies</h2>
 <p>The version that applies to an action is the version named in its receipt, fixed at the time STK signed it. A later version does not change the answer to an action already signed.</p>
 
-<h2 id="two-industries">Two industries, built differently</h2>
-<p>The two industries are built differently. In US health plan rules, the law names the person who must decide. In US federal financial rules, the law sets the duty to investigate, the deadline, and the notice, but does not name a person. For financial actions a person is named by European and British law (GDPR Art. 22; UK GDPR Arts. 22A and 22C) and, in the United States, by one state law from 2027-01-01, for one action only, contesting a decision (decision.review): Colorado's (C.R.S. § 6-1-1705(1)(a)(II), meaningful human review of a consequential decision on request, a financial or lending service among them). This rule puts an action on the person's side only where a person is named.</p>
+<h2 id="two-industries">Industries, built differently</h2>
+<p>The industries are built differently. In US health plan rules, the law names the person who must decide. In US federal financial rules, the law sets the duty to investigate, the deadline, and the notice, but does not name a person. For financial actions a person is named by European and British law (GDPR Art. 22; UK GDPR Arts. 22A and 22C; for credit, Directive (EU) 2023/2225 Art. 18(8)) and, in the United States, from 2027-01-01, by Colorado (C.R.S. § 6-1-1705(1)(a)(II)) and California (11 CCR § 7221) for some refusals and for contesting a decision. In insurance other than health, several jurisdictions license the adjuster who decides a claim. This rule puts an action on the person's side only where a person is named.</p>
 <p>So each action below shows two things apart: the citation that names a person, which is why an action requires human review, and the clock and duties that attach to the action without naming a person.</p>
 
 <div class="two">
@@ -411,7 +406,7 @@ official text and the reasons published with it.
 <li><a href="/act-transfer.status"><code>conversation.transfer.status</code></a>: Transfer status</li>
 </ul>
 <h3 id="never">Human review required (25)</h3>
-<p>No adverse determination is completed without human review where a law of the jurisdiction given, or with none given of any jurisdiction read, names a person. That is what makes the other 66 defensible.</p>
+<p>No determination a law gives to a person is completed without human review where a law of the jurisdiction given, or with none given of any jurisdiction read, names a person. That is what makes the other 66 defensible.</p>
 <p>The law's own words are human intervention (UK GDPR Art. 22C, in force from 2026-02-05 by SI 2026/82). In health plans the same is called physician review, Medical Director review or peer-to-peer; in financial services, refer to underwriter, second-level review or manual review. The laws are STK's reading, not legal advice. Where laws differ, the strictest is followed.</p>
 <ul>
 <li><a href="/act-account.refuse"><code>conversation.account.refuse</code></a>: Account refused</li>
@@ -440,7 +435,7 @@ official text and the reasons published with it.
 <li><a href="/act-totalloss.decide"><code>conversation.totalloss.decide</code></a>: Total loss</li>
 <li><a href="/act-transfer.error_refuse"><code>conversation.transfer.error_refuse</code></a>: Transfer error refused</li>
 </ul>
-<p id="states-read"><strong>Which US states have been read.</strong> All 50 states and the District of Columbia: their laws on who decides a denial of care and its appeal (their utilization review laws), read in their official texts on 2026-11-21. The rules cite, beside each act, every such law whose official text names a person for it: laws of 44 states and the District of Columbia, and California's. A law that names a person only when someone asks for one, or that could not be confirmed in its official text, is not cited. Alaska, Hawaii, Kansas, Louisiana, South Carolina and Wisconsin have none cited. The laws are STK's reading, not legal advice.</p>
+<p id="states-read"><strong>Which US states have been read.</strong> All 50 states and the District of Columbia: their laws on who decides a denial of care and its appeal (their utilization review laws), read in their official texts on 2026-11-21. The rules cite, beside each act, every such law whose official text names a person for it: laws of 44 states and the District of Columbia, and California's. Of these laws, one that names a person only when someone asks for one, or that could not be confirmed in its official text, is not cited. Alaska, Hawaii, Kansas, Louisiana, South Carolina and Wisconsin have none cited. The laws are STK's reading, not legal advice.</p>
 <p>Each action's page links the official text of every law beside it. Some of them:</p>
 <ul>
 <li><a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj">GDPR (Regulation (EU) 2016/679)</a></li>
@@ -473,7 +468,7 @@ official text and the reasons published with it.
 <li>STK does not sign when it has no published signing key for today, while a starting server has not yet read its records in Stripe, or when it has not read from Stripe for 2 hours whether the account is unpaid. In the last two, STK answers 503: as when it cannot be reached, a grant that holds covers it.</li>
 <li>When a signing key is declared invalid, every day it signed is billed nothing.</li>
 <li>stk.py and stk.mjs: without an answer within 300 ms, <code>escalate</code>, unless a grant holds; the same conversation and intent are not asked again the same day.</li>
-<li>A grant: with each answer STK signs one for the account and the version of the rules, valid for 10 minutes from when STK issued it. While it holds and STK cannot be reached, stk.py and stk.mjs finish what the rules say finish and keep the seal in a queue (at most 10,000 seals), then send it when STK answers again; STK signs it under the version the grant named. When the grant has expired, or the queue is full, <code>escalate</code>, as without a grant.</li>
+<li>A grant: with each answer STK signs one for the account and the version of the rules, valid for 1 hour at most from when STK issued it. While it holds and STK cannot be reached, stk.py and stk.mjs finish what the rules say finish and keep the seal in a queue (at most 10,000 seals), then send it when STK answers again; STK signs it under the version the grant named. When the grant has expired, or the queue is full, <code>escalate</code>, as without a grant.</li>
 <li>The seals of a day, of all accounts together, are each counted once, up to 46,930,325 in a day (UTC) (46,930,325 seals in 511 MB, filled once on 2026-11-21 on a Mac; the next one was refused). Past that, STK does not sign a new seal that day and stk.py and stk.mjs return <code>escalate</code>. The seals of the day are kept in the API's memory only: when the API restarts, they are lost, and a seal signed before the restart that is sent again the same day is counted again in the count after the restart. The day is billed the larger of the counts before and after the restart, not their sum: such a seal is not billed twice, and the day can be billed less than the actions STK permitted.</li>
 <li>The full texts of earlier versions are below on this page, under <a href="#all-texts">Every version in full</a>, and at <code>GET /v1/rules?history=1</code>.</li>
 <li>A key must be one of the account's current keys: keys replaced stop at once.</li>
