@@ -42,8 +42,8 @@
 /* One measure for this page (CEO 2026-11-22): spaces are 8, 16, 24, 40, 64 or 96 px only.
    Gutter = var(--pad) (24 px; 48 px from 900 px, site.css). Content at most 720 px wide. Sections 64 px above and below; 96 px from 900 px.
    Black surfaces stand off the edges by the gutter, corners 20 px (28 px from 900 px). */
-:root{--sec:144px;--measure:720px;--round:20px}   /* sections 144 px (CEO 2026-11-23: 96 to 144); from 900 px the text 960 px wide */
-@media (min-width:900px){:root{--sec:144px;--measure:960px;--round:28px}}
+:root{--sec:144px;--black:96px;--measure:720px;--round:20px}   /* sections 144 px (CEO 2026-11-23: 96 to 144); from 900 px the text 960 px wide */
+@media (min-width:900px){:root{--sec:144px;--black:144px;--measure:960px;--round:28px}}
 main.wrap{max-width:none;padding-inline:0}   /* this page measures from the screen's edge: the gutter, then the content */
 .bar .wrap,footer .wrap{max-width:none}       /* the logo and the footer on the same gutter */
 main > *{box-sizing:border-box}
@@ -74,7 +74,7 @@ main > *{box-sizing:border-box}
 .three .entries a{flex:0 1 auto;min-width:0;max-width:none;text-align:left}
 @media (min-width:768px){.three{grid-template-columns:repeat(2,1fr);gap:64px}}
 .band,.strip{margin:0 var(--pad);border-radius:var(--round);background:#000000}
-.band{color:#FFFFFF;text-align:center;padding:var(--sec) var(--pad);display:flex;align-items:center;justify-content:center}   /* as tall as its words and the padding; the words in the middle */
+.band{color:#FFFFFF;text-align:center;padding:var(--black) var(--pad);display:flex;align-items:center;justify-content:center}   /* as tall as its words and the padding; the words in the middle */
 .band p{margin:0;font-size:17.25px;line-height:1.5;letter-spacing:-.01em;max-width:var(--measure);text-wrap:balance}
 @media (min-width:768px){.band p{font-size:25.3px}}
 .strip{position:relative;min-height:28vh;overflow:hidden;color:#FFFFFF;text-align:center;padding:40px var(--pad);display:flex;align-items:center;justify-content:center}
@@ -85,7 +85,7 @@ main > *{box-sizing:border-box}
 .strip::after{background:repeating-linear-gradient(0deg,#FFFFFF 0 1px,transparent 1px 3px);opacity:.012}
 @media (max-width:599px){.strip{min-height:18vh}}
 .strip-b{margin-bottom:var(--sec)}             /* white between it and the footer, as between every surface */
-footer.dark{padding-block:var(--sec)}           /* the links: the same black above and below */
+footer.dark{padding-block:var(--black)}   /* the black surfaces keep their height (CEO 2026-11-23) */           /* the links: the same black above and below */
 footer .toplinks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px;justify-content:normal;text-align:left;max-width:var(--measure);margin:0 auto}
 @media (min-width:900px){footer .toplinks{grid-template-columns:repeat(5,minmax(0,1fr));max-width:none}}
 footer .toplinks h2{margin:0 0 16px;font-size:14.95px;line-height:1.5}
