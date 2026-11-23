@@ -98,6 +98,67 @@ def decide(text, intent, trigger):
     return "escalate"
 
 
+# ---- jurisdictions (from Rule 9) ------------------------------------------------------------------------------------------
+_JUR = re.compile(r"[A-Z]{2}(-[A-Z0-9]{1,3})?")
+
+
+def jurisdictions(where):
+    """The codes given, as the rules read them (UK is GB), sorted; None when none is given or one is not a code."""
+    if isinstance(where, str):
+        where = [where]
+    if not isinstance(where, (list, tuple)) or not where:
+        return None
+    out = set()
+    for c in where:
+        if not isinstance(c, str):
+            return None
+        c = c.strip().upper()
+        if c == "UK" or c.startswith("UK-"):
+            c = "GB" + c[2:]
+        if not _JUR.fullmatch(c):
+            return None
+        out.add(c)
+    return sorted(out)
+
+
+def _items(text, head):
+    m = re.search(r"^" + re.escape(head) + r"[^\n]*\n((?:- [^\n]*\n?)*)", text, re.M)
+    return None if m is None else [x[2:] for x in m.group(1).splitlines()]
+
+
+def decide_where(text, intent, trigger, where):
+    """(answer, read): the rules for the jurisdictions given. read is False when none is given, one is not a code, one
+    has not been read for the intent's subject, or the rules are older than Rule 9: the answer is then decide's, the
+    strictest. A jurisdiction's answer is never stricter than that."""
+    strict = decide(text, intent, trigger)
+    codes = jurisdictions(where)
+    laws = _items(text, "The jurisdictions of the laws beside each intent on the Never list")
+    subjects, read = _items(text, "The subject of each intent:"), _items(text, "Read (")
+    if codes is None or laws is None or subjects is None or read is None:
+        return strict, False
+    subject = {}
+    for x in subjects:
+        sj, _, names = x.partition(": ")
+        for n in names.split(", "):
+            subject[n] = sj
+    i = intent[13:] if isinstance(intent, str) and intent.startswith("conversation.") and intent[13:] in subject else intent
+    sj = subject.get(i) if isinstance(i, str) else None
+    done = {}
+    for x in read:
+        m = re.match(r"([a-z]+) in ([A-Z0-9, -]+): ", x)
+        if m:
+            done.setdefault(m.group(1), set()).update(m.group(2).split(", "))
+    if sj is None or not all(c in done.get(sj, ()) for c in codes):
+        return strict, False
+    if strict == "finish" or trigger != "unknown":
+        return strict, True
+    beside = {k: v.split(", ") for k, _, v in (x.partition(": ") for x in laws)}
+    if i not in beside:                         # closed, other, on no list: as the strictest
+        return strict, True
+    named = any(c == g or c.split("-")[0] == g or g.split("-")[0] == c for c in codes for g in beside[i])
+    return ("escalate" if named else "finish"), True
+
+
 # ---- signatures ---------------------------------------------------------------------------------------------------------
 @lru_cache(maxsize=4096)
 def _public_key(b64):
@@ -153,7 +214,9 @@ def check(line, keys, rules):
     text = rules.get(rc["rule_version"])
     if text is None:
         return "NOT STK's: no signed rules of version " + str(rc["rule_version"])[:12]
-    if decide(text, row.get("intent"), row.get("trigger")) != "finish":
+    said = row.get("jurisdiction") if isinstance(row, dict) else None    # from Rule 9: the jurisdictions ask_where was given
+    if (decide(text, row.get("intent"), row.get("trigger")) if said is None
+            else decide_where(text, row.get("intent"), row.get("trigger"), said)[0]) != "finish":
         if line.get("cancelled"):
             return "cancelled: told to STK as a person joining, not billed"
         return "NOT a permission: the rules of " + rc["rule_version"][:12] + " do not answer finish for this row"

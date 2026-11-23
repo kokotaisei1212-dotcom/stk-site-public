@@ -105,6 +105,55 @@ export function decide(text, intent, trigger) {
   return "finish";
 }
 
+// ---- jurisdictions (from Rule 9) ----
+// The codes given, as the rules read them (UK is GB), sorted; null when none is given or one is not a code.
+export function jurisdictions(where) {
+  if (typeof where === "string") where = [where];
+  if (!Array.isArray(where) || where.length === 0) return null;
+  const out = new Set();
+  for (let c of where) {
+    if (typeof c !== "string") return null;
+    c = c.trim().toUpperCase();
+    if (c === "UK" || c.startsWith("UK-")) c = "GB" + c.slice(2);
+    if (!/^[A-Z]{2}(-[A-Z0-9]{1,3})?$/.test(c)) return null;
+    out.add(c);
+  }
+  return [...out].sort();
+}
+
+function items(text, head) {
+  const esc = head.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const m = text.match(new RegExp("^" + esc + "[^\\n]*\\n((?:- [^\\n]*\\n?)*)", "m"));
+  return m === null ? null : m[1].split("\n").filter((x) => x !== "").map((x) => x.slice(2));
+}
+
+// { answer, read }: the rules for the jurisdictions given. read false: none given, one not a code, one not read for the
+// intent's subject, or rules older than Rule 9: the answer is then decide()'s, the strictest.
+export function decideWhere(text, intent, trigger, where) {
+  const strict = decide(text, intent, trigger);
+  const codes = jurisdictions(where);
+  const laws = items(text, "The jurisdictions of the laws beside each intent on the Never list");
+  const subjects = items(text, "The subject of each intent:"), read = items(text, "Read (");
+  if (codes === null || laws === null || subjects === null || read === null) return { answer: strict, read: false };
+  const subject = new Map();
+  for (const x of subjects) { const k = x.indexOf(": "); for (const n of x.slice(k + 2).split(", ")) subject.set(n, x.slice(0, k)); }
+  const i = typeof intent === "string" && intent.startsWith("conversation.") && subject.has(intent.slice(13)) ? intent.slice(13) : intent;
+  const sj = typeof i === "string" ? subject.get(i) : undefined;
+  const done = new Map();
+  for (const x of read) {
+    const m = x.match(/^([a-z]+) in ([A-Z0-9, -]+): /);
+    if (m) { if (!done.has(m[1])) done.set(m[1], new Set()); for (const c of m[2].split(", ")) done.get(m[1]).add(c); }
+  }
+  if (sj === undefined || !codes.every((c) => done.has(sj) && done.get(sj).has(c))) return { answer: strict, read: false };
+  if (strict === "finish" || trigger !== "unknown") return { answer: strict, read: true };
+  const beside = new Map(laws.map((x) => { const k = x.indexOf(": "); return [x.slice(0, k), x.slice(k + 2).split(", ")]; }));
+  if (!beside.has(i)) return { answer: strict, read: true };   // closed, other, on no list: as the strictest
+  const named = codes.some((c) => beside.get(i).some((g) => c === g || c.split("-")[0] === g || g.split("-")[0] === c));
+  return { answer: named ? "escalate" : "finish", read: true };
+}
+
+const judge = (text, intent, trigger, where) => where === null ? decide(text, intent, trigger) : decideWhere(text, intent, trigger, where).answer;
+
 export function listed(text, intent) {   // the intent is on one of the rules' lists (Never, Permitted, Closed)
   for (const name of ["Never", "Permitted", "Closed"]) {
     const m = text.match(new RegExp("^" + name + " \\((\\d+)\\): (.*)$", "m"));
@@ -199,6 +248,25 @@ export function rowText(v) {
 export const sealOf = (nonce, rowText) => createHash("sha256").update(Buffer.concat([nonce, Buffer.from(rowText, "utf8")])).digest("hex");
 
 export async function ask(intent, trigger, { conversationId, ...fields } = {}) {
+  return askAny(intent, trigger, conversationId, fields, null);
+}
+
+// ask(), for the jurisdictions whose laws apply to this decision (from Rule 9): a code or a list of codes, ISO 3166-1 (US, GB),
+// ISO 3166-2 (US-WA) or EU; UK is read as GB. { answer: "finish" or "escalate", read: true or false }. read false: the laws of one
+// of them on the intent's subject have not been read, and the answer is ask()'s, the strictest. The codes are kept in the row,
+// as "jurisdiction"; STK still receives only the seal.
+export async function askWhere(intent, trigger, jurisdiction, { conversationId, ...fields } = {}) {
+  const where = jurisdictions(jurisdiction);
+  const answer = await askAny(intent, trigger, conversationId, fields, where);
+  let read = false;
+  try {
+    if (where !== null && current) read = decideWhere(current.text, typeof intent === "string" ? intent.trim().toLowerCase() : intent,
+      typeof trigger === "string" ? trigger.trim().toLowerCase() : trigger, where).read;
+  } catch {}
+  return { answer, read };
+}
+
+async function askAny(intent, trigger, conversationId, fields, where) {
   if (typeof intent === "string") intent = intent.trim().toLowerCase();   // " Order.Status " is order.status
   if (typeof trigger === "string") trigger = trigger.trim().toLowerCase();
   if (!current) {   // the first ask of this process reads the rules first (up to 2 seconds), outside STK's 300 ms
@@ -212,7 +280,7 @@ export async function ask(intent, trigger, { conversationId, ...fields } = {}) {
   const state = { late: false, how: null, covered: () => false, settle: null, answer: null };
   const settled = new Promise((r) => (state.settle = r));
   const answered = new Promise((r) => (state.answer = r));   // the result, handed over before anything that may wait
-  run(intent, trigger, conversationId, fields, state, settled).catch(() => {}).finally(() => state.answer("escalate"));
+  run(intent, trigger, conversationId, fields, state, settled, where).catch(() => {}).finally(() => state.answer("escalate"));
   const timer = new Promise((r) => setTimeout(() => r("late"), config.timeout));
   const first = await Promise.race([answered, timer]);
   if (state.how === null) state.how = first !== "late" ? "answer" : (state.covered() ? "grant" : "late");   // first to settle wins
@@ -222,9 +290,9 @@ export async function ask(intent, trigger, { conversationId, ...fields } = {}) {
   return state.late ? "escalate" : first;
 }
 
-async function run(intent, trigger, conversationId, fields, state, settled) {
+async function run(intent, trigger, conversationId, fields, state, settled, where = null) {
   let r = await rules();
-  if (decide(r.text, intent, trigger) !== "finish") {
+  if (judge(r.text, intent, trigger, where) !== "finish") {
     state.answer("escalate");                                // STK is not called
     if (!listed(r.text, intent)) await write({ not_listed: { time_ms: Date.now(), intent } });   // for your own count; STK is not told
     return;
@@ -240,15 +308,16 @@ async function run(intent, trigger, conversationId, fields, state, settled) {
     }
     let release;
     asking.set(k, new Promise((r) => (release = r)));
-    try { return await ask1(intent, trigger, cid, fields, state, settled, r); }
+    try { return await ask1(intent, trigger, cid, fields, state, settled, r, where); }
     finally { asking.delete(k); release(); }
   }
-  return ask1(intent, trigger, cid, fields, state, settled, r);
+  return ask1(intent, trigger, cid, fields, state, settled, r, where);
 }
 
-async function ask1(intent, trigger, cid, fields, state, settled, r) {
+async function ask1(intent, trigger, cid, fields, state, settled, r, where = null) {
   const row = { ...fields, intent, trigger };
   if (cid !== null) row.conversation_id = cid;
+  if (where !== null) row.jurisdiction = where;            // askWhere: the codes given, sealed with the row
   const text = rowText(row);
   const nonce = randomBytes(32);
   const seal = sealOf(nonce, text);
@@ -284,7 +353,7 @@ async function ask1(intent, trigger, cid, fields, state, settled, r) {
   if (a.rule_version !== r.version && state.how !== "grant") {
     try {
       r = await rules(true);
-      if (decide(r.text, intent, trigger) !== "finish") { result = "escalate"; line.cancelled = "the rules of " + a.rule_version.slice(0, 12) + " say escalate"; }
+      if (judge(r.text, intent, trigger, where) !== "finish") { result = "escalate"; line.cancelled = "the rules of " + a.rule_version.slice(0, 12) + " say escalate"; }
     } catch { result = "escalate"; line.cancelled = "the rules of " + a.rule_version.slice(0, 12) + " could not be read"; }   // taken off
   }
   const key = cid === null ? null : cid + "\u0000" + intent;
