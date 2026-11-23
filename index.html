@@ -108,7 +108,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
   var f = document.getElementById('kf'), s = document.getElementById('ks'), k = document.getElementById('keysout');
   var API = 'https://api.stk-evidence.com/v1/keys', ch = window.BroadcastChannel ? new BroadcastChannel('stk_card') : null;
   var u = document.createElement('select'); u.id = 'use'; u.setAttribute('aria-label', 'use');   // the keys' use: its price (Price)
-  [["conversations", "Customer conversations", 5], ["claims", "Claims adjudication", 14], ["priorauth", "Prior authorization", 7], ["disputes", "Card disputes", 3]].forEach(function(o){ var x = document.createElement('option'); x.value = o[0]; x.textContent = o[1] + ' · $' + o[2]; u.appendChild(x); });
+  [["conversations", "Other", 5], ["claims", "Claims adjudication", 14], ["priorauth", "Prior authorization", 7], ["disputes", "Card disputes", 3]].forEach(function(o){ var x = document.createElement('option'); x.value = o[0]; x.textContent = o[1] + ' · $' + o[2]; u.appendChild(x); });
   f.insertBefore(u, f.querySelector('button'));
   function post(body, key){
     var h = {'Content-Type': 'application/json'}; if (key) h['X-STK-Key'] = key;
