@@ -48,13 +48,9 @@ main.wrap{max-width:none;padding-inline:0}   /* this page measures from the scre
 .bar .wrap,footer .wrap{max-width:none}       /* the logo and the footer on the same gutter */
 main > *{box-sizing:border-box}
 .hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:calc(var(--bar) / 2 + 20px + var(--sec)) var(--pad) var(--sec)}   /* the logo ends at half the bar + 20 px (site.css): then one section space */
-.hero .name{margin:0 0 24px;font-size:17.25px;line-height:1.5;font-weight:500;letter-spacing:.04em}
 .hero h1{margin:0;font-size:47.6px;font-weight:400;line-height:1.5;letter-spacing:-.025em;max-width:22em;text-wrap:balance}
 @media (min-width:768px){.hero h1{font-size:89.6px}}
-.hero .for{margin:16px 0 0;font-size:14.95px;line-height:1.5;color:var(--muted)}
 .hero .sub{margin:16px 0 0;font-size:19.55px;line-height:1.5;color:var(--muted);max-width:var(--measure);text-wrap:balance}
-.entries{font-size:17.25px;line-height:1.5;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 40px;margin-top:24px;max-width:var(--measure)}
-.entries a{flex:1 1 0;min-width:200px;max-width:320px;text-align:center}
 .tool,.three{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad)}
 .tool h2,.three h2{margin:0 0 24px;font-size:14.95px;line-height:1.5;font-weight:400;color:var(--muted);letter-spacing:.04em}
 .tool p{margin:16px 0 0;font-size:17.25px;line-height:1.55}
@@ -74,8 +70,8 @@ main > *{box-sizing:border-box}
 .three{display:grid;grid-template-columns:1fr;gap:40px}
 .three p{margin:0 0 8px;font-size:17.25px;line-height:1.55}
 .three .more{margin-top:16px;font-size:16.1px}
-.three .entries{justify-content:flex-start;margin:0 0 24px;gap:8px 24px;max-width:none}
-.three .entries a{flex:0 1 auto;min-width:0;max-width:none;text-align:left}
+.three .entries{font-size:17.25px;line-height:1.5;display:flex;flex-wrap:wrap;gap:8px 24px;margin:0 0 24px}
+.three .entries a{flex:0 1 auto}
 @media (min-width:768px){.three{grid-template-columns:repeat(2,1fr);gap:64px}}
 .band,.strip{margin:0 var(--pad);border-radius:var(--round);background:#000000}
 .band{color:#FFFFFF;text-align:center;padding:var(--black) var(--pad);display:flex;align-items:center;justify-content:center}   /* as tall as its words and the padding; the words in the middle */
