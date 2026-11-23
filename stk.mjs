@@ -105,7 +105,10 @@ export function decide(text, intent, trigger) {
   return "finish";
 }
 
-// ---- jurisdictions (from Rule 9) ----
+// ---- jurisdictions (from Rule 9) and the days laws apply from (from Rule 10) ----
+const H9 = "The jurisdictions of the laws beside each intent on the Never list";
+const H10 = "Where each law beside an intent on the Never list applies, and from when";
+
 // The codes given, as the rules read them (UK is GB), sorted; null when none is given or one is not a code.
 export function jurisdictions(where) {
   if (typeof where === "string") where = [where];
@@ -127,16 +130,64 @@ function items(text, head) {
   return m === null ? null : m[1].split("\n").filter((x) => x !== "").map((x) => x.slice(2));
 }
 
-// { answer, read }: the rules for the jurisdictions given. read false: none given, one not a code, one not read for the
-// intent's subject, or rules older than Rule 9: the answer is then decide()'s, the strictest.
-export function decideWhere(text, intent, trigger, where) {
-  const strict = decide(text, intent, trigger);
-  const codes = jurisdictions(where);
-  const laws = items(text, "The jurisdictions of the laws beside each intent on the Never list");
-  const subjects = items(text, "The subject of each intent:"), read = items(text, "Read (");
-  if (codes === null || laws === null || subjects === null || read === null) return { answer: strict, read: false };
+const pair = (x) => { const k = x.indexOf(": "); return [x.slice(0, k), x.slice(k + 2)]; };
+
+function subjectsOf(text) {
   const subject = new Map();
-  for (const x of subjects) { const k = x.indexOf(": "); for (const n of x.slice(k + 2).split(", ")) subject.set(n, x.slice(0, k)); }
+  for (const x of items(text, "The subject of each intent:") || []) { const [sj, names] = pair(x); for (const n of names.split(", ")) subject.set(n, sj); }
+  return subject;
+}
+
+// { answer, status } on a day (YYYY-MM-DD, UTC; today when omitted). status: null when no jurisdiction is given; else "read",
+// "none found" or "not checked". Only "read" can answer less strictly than with none given. Rules older than Rule 9 (or Rule 9's,
+// which wrote no days): every law applies from the day it is cited.
+export function decideAt(text, intent, trigger, where = null, day = null) {
+  const strict = decide(text, intent, trigger);
+  day = day || today();
+  const codes = jurisdictions(where);
+  if (items(text, H10) === null) {                       // Rule 9 or older
+    if (where === null || where === undefined) return { answer: strict, status: null };
+    const r = decide9(text, intent, trigger, codes);
+    return { answer: r.answer, status: r.read ? "read" : "not checked" };
+  }
+  const beside = new Map();
+  for (const x of items(text, H10)) {
+    const [k, v] = pair(x);
+    beside.set(k, new Map(v.split(", ").map((g) => g.includes(" from ") ? g.split(" from ") : [g, null])));
+  }
+  const subject = subjectsOf(text);
+  const i = typeof intent === "string" && intent.startsWith("conversation.") && subject.has(intent.slice(13)) ? intent.slice(13) : intent;
+  const applies = (f) => f === null || f <= day;
+  let dated = strict;
+  if (!(strict === "finish" || trigger !== "unknown" || typeof i !== "string" || !beside.has(i)))
+    dated = [...beside.get(i).values()].some(applies) ? "escalate" : "finish";
+  if (where === null || where === undefined) return { answer: dated, status: null };
+  if (codes === null) return { answer: dated, status: "not checked" };
+  const parts = new Map(), members = new Map();
+  for (const [head, into] of [["Parts, whose laws apply wherever their country's code is given:", parts],
+                              ["Members, whose code brings in the laws of what they are members of:", members]])
+    for (const x of items(text, head) || []) { const [k, v] = pair(x); into.set(k, v.split(", ")); }
+  const up = (c) => [parts, members].flatMap((g) => [...g].filter(([, ms]) => ms.includes(c)).map(([k]) => k));
+  const near = (c) => new Set([c, ...up(c), ...(parts.get(c) || [])]);
+  const checked = new Map();
+  for (const x of items(text, "Checked (") || []) {
+    const m = x.match(/^([a-z]+) in ([A-Z0-9, -]+): (read|none found): /);
+    if (m) for (const c of m[2].split(", ")) checked.set(m[1] + "|" + c, m[3]);
+  }
+  const sj = typeof i === "string" ? subject.get(i) : undefined;
+  const marks = sj === undefined ? ["not checked"] : codes.flatMap((code) => [...near(code)].map((c) => checked.get(sj + "|" + c) || "not checked"));
+  const status = marks.includes("not checked") ? "not checked" : (marks.includes("read") ? "read" : "none found");
+  if (status !== "read") return { answer: dated, status };
+  if (dated === "finish" || strict === "finish" || trigger !== "unknown" || !beside.has(i)) return { answer: dated, status };
+  const named = codes.some((c) => [...beside.get(i)].some(([g, f]) => applies(f) && near(c).has(g)));
+  return { answer: named ? "escalate" : "finish", status };
+}
+
+function decide9(text, intent, trigger, codes) {         // Rule 9's reading
+  const strict = decide(text, intent, trigger);
+  const laws = items(text, H9), subjects = items(text, "The subject of each intent:"), read = items(text, "Read (");
+  if (codes === null || laws === null || subjects === null || read === null) return { answer: strict, read: false };
+  const subject = subjectsOf(text);
   const i = typeof intent === "string" && intent.startsWith("conversation.") && subject.has(intent.slice(13)) ? intent.slice(13) : intent;
   const sj = typeof i === "string" ? subject.get(i) : undefined;
   const done = new Map();
@@ -146,13 +197,19 @@ export function decideWhere(text, intent, trigger, where) {
   }
   if (sj === undefined || !codes.every((c) => done.has(sj) && done.get(sj).has(c))) return { answer: strict, read: false };
   if (strict === "finish" || trigger !== "unknown") return { answer: strict, read: true };
-  const beside = new Map(laws.map((x) => { const k = x.indexOf(": "); return [x.slice(0, k), x.slice(k + 2).split(", ")]; }));
-  if (!beside.has(i)) return { answer: strict, read: true };   // closed, other, on no list: as the strictest
+  const beside = new Map(laws.map((x) => { const [k, v] = pair(x); return [k, v.split(", ")]; }));
+  if (!beside.has(i)) return { answer: strict, read: true };
   const named = codes.some((c) => beside.get(i).some((g) => c === g || c.split("-")[0] === g || g.split("-")[0] === c));
   return { answer: named ? "escalate" : "finish", read: true };
 }
 
-const judge = (text, intent, trigger, where) => where === null ? decide(text, intent, trigger) : decideWhere(text, intent, trigger, where).answer;
+// Rule 9's call, kept: { answer, read } today.
+export function decideWhere(text, intent, trigger, where) {
+  const r = decideAt(text, intent, trigger, where);
+  return { answer: r.answer, read: r.status === "read" };
+}
+
+const judge = (text, intent, trigger, where) => decideAt(text, intent, trigger, where).answer;
 
 export function listed(text, intent) {   // the intent is on one of the rules' lists (Never, Permitted, Closed)
   for (const name of ["Never", "Permitted", "Closed"]) {
@@ -252,18 +309,18 @@ export async function ask(intent, trigger, { conversationId, ...fields } = {}) {
 }
 
 // ask(), for the jurisdictions whose laws apply to this decision (from Rule 9): a code or a list of codes, ISO 3166-1 (US, GB),
-// ISO 3166-2 (US-WA) or EU; UK is read as GB. { answer: "finish" or "escalate", read: true or false }. read false: the laws of one
-// of them on the intent's subject have not been read, and the answer is ask()'s, the strictest. The codes are kept in the row,
-// as "jurisdiction"; STK still receives only the seal.
+// ISO 3166-2 (US-WA) or EU; UK is read as GB. { answer: "finish" or "escalate", read: true or false, status: "read", "none found" or
+// "not checked" }. Only "read" (a law that names a person was found) answers by those jurisdictions' laws; "none found" and
+// "not checked" answer as ask(), the strictest. The codes are kept in the row, as "jurisdiction"; STK still receives only the seal.
 export async function askWhere(intent, trigger, jurisdiction, { conversationId, ...fields } = {}) {
   const where = jurisdictions(jurisdiction);
   const answer = await askAny(intent, trigger, conversationId, fields, where);
-  let read = false;
+  let status = "not checked";
   try {
-    if (where !== null && current) read = decideWhere(current.text, typeof intent === "string" ? intent.trim().toLowerCase() : intent,
-      typeof trigger === "string" ? trigger.trim().toLowerCase() : trigger, where).read;
+    if (where !== null && current) status = decideAt(current.text, typeof intent === "string" ? intent.trim().toLowerCase() : intent,
+      typeof trigger === "string" ? trigger.trim().toLowerCase() : trigger, where).status;
   } catch {}
-  return { answer, read };
+  return { answer, read: status === "read", status };
 }
 
 async function askAny(intent, trigger, conversationId, fields, where) {

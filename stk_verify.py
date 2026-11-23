@@ -31,7 +31,7 @@ Each line is checked alone, three things, no secret needed:
 Public keys: https://api.stk-evidence.com/v1/rules?keys=1 (or keys.json). Rules: /v1/rules?history=1 (or rules.json).
 Other lines in the file (the rules applied, a public key, a person joining, not_listed, not_told, to_tell, grant) are not
 permissions and are skipped. A line marked "cancelled" was told to STK as a person joining: shown, not counted as a failure."""
-import base64, hashlib, json, re, sys, urllib.request
+import base64, hashlib, json, re, sys, time, urllib.request
 from functools import lru_cache
 
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
@@ -98,8 +98,10 @@ def decide(text, intent, trigger):
     return "escalate"
 
 
-# ---- jurisdictions (from Rule 9) ------------------------------------------------------------------------------------------
+# ---- jurisdictions (from Rule 9) and the days laws apply from (from Rule 10) -----------------------------------------------
 _JUR = re.compile(r"[A-Z]{2}(-[A-Z0-9]{1,3})?")
+_H9 = "The jurisdictions of the laws beside each intent on the Never list"
+_H10 = "Where each law beside an intent on the Never list applies, and from when"
 
 
 def jurisdictions(where):
@@ -126,14 +128,70 @@ def _items(text, head):
     return None if m is None else [x[2:] for x in m.group(1).splitlines()]
 
 
-def decide_where(text, intent, trigger, where):
-    """(answer, read): the rules for the jurisdictions given. read is False when none is given, one is not a code, one
-    has not been read for the intent's subject, or the rules are older than Rule 9: the answer is then decide's, the
-    strictest. A jurisdiction's answer is never stricter than that."""
+def _day_now():
+    return time.strftime("%Y-%m-%d", time.gmtime())
+
+
+def decide_at(text, intent, trigger, where=None, day=None):
+    """(answer, status) on a day (YYYY-MM-DD, UTC; today when None). status: None when no jurisdiction is given; else "read",
+    "none found" or "not checked". Only "read" can answer less strictly than with none given. Rules older than Rule 9 (or
+    Rule 9's, which wrote no days): every law applies from the day it is cited."""
     strict = decide(text, intent, trigger)
+    day = day or _day_now()
     codes = jurisdictions(where)
-    laws = _items(text, "The jurisdictions of the laws beside each intent on the Never list")
-    subjects, read = _items(text, "The subject of each intent:"), _items(text, "Read (")
+    if _items(text, _H10) is None:                       # Rule 9 or older
+        if where is None:
+            return strict, None
+        a, read = _decide9(text, intent, trigger, codes)
+        return a, ("read" if read else "not checked")
+    beside = {}
+    for x in _items(text, _H10):
+        k, _, v = x.partition(": ")
+        beside[k] = {g.split(" from ")[0]: (g.split(" from ")[1] if " from " in g else None) for g in v.split(", ")}
+    subject = {}
+    for x in _items(text, "The subject of each intent:") or []:
+        sj, _, names = x.partition(": ")
+        for n in names.split(", "):
+            subject[n] = sj
+    i = intent[13:] if isinstance(intent, str) and intent.startswith("conversation.") and intent[13:] in subject else intent
+    applies = lambda g, f: f is None or f <= day
+    if strict == "finish" or trigger != "unknown" or not isinstance(i, str) or i not in beside:
+        dated = strict                                   # finish, a trigger, other, closed, on no list: as decide()
+    else:
+        dated = "escalate" if any(applies(g, f) for g, f in beside[i].items()) else "finish"
+    if where is None:
+        return dated, None
+    if codes is None:
+        return dated, "not checked"
+    parts, members = {}, {}
+    for head, into in (("Parts, whose laws apply wherever their country's code is given:", parts),
+                       ("Members, whose code brings in the laws of what they are members of:", members)):
+        for x in _items(text, head) or []:
+            k, _, v = x.partition(": ")
+            into[k] = v.split(", ")
+    up = lambda c: [k for g in (parts, members) for k, ms in g.items() if c in ms]
+    near = lambda c: {c} | set(up(c)) | set(parts.get(c, []))
+    checked = {}
+    for x in _items(text, "Checked (") or []:
+        m = re.match(r"([a-z]+) in ([A-Z0-9, -]+): (read|none found): ", x)
+        if m:
+            for c in m.group(2).split(", "):
+                checked[(m.group(1), c)] = m.group(3)
+    sj = subject.get(i) if isinstance(i, str) else None
+    marks = [checked.get((sj, c), "not checked") for code in codes for c in near(code)] if sj else ["not checked"]
+    status = "not checked" if "not checked" in marks else ("read" if "read" in marks else "none found")
+    if status != "read":
+        return dated, status
+    if dated == "finish" or strict == "finish" or trigger != "unknown" or i not in beside:
+        return dated, status
+    named = any(applies(g, f) and g in near(c) for c in codes for g, f in beside[i].items())
+    return ("escalate" if named else "finish"), status
+
+
+def _decide9(text, intent, trigger, codes):
+    """Rule 9's reading: (answer, read)."""
+    strict = decide(text, intent, trigger)
+    laws, subjects, read = _items(text, _H9), _items(text, "The subject of each intent:"), _items(text, "Read (")
     if codes is None or laws is None or subjects is None or read is None:
         return strict, False
     subject = {}
@@ -153,10 +211,16 @@ def decide_where(text, intent, trigger, where):
     if strict == "finish" or trigger != "unknown":
         return strict, True
     beside = {k: v.split(", ") for k, _, v in (x.partition(": ") for x in laws)}
-    if i not in beside:                         # closed, other, on no list: as the strictest
+    if i not in beside:
         return strict, True
     named = any(c == g or c.split("-")[0] == g or g.split("-")[0] == c for c in codes for g in beside[i])
     return ("escalate" if named else "finish"), True
+
+
+def decide_where(text, intent, trigger, where):
+    """Rule 9's call, kept: (answer, read) today."""
+    a, status = decide_at(text, intent, trigger, where)
+    return a, status == "read"
 
 
 # ---- signatures ---------------------------------------------------------------------------------------------------------
@@ -215,8 +279,9 @@ def check(line, keys, rules):
     if text is None:
         return "NOT STK's: no signed rules of version " + str(rc["rule_version"])[:12]
     said = row.get("jurisdiction") if isinstance(row, dict) else None    # from Rule 9: the jurisdictions ask_where was given
-    if (decide(text, row.get("intent"), row.get("trigger")) if said is None
-            else decide_where(text, row.get("intent"), row.get("trigger"), said)[0]) != "finish":
+    at = rc.get("recorded_ms") if isinstance(rc.get("recorded_ms"), int) else rc.get("time_ms")   # the day it was decided (UTC)
+    day = time.strftime("%Y-%m-%d", time.gmtime(at / 1000)) if isinstance(at, (int, float)) else None
+    if decide_at(text, row.get("intent"), row.get("trigger"), said, day)[0] != "finish":
         if line.get("cancelled"):
             return "cancelled: told to STK as a person joining, not billed"
         return "NOT a permission: the rules of " + rc["rule_version"][:12] + " do not answer finish for this row"
