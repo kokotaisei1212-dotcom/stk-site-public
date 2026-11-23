@@ -116,7 +116,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
   var API = 'https://api.stk-evidence.com/v1/keys', ch = window.BroadcastChannel ? new BroadcastChannel('stk_card') : null;
   var u = document.createElement('fieldset'); u.id = 'use';                // the keys' use, by industry (its price: Price)
   var lg = document.createElement('legend'); lg.textContent = 'Use'; u.appendChild(lg);
-  [["claims", "Health plans and review organizations", "Health insurers, Medicaid managed care plans, third-party administrators and independent review organizations."], ["lending", "Banks, lenders and collectors", "Banks, credit unions, non-bank lenders, fintechs and debt collectors."], ["disputes", "Card issuers and payment providers", "Card issuers, payment processors and money transmitters: disputes, fraud claims and transfer errors."], ["insurance", "Insurers (property, casualty and life)", "Property, casualty and life insurers, and their adjusters."], ["conversations", "Everything else", "Any other business, and every key taken with no use."]].forEach(function(o){
+  [["claims", "Health plans and review organizations", "Health insurers, Medicaid plans, TPAs and review organizations."], ["lending", "Banks, lenders and collectors", "Credit unions and fintechs too."], ["disputes", "Card issuers and payment providers", "Disputes, fraud claims and transfer errors."], ["insurance", "Insurers (property, casualty and life)", "Their adjusters too."], ["conversations", "Everything else", "Any other business, and keys with no use."]].forEach(function(o){
     var l = document.createElement('label'), r = document.createElement('input'), t = document.createElement('span'), w = document.createElement('small');
     r.type = 'radio'; r.name = 'use'; r.value = o[0]; r.checked = o[0] === "conversations";
     t.textContent = o[1]; w.textContent = o[2]; l.append(r, t, w); u.appendChild(l);
@@ -170,14 +170,14 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <section class="three wrap" aria-label="STK">
 <div><h2>The rules</h2>
 <nav class="entries" aria-label="By industry"><a href="/rules-full#health">What a health plan may automate</a><a href="/rules-full#finance">What a bank or lender may automate</a></nav>
-<p>Each of 91 actions: AI or a person.</p>
-<p>A person only if a law or a trigger says so.</p>
+<p>Per action: AI or a person.</p>
+<p>A person only by law or trigger.</p>
 <p>One signed text for all.</p>
 <p class="more"><a href="/rules">The rules</a></p></div>
 <div><h2>The institution</h2>
 <p>Set by STK's operator alone.</p>
-<p>Additions at once; restrictions on April 15 or October 15, 30 days ahead, unless a law or court rules.</p>
-<p>No version is ever deleted.</p>
+<p>Additions at once; restrictions April 15 or October 15, unless a law or court rules.</p>
+<p>No version is deleted.</p>
 <p class="more"><a href="/rules-full#release">How a version is published</a></p></div>
 </section>
 <div class="strip strip-b"><p>STK never sees the decision.<br>Only a 32-byte hash reaches us.</p></div>
