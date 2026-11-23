@@ -83,8 +83,8 @@ stk.ON_ROW = keep</pre>
 <p>Keep them as long as you may be asked about a conversation. STK's public keys are never deleted and every version of the rules stays published, so a row of any year can be checked.</p>
 <h2>What to pass</h2>
 <ul>
-  <li>The intent: one of the 83 ids in <a href="/rules-full#intents">The rules in full</a> (each on its page from <a href="/rules">The rules</a>). Map your own intent names to these on your side.</li>
-  <li>The trigger: one of the 10 triggers in <a href="/rules-full#triggers">The rules</a> when it happened in the conversation (each says exactly what counts), or <code>"unknown"</code> when none did. The rules say <code>escalate</code> to every trigger.</li>
+  <li>The intent: one of the 91 ids in <a href="/rules-full#intents">The rules in full</a> (each on its page from <a href="/rules">The rules</a>). Map your own intent names to these on your side.</li>
+  <li>The trigger: one of the 11 triggers in <a href="/rules-full#triggers">The rules</a> when it happened in the conversation (each says exactly what counts), or <code>"unknown"</code> when none did. The rules say <code>escalate</code> to every trigger.</li>
   <li>Anything else you give <code>ask()</code> goes in your row, which stays with you; STK receives only its seal and its time.</li>
 </ul>
 <p>Without an answer within 300 ms, or on any error, <code>ask()</code> returns <code>escalate</code> and your handover runs as it does today, unless <a href="/rules-full#else">a grant</a> holds. <a href="/docs">Docs</a></p>

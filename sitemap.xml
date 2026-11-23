@@ -47,6 +47,10 @@
   <url><loc>https://stk-evidence.com/act-fraud.refuse</loc></url>
   <url><loc>https://stk-evidence.com/act-fraud.report</loc></url>
   <url><loc>https://stk-evidence.com/act-info.hours_location</loc></url>
+  <url><loc>https://stk-evidence.com/act-insclaim.decide</loc></url>
+  <url><loc>https://stk-evidence.com/act-insclaim.partial</loc></url>
+  <url><loc>https://stk-evidence.com/act-insclaim.refuse</loc></url>
+  <url><loc>https://stk-evidence.com/act-liability.decide</loc></url>
   <url><loc>https://stk-evidence.com/act-limit.change</loc></url>
   <url><loc>https://stk-evidence.com/act-limit.lower</loc></url>
   <url><loc>https://stk-evidence.com/act-loan.details</loc></url>
@@ -59,6 +63,9 @@
   <url><loc>https://stk-evidence.com/act-payment.status</loc></url>
   <url><loc>https://stk-evidence.com/act-payment.stop</loc></url>
   <url><loc>https://stk-evidence.com/act-payment_arrangement.refuse</loc></url>
+  <url><loc>https://stk-evidence.com/act-policy.cancel</loc></url>
+  <url><loc>https://stk-evidence.com/act-policy.nonrenew</loc></url>
+  <url><loc>https://stk-evidence.com/act-policy.refuse</loc></url>
   <url><loc>https://stk-evidence.com/act-pricing.promotion</loc></url>
   <url><loc>https://stk-evidence.com/act-priorauth.decide</loc></url>
   <url><loc>https://stk-evidence.com/act-priorauth.deny_medical</loc></url>
@@ -80,6 +87,7 @@
   <url><loc>https://stk-evidence.com/act-subscription.change</loc></url>
   <url><loc>https://stk-evidence.com/act-tech.setup</loc></url>
   <url><loc>https://stk-evidence.com/act-tech.troubleshoot</loc></url>
+  <url><loc>https://stk-evidence.com/act-totalloss.decide</loc></url>
   <url><loc>https://stk-evidence.com/act-transfer.error_decide</loc></url>
   <url><loc>https://stk-evidence.com/act-transfer.error_refuse</loc></url>
   <url><loc>https://stk-evidence.com/act-transfer.send</loc></url>

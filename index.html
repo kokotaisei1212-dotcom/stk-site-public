@@ -42,8 +42,8 @@
 /* One measure for this page (CEO 2026-11-22): spaces are 8, 16, 24, 40, 64 or 96 px only.
    Gutter = var(--pad) (24 px; 48 px from 900 px, site.css). Content at most 720 px wide. Sections 64 px above and below; 96 px from 900 px.
    Black surfaces stand off the edges by the gutter, corners 20 px (28 px from 900 px). */
-:root{--sec:96px;--measure:720px;--round:20px}   /* sections 96 px; 144 px from 900 px (CEO 2026-11-22: x1.5) */
-@media (min-width:900px){:root{--sec:144px;--round:28px}}
+:root{--sec:144px;--measure:720px;--round:20px}   /* sections 144 px (CEO 2026-11-23: 96 to 144); from 900 px the text 960 px wide */
+@media (min-width:900px){:root{--sec:144px;--measure:960px;--round:28px}}
 main.wrap{max-width:none;padding-inline:0}   /* this page measures from the screen's edge: the gutter, then the content */
 .bar .wrap,footer .wrap{max-width:none}       /* the logo and the footer on the same gutter */
 main > *{box-sizing:border-box}
@@ -51,11 +51,12 @@ main > *{box-sizing:border-box}
 .hero .name{margin:0 0 24px;font-size:17.25px;line-height:1.5;font-weight:500;letter-spacing:.04em}
 .hero h1{margin:0;font-size:47.6px;font-weight:400;line-height:1.5;letter-spacing:-.025em;max-width:22em;text-wrap:balance}
 @media (min-width:768px){.hero h1{font-size:89.6px}}
+.hero .for{margin:16px 0 0;font-size:14.95px;line-height:1.5;color:var(--muted)}
 .hero .sub{margin:16px 0 0;font-size:19.55px;line-height:1.5;color:var(--muted);max-width:var(--measure);text-wrap:balance}
 .entries{font-size:17.25px;line-height:1.5;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 40px;margin-top:24px;max-width:var(--measure)}
 .entries a{flex:1 1 0;min-width:200px;max-width:320px;text-align:center}
 .tool,.three{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad)}
-.tool h2,.three h2{margin:0 0 16px;font-size:14.95px;line-height:1.5;font-weight:400;color:var(--muted);letter-spacing:.04em}
+.tool h2,.three h2{margin:0 0 24px;font-size:14.95px;line-height:1.5;font-weight:400;color:var(--muted);letter-spacing:.04em}
 .tool p{margin:16px 0 0;font-size:17.25px;line-height:1.55}
 .tool #keysout{box-sizing:border-box;width:100%;margin:16px 0 0;white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:13.8px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:16px}
 .tool button,.tool #kf button{font:inherit;font-size:16.1px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--bg);background:var(--ink);border:1px solid var(--ink);cursor:pointer}
@@ -95,8 +96,9 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <p class="name">STK</p>
 <h1>Safe decisions.</h1>
 <p class="sub">Checked against the law. Signed for every decision the AI finishes.<br>Move decisions to AI, safely.</p>
+<p class="for">For health plans, banks and lenders, and insurers.</p>
 </section>
-<div class="strip strip-a"><p>66 of 83 actions an AI may finish alone.<br>17 the law gives to a person.</p></div>
+<div class="strip strip-a"><p>66 of 91 actions an AI may finish alone.<br>25 the law gives to a person.</p></div>
 
 <section class="tool wrap" id="keys" aria-label="The tool">
 <h2>The tool</h2>
@@ -109,7 +111,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
   var f = document.getElementById('kf'), s = document.getElementById('ks'), k = document.getElementById('keysout');
   var API = 'https://api.stk-evidence.com/v1/keys', ch = window.BroadcastChannel ? new BroadcastChannel('stk_card') : null;
   var u = document.createElement('select'); u.id = 'use'; u.setAttribute('aria-label', 'use');   // the keys' use: its price (Price)
-  [["conversations", "Other", 5], ["claims", "Claims adjudication", 14], ["priorauth", "Prior authorization", 7], ["disputes", "Card disputes", 3]].forEach(function(o){ var x = document.createElement('option'); x.value = o[0]; x.textContent = o[1]; u.appendChild(x); });
+  [["conversations", "Other", 5], ["claims", "Claims adjudication", 14], ["priorauth", "Prior authorization", 7], ["disputes", "Card disputes", 3], ["insurance", "Insurance claims", 5]].forEach(function(o){ var x = document.createElement('option'); x.value = o[0]; x.textContent = o[1]; u.appendChild(x); });
   f.insertBefore(u, f.querySelector('button'));
   function post(body, key){
     var h = {'Content-Type': 'application/json'}; if (key) h['X-STK-Key'] = key;
@@ -159,7 +161,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <section class="three wrap" aria-label="STK">
 <div><h2>The rules</h2>
 <nav class="entries" aria-label="By industry"><a href="/rules-full#health">What a health plan may automate</a><a href="/rules-full#finance">What a bank or lender may automate</a></nav>
-<p>Each of 83 actions: AI or a person.</p>
+<p>Each of 91 actions: AI or a person.</p>
 <p>A person only if a law or a trigger says so.</p>
 <p>One signed text for all.</p>
 <p class="more"><a href="/rules">The rules</a></p></div>
