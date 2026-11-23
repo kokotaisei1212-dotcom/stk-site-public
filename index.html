@@ -119,10 +119,10 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
     u.appendChild(l);
   });
   f.insertBefore(u, f.querySelector('button'));
-  var sa = document.querySelector('.strip-a p'), whole = sa ? sa.innerHTML : '', counts = {"claims": ["For a health plan", 9, 16, 7], "lending": ["For a bank, lender or collector", 6, 10, 4], "disputes": ["For a card issuer or payment provider", 12, 15, 3], "insurance": ["For an insurer", 0, 8, 8]};   // the panel above: the industry chosen
+  var sa = document.querySelector('.strip-a p'), whole = sa ? sa.innerHTML : '', counts = {"claims": "For a health plan: 9 of 16 decisions an AI may finish alone.<br>7 the law gives to a person.", "lending": "For a bank, lender or collector: 6 of 10 decisions an AI may finish alone.<br>4 the law gives to a person.", "disputes": "For a card issuer or payment provider: 12 of 15 decisions an AI may finish alone.<br>3 the law gives to a person.", "insurance": "For an insurer: no jurisdiction's laws on insurance have been read in full yet.<br>Until they are, all 8 go to a person."};   // the panel above: the industry chosen
   u.addEventListener('change', function(){
     var c = counts[(u.querySelector('input:checked') || {}).value];
-    if (sa) sa.innerHTML = c ? c[0] + ': ' + c[1] + ' of ' + c[2] + ' decisions an AI may finish alone.<br>' + c[3] + ' the law gives to a person.' : whole;
+    if (sa) sa.innerHTML = c || whole;
   });
   function post(body, key){
     var h = {'Content-Type': 'application/json'}; if (key) h['X-STK-Key'] = key;
