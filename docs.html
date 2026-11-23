@@ -161,7 +161,7 @@ if (await ask(intent, trigger, { conversationId: cid }) === "finish") {
 <pre class="code">{"receipt": {"v": 2, "seal", "time_ms", "recorded_ms", "rule_version", "account", "which_key", "kid"},
  "sig": "&lt;Ed25519 signature of the receipt, base64&gt;",
  "rule_version": "&lt;SHA-256 of the rules in use&gt;",
- "rule": {"number": 11, "version": "&lt;the same SHA-256&gt;", "published": "&lt;its date&gt;"},
+ "rule": {"number": 12, "version": "&lt;the same SHA-256&gt;", "published": "&lt;its date&gt;"},
  "grant": {"v": 1, "account", "rule_version", "kid", "issued_ms", "expires_ms"},
  "grant_sig": "&lt;Ed25519 signature of the grant, base64&gt;"}</pre>
 <p>Two times in the receipt. <code>time_ms</code>: when STK signed, what STK attests. <code>recorded_ms</code>: when your library recorded the action, your own claim. They are the same moment unless the seal waited in the queue. Without a grant, a <code>recorded_ms</code> more than a minute from STK's clock is refused with 422 and STK's time in the <code>X-STK-Time-Ms</code> header; stk.py and stk.mjs then use STK's time and send once again. A body with the seal alone, as before, is signed with a receipt of version 1: <code>{"v": 1, "seal", "time_ms", "rule_version", "account", "which_key", "kid"}</code>, one time only.</p>
