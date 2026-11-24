@@ -283,7 +283,7 @@ if (r.answer === "finish") {
 <tbody>
 <tr><td>401</td><td>No <code>X-STK-Key</code>, or not a key.</td></tr>
 <tr><td>422</td><td>A field missing, not of the allowed form, or a field that is not allowed.</td></tr>
-<tr><td>429</td><td><code>POST /v1/keys</code>: too many keys from one address, or new accounts in all, this hour. <code>GET /v1/ledger</code>: 60 calls of your account this hour. <code>POST /v1/incident</code>: 10 reports of your account in 24 hours. Any call: more than 120 calls a minute from one address with a key that is not one of STK's.</td></tr>
+<tr><td>429</td><td><code>POST /v1/keys</code>: more than 3 calls from one address in an hour (a call with one of your keys is not counted), or more than 300 new accounts in all in an hour; the message says when it opens again (in minutes, and the time in UTC), and <code>Retry-After</code> gives it in seconds. <code>GET /v1/ledger</code>: 60 calls of your account this hour. <code>POST /v1/incident</code>: 10 reports of your account in 24 hours. Any call: more than 120 calls a minute from one address with a key that is not one of STK's.</td></tr>
 <tr><td>413</td><td>A body over 16,384 bytes.</td></tr>
 <tr><td>409</td><td><code>POST /v1/keys</code>: this address has keys; send its live key to make new ones (keys never used: again, 10 minutes after they were made).</td></tr>
 <tr><td>400</td><td><code>POST /v1/stripe/webhook</code>: not signed by Stripe.</td></tr>
