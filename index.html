@@ -62,12 +62,22 @@ html{scroll-behavior:smooth}
 .tool{scroll-margin-top:var(--bar)}
 .tool p{margin:16px 0 0;font-size:17.25px;line-height:1.55}
 .tool .only{margin:8px 0 0;font-size:13.8px;color:var(--muted)}
-.tool #keysout{box-sizing:border-box;width:100%;margin:16px 0 0;white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:13.8px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:16px}
+.tool #keysout{box-sizing:border-box;width:100%;margin:16px 0 0;border:1px solid var(--line);border-radius:4px;padding:16px}
+.tool .kt{margin:0 0 16px;font-size:17.25px}
+.tool .krow{display:grid;grid-template-columns:auto 1fr auto;gap:8px 16px;align-items:start;margin:0 0 16px}
+.tool .krow:last-child{margin:0}
+.tool .kl{font-size:14.95px;line-height:1.6;color:var(--muted)}
+.tool .kv{font-family:var(--mono);font-size:13.8px;line-height:1.6;overflow-wrap:anywhere;word-break:break-all;min-width:0}   /* a long key wraps and stays readable */
+.tool .copy{font:inherit;font-size:13.8px;line-height:1.5;padding:4px 12px;border-radius:4px;color:var(--ink);background:var(--bg);border:1px solid var(--line);cursor:pointer}
+@media (max-width:479px){.tool .krow{grid-template-columns:1fr auto}.tool .kl{grid-column:1 / -1}}
+.tool #pricenote2{margin:16px 0 0;font-size:14.95px;line-height:1.5;color:var(--muted)}
+.tool #pricenote2 a{color:inherit}
 .tool button{font:inherit;font-size:16.1px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--bg);background:var(--ink);border:1px solid var(--ink);cursor:pointer}
 .tool #kf{display:flex;flex-wrap:wrap;gap:16px;margin:0}
 .tool #kf input{flex:1 1 14rem;min-width:0;font:inherit;font-size:18.4px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
 .tool #ks:empty{display:none}
-.tool #card,.tool #invoice{margin:16px 16px 0 0}
+.tool #kf[hidden],.tool [hidden]{display:none}   /* keys taken: the form to take them is gone */
+.tool #pay{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 0}
 .tool #invoice{color:var(--ink);background:var(--bg)}
 .tool #invoicenote{margin:8px 0 0;font-size:13.8px;line-height:1.5;color:var(--muted)}
 .tool #pricenote{margin:16px 0 0;font-size:14.95px;line-height:1.5;color:var(--muted)}
@@ -96,7 +106,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <form id="kf"><input id="em" type="email" required autocomplete="email" placeholder="email" aria-label="email"><button type="submit">Get an API key</button></form>
 <p class="only">Email only. Test keys are free.</p>
 <p id="ks" role="status"></p>
-<pre id="keysout" hidden></pre>
+<div id="keysout" hidden></div>
 </section>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "license": "https://creativecommons.org/licenses/by/4.0/", "identifier": "15", "creator": {"@type": "Organization", "name": "STK", "url": "https://stk-evidence.com"}, "@id": "https://stk-evidence.com/rules", "name": "STK permission rules", "description": "Which actions of an AI in a conversation with a customer a law gives to a person, by jurisdiction, with each law's citation.", "url": "https://stk-evidence.com/rules", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://api.stk-evidence.com/v1/rules"}]}</script>
 <script>
@@ -107,9 +117,25 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
     var h = {'Content-Type': 'application/json'}; if (key) h['X-STK-Key'] = key;
     return fetch(API, {method: 'POST', headers: h, body: JSON.stringify(body)}).then(function(r){ return r.json().then(function(j){ return [r.status, j]; }); });
   }
+  function row(label, key){                      // a key on its own line, and its copy button: one tap copies it
+    var r = document.createElement('div'); r.className = 'krow';
+    var l = document.createElement('span'); l.className = 'kl'; l.textContent = label;
+    var c = document.createElement('code'); c.className = 'kv'; c.textContent = key;
+    var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'copy'; btn.textContent = 'Copy';
+    btn.onclick = function(){
+      var done = function(){ btn.textContent = 'Copied'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(key).then(done, function(){});
+      else { var sel = window.getSelection(), rg = document.createRange(); rg.selectNodeContents(c); sel.removeAllRanges(); sel.addRange(rg); if (document.execCommand('copy')) done(); }
+    };
+    r.append(l, c, btn); return r;
+  }
   function show(v){
-    k.textContent = 'Your keys. Shown once.\n\nTest key: ' + v.test + (v.live ? '\nLive key: ' + v.live : '');
+    k.textContent = '';
+    var t = document.createElement('p'); t.className = 'kt'; t.textContent = 'Your keys. Shown once.';
+    k.append(t, row('Test key:', v.test));
+    if (v.live) k.append(row('Live key:', v.live));
     k.hidden = false;
+    f.hidden = true; var o = document.querySelector('.tool .only'); if (o) o.hidden = true;   // keys taken: the form to take them goes
   }
   var q = new URLSearchParams(location.search).get('card');
   if (q) {                                        // this tab is back from Stripe's page: tell the tab with the keys, and close
@@ -131,22 +157,26 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
       var n = document.getElementById('pricenote');
       if (!n) {
         n = document.createElement('p'); n.id = 'pricenote';
-        n.innerHTML = 'Next: set one as STK_KEY and ask. <a href="/docs">Docs</a><br>$' + rate + ' per action an AI finishes alone.<br>$0 when a person must decide. $0 until you use it. <a href="/price">Price</a>';
+        n.innerHTML = 'Next: set one as STK_KEY and ask. <a href="/docs">Docs</a>';
         k.after(n);
+        var pn = document.createElement('p'); pn.id = 'pricenote2';
+        pn.innerHTML = 'Test keys are free. $' + rate + ' per action an AI finishes alone. <a href="/price">Price</a>';
+        n.after(pn);
       }
       if (url) {                                  // the live key: a card, or an invoice (CEO 2026-11-24: some companies cannot register a card)
         var iv = document.createElement('button'); iv.type = 'button'; iv.id = 'invoice'; iv.textContent = 'Pay by invoice';
         var il = document.createElement('p'); il.id = 'invoicenote';
-        il.textContent = 'By invoice: each month on one invoice, due within 30 days, paid on its page by card or US bank account (ACH). You may owe up to the larger of $5,000 and three times the highest invoice you have paid.';
+        var more = 'By invoice: each month on one invoice, due within 30 days, paid on its page by card or US bank account (ACH). You may owe up to the larger of $5,000 and three times the highest invoice you have paid.';
         iv.onclick = function(){
           iv.disabled = true;
           post({email: em, pay: 'invoice'}, v.live).then(function(r){
             iv.disabled = false;
-            if (r[0] === 200 && r[1].pay === 'invoice') { done = true; b.remove(); iv.remove(); il.textContent = 'Your live key signs now. ' + (r[1].note || ''); }
+            if (r[0] === 200 && r[1].pay === 'invoice') { done = true; b.remove(); iv.remove(); il.textContent = 'Your live key signs now. ' + more; }   // said once chosen, not before
             else { s.textContent = (r[1] && r[1].message) || 'STK cannot do this just now. Try again in a minute.'; }
           }, function(){ iv.disabled = false; s.textContent = 'STK cannot be reached. Try again in a minute.'; });
         };
-        n.after(b); b.after(iv); iv.after(il);
+        var bs = document.createElement('div'); bs.id = 'pay'; bs.append(b, iv);
+        n.after(bs); bs.after(il);
       }
       function check(id){                         // the card done: the live key, if it was not given at once
         if (done || !m || (id && id !== m[0])) return;
