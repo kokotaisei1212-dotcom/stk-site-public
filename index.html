@@ -139,7 +139,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
     return fetch(API, {method: 'POST', headers: h, body: JSON.stringify(body)}).then(function(r){ return r.json().then(function(j){ return [r.status, j]; }); });
   }
   function show(v){
-    k.textContent = 'Test key: ' + v.test + (v.live ? '\nLive key: ' + v.live : '') + '\n\nShown once. Set one as STK_KEY.';
+    k.textContent = 'Your keys. Shown once.\n\nTest key: ' + v.test + (v.live ? '\nLive key: ' + v.live : '');
     k.hidden = false;
   }
   var q = new URLSearchParams(location.search).get('card');
@@ -151,8 +151,10 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
   f.onsubmit = function(e){
     e.preventDefault(); s.textContent = '';
     var em = document.getElementById('em').value;
-    post({email: em, use: (u.querySelector('input:checked') || {}).value}).then(function(a){
-      if (a[0] !== 200) { s.textContent = a[0] === 409 ? 'This address has keys. New ones: POST /v1/keys with its live key (Docs).' : (a[1] && a[1].message) || 'STK cannot do this just now. Try again in a minute.'; return; }
+    var use = (u.querySelector('input:checked') || {}).value, rate = {"claims": "7", "lending": "5", "disputes": "3", "insurance": "5", "conversations": "5", "priorauth": "7"}[use] || "5";   // the key's price, from rates.json
+    post({email: em, use: use}).then(function(a){
+      if (a[0] === 409) { s.innerHTML = 'This email already has keys.<br>To add one, send POST /v1/keys with your live key. <a href="/docs#get-keys">Docs</a>'; return; }
+      if (a[0] !== 200) { s.textContent = (a[1] && a[1].message) || 'STK cannot do this just now. Try again in a minute.'; return; }
       var v = {test: a[1].test_key, live: a[1].live_key || ''}, url = a[1].card_url, m = (url || '').match(/cs_(live|test)_[A-Za-z0-9]+/), done = false;
       show(v);
       var b = document.createElement('button');
@@ -161,7 +163,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
       var n = document.getElementById('pricenote');
       if (!n) {
         n = document.createElement('p'); n.id = 'pricenote';
-        n.innerHTML = '35% of the published or derived cost of the same action performed by a person. $5 where no figure is found.<br>Nothing where the law requires a person.<br>Nothing until you use it.<br><a href="/price">Price</a>';
+        n.innerHTML = 'Next: set one as STK_KEY and ask. <a href="/docs">Docs</a><br>Your rate: $' + rate + ' per action an AI finishes alone.<br>$0 when a person must decide. $0 until you use it. <a href="/price">Price</a>';
         k.after(n);
       }
       n.after(b);
