@@ -240,7 +240,7 @@
 
 ## Price
 
-- $7, $5 or $3 per action an AI finishes alone, by the key's use. $0 when a person must decide. A test key is never billed. https://stk-evidence.com/price
+- $5 per action an AI finishes alone. $0 when a person must decide. A test key is never billed. https://stk-evidence.com/price
 
 ## Licence
 

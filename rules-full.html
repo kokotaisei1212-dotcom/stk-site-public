@@ -291,61 +291,30 @@ official text and the reasons published with it.
 <h2 id="applies">Which version applies</h2>
 <p>The version that applies to an action is the version named in its receipt, fixed at the time STK signed it. A later version does not change the answer to an action already signed.</p>
 
-<h2 id="two-industries">Industries, built differently</h2>
-<p>The industries are built differently. In US health plan rules, the law names the person who must decide. In US federal financial rules, the law sets the duty to investigate, the deadline, and the notice, but does not name a person. For financial actions a person is named by European and British law (GDPR Art. 22; UK GDPR Arts. 22A and 22C; for credit, Directive (EU) 2023/2225 Art. 18(8)) and, in the United States, from 2027-01-01, by Colorado (C.R.S. § 6-1-1705(1)(a)(II)) and California (11 CCR § 7221) for some refusals and for contesting a decision. In insurance other than health, several jurisdictions license the adjuster who decides a claim. This rule puts an action on the person's side only where a person is named.</p>
+<h2 id="two-industries">Laws, built differently</h2>
+<p>Laws are built differently. In US health plan rules, the law names the person who must decide. In US federal financial rules, the law sets the duty to investigate, the deadline, and the notice, but does not name a person. For financial actions a person is named by European and British law (GDPR Art. 22; UK GDPR Arts. 22A and 22C; for credit, Directive (EU) 2023/2225 Art. 18(8)) and, in the United States, from 2027-01-01, by Colorado (C.R.S. § 6-1-1705(1)(a)(II)) and California (11 CCR § 7221) for some refusals and for contesting a decision. In insurance other than health, several jurisdictions license the adjuster who decides a claim. This rule puts an action on the person's side only where a person is named.</p>
 <p>So each action below shows two things apart: the citation that names a person, which is why an action requires human review, and the clock and duties that attach to the action without naming a person.</p>
 
 <div class="two">
-<div id="health"><h3>What a health plan may automate</h3>
+<div id="health"><h3>Subject: health</h3>
 <p><strong>9</strong> an AI may finish alone. <strong>7</strong> a person must decide.</p>
 <p><strong>An AI may finish alone</strong></p><ul><li>Claim paid</li><li>File a claim</li><li>Claim status</li><li>Benefits of the plan</li><li>Coverage granted</li><li>Who is covered</li><li>Prior approval granted</li><li>Prior approval status</li><li>Find a provider</li></ul>
 <p><strong>A person must decide</strong></p><ul><li>Claim refused: medical necessity</li><li>Claim refused</li><li>Coverage refused: medical necessity</li><li>Coverage refused</li><li>Appeal: medical necessity</li><li>Prior approval refused: medical necessity</li><li>Prior approval refused</li></ul>
 <p><a href="#intents">Every action, in full</a></p>
-<h3>Health plans</h3><p>The actions by the names a health plan uses:</p><ul>
-<li>CMS universe GRV_C: <a href="/act-complaint.record"><code>conversation.complaint.record</code></a></li>
-<li>CMS universe OD: <a href="/act-coverage.decide"><code>conversation.coverage.decide</code></a></li>
-<li>CMS universe OD: <a href="/act-coverage.refuse"><code>conversation.coverage.refuse</code></a></li>
-<li>X12 270/271: <a href="/act-eligibility.check"><code>conversation.eligibility.check</code></a></li>
-<li>X12 276/277: <a href="/act-claim.status"><code>conversation.claim.status</code></a></li>
-<li>X12 278: <a href="/act-priorauth.status"><code>conversation.priorauth.status</code></a></li>
-<li>X12 278, auto-approved, CMS universe OD: <a href="/act-priorauth.decide"><code>conversation.priorauth.decide</code></a></li>
-<li>X12 278, CMS universe OD: <a href="/act-priorauth.refuse"><code>conversation.priorauth.refuse</code></a></li>
-<li>X12 278, physician review, peer-to-peer, CMS universe OD: <a href="/act-priorauth.deny_medical"><code>conversation.priorauth.deny_medical</code></a></li>
-<li>X12 835, auto-adjudicated, CMS universe PYMT_C: <a href="/act-claim.decide"><code>conversation.claim.decide</code></a></li>
-<li>X12 835, CMS universe PYMT_C: <a href="/act-claim.refuse"><code>conversation.claim.refuse</code></a></li>
-<li>X12 835, physician review, Medical Director review, CMS universe PYMT_C: <a href="/act-claim.deny_medical"><code>conversation.claim.deny_medical</code></a></li>
-<li>X12 837: <a href="/act-claim.new"><code>conversation.claim.new</code></a></li>
-<li>physician review, Medical Director review, CMS universe OD: <a href="/act-coverage.deny_medical"><code>conversation.coverage.deny_medical</code></a></li>
-<li>physician review, CMS universe RECON: <a href="/act-decision.appeal"><code>conversation.decision.appeal</code></a></li>
-</ul></div>
-<div id="finance"><h3>What a bank or lender may automate</h3>
+</div>
+<div id="finance"><h3>Subject: credit</h3>
 <p><strong>6</strong> an AI may finish alone. <strong>4</strong> a person must decide.</p>
 <p><strong>An AI may finish alone</strong></p><ul><li>Open an account</li><li>Debt in collection</li><li>Debt dispute upheld</li><li>Give credit</li><li>Raise a credit limit</li><li>Loan details</li></ul>
 <p><strong>A person must decide</strong></p><ul><li>Account refused</li><li>Debt dispute refused</li><li>Credit refused</li><li>Credit limit lowered or refused</li></ul>
 <p><a href="#intents">Every action, in full</a></p>
-<h3>Banks, card issuers and lenders</h3><p>The actions by the names a financial institution uses:</p><ul>
-<li>Reg E 1005.11, Visa dispute category 10 (fraud), ACH R10: <a href="/act-fraud.report"><code>conversation.fraud.report</code></a></li>
-<li>Reg E 1005.11, Visa dispute category 10 (fraud), ACH R10: <a href="/act-fraud.decide"><code>conversation.fraud.decide</code></a></li>
-<li>Reg E 1005.11, Visa dispute category 10 (fraud), manual review: <a href="/act-fraud.refuse"><code>conversation.fraud.refuse</code></a></li>
-<li>Reg E 1005.11: <a href="/act-transfer.error_decide"><code>conversation.transfer.error_decide</code></a></li>
-<li>Reg E 1005.11, manual review: <a href="/act-transfer.error_refuse"><code>conversation.transfer.error_refuse</code></a></li>
-<li>Reg Z 1026.13, Visa dispute categories 12 and 13: <a href="/act-dispute.file"><code>conversation.dispute.file</code></a></li>
-<li>Reg Z 1026.13, Visa dispute categories 12 and 13: <a href="/act-dispute.decide"><code>conversation.dispute.decide</code></a></li>
-<li>Reg Z 1026.13, Visa dispute categories 12 and 13, manual review: <a href="/act-dispute.refuse"><code>conversation.dispute.refuse</code></a></li>
-<li>refer to underwriter: <a href="/act-credit.refuse"><code>conversation.credit.refuse</code></a></li>
-<li>refer to underwriter: <a href="/act-limit.lower"><code>conversation.limit.lower</code></a></li>
-<li>second-level review: <a href="/act-decision.review"><code>conversation.decision.review</code></a></li>
-<li>straight-through (STP): <a href="/act-transfer.send"><code>conversation.transfer.send</code></a></li>
-<li>straight-through (STP): <a href="/act-transfer.status"><code>conversation.transfer.status</code></a></li>
-<li>straight-through (STP): <a href="/act-credit.decide"><code>conversation.credit.decide</code></a></li>
-</ul></div>
-<div id="payments"><h3>What a card issuer or payment provider may automate</h3>
+</div>
+<div id="payments"><h3>Subject: payments</h3>
 <p><strong>12</strong> an AI may finish alone. <strong>3</strong> a person must decide.</p>
 <p><strong>An AI may finish alone</strong></p><ul><li>Transaction history</li><li>Balance inquiry</li><li>Activate a card</li><li>Block a lost card</li><li>Dispute upheld</li><li>Dispute a charge</li><li>Fraud paid back</li><li>Report fraud</li><li>Stop a payment</li><li>Transfer error corrected</li><li>Send money</li><li>Transfer status</li></ul>
 <p><strong>A person must decide</strong></p><ul><li>Dispute refused</li><li>Fraud claim refused</li><li>Transfer error refused</li></ul>
 <p><a href="#intents">Every action, in full</a></p>
 </div>
-<div id="insurance"><h3>What an insurer may automate</h3>
+<div id="insurance"><h3>Subject: insurance</h3>
 <p><strong>0</strong> an AI may finish alone. <strong>8</strong> a person must decide.</p>
 <p><strong>An AI may finish alone</strong></p><p>None.</p>
 <p><strong>A person must decide</strong></p><ul><li>Insurance claim paid</li><li>Insurance claim paid in part</li><li>Insurance claim refused</li><li>Liability decided</li><li>Policy cancelled</li><li>Policy not renewed</li><li>Insurance refused</li><li>Total loss</li></ul>

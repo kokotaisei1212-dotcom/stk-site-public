@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Price · STK</title>
-<meta name="description" content="$7, $5 or $3 per action an AI finishes alone, by the key&#x27;s use. $0 when a person must decide. By the key&#x27;s use: $7 health plans and review organizations, $3 card issuers and payment providers, $5 everything else. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars; or monthly by invoice.">
+<meta name="description" content="$5 per action an AI finishes alone. $0 when a person must decide. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars; or monthly by invoice.">
 <link rel="canonical" href="https://stk-evidence.com/price">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="STK">
 <meta property="og:url" content="https://stk-evidence.com/price">
 <meta property="og:title" content="Price · STK">
-<meta property="og:description" content="$7, $5 or $3 per action an AI finishes alone, by the key&#x27;s use. $0 when a person must decide. By the key&#x27;s use: $7 health plans and review organizations, $3 card issuers and payment providers, $5 everything else. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars; or monthly by invoice.">
+<meta property="og:description" content="$5 per action an AI finishes alone. $0 when a person must decide. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars; or monthly by invoice.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Price · STK">
-<meta name="twitter:description" content="$7, $5 or $3 per action an AI finishes alone, by the key&#x27;s use. $0 when a person must decide. By the key&#x27;s use: $7 health plans and review organizations, $3 card issuers and payment providers, $5 everything else. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars; or monthly by invoice.">
+<meta name="twitter:description" content="$5 per action an AI finishes alone. $0 when a person must decide. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars; or monthly by invoice.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon-32-dark.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/stk-icon-512-dark.png" type="image/png" sizes="512x512">
@@ -41,18 +41,11 @@
 <div class="doc">
 <div class="eyebrow">Price</div>
 <h1>Price</h1>
-<p id="price-line"><strong>$7, $5 or $3 per action an AI finishes alone, by the key's use. $0 when a person must decide.</strong></p>
-<div class="table"><table id="prices"><thead><tr><th>Use of the key</th><th>Per action an AI finishes alone</th><th>When a person must decide</th></tr></thead><tbody>
-<tr><td>Health plans and review organizations<br><small>Health insurers, Medicaid plans, TPAs and review organizations.</small></td><td>$7</td><td>$0</td></tr>
-<tr><td>Banks, lenders and collectors<br><small>Banks, credit unions, non-bank lenders, fintechs and collectors.</small></td><td>$5</td><td>$0</td></tr>
-<tr><td>Card issuers and payment providers<br><small>Card issuers, payment processors and money transmitters.</small></td><td>$3</td><td>$0</td></tr>
-<tr><td>Insurers (property, casualty and life)<br><small>Property, casualty and life insurers, and their adjusters.</small></td><td>$5</td><td>$0</td></tr>
-<tr><td>Everything else<br><small>Any other business, and keys with no use.</small></td><td>$5</td><td>$0</td></tr>
-</tbody></table></div>
+<p id="price-line"><strong>$5 per action an AI finishes alone. $0 when a person must decide.</strong></p>
 
 <h2 id="how">How it is billed</h2>
 <ul class="no">
-  <li><strong>By the key's use: $7, $5 or $3 for each permission</strong> (<a href="#prices">the table</a>; a key with no use, $5) under these rules (the domain <code>conversation</code>, <a href="/rules-full#scope">what it covers</a>): each seal your live key sends that STK signs.</li>
+  <li><strong>$5 for each permission</strong> under these rules (the domain <code>conversation</code>, <a href="/rules-full#scope">what it covers</a>): each seal your live key sends that STK signs, whatever the action, the jurisdiction or the key.</li>
   <li><strong>$0 when a person joins it the same day (UTC).</strong> Told by 00:10 UTC the day after, with the permission's seal (stk.py and stk.mjs send it while the process that got the permission still runs), it still counts for its day. Told on a later day after that: it stays billed.</li>
   <li>Each Monday, Stripe makes the invoice for the week before (Monday to Sunday, UTC) and charges it the same day to the card you registered when you took your live key. STK has no screen for it and sends no email about it. It is due when issued.</li>
 </ul>
@@ -88,15 +81,13 @@
 
 <h2 id="charges">What STK charges for</h2>
 <p>STK charges for one thing: a permission it signed. Nothing else.</p>
-<p>STK does not decide what a company routes through it. Every permission signed with a key is billed at the price of the key's use, whatever the action.</p>
+<p>STK does not decide what a company routes through it. Every permission signed is billed $5, whatever the action: STK never learns the action.</p>
 
-<h2 id="each-use">The price of each use</h2>
-<p>When you take keys you choose their use, one for each key. Every permission signed with a key is billed at its use's price, whatever the action: STK never learns the action. One account holds keys of several uses, on one card and one invoice: <code>POST /v1/keys</code> with your live key and a <code>use</code> gives keys of another use (<a href="/docs#keys">Docs</a>). A key taken before uses, or with none chosen, is of the use Everything else, $5, as before.</p>
-<p>An action that requires human review is never signed, so it costs $0 under every use. A key of Health plans and review organizations pays $7 for every permission signed with it, <code>claim.status</code> and <code>eligibility.check</code> among them. Card issuers and payment providers pay $3, less than the $5 of everything else.</p>
-<p>STK does not verify the use. It is your declaration and your responsibility; running actions under a key of another use breaks the <a href="/terms">Terms</a>. The rows that would show it stay with you, and STK never sees them.</p>
+<h2 id="uses">One price</h2>
+<p>One price for every key. A key may be taken with a <code>use</code> you declare (<a href="/docs#keys">Docs</a>): it is kept as information and changes no price. An action that requires human review is never signed, so it costs $0.</p>
 
 <h2 id="pay">A card, or an invoice</h2>
-<p>Usable with no card registered: choose to pay by invoice (<a href="/docs#pay">how</a>). Each month's permissions (UTC) are on one invoice in dollars, sent on the 1st and due within 30 days, paid on its page by a card or a US bank account (ACH). The prices are the same. An account paying by invoice may owe up to the larger of $5,000 and three times the highest invoice it has paid (its open invoices and its month so far): there, nothing is signed until a payment is confirmed, and its days so far are invoiced at once, payable then.</p>
+<p>Usable with no card registered: choose to pay by invoice (<a href="/docs#pay">how</a>). Each month's permissions (UTC) are on one invoice in dollars, sent on the 1st and due within 30 days, paid on its page by a card or a US bank account (ACH). The price is the same. An account paying by invoice may owe up to the larger of $5,000 and three times the highest invoice it has paid (its open invoices and its month so far): there, nothing is signed until a payment is confirmed, and its days so far are invoiced at once, payable then.</p>
 <ul>
   <li>By card: the card is charged weekly, on the Monday after the week closes. The customer does nothing after the first minute.</li>
   <li>STK never receives a bank account number or a card number. Both are held by Stripe.</li>
@@ -120,18 +111,18 @@
 </ul>
 
 <h2 id="currency">Currency and tax</h2>
-<p>US dollars. The invoice is, for each key's use, its price times the week's count of permissions in conversations. STK adds no tax to it.</p>
+<p>US dollars. The invoice is $5 times the week's count of permissions in conversations. STK adds no tax to it.</p>
 <section id="how-set" class="how-set">
-<h2 id="why-5">How these prices were set</h2>
-<p>Kept as the record that the prices were not set at STK's discretion. Each price is 35% of the cost of the same work by a person, published or derived, rounded to the dollar. Where no figure has been found, the price is $5.</p>
-<div class="table"><table id="uses"><thead><tr><th>Use</th><th>Actions</th><th>Cost of the work by a person</th><th>× 35%</th><th>Source</th><th>Price</th></tr></thead><tbody>
-<tr><td>Health plans and review organizations<br><small>Health insurers, Medicaid plans, TPAs and review organizations.</small><br><small>Prior authorization, coverage, claims, eligibility and appeals.</small></td><td><code>claim.*, coverage.*, priorauth.*, eligibility.*, decision.*, provider.find</code></td><td>$20.24</td><td>$7.08</td><td>Derived: <a href="https://www.bls.gov/oes/current/oes291141.htm">BLS OEWS, May 2025: registered nurses&#x27; median annual wage, $97,550; BLS ECEC, December 2025: total compensation 1.4265 times wages; 6,875 decisions a year by one reviewer: 27.5 a day × 250 working days, the 27.5 a day being the claim of a vendor, Toney Healthcare, not a published study</a>. Derived: $97,550 × 1.4265 ÷ 6,875 = $20.24, the cost of the decision itself, from a reviewer&#x27;s wage and the decisions a reviewer makes in a year. The count of decisions is not verified: it rests on a vendor&#x27;s claim. The $40 of Sahni et al. (Health Affairs Scholar 1(5):qxad053, 2023) is the whole administrative cost of one claim, not the cost of the decision, and the 35% is not taken of it. Every permission of the key is $7, claim.status and eligibility.check among them.</td><td>$7</td></tr>
-<tr><td>Banks, lenders and collectors<br><small>Banks, credit unions, non-bank lenders, fintechs and collectors.</small><br><small>Credit decisions, account opening, limits and collections.</small></td><td><code>credit.*, limit.*, account.*, collections.*, payment_arrangement.*, loan.details</code></td><td>No published figure</td><td>—</td><td>No published figure: No published count of credit decisions or collection accounts a year by one person was found. BLS OEWS, May 2025: Credit Analysts (13-2041), 67,800 employed, median annual wage $80,970; Loan Officers (13-2072), 301,400, median $74,180; Bill and Account Collectors (43-3011), 166,900, median $46,040. Without a count of decisions a year no cost per decision can be derived; the price is that of everything else.</td><td>$5</td></tr>
-<tr><td>Card issuers and payment providers<br><small>Card issuers, payment processors and money transmitters.</small><br><small>Disputes, fraud claims and transfer errors.</small></td><td><code>dispute.*, fraud.*, transfer.error_*</code></td><td>$9.08</td><td>$3.18</td><td>Published: Datos Insights, 2025. Lower than the $5 of everything else.</td><td>$3</td></tr>
-<tr><td>Insurers (property, casualty and life)<br><small>Property, casualty and life insurers, and their adjusters.</small><br><small>Claims, policy decisions, liability and total loss.</small></td><td><code>policy.*, insclaim.*, liability.decide, totalloss.decide</code></td><td>No published figure</td><td>—</td><td>No published figure: No published cost of one insurance claim or policy decision by a person was found. For reference only, not used per claim: BLS OEWS, May 2025, Claims Adjusters, Examiners and Investigators (13-1031), 356,100 employed, median annual wage $76,790, $36.92 an hour; 35% of an hour is $12.92, and of the loaded hour ($36.92 × 1.4265), $18.43. The price is that of everything else.</td><td>$5</td></tr>
-<tr><td>Everything else<br><small>Any other business, and keys with no use.</small></td><td><code>every other action</code></td><td>$13.50</td><td>$4.73</td><td>Published: <a href="https://www.gartner.com/en/documents/5164231">Gartner, February 2024: the median cost of one contact in an assisted channel</a>. Every action outside the uses above.</td><td>$5</td></tr>
-</tbody></table></div>
-<p id="health-7"><strong>Why $7 for health plans, not $14.</strong> The $40 of Sahni et al. (Health Affairs Scholar 1(5):qxad053, 2023) is the whole administrative cost of one claim, not the cost of the decision. The $20.24 is the cost of the decision itself, derived from a reviewer's wage and the decisions a reviewer makes in a year: BLS OEWS, May 2025, registered nurses' median annual wage, $97,550, × 1.4265 (BLS ECEC, December 2025, total compensation to wages) ÷ 6,875 decisions a year (27.5 a day × 250 working days; the 27.5 a day is the claim of a vendor, Toney Healthcare, not a published study, and has not been verified). The 35% is taken of the latter: $7.08, $7.</p>
+<h2 id="why-5">How this price was set</h2>
+<p>Kept as the record that the price was not set at STK's discretion. Until 2026-11-24 a key's price was set by its use, each 35% of the published or derived cost of the same work by a person, rounded to the dollar; where no figure was found, $5. From 2026-11-24 there is one price, $5. The figures:</p>
+<ul>
+<li>Prior authorization, coverage, claims, eligibility and appeals.: $20.24 (× 35% = $7.08). Derived: <a href="https://www.bls.gov/oes/current/oes291141.htm">BLS OEWS, May 2025: registered nurses&#x27; median annual wage, $97,550; BLS ECEC, December 2025: total compensation 1.4265 times wages; 6,875 decisions a year by one reviewer: 27.5 a day × 250 working days, the 27.5 a day being the claim of a vendor, Toney Healthcare, not a published study</a>. Derived: $97,550 × 1.4265 ÷ 6,875 = $20.24, the cost of the decision itself, from a reviewer&#x27;s wage and the decisions a reviewer makes in a year. The count of decisions is not verified: it rests on a vendor&#x27;s claim. The $40 of Sahni et al. (Health Affairs Scholar 1(5):qxad053, 2023) is the whole administrative cost of one claim, not the cost of the decision, and the 35% is not taken of it.</li>
+<li>Credit decisions, account opening, limits and collections.: no figure. No published figure: No published count of credit decisions or collection accounts a year by one person was found. BLS OEWS, May 2025: Credit Analysts (13-2041), 67,800 employed, median annual wage $80,970; Loan Officers (13-2072), 301,400, median $74,180; Bill and Account Collectors (43-3011), 166,900, median $46,040. Without a count of decisions a year no cost per decision can be derived.</li>
+<li>Disputes, fraud claims and transfer errors.: $9.08 (× 35% = $3.18). Published: Datos Insights, 2025</li>
+<li>Claims, policy decisions, liability and total loss.: no figure. No published figure: No published cost of one insurance claim or policy decision by a person was found. For reference only, not used per claim: BLS OEWS, May 2025, Claims Adjusters, Examiners and Investigators (13-1031), 356,100 employed, median annual wage $76,790, $36.92 an hour; 35% of an hour is $12.92, and of the loaded hour ($36.92 × 1.4265), $18.43.</li>
+<li>Any other contact with a customer: $13.50 (× 35% = $4.73). Published: <a href="https://www.gartner.com/en/documents/5164231">Gartner, February 2024: the median cost of one contact in an assisted channel</a></li>
+</ul>
+<p id="health-7">The $40 of Sahni et al. (Health Affairs Scholar 1(5):qxad053, 2023) is the whole administrative cost of one claim, not the cost of the decision. The $20.24 is the cost of the decision itself, derived from a reviewer's wage and the decisions a reviewer makes in a year: BLS OEWS, May 2025, registered nurses' median annual wage, $97,550, × 1.4265 (BLS ECEC, December 2025, total compensation to wages) ÷ 6,875 decisions a year (27.5 a day × 250 working days; the 27.5 a day is the claim of a vendor, Toney Healthcare, not a published study, and has not been verified).</p>
 </section>
 </div>
 </main>
