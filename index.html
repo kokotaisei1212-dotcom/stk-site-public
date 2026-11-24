@@ -47,9 +47,16 @@ html{scroll-behavior:smooth}
 @media (min-width:768px){.hero h1{font-size:89.6px}}
 .cta{display:inline-block;margin-top:40px;font-size:17.25px;line-height:1.5;padding:16px 24px;border-radius:4px;color:var(--bg);background:var(--ink);text-decoration:none}
 .cue{position:absolute;left:50%;bottom:40px;width:16px;height:16px;margin-left:-8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg)}   /* more below */
-.line,.tool{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad) 0}
-.line{font-size:21.85px;line-height:1.5;letter-spacing:-.01em;text-align:center;padding-top:var(--sec);padding-bottom:var(--sec)}   /* each line alone, far from the next */
-.line a{color:inherit}
+.promise,.tool{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad) 0}
+/* What STK promises (CEO 2026-11-24, as Visa's "what Visa stands for"): a large heading; three of the same size, apart by a rule */
+.promise{max-width:calc(1200px + 2 * var(--pad))}
+.promise h2{margin:0 0 64px;font-size:40.25px;font-weight:400;line-height:1.25;letter-spacing:-.02em;text-align:center}
+@media (min-width:768px){.promise h2{font-size:59.8px}}
+.promise ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr}
+.promise li{font-size:21.85px;line-height:1.5;letter-spacing:-.01em;text-align:center;padding:40px 0}
+.promise li + li{border-top:1px solid var(--line)}
+.promise a{color:inherit}
+@media (min-width:900px){.promise ul{grid-template-columns:repeat(3,minmax(0,1fr))}.promise li{padding:16px 40px}.promise li + li{border-top:0;border-left:1px solid var(--line)}}
 .tool{scroll-margin-top:var(--bar)}
 .tool p{margin:16px 0 0;font-size:17.25px;line-height:1.55}
 .tool .only{margin:8px 0 0;font-size:13.8px;color:var(--muted)}
@@ -73,9 +80,14 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <a class="cta" href="#keys">Get an API key</a>
 <span class="cue" aria-hidden="true"></span>
 </section>
-<p class="line"><a href="/rules">Everything the law allows, your AI can finish alone.</a></p>
-<p class="line">Every one is signed.</p>
-<p class="line">STK never sees the decision. Only a 32-byte hash reaches us.</p>
+<section class="promise" aria-labelledby="promise">
+<h2 id="promise">What STK promises</h2>
+<ul>
+<li><a href="/rules">Everything the law allows, your AI can finish alone.</a></li>
+<li>Every one is signed.</li>
+<li>STK never sees the decision. Only a 32-byte hash reaches us.</li>
+</ul>
+</section>
 <section class="tool wrap" id="keys" aria-label="Get an API key">
 <form id="kf"><input id="em" type="email" required autocomplete="email" placeholder="email" aria-label="email"><button type="submit">Get an API key</button></form>
 <p class="only">Email only. Test keys are free.</p>
