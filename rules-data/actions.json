@@ -1,6 +1,6 @@
 {
- "rule": 15,
- "version": "4bbb7c956c5777200aae63a0a006b922b36ce5fe18765c96c37c12af1305c710",
+ "rule": 16,
+ "version": "6a6eae6c67d9f3a7adc8dfee49b5cbafc8d92f8a83e386973ae895340a9655eb",
  "licence": "CC BY 4.0, https://creativecommons.org/licenses/by/4.0/",
  "source": "https://stk-evidence.com/rules",
  "actions": [
@@ -869,24 +869,45 @@
    "description": "Refuse to open an account, a plan or a policy, or close one the customer did not ask to close.",
    "subject": "credit",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); C.R.S. § 6-1-1705(1)(a)(II) (Colorado SB 26-189: on the consumer's request, the deployer provides an opportunity for meaningful human review and reconsideration of the consequential decision, to the extent commercially reasonable; definitions in § 6-1-1701(15); applies to decisions made on or after 2027-01-01; enforcement stayed by the order of 2026-04-27 in X.AI LLC v. Weiser, No. 1:26-cv-01515 (D. Colo.); the attorney general's rules, 4 CCR 904-6, not in effect); 11 CCR § 7221(a), (b)(1)(A) (California, regulations under the CCPA: the business provides the consumer with a method to appeal the decision to a human reviewer who has the authority to overturn the decision; for decisions on financial or lending services, § 7001(ddd)(1); from 2027-01-01; not automated decisionmaking technology where the human involvement of § 7001(e)(1) is present; decisions of a financial institution on consumers' nonpublic personal information may be outside it by the exemption for GLBA data in Cal. Civ. Code § 1798.145, not verified)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); C.R.S. § 6-1-1705(1)(a)(II) (Colorado SB 26-189: on the consumer's request, the deployer provides an opportunity for meaningful human review and reconsideration of the consequential decision, to the extent commercially reasonable; definitions in § 6-1-1701(15); applies to decisions made on or after 2027-01-01; enforcement stayed by the order of 2026-04-27 in X.AI LLC v. Weiser, No. 1:26-cv-01515 (D. Colo.); the attorney general's rules, 4 CCR 904-6, not in effect); 11 CCR § 7221(a), (b)(1)(A) (California, regulations under the CCPA: the business provides the consumer with a method to appeal the decision to a human reviewer who has the authority to overturn the decision; for decisions on financial or lending services, § 7001(ddd)(1); from 2027-01-01; not automated decisionmaking technology where the human involvement of § 7001(e)(1) is present; decisions of a financial institution on consumers' nonpublic personal information may be outside it by the exemption for GLBA data in Cal. Civ. Code § 1798.145, not verified); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct)",
    "jurisdictions": [
+    "CL",
     "EU",
+    "FR",
     "GB",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
     "US-CA",
-    "US-CO"
+    "US-CO",
+    "UY",
+    "ZA"
    ],
    "from": {
     "GB": "2026-02-05",
     "US-CA": "2027-01-01",
-    "US-CO": "2027-01-01"
+    "US-CO": "2027-01-01",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
     "https://leg.colorado.gov/bills/SB26-189",
     "https://cppa.ca.gov/regulations/pdf/ccpa_statute_eff_20260101.pdf",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16"
    ],
    "page": "https://stk-evidence.com/act-account.refuse"
   },
@@ -897,11 +918,19 @@
    "description": "Refuse, delay, downgrade or modify payment of a claim, in whole or in part, because of medical necessity.",
    "subject": "health",
    "side": "person",
-   "law": "Cal. Health & Safety Code § 1367.01 and Cal. Ins. Code § 10123.135 (SB 1120, Stats. 2024, ch. 879); 42 CFR § 422.566(d); GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 42 CFR § 423.566(d) (Medicare Part D: a physician or other appropriate health care professional reviews before a denial for medical necessity); C.R.S. § 10-16-113(5) (Colorado: a licensed physician); C.R.S. § 10-16-112.7(5)(b) (Colorado HB26-1139, 2026 ch. 325: a licensed clinician where AI is used; from 2027-01-01); O.C.G.A. § 33-46-21(e) (Georgia SB 80, 2021: a clinical peer); O.C.G.A. § 33-46-7.1(c) (Georgia SB 444, 2026: a natural person where AI is used; from 2027-01-01); Md. Code, Ins. § 15-10B-07(a), (b) (Maryland: a licensed physician); Md. Code, Ins. § 15-10B-05.1(c)(4), (d) (Maryland HB 820, 2025: where AI is used); RSMo 376.1361.2 (Missouri: a licensed clinical peer; managed care plans); N.J.S.A. 17B:30-55.8 (New Jersey P.L.2023, c.296, s.9: a physician); Vermont DFR Rule H-2009-03 § 3.1(G)(2) (a physician); Conn. Gen. Stat. § 38a-591c(a)(1) (Connecticut: a clinical peer); M.G.L. c. 176O, § 12(a) (Massachusetts: a person licensed in the appropriate specialty); MCA 33-32-210(1), (2), (4) (Montana: a physician, or a health care professional of the requester's kind); 13.10.22.9 NMAC (New Mexico: a physician; managed health care plans); SDCL § 58-17H-18 (South Dakota: an appropriately licensed and clinically qualified health care provider); A.R.S. § 20-2510(B) (Arizona: a medical director with an active license); A.R.S. § 20-3103 (Arizona HB 2175, 2025: the medical director individually reviews each denial of a claim on the basis of medical necessity; in force since 2026-07-01); KRS 304.17A-607(2)(b) (Kentucky: a licensed physician); N.Y. Ins. Law § 4903(a) (New York: a clinical peer reviewer); ORS 743B.423(2)(f) (Oregon: a physician licensed in Oregon); 215 ILCS 134/85(e)(2) (Illinois: a clinical peer); 215 ILCS 134/45(i) (Illinois P.A. 103-656: a clinical peer where an automated process is used); Minn. Stat. § 62M.09, subd. 3 (Minnesota: a physician; subd. 3(f), where AI is used, from 2027-01-01); NRS 695G.150(1) (Nevada: a physician or dentist; managed care organizations); N.C. Gen. Stat. § 58-50-61(d) (North Carolina: a medical doctor licensed in North Carolina); 40 P.S. § 991.2152(c) (Pennsylvania Act 146 of 2022: a licensed physician); Tex. Ins. Code §§ 4201.153(d) and 4201.156 (Texas: a physician or other provider; no automated decision); W. Va. Code R. § 114-95-6.2 (West Virginia: a clinical peer); Fla. Stat. § 641.51(4) (Florida HMOs: a physician); IC 27-1-37.5-20(a)(1)(A) (Indiana: a clinical peer); IC 27-1-52-9 (Indiana P.L.88-2026: a claim downcoded for medical necessity, reviewed by an employee or contractor); 02-031 C.M.R. ch. 850, § 8(D)(2) (Maine Bureau of Insurance: a clinical peer); Miss. Code Ann. § 41-83-31 (Mississippi SB 2140, 2024: a physician licensed to practice); RSA 420-J:6, III-IV (New Hampshire: a qualified health care provider); R.I. Gen. Laws § 27-18.9-5(b)(1) (Rhode Island: a licensed practitioner of the ordering provider's kind); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); IRDAI Master Circular on Health Insurance Business, 2024-05-29 (IRDAI/HLT/CIR/PRO/84/5/2024), para. 17(a) (India: \"No claim shall be repudiated without the approval of PMC or a three-member sub-group of PMC called the Claims Review Committee (CRC).\")",
+   "law": "Cal. Health & Safety Code § 1367.01 and Cal. Ins. Code § 10123.135 (SB 1120, Stats. 2024, ch. 879); 42 CFR § 422.566(d); GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 42 CFR § 423.566(d) (Medicare Part D: a physician or other appropriate health care professional reviews before a denial for medical necessity); C.R.S. § 10-16-113(5) (Colorado: a licensed physician); C.R.S. § 10-16-112.7(5)(b) (Colorado HB26-1139, 2026 ch. 325: a licensed clinician where AI is used; from 2027-01-01); O.C.G.A. § 33-46-21(e) (Georgia SB 80, 2021: a clinical peer); O.C.G.A. § 33-46-7.1(c) (Georgia SB 444, 2026: a natural person where AI is used; from 2027-01-01); Md. Code, Ins. § 15-10B-07(a), (b) (Maryland: a licensed physician); Md. Code, Ins. § 15-10B-05.1(c)(4), (d) (Maryland HB 820, 2025: where AI is used); RSMo 376.1361.2 (Missouri: a licensed clinical peer; managed care plans); N.J.S.A. 17B:30-55.8 (New Jersey P.L.2023, c.296, s.9: a physician); Vermont DFR Rule H-2009-03 § 3.1(G)(2) (a physician); Conn. Gen. Stat. § 38a-591c(a)(1) (Connecticut: a clinical peer); M.G.L. c. 176O, § 12(a) (Massachusetts: a person licensed in the appropriate specialty); MCA 33-32-210(1), (2), (4) (Montana: a physician, or a health care professional of the requester's kind); 13.10.22.9 NMAC (New Mexico: a physician; managed health care plans); SDCL § 58-17H-18 (South Dakota: an appropriately licensed and clinically qualified health care provider); A.R.S. § 20-2510(B) (Arizona: a medical director with an active license); A.R.S. § 20-3103 (Arizona HB 2175, 2025: the medical director individually reviews each denial of a claim on the basis of medical necessity; in force since 2026-07-01); KRS 304.17A-607(2)(b) (Kentucky: a licensed physician); N.Y. Ins. Law § 4903(a) (New York: a clinical peer reviewer); ORS 743B.423(2)(f) (Oregon: a physician licensed in Oregon); 215 ILCS 134/85(e)(2) (Illinois: a clinical peer); 215 ILCS 134/45(i) (Illinois P.A. 103-656: a clinical peer where an automated process is used); Minn. Stat. § 62M.09, subd. 3 (Minnesota: a physician; subd. 3(f), where AI is used, from 2027-01-01); NRS 695G.150(1) (Nevada: a physician or dentist; managed care organizations); N.C. Gen. Stat. § 58-50-61(d) (North Carolina: a medical doctor licensed in North Carolina); 40 P.S. § 991.2152(c) (Pennsylvania Act 146 of 2022: a licensed physician); Tex. Ins. Code §§ 4201.153(d) and 4201.156 (Texas: a physician or other provider; no automated decision); W. Va. Code R. § 114-95-6.2 (West Virginia: a clinical peer); Fla. Stat. § 641.51(4) (Florida HMOs: a physician); IC 27-1-37.5-20(a)(1)(A) (Indiana: a clinical peer); IC 27-1-52-9 (Indiana P.L.88-2026: a claim downcoded for medical necessity, reviewed by an employee or contractor); 02-031 C.M.R. ch. 850, § 8(D)(2) (Maine Bureau of Insurance: a clinical peer); Miss. Code Ann. § 41-83-31 (Mississippi SB 2140, 2024: a physician licensed to practice); RSA 420-J:6, III-IV (New Hampshire: a qualified health care provider); R.I. Gen. Laws § 27-18.9-5(b)(1) (Rhode Island: a licensed practitioner of the ordering provider's kind); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); IRDAI Master Circular on Health Insurance Business, 2024-05-29 (IRDAI/HLT/CIR/PRO/84/5/2024), para. 17(a) (India: \"No claim shall be repudiated without the approval of PMC or a three-member sub-group of PMC called the Claims Review Committee (CRC).\"); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct); Cal. Health & Safety Code § 1367.01(e), (k)(2) and Cal. Ins. Code § 10123.135(e), (j)(2) (SB 1120, Stats. 2024, ch. 879: an artificial intelligence, algorithm or other software tool shall not deny, delay or modify health care services based in whole or in part on medical necessity; only a licensed physician or a licensed health care professional competent in the clinical issues decides); Tex. Ins. Code § 4201.156 (SB 815, 89th Leg., effective 2025-09-01, for a plan delivered, issued or renewed on or after 2026-01-01: a utilization review agent may not use an automated decision system to make, wholly or partly, an adverse determination; (c) not administrative support or fraud detection); Md. Code, Ins. § 15-10B-05.1(D) (HB 820, 2025 Md. Laws ch. 747, from 2025-10-01: an artificial intelligence, algorithm or other software tool may not deny, delay or modify health care services); A.R.S. §§ 20-3103, 20-3407 (Laws 2025, ch. 165, from 2026-07-01: before a health care insurer denies a claim, or a prior authorization, on medical necessity, the medical director individually reviews the denial, exercising independent medical judgment)",
    "jurisdictions": [
+    "CL",
     "EU",
+    "FR",
     "GB",
     "IN",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
     "US",
     "US-AZ",
     "US-CA",
@@ -931,10 +960,13 @@
     "US-SD",
     "US-TX",
     "US-VT",
-    "US-WV"
+    "US-WV",
+    "UY",
+    "ZA"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1120",
@@ -976,7 +1008,20 @@
     "https://webserver.rilegislature.gov/Statutes/TITLE27/27-18.9/27-18.9-5.htm",
     "https://www.azleg.gov/ars/20/03103.htm",
     "https://irdai.gov.in/documents/37343/365525/%e0%a4%b8%e0%a5%8d%e0%a4%b5%e0%a4%be%e0%a4%b8%e0%a5%8d%e0%a4%a5%e0%a5%8d%e0%a4%af+%e0%a4%ac%e0%a5%80%e0%a4%ae%e0%a4%be+%e0%a4%b5%e0%a5%8d%e0%a4%af%e0%a4%b5%e0%a4%b8%e0%a4%be%e0%a4%af+%e0%a4%aa%e0%a4%b0+%e0%a4%ae%e0%a4%be%e0%a4%b8%e0%a5%8d%e0%a4%9f%e0%a4%b0+%e0%a4%aa%e0%a4%b0%e0%a4%bf%e0%a4%aa%e0%a4%a4%e0%a5%8d%e0%a4%b0+_+Master+Circular++on+Health++Insurance+Business++29052024.pdf/5e707a91-b5de-1ec1-cf18-b66273a6839d",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16",
+    "https://downloads.leginfo.legislature.ca.gov/pubinfo_2023.zip",
+    "https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00815F.htm",
+    "https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_747_hb0820t.pdf"
    ],
    "page": "https://stk-evidence.com/act-claim.deny_medical"
   },
@@ -987,22 +1032,43 @@
    "description": "Refuse a claim or pay less than claimed, for a reason other than medical necessity.",
    "subject": "health",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); IRDAI Master Circular on Health Insurance Business, 2024-05-29 (IRDAI/HLT/CIR/PRO/84/5/2024), para. 17(a) (India: \"No claim shall be repudiated without the approval of PMC or a three-member sub-group of PMC called the Claims Review Committee (CRC).\"); Private Health Insurance Act 2007 s 75-15(1)(b) (Australia: a pre-existing condition, \"in the opinion of a medical practitioner appointed by the insurer\")",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); IRDAI Master Circular on Health Insurance Business, 2024-05-29 (IRDAI/HLT/CIR/PRO/84/5/2024), para. 17(a) (India: \"No claim shall be repudiated without the approval of PMC or a three-member sub-group of PMC called the Claims Review Committee (CRC).\"); Private Health Insurance Act 2007 s 75-15(1)(b) (Australia: a pre-existing condition, \"in the opinion of a medical practitioner appointed by the insurer\"); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct)",
    "jurisdictions": [
     "AU",
+    "CL",
     "EU",
+    "FR",
     "GB",
-    "IN"
+    "IN",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
+    "UY",
+    "ZA"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
     "https://irdai.gov.in/documents/37343/365525/%e0%a4%b8%e0%a5%8d%e0%a4%b5%e0%a4%be%e0%a4%b8%e0%a5%8d%e0%a4%a5%e0%a5%8d%e0%a4%af+%e0%a4%ac%e0%a5%80%e0%a4%ae%e0%a4%be+%e0%a4%b5%e0%a5%8d%e0%a4%af%e0%a4%b5%e0%a4%b8%e0%a4%be%e0%a4%af+%e0%a4%aa%e0%a4%b0+%e0%a4%ae%e0%a4%be%e0%a4%b8%e0%a5%8d%e0%a4%9f%e0%a4%b0+%e0%a4%aa%e0%a4%b0%e0%a4%bf%e0%a4%aa%e0%a4%a4%e0%a5%8d%e0%a4%b0+_+Master+Circular++on+Health++Insurance+Business++29052024.pdf/5e707a91-b5de-1ec1-cf18-b66273a6839d",
     "https://www.legislation.gov.au/C2007A00031/latest",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16"
    ],
    "page": "https://stk-evidence.com/act-claim.refuse"
   },
@@ -1013,18 +1079,39 @@
    "description": "Refuse the customer's dispute of a debt being collected.",
    "subject": "credit",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct)",
    "jurisdictions": [
+    "CL",
     "EU",
-    "GB"
+    "FR",
+    "GB",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
+    "UY",
+    "ZA"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16"
    ],
    "page": "https://stk-evidence.com/act-collections.refuse"
   },
@@ -1035,13 +1122,20 @@
    "description": "Decide that the plan will not cover, or will delay, downgrade or modify, a service for this member because of medical necessity.",
    "subject": "health",
    "side": "person",
-   "law": "Cal. Health & Safety Code § 1367.01 and Cal. Ins. Code § 10123.135 (SB 1120, Stats. 2024, ch. 879); 42 CFR § 422.566(d); GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 42 CFR § 423.566(d) (Medicare Part D: a physician or other appropriate health care professional reviews before a denial for medical necessity); 42 CFR § 438.210(b)(3) (Medicaid managed care: decided by an individual with appropriate expertise); 42 CFR § 457.1230(d) (CHIP managed care, applying § 438.210); C.R.S. § 10-16-113(5) (Colorado: a licensed physician); C.R.S. § 10-16-112.7(5)(b) (Colorado HB26-1139, 2026 ch. 325: a licensed clinician where AI is used; from 2027-01-01); O.C.G.A. § 33-46-21(e) (Georgia SB 80, 2021: a clinical peer); O.C.G.A. § 33-46-7.1(c) (Georgia SB 444, 2026: a natural person where AI is used; from 2027-01-01); Md. Code, Ins. § 15-10B-07(a), (b) (Maryland: a licensed physician); Md. Code, Ins. § 15-10B-05.1(c)(4), (d) (Maryland HB 820, 2025: where AI is used); RSMo 376.1361.2 (Missouri: a licensed clinical peer; managed care plans); N.J.S.A. 17B:30-55.8 (New Jersey P.L.2023, c.296, s.9: a physician); Vermont DFR Rule H-2009-03 § 3.1(G)(2) (a physician); Conn. Gen. Stat. § 38a-591c(a)(1) (Connecticut: a clinical peer); M.G.L. c. 176O, § 12(a) (Massachusetts: a person licensed in the appropriate specialty); MCA 33-32-210(1), (2), (4) (Montana: a physician, or a health care professional of the requester's kind); 13.10.22.9 NMAC (New Mexico: a physician; managed health care plans); SDCL § 58-17H-18 (South Dakota: an appropriately licensed and clinically qualified health care provider); A.R.S. § 20-2510(B) (Arizona: a medical director with an active license); KRS 304.17A-607(2)(b) (Kentucky: a licensed physician); N.Y. Ins. Law § 4903(a) (New York: a clinical peer reviewer); ORS 743B.423(2)(f) (Oregon: a physician licensed in Oregon); 215 ILCS 134/85(e)(2) (Illinois: a clinical peer); 215 ILCS 134/45(i) (Illinois P.A. 103-656: a clinical peer where an automated process is used); Minn. Stat. § 62M.09, subd. 3 (Minnesota: a physician; subd. 3(f), where AI is used, from 2027-01-01); NRS 695G.150(1) (Nevada: a physician or dentist; managed care organizations); N.C. Gen. Stat. § 58-50-61(d) (North Carolina: a medical doctor licensed in North Carolina); 40 P.S. § 991.2152(c) (Pennsylvania Act 146 of 2022: a licensed physician); Tex. Ins. Code §§ 4201.153(d) and 4201.156 (Texas: a physician or other provider; no automated decision); W. Va. Code R. § 114-95-6.2 (West Virginia: a clinical peer); Fla. Stat. § 641.51(4) (Florida HMOs: a physician); IC 27-1-37.5-20(a)(1)(A) (Indiana: a clinical peer); 02-031 C.M.R. ch. 850, § 8(D)(2) (Maine Bureau of Insurance: a clinical peer); Miss. Code Ann. § 41-83-31 (Mississippi SB 2140, 2024: a physician licensed to practice); RSA 420-J:6, III-IV (New Hampshire: a qualified health care provider); R.I. Gen. Laws § 27-18.9-5(b)(1) (Rhode Island: a licensed practitioner of the ordering provider's kind); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); ANS Resolução Normativa nº 424/2017, Arts. 6 and 8 (Brazil: where the plan and the attending professional differ in medical opinion, a junta médica decides; \"A junta médica deverá ser composta somente por médicos\"); Code de la sécurité sociale, art. L315-1 VIII and L315-2 (France: \"Les missions du service du contrôle médical sont exercées par les praticiens conseils\"; the accord préalable); KVG (SR 832.10) Art. 57 and Art. 58(3)(a) (Switzerland: for the benefits designated, the prior consent of the insurer's Vertrauensarzt)",
+   "law": "Cal. Health & Safety Code § 1367.01 and Cal. Ins. Code § 10123.135 (SB 1120, Stats. 2024, ch. 879); 42 CFR § 422.566(d); GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 42 CFR § 423.566(d) (Medicare Part D: a physician or other appropriate health care professional reviews before a denial for medical necessity); 42 CFR § 438.210(b)(3) (Medicaid managed care: decided by an individual with appropriate expertise); 42 CFR § 457.1230(d) (CHIP managed care, applying § 438.210); C.R.S. § 10-16-113(5) (Colorado: a licensed physician); C.R.S. § 10-16-112.7(5)(b) (Colorado HB26-1139, 2026 ch. 325: a licensed clinician where AI is used; from 2027-01-01); O.C.G.A. § 33-46-21(e) (Georgia SB 80, 2021: a clinical peer); O.C.G.A. § 33-46-7.1(c) (Georgia SB 444, 2026: a natural person where AI is used; from 2027-01-01); Md. Code, Ins. § 15-10B-07(a), (b) (Maryland: a licensed physician); Md. Code, Ins. § 15-10B-05.1(c)(4), (d) (Maryland HB 820, 2025: where AI is used); RSMo 376.1361.2 (Missouri: a licensed clinical peer; managed care plans); N.J.S.A. 17B:30-55.8 (New Jersey P.L.2023, c.296, s.9: a physician); Vermont DFR Rule H-2009-03 § 3.1(G)(2) (a physician); Conn. Gen. Stat. § 38a-591c(a)(1) (Connecticut: a clinical peer); M.G.L. c. 176O, § 12(a) (Massachusetts: a person licensed in the appropriate specialty); MCA 33-32-210(1), (2), (4) (Montana: a physician, or a health care professional of the requester's kind); 13.10.22.9 NMAC (New Mexico: a physician; managed health care plans); SDCL § 58-17H-18 (South Dakota: an appropriately licensed and clinically qualified health care provider); A.R.S. § 20-2510(B) (Arizona: a medical director with an active license); KRS 304.17A-607(2)(b) (Kentucky: a licensed physician); N.Y. Ins. Law § 4903(a) (New York: a clinical peer reviewer); ORS 743B.423(2)(f) (Oregon: a physician licensed in Oregon); 215 ILCS 134/85(e)(2) (Illinois: a clinical peer); 215 ILCS 134/45(i) (Illinois P.A. 103-656: a clinical peer where an automated process is used); Minn. Stat. § 62M.09, subd. 3 (Minnesota: a physician; subd. 3(f), where AI is used, from 2027-01-01); NRS 695G.150(1) (Nevada: a physician or dentist; managed care organizations); N.C. Gen. Stat. § 58-50-61(d) (North Carolina: a medical doctor licensed in North Carolina); 40 P.S. § 991.2152(c) (Pennsylvania Act 146 of 2022: a licensed physician); Tex. Ins. Code §§ 4201.153(d) and 4201.156 (Texas: a physician or other provider; no automated decision); W. Va. Code R. § 114-95-6.2 (West Virginia: a clinical peer); Fla. Stat. § 641.51(4) (Florida HMOs: a physician); IC 27-1-37.5-20(a)(1)(A) (Indiana: a clinical peer); 02-031 C.M.R. ch. 850, § 8(D)(2) (Maine Bureau of Insurance: a clinical peer); Miss. Code Ann. § 41-83-31 (Mississippi SB 2140, 2024: a physician licensed to practice); RSA 420-J:6, III-IV (New Hampshire: a qualified health care provider); R.I. Gen. Laws § 27-18.9-5(b)(1) (Rhode Island: a licensed practitioner of the ordering provider's kind); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); ANS Resolução Normativa nº 424/2017, Arts. 6 and 8 (Brazil: where the plan and the attending professional differ in medical opinion, a junta médica decides; \"A junta médica deverá ser composta somente por médicos\"); Code de la sécurité sociale, art. L315-1 VIII and L315-2 (France: \"Les missions du service du contrôle médical sont exercées par les praticiens conseils\"; the accord préalable); KVG (SR 832.10) Art. 57 and Art. 58(3)(a) (Switzerland: for the benefits designated, the prior consent of the insurer's Vertrauensarzt); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct); Cal. Health & Safety Code § 1367.01(e), (k)(2) and Cal. Ins. Code § 10123.135(e), (j)(2) (SB 1120, Stats. 2024, ch. 879: an artificial intelligence, algorithm or other software tool shall not deny, delay or modify health care services based in whole or in part on medical necessity; only a licensed physician or a licensed health care professional competent in the clinical issues decides); Tex. Ins. Code § 4201.156 (SB 815, 89th Leg., effective 2025-09-01, for a plan delivered, issued or renewed on or after 2026-01-01: a utilization review agent may not use an automated decision system to make, wholly or partly, an adverse determination; (c) not administrative support or fraud detection); Md. Code, Ins. § 15-10B-05.1(D) (HB 820, 2025 Md. Laws ch. 747, from 2025-10-01: an artificial intelligence, algorithm or other software tool may not deny, delay or modify health care services); A.R.S. §§ 20-3103, 20-3407 (Laws 2025, ch. 165, from 2026-07-01: before a health care insurer denies a claim, or a prior authorization, on medical necessity, the medical director individually reviews the denial, exercising independent medical judgment)",
    "jurisdictions": [
     "BR",
     "CH",
+    "CL",
     "EU",
     "FR",
     "GB",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
     "US",
     "US-AZ",
     "US-CA",
@@ -1071,10 +1165,13 @@
     "US-SD",
     "US-TX",
     "US-VT",
-    "US-WV"
+    "US-WV",
+    "UY",
+    "ZA"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1120",
@@ -1119,7 +1216,21 @@
     "https://bvsms.saude.gov.br/bvs/saudelegis/ans/2017/res0424_27_06_2017.html",
     "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038887516/",
     "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1995/1328_1328_1328/20260701/de/pdf-a/fedlex-data-admin-ch-eli-cc-1995-1328_1328_1328-20260701-de-pdf-a.pdf",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16",
+    "https://downloads.leginfo.legislature.ca.gov/pubinfo_2023.zip",
+    "https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00815F.htm",
+    "https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_747_hb0820t.pdf",
+    "https://www.azleg.gov/ars/20/03103.htm"
    ],
    "page": "https://stk-evidence.com/act-coverage.deny_medical"
   },
@@ -1130,18 +1241,39 @@
    "description": "Decide that the plan will not cover a service for this member, for a reason other than medical necessity.",
    "subject": "health",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct)",
    "jurisdictions": [
+    "CL",
     "EU",
-    "GB"
+    "FR",
+    "GB",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
+    "UY",
+    "ZA"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16"
    ],
    "page": "https://stk-evidence.com/act-coverage.refuse"
   },
@@ -1152,17 +1284,28 @@
    "description": "Refuse a loan, a card or credit the customer asked for.",
    "subject": "credit",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Directive (EU) 2023/2225 Art. 18(8) (credit agreements for consumers: where a creditworthiness assessment uses automated processing, the consumer's right to request and obtain human intervention; applied through each EU Member State's law transposing the Directive, from 2026-11-20); C.R.S. § 6-1-1705(1)(a)(II) (Colorado SB 26-189: on the consumer's request, the deployer provides an opportunity for meaningful human review and reconsideration of the consequential decision, to the extent commercially reasonable; definitions in § 6-1-1701(15); applies to decisions made on or after 2027-01-01; enforcement stayed by the order of 2026-04-27 in X.AI LLC v. Weiser, No. 1:26-cv-01515 (D. Colo.); the attorney general's rules, 4 CCR 904-6, not in effect); 11 CCR § 7221(a), (b)(1)(A) (California, regulations under the CCPA: the business provides the consumer with a method to appeal the decision to a human reviewer who has the authority to overturn the decision; for decisions on financial or lending services, § 7001(ddd)(1); from 2027-01-01; not automated decisionmaking technology where the human involvement of § 7001(e)(1) is present; decisions of a financial institution on consumers' nonpublic personal information may be outside it by the exemption for GLBA data in Cal. Civ. Code § 1798.145, not verified)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Directive (EU) 2023/2225 Art. 18(8) (credit agreements for consumers: where a creditworthiness assessment uses automated processing, the consumer's right to request and obtain human intervention; applied through each EU Member State's law transposing the Directive, from 2026-11-20); C.R.S. § 6-1-1705(1)(a)(II) (Colorado SB 26-189: on the consumer's request, the deployer provides an opportunity for meaningful human review and reconsideration of the consequential decision, to the extent commercially reasonable; definitions in § 6-1-1701(15); applies to decisions made on or after 2027-01-01; enforcement stayed by the order of 2026-04-27 in X.AI LLC v. Weiser, No. 1:26-cv-01515 (D. Colo.); the attorney general's rules, 4 CCR 904-6, not in effect); 11 CCR § 7221(a), (b)(1)(A) (California, regulations under the CCPA: the business provides the consumer with a method to appeal the decision to a human reviewer who has the authority to overturn the decision; for decisions on financial or lending services, § 7001(ddd)(1); from 2027-01-01; not automated decisionmaking technology where the human involvement of § 7001(e)(1) is present; decisions of a financial institution on consumers' nonpublic personal information may be outside it by the exemption for GLBA data in Cal. Civ. Code § 1798.145, not verified); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct)",
    "jurisdictions": [
+    "CL",
     "EU",
+    "FR",
     "GB",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
     "US-CA",
-    "US-CO"
+    "US-CO",
+    "UY",
+    "ZA"
    ],
    "from": {
     "GB": "2026-02-05",
     "US-CA": "2027-01-01",
-    "US-CO": "2027-01-01"
+    "US-CO": "2027-01-01",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
@@ -1170,7 +1313,17 @@
     "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32023L2225",
     "https://leg.colorado.gov/bills/SB26-189",
     "https://cppa.ca.gov/regulations/pdf/ccpa_statute_eff_20260101.pdf",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16"
    ],
    "page": "https://stk-evidence.com/act-credit.refuse"
   },
@@ -1181,10 +1334,18 @@
    "description": "Look again, on the member's appeal, at a decision based on medical necessity or another medical judgment.",
    "subject": "health",
    "side": "person",
-   "law": "29 CFR § 2560.503-1(h)(3)(iii), (h)(4) and (m)(7) (group health and disability plans: on an appeal that turns on a medical judgment, the plan \"shall consult with a health care professional who has appropriate training and experience\", one \"licensed, accredited, or certified\"); 42 CFR § 422.590; Cal. Health & Safety Code § 1367.01; GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 42 CFR § 438.406(b)(2) (Medicaid managed care appeals: individuals with appropriate clinical expertise); 42 CFR § 423.590(f)(2) (Medicare Part D redeterminations: a physician); 45 CFR § 147.136(b) (group and individual coverage, applying 29 CFR § 2560.503-1); C.R.S. § 10-16-113(3)(b)(III)(A), (IV)(A) (Colorado: a physician); O.C.G.A. § 33-46-22 (Georgia: an appropriate health care provider); Iowa Code § 514F.8A(4) (Iowa: a physician; prior authorization appeals; from 2027-01-01); Md. Code, Ins. § 15-10B-09.1 (Maryland: a licensed physician); N.J.S.A. 17B:30-55.12 (New Jersey P.L.2023, c.296, s.13: a physician); Ohio Rev. Code § 1751.80(B) (Ohio: a clinical peer); Vermont DFR Rule H-2009-03 § 3.3(D)(8) (reviewers including a physician); Wyo. Stat. § 26-55-106(a), (b) (Wyoming: a physician or other appropriate licensed provider); Conn. Gen. Stat. § 38a-591e(c)(1) (Connecticut: clinical peers not involved before); 958 CMR 3.306(2) (Massachusetts: an actively practicing health care professional); MCA 33-32-210(3) (Montana: a physician); 13.10.17.14(E) NMAC (New Mexico: clinical peers); 36 O.S. § 6570.4 (Oklahoma: a physician or licensed mental health professional); SDCL § 58-17I-7 (South Dakota: health care providers); 14VAC5-216-40(C)(1) (Virginia: a clinical peer reviewer); A.R.S. § 20-2535(C) (Arizona: a physician or other licensed provider); 18 Del. C. § 3582(e)(2) (Delaware: a physician; from 2027-01-01); Idaho Code § 41-3930(1)(b) (Idaho: a licensed physician or peer provider); KRS 304.17A-617(4)(b) (Kentucky: a licensed physician); MCL 500.2212e(8), (9) (Michigan: a licensed physician; prior authorization appeals); Neb. LB 77 (2025), sec. 5 (Nebraska: a physician; prior authorization appeals); N.Y. Ins. Law § 4904(d) (New York: clinical peer reviewers); 2023 Tenn. Pub. Acts ch. 395, § 4 (T.C.A. § 56-7-3604(a)(1) as numbered there) (Tennessee: prior authorization appeals); D.C. Code § 31-3875.06(b) (District of Columbia: a physician; prior authorization appeals); 215 ILCS 134/45(d) (Illinois: a clinical peer); Minn. Stat. § 62M.06, subd. 3 (Minnesota: a physician); N.C. Gen. Stat. § 58-50-61(j) (North Carolina: a medical doctor); 40 P.S. § 991.2161(b)(1), (d) (Pennsylvania: Medicaid and CHIP managed care plans); Tex. Ins. Code § 4201.356 (Texas: a physician); Fla. Stat. § 627.6141 (Florida health insurers: a licensed physician); IC 27-1-37.5-20(a)(1)(B) (Indiana: a clinical peer); 24-A M.R.S. § 4304(7) (Maine: a clinical peer); RSA 420-J:5, I(b), II(a) (New Hampshire: a health care professional); N.D.C.C. § 26.1-36.12-04 (North Dakota: a physician); R.I. Gen. Laws § 27-18.9-7(b)(2) (Rhode Island: a reviewer of the provider's licensure); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met)",
+   "law": "29 CFR § 2560.503-1(h)(3)(iii), (h)(4) and (m)(7) (group health and disability plans: on an appeal that turns on a medical judgment, the plan \"shall consult with a health care professional who has appropriate training and experience\", one \"licensed, accredited, or certified\"); 42 CFR § 422.590; Cal. Health & Safety Code § 1367.01; GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 42 CFR § 438.406(b)(2) (Medicaid managed care appeals: individuals with appropriate clinical expertise); 42 CFR § 423.590(f)(2) (Medicare Part D redeterminations: a physician); 45 CFR § 147.136(b) (group and individual coverage, applying 29 CFR § 2560.503-1); C.R.S. § 10-16-113(3)(b)(III)(A), (IV)(A) (Colorado: a physician); O.C.G.A. § 33-46-22 (Georgia: an appropriate health care provider); Iowa Code § 514F.8A(4) (Iowa: a physician; prior authorization appeals; from 2027-01-01); Md. Code, Ins. § 15-10B-09.1 (Maryland: a licensed physician); N.J.S.A. 17B:30-55.12 (New Jersey P.L.2023, c.296, s.13: a physician); Ohio Rev. Code § 1751.80(B) (Ohio: a clinical peer); Vermont DFR Rule H-2009-03 § 3.3(D)(8) (reviewers including a physician); Wyo. Stat. § 26-55-106(a), (b) (Wyoming: a physician or other appropriate licensed provider); Conn. Gen. Stat. § 38a-591e(c)(1) (Connecticut: clinical peers not involved before); 958 CMR 3.306(2) (Massachusetts: an actively practicing health care professional); MCA 33-32-210(3) (Montana: a physician); 13.10.17.14(E) NMAC (New Mexico: clinical peers); 36 O.S. § 6570.4 (Oklahoma: a physician or licensed mental health professional); SDCL § 58-17I-7 (South Dakota: health care providers); 14VAC5-216-40(C)(1) (Virginia: a clinical peer reviewer); A.R.S. § 20-2535(C) (Arizona: a physician or other licensed provider); 18 Del. C. § 3582(e)(2) (Delaware: a physician; from 2027-01-01); Idaho Code § 41-3930(1)(b) (Idaho: a licensed physician or peer provider); KRS 304.17A-617(4)(b) (Kentucky: a licensed physician); MCL 500.2212e(8), (9) (Michigan: a licensed physician; prior authorization appeals); Neb. LB 77 (2025), sec. 5 (Nebraska: a physician; prior authorization appeals); N.Y. Ins. Law § 4904(d) (New York: clinical peer reviewers); 2023 Tenn. Pub. Acts ch. 395, § 4 (T.C.A. § 56-7-3604(a)(1) as numbered there) (Tennessee: prior authorization appeals); D.C. Code § 31-3875.06(b) (District of Columbia: a physician; prior authorization appeals); 215 ILCS 134/45(d) (Illinois: a clinical peer); Minn. Stat. § 62M.06, subd. 3 (Minnesota: a physician); N.C. Gen. Stat. § 58-50-61(j) (North Carolina: a medical doctor); 40 P.S. § 991.2161(b)(1), (d) (Pennsylvania: Medicaid and CHIP managed care plans); Tex. Ins. Code § 4201.356 (Texas: a physician); Fla. Stat. § 627.6141 (Florida health insurers: a licensed physician); IC 27-1-37.5-20(a)(1)(B) (Indiana: a clinical peer); 24-A M.R.S. § 4304(7) (Maine: a clinical peer); RSA 420-J:5, I(b), II(a) (New Hampshire: a health care professional); N.D.C.C. § 26.1-36.12-04 (North Dakota: a physician); R.I. Gen. Laws § 27-18.9-7(b)(2) (Rhode Island: a reviewer of the provider's licensure); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct)",
    "jurisdictions": [
+    "CL",
     "EU",
+    "FR",
     "GB",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
     "US",
     "US-AZ",
     "US-CA",
@@ -1221,12 +1382,15 @@
     "US-TX",
     "US-VA",
     "US-VT",
-    "US-WY"
+    "US-WY",
+    "UY",
+    "ZA"
    ],
    "from": {
     "GB": "2026-02-05",
     "US-DE": "2027-01-01",
-    "US-IA": "2027-01-01"
+    "US-IA": "2027-01-01",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1120",
@@ -1272,7 +1436,17 @@
     "https://www.gc.nh.gov/rsa/html/XXXVII/420-J/420-J-mrg.htm",
     "https://ndlegis.gov/cencode/t26-1c36-12.pdf",
     "https://webserver.rilegislature.gov/Statutes/TITLE27/27-18.9/27-18.9-7.htm",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16"
    ],
    "page": "https://stk-evidence.com/act-decision.appeal"
   },
@@ -1283,21 +1457,34 @@
    "description": "The customer contests a decision made about them, or asks for it to be looked at again.",
    "subject": "general",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); C.R.S. § 6-1-1705(1)(a)(II) (Colorado SB 26-189: applies to decisions made on or after 2027-01-01; the attorney general's rules under § 6-1-1705(3) not adopted as of 2026-11-18)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); C.R.S. § 6-1-1705(1)(a)(II) (Colorado SB 26-189: applies to decisions made on or after 2027-01-01; the attorney general's rules under § 6-1-1705(3) not adopted as of 2026-11-18); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
+    "CL",
     "EU",
+    "FR",
     "GB",
+    "KE",
+    "MU",
+    "NG",
+    "RU",
     "US-CO"
    ],
    "from": {
     "GB": "2026-02-05",
-    "US-CO": "2027-01-01"
+    "US-CO": "2027-01-01",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
     "https://leg.colorado.gov/bills/SB26-189",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-decision.review"
   },
@@ -1308,18 +1495,31 @@
    "description": "Refuse a disputed charge: decide the customer owes it.",
    "subject": "payments",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
+    "CL",
     "EU",
-    "GB"
+    "FR",
+    "GB",
+    "KE",
+    "MU",
+    "NG",
+    "RU"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-dispute.refuse"
   },
@@ -1330,18 +1530,31 @@
    "description": "Decide that activity the customer reported was not fraud, or not pay it back.",
    "subject": "payments",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
+    "CL",
     "EU",
-    "GB"
+    "FR",
+    "GB",
+    "KE",
+    "MU",
+    "NG",
+    "RU"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-fraud.refuse"
   },
@@ -1377,20 +1590,27 @@
    "description": "Pay a claim under an insurance policy other than health in part, or less than claimed.",
    "subject": "insurance",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); BDSG § 37(1) Nr. 2 (Germany: a decision in providing a benefit under an insurance contract that rests on binding fee rules for medical treatment; the controller gives at least the right to obtain the intervention of a person, to state one's view and to contest the decision); Tex. Ins. Code § 4101.001(a)(1) and § 4101.051 (Texas: an adjuster, one who \"investigates or adjusts losses on behalf of an insurer\", an employee of the insurer among them, or who \"supervises the handling of claims\", holds a licence; life, accident and health claims excepted by § 4101.002(a)(6)); KRS 304.9-430(1)(a) (Kentucky, the text effective 2026-04-13: \"no person shall in this state act as or hold himself, herself, or itself out to be an independent, staff, or public adjuster unless then licensed\"; not for an insurer's employee who investigates suspected fraud but does not adjust losses or determine claims payments, (8); not for food spoilage under residential property insurance limited to $1,000 or less, (11); emergency registration after a declared catastrophe, up to 90 days, (13)); M.G.L. c. 26, § 8G and 212 CMR 2.02(1), 2.04(1)(a) (Massachusetts: \"No person in Massachusetts shall appraise or estimate damages to motor vehicles ... unless ... license\"; damage to motor vehicles only); 보험업법 제185조 ① and ③ and 시행령 제96조의2 (Korea, Insurance Business Act Art. 185(1), (3) and its Enforcement Decree Art. 96-2: an insurer has its losses assessed by a loss adjuster it employs or engages); IRDAI Master Circular on Protection of Policyholders' Interests, 2024 (IRDAI/PP&GR/CIR/MISC/117/9/2024), with the Insurance Act, 1938, s. 64UM (India: above Rs. 50,000 for motor and Rs. 1 lakh for other claims, a claim is not paid or settled without the report of a licensed surveyor); CQLR c. D-9.2 (Québec, Act respecting the distribution of financial products and services: a claims adjuster in damage insurance holds a certificate, an insurer's employee among them)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); BDSG § 37(1) Nr. 2 (Germany: a decision in providing a benefit under an insurance contract that rests on binding fee rules for medical treatment; the controller gives at least the right to obtain the intervention of a person, to state one's view and to contest the decision); Tex. Ins. Code § 4101.001(a)(1) and § 4101.051 (Texas: an adjuster, one who \"investigates or adjusts losses on behalf of an insurer\", an employee of the insurer among them, or who \"supervises the handling of claims\", holds a licence; life, accident and health claims excepted by § 4101.002(a)(6)); KRS 304.9-430(1)(a) (Kentucky, the text effective 2026-04-13: \"no person shall in this state act as or hold himself, herself, or itself out to be an independent, staff, or public adjuster unless then licensed\"; not for an insurer's employee who investigates suspected fraud but does not adjust losses or determine claims payments, (8); not for food spoilage under residential property insurance limited to $1,000 or less, (11); emergency registration after a declared catastrophe, up to 90 days, (13)); M.G.L. c. 26, § 8G and 212 CMR 2.02(1), 2.04(1)(a) (Massachusetts: \"No person in Massachusetts shall appraise or estimate damages to motor vehicles ... unless ... license\"; damage to motor vehicles only); 보험업법 제185조 ① and ③ and 시행령 제96조의2 (Korea, Insurance Business Act Art. 185(1), (3) and its Enforcement Decree Art. 96-2: an insurer has its losses assessed by a loss adjuster it employs or engages); IRDAI Master Circular on Protection of Policyholders' Interests, 2024 (IRDAI/PP&GR/CIR/MISC/117/9/2024), with the Insurance Act, 1938, s. 64UM (India: above Rs. 50,000 for motor and Rs. 1 lakh for other claims, a claim is not paid or settled without the report of a licensed surveyor); CQLR c. D-9.2 (Québec, Act respecting the distribution of financial products and services: a claims adjuster in damage insurance holds a certificate, an insurer's employee among them); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
     "CA-QC",
+    "CL",
     "DE",
     "EU",
+    "FR",
     "GB",
     "IN",
+    "KE",
     "KR",
+    "MU",
+    "NG",
+    "RU",
     "US-KY",
     "US-MA",
     "US-TX"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
@@ -1402,7 +1622,13 @@
     "https://legisquebec.gouv.qc.ca/en/showdoc/cs/D-9.2",
     "https://www.legislation.gov.uk/uksi/2026/82/made",
     "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56893",
-    "https://www.gesetze-im-internet.de/bdsg_2018/__37.html"
+    "https://www.gesetze-im-internet.de/bdsg_2018/__37.html",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-insclaim.partial"
   },
@@ -1413,19 +1639,26 @@
    "description": "Refuse a claim, in whole, under an insurance policy other than health.",
    "subject": "insurance",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); BDSG § 37(1) Nr. 2 (Germany: a decision in providing a benefit under an insurance contract that rests on binding fee rules for medical treatment; the controller gives at least the right to obtain the intervention of a person, to state one's view and to contest the decision); Tex. Ins. Code § 4101.001(a)(1) and § 4101.051 (Texas: an adjuster, one who \"investigates or adjusts losses on behalf of an insurer\", an employee of the insurer among them, or who \"supervises the handling of claims\", holds a licence; life, accident and health claims excepted by § 4101.002(a)(6)); KRS 304.9-430(1)(a) (Kentucky, the text effective 2026-04-13: \"no person shall in this state act as or hold himself, herself, or itself out to be an independent, staff, or public adjuster unless then licensed\"; not for an insurer's employee who investigates suspected fraud but does not adjust losses or determine claims payments, (8); not for food spoilage under residential property insurance limited to $1,000 or less, (11); emergency registration after a declared catastrophe, up to 90 days, (13)); 보험업법 제185조 ① and ③ and 시행령 제96조의2 (Korea, Insurance Business Act Art. 185(1), (3) and its Enforcement Decree Art. 96-2: an insurer has its losses assessed by a loss adjuster it employs or engages); IRDAI Master Circular on Protection of Policyholders' Interests, 2024 (IRDAI/PP&GR/CIR/MISC/117/9/2024), with the Insurance Act, 1938, s. 64UM (India: above Rs. 50,000 for motor and Rs. 1 lakh for other claims, a claim is not paid or settled without the report of a licensed surveyor); CQLR c. D-9.2 (Québec, Act respecting the distribution of financial products and services: a claims adjuster in damage insurance holds a certificate, an insurer's employee among them)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); BDSG § 37(1) Nr. 2 (Germany: a decision in providing a benefit under an insurance contract that rests on binding fee rules for medical treatment; the controller gives at least the right to obtain the intervention of a person, to state one's view and to contest the decision); Tex. Ins. Code § 4101.001(a)(1) and § 4101.051 (Texas: an adjuster, one who \"investigates or adjusts losses on behalf of an insurer\", an employee of the insurer among them, or who \"supervises the handling of claims\", holds a licence; life, accident and health claims excepted by § 4101.002(a)(6)); KRS 304.9-430(1)(a) (Kentucky, the text effective 2026-04-13: \"no person shall in this state act as or hold himself, herself, or itself out to be an independent, staff, or public adjuster unless then licensed\"; not for an insurer's employee who investigates suspected fraud but does not adjust losses or determine claims payments, (8); not for food spoilage under residential property insurance limited to $1,000 or less, (11); emergency registration after a declared catastrophe, up to 90 days, (13)); 보험업법 제185조 ① and ③ and 시행령 제96조의2 (Korea, Insurance Business Act Art. 185(1), (3) and its Enforcement Decree Art. 96-2: an insurer has its losses assessed by a loss adjuster it employs or engages); IRDAI Master Circular on Protection of Policyholders' Interests, 2024 (IRDAI/PP&GR/CIR/MISC/117/9/2024), with the Insurance Act, 1938, s. 64UM (India: above Rs. 50,000 for motor and Rs. 1 lakh for other claims, a claim is not paid or settled without the report of a licensed surveyor); CQLR c. D-9.2 (Québec, Act respecting the distribution of financial products and services: a claims adjuster in damage insurance holds a certificate, an insurer's employee among them); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
     "CA-QC",
+    "CL",
     "DE",
     "EU",
+    "FR",
     "GB",
     "IN",
+    "KE",
     "KR",
+    "MU",
+    "NG",
+    "RU",
     "US-KY",
     "US-TX"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
@@ -1436,7 +1669,13 @@
     "https://legisquebec.gouv.qc.ca/en/showdoc/cs/D-9.2",
     "https://www.legislation.gov.uk/uksi/2026/82/made",
     "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56893",
-    "https://www.gesetze-im-internet.de/bdsg_2018/__37.html"
+    "https://www.gesetze-im-internet.de/bdsg_2018/__37.html",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-insclaim.refuse"
   },
@@ -1470,17 +1709,28 @@
    "description": "Lower a credit limit, or refuse to raise it.",
    "subject": "credit",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Directive (EU) 2023/2225 Art. 18(8) (credit agreements for consumers: where a creditworthiness assessment uses automated processing, the consumer's right to request and obtain human intervention; applied through each EU Member State's law transposing the Directive, from 2026-11-20); C.R.S. § 6-1-1705(1)(a)(II) (Colorado SB 26-189: on the consumer's request, the deployer provides an opportunity for meaningful human review and reconsideration of the consequential decision, to the extent commercially reasonable; definitions in § 6-1-1701(15); applies to decisions made on or after 2027-01-01; enforcement stayed by the order of 2026-04-27 in X.AI LLC v. Weiser, No. 1:26-cv-01515 (D. Colo.); the attorney general's rules, 4 CCR 904-6, not in effect); 11 CCR § 7221(a), (b)(1)(A) (California, regulations under the CCPA: the business provides the consumer with a method to appeal the decision to a human reviewer who has the authority to overturn the decision; for decisions on financial or lending services, § 7001(ddd)(1); from 2027-01-01; not automated decisionmaking technology where the human involvement of § 7001(e)(1) is present; decisions of a financial institution on consumers' nonpublic personal information may be outside it by the exemption for GLBA data in Cal. Civ. Code § 1798.145, not verified)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Directive (EU) 2023/2225 Art. 18(8) (credit agreements for consumers: where a creditworthiness assessment uses automated processing, the consumer's right to request and obtain human intervention; applied through each EU Member State's law transposing the Directive, from 2026-11-20); C.R.S. § 6-1-1705(1)(a)(II) (Colorado SB 26-189: on the consumer's request, the deployer provides an opportunity for meaningful human review and reconsideration of the consequential decision, to the extent commercially reasonable; definitions in § 6-1-1701(15); applies to decisions made on or after 2027-01-01; enforcement stayed by the order of 2026-04-27 in X.AI LLC v. Weiser, No. 1:26-cv-01515 (D. Colo.); the attorney general's rules, 4 CCR 904-6, not in effect); 11 CCR § 7221(a), (b)(1)(A) (California, regulations under the CCPA: the business provides the consumer with a method to appeal the decision to a human reviewer who has the authority to overturn the decision; for decisions on financial or lending services, § 7001(ddd)(1); from 2027-01-01; not automated decisionmaking technology where the human involvement of § 7001(e)(1) is present; decisions of a financial institution on consumers' nonpublic personal information may be outside it by the exemption for GLBA data in Cal. Civ. Code § 1798.145, not verified); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct)",
    "jurisdictions": [
+    "CL",
     "EU",
+    "FR",
     "GB",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
     "US-CA",
-    "US-CO"
+    "US-CO",
+    "UY",
+    "ZA"
    ],
    "from": {
     "GB": "2026-02-05",
     "US-CA": "2027-01-01",
-    "US-CO": "2027-01-01"
+    "US-CO": "2027-01-01",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
@@ -1488,7 +1738,17 @@
     "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32023L2225",
     "https://leg.colorado.gov/bills/SB26-189",
     "https://cppa.ca.gov/regulations/pdf/ccpa_statute_eff_20260101.pdf",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16"
    ],
    "page": "https://stk-evidence.com/act-limit.lower"
   },
@@ -1499,21 +1759,34 @@
    "description": "Refuse instalments or a moved due date the customer asked for.",
    "subject": "general",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 11 CCR § 7221(a), (b)(1)(A) (California, regulations under the CCPA: the business provides the consumer with a method to appeal the decision to a human reviewer who has the authority to overturn the decision; for decisions on financial or lending services, § 7001(ddd)(1); from 2027-01-01; not automated decisionmaking technology where the human involvement of § 7001(e)(1) is present; decisions of a financial institution on consumers' nonpublic personal information may be outside it by the exemption for GLBA data in Cal. Civ. Code § 1798.145, not verified)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 11 CCR § 7221(a), (b)(1)(A) (California, regulations under the CCPA: the business provides the consumer with a method to appeal the decision to a human reviewer who has the authority to overturn the decision; for decisions on financial or lending services, § 7001(ddd)(1); from 2027-01-01; not automated decisionmaking technology where the human involvement of § 7001(e)(1) is present; decisions of a financial institution on consumers' nonpublic personal information may be outside it by the exemption for GLBA data in Cal. Civ. Code § 1798.145, not verified); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
+    "CL",
     "EU",
+    "FR",
     "GB",
+    "KE",
+    "MU",
+    "NG",
+    "RU",
     "US-CA"
    ],
    "from": {
     "GB": "2026-02-05",
-    "US-CA": "2027-01-01"
+    "US-CA": "2027-01-01",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
     "https://cppa.ca.gov/regulations/pdf/ccpa_statute_eff_20260101.pdf",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-payment_arrangement.refuse"
   },
@@ -1524,18 +1797,31 @@
    "description": "Cancel an insurance policy, other than health, that the customer did not ask to cancel.",
    "subject": "insurance",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
+    "CL",
     "EU",
-    "GB"
+    "FR",
+    "GB",
+    "KE",
+    "MU",
+    "NG",
+    "RU"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-policy.cancel"
   },
@@ -1546,18 +1832,31 @@
    "description": "Decide not to renew an insurance policy, other than health, at its end.",
    "subject": "insurance",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
+    "CL",
     "EU",
-    "GB"
+    "FR",
+    "GB",
+    "KE",
+    "MU",
+    "NG",
+    "RU"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-policy.nonrenew"
   },
@@ -1568,18 +1867,31 @@
    "description": "Refuse an application for insurance other than health: property, casualty, motor, liability or life.",
    "subject": "insurance",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
+    "CL",
     "EU",
-    "GB"
+    "FR",
+    "GB",
+    "KE",
+    "MU",
+    "NG",
+    "RU"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-policy.refuse"
   },
@@ -1590,13 +1902,20 @@
    "description": "Refuse, delay, downgrade or modify a service asked for in advance because of medical necessity.",
    "subject": "health",
    "side": "person",
-   "law": "Cal. Health & Safety Code § 1367.01 and Cal. Ins. Code § 10123.135 (SB 1120, Stats. 2024, ch. 879); 42 CFR § 422.566(d); GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 42 CFR § 423.566(d) (Medicare Part D: a physician or other appropriate health care professional reviews before a denial for medical necessity); 42 CFR § 438.210(b)(3) (Medicaid managed care: decided by an individual with appropriate expertise); 42 CFR § 457.1230(d) (CHIP managed care, applying § 438.210); C.R.S. § 10-16-113(5) (Colorado: a licensed physician); C.R.S. § 10-16-112.7(5)(b) (Colorado HB26-1139, 2026 ch. 325: a licensed clinician where AI is used; from 2027-01-01); O.C.G.A. § 33-46-21(e) (Georgia SB 80, 2021: a clinical peer); O.C.G.A. § 33-46-7.1(c) (Georgia SB 444, 2026: a natural person where AI is used; from 2027-01-01); Md. Code, Ins. § 15-10B-07(a), (b) (Maryland: a licensed physician); Md. Code, Ins. § 15-10B-05.1(c)(4), (d) (Maryland HB 820, 2025: where AI is used); RSMo 376.1361.2 (Missouri: a licensed clinical peer; managed care plans); N.J.S.A. 17B:30-55.8 (New Jersey P.L.2023, c.296, s.9: a physician); Vermont DFR Rule H-2009-03 § 3.1(G)(2) (a physician); Conn. Gen. Stat. § 38a-591c(a)(1) (Connecticut: a clinical peer); M.G.L. c. 176O, § 12(a) (Massachusetts: a person licensed in the appropriate specialty); MCA 33-32-210(1), (2), (4) (Montana: a physician, or a health care professional of the requester's kind); 13.10.22.9 NMAC (New Mexico: a physician; managed health care plans); SDCL § 58-17H-18 (South Dakota: an appropriately licensed and clinically qualified health care provider); A.R.S. § 20-2510(B) (Arizona: a medical director with an active license); A.R.S. § 20-3407 (Arizona HB 2175, 2025: the medical director reviews each denial); KRS 304.17A-607(2)(b) (Kentucky: a licensed physician); N.Y. Ins. Law § 4903(a) (New York: a clinical peer reviewer); ORS 743B.423(2)(f) (Oregon: a physician licensed in Oregon); 215 ILCS 134/85(e)(2) (Illinois: a clinical peer); 215 ILCS 134/45(i) (Illinois P.A. 103-656: a clinical peer where an automated process is used); Minn. Stat. § 62M.09, subd. 3 (Minnesota: a physician; subd. 3(f), where AI is used, from 2027-01-01); NRS 695G.150(1) (Nevada: a physician or dentist; managed care organizations); N.C. Gen. Stat. § 58-50-61(d) (North Carolina: a medical doctor licensed in North Carolina); 40 P.S. § 991.2152(c) (Pennsylvania Act 146 of 2022: a licensed physician); Tex. Ins. Code §§ 4201.153(d) and 4201.156 (Texas: a physician or other provider; no automated decision); W. Va. Code R. § 114-95-6.2 (West Virginia: a clinical peer); Fla. Stat. § 641.51(4) (Florida HMOs: a physician); IC 27-1-37.5-20(a)(1)(A) (Indiana: a clinical peer); 02-031 C.M.R. ch. 850, § 8(D)(2) (Maine Bureau of Insurance: a clinical peer); Miss. Code Ann. § 41-83-31 (Mississippi SB 2140, 2024: a physician licensed to practice); RSA 420-J:6, III-IV (New Hampshire: a qualified health care provider); R.I. Gen. Laws § 27-18.9-5(b)(1) (Rhode Island: a licensed practitioner of the ordering provider's kind); Ala. SB 63 (2026), enrolled, § 1(b)(3) (Alabama: a licensed physician or other health care professional); Wyo. Stat. § 26-55-104(a) (Wyoming: a physician or other appropriate licensed provider); 36 O.S. § 6570.3 (Oklahoma: a physician or licensed mental health professional); MCL 500.2212e(5), (6) (Michigan: a licensed physician); Neb. LB 77 (2025), sec. 4(1) (Nebraska: a physician); 2023 Tenn. Pub. Acts ch. 395, § 4 (T.C.A. § 56-7-3603(b) as numbered there) (Tennessee: a licensed physician or same-specialty professional); RCW 48.43.830(3)(a) (Washington, as amended by E2SSB 5395, 2026 ch. 157: a licensed physician or health professional); Ark. Code § 23-99-1111(c)(1) (Arkansas Act 575 of 2023: a physician); D.C. Code § 31-3875.06(a)(1) (District of Columbia: a physician); N.D.C.C. § 26.1-36.12-03 (North Dakota: a licensed physician or pharmacist); Utah Code § 31A-22-650(3)(e) (Utah: an individual who has knowledge of the medical condition or disease of the enrollee, or consults with a specialist who has); Utah Code § 31A-22-650(6)(e) (Utah SB 319, 2026: an adverse preauthorization determination regarding clinical or medical necessity is made by an individual who has knowledge of the medical condition or disease of the enrollee, or consults with a specialist who has, exercises independent medical judgment, and does not rely solely on recommendations from any other source; from 2027-01-01); 18 Del. C. § 3582(e)(1), (3) (Delaware: a physician; policies issued or renewed from 2027-01-01); Iowa Code § 514F.8A(2)(a) (Iowa HF 2635, 2026 ch. 1087: a qualified reviewer; from 2027-01-01); Iowa Code § 514F.8(2A) (Iowa HF 2635, 2026 ch. 1087, Sec. 2: for a prior authorization request for a service based on medical necessity, an artificial intelligence-based algorithm or system may not be the sole basis of a decision to deny, delay or downgrade it; in force since 2026-07-01); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); ANS Resolução Normativa nº 424/2017, Arts. 6 and 8 (Brazil: where the plan and the attending professional differ in medical opinion, a junta médica decides; \"A junta médica deverá ser composta somente por médicos\"); Code de la sécurité sociale, art. L315-1 VIII and L315-2 (France: \"Les missions du service du contrôle médical sont exercées par les praticiens conseils\"; the accord préalable); KVG (SR 832.10) Art. 57 and Art. 58(3)(a) (Switzerland: for the benefits designated, the prior consent of the insurer's Vertrauensarzt)",
+   "law": "Cal. Health & Safety Code § 1367.01 and Cal. Ins. Code § 10123.135 (SB 1120, Stats. 2024, ch. 879); 42 CFR § 422.566(d); GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); 42 CFR § 423.566(d) (Medicare Part D: a physician or other appropriate health care professional reviews before a denial for medical necessity); 42 CFR § 438.210(b)(3) (Medicaid managed care: decided by an individual with appropriate expertise); 42 CFR § 457.1230(d) (CHIP managed care, applying § 438.210); C.R.S. § 10-16-113(5) (Colorado: a licensed physician); C.R.S. § 10-16-112.7(5)(b) (Colorado HB26-1139, 2026 ch. 325: a licensed clinician where AI is used; from 2027-01-01); O.C.G.A. § 33-46-21(e) (Georgia SB 80, 2021: a clinical peer); O.C.G.A. § 33-46-7.1(c) (Georgia SB 444, 2026: a natural person where AI is used; from 2027-01-01); Md. Code, Ins. § 15-10B-07(a), (b) (Maryland: a licensed physician); Md. Code, Ins. § 15-10B-05.1(c)(4), (d) (Maryland HB 820, 2025: where AI is used); RSMo 376.1361.2 (Missouri: a licensed clinical peer; managed care plans); N.J.S.A. 17B:30-55.8 (New Jersey P.L.2023, c.296, s.9: a physician); Vermont DFR Rule H-2009-03 § 3.1(G)(2) (a physician); Conn. Gen. Stat. § 38a-591c(a)(1) (Connecticut: a clinical peer); M.G.L. c. 176O, § 12(a) (Massachusetts: a person licensed in the appropriate specialty); MCA 33-32-210(1), (2), (4) (Montana: a physician, or a health care professional of the requester's kind); 13.10.22.9 NMAC (New Mexico: a physician; managed health care plans); SDCL § 58-17H-18 (South Dakota: an appropriately licensed and clinically qualified health care provider); A.R.S. § 20-2510(B) (Arizona: a medical director with an active license); A.R.S. § 20-3407 (Arizona HB 2175, 2025: the medical director reviews each denial); KRS 304.17A-607(2)(b) (Kentucky: a licensed physician); N.Y. Ins. Law § 4903(a) (New York: a clinical peer reviewer); ORS 743B.423(2)(f) (Oregon: a physician licensed in Oregon); 215 ILCS 134/85(e)(2) (Illinois: a clinical peer); 215 ILCS 134/45(i) (Illinois P.A. 103-656: a clinical peer where an automated process is used); Minn. Stat. § 62M.09, subd. 3 (Minnesota: a physician; subd. 3(f), where AI is used, from 2027-01-01); NRS 695G.150(1) (Nevada: a physician or dentist; managed care organizations); N.C. Gen. Stat. § 58-50-61(d) (North Carolina: a medical doctor licensed in North Carolina); 40 P.S. § 991.2152(c) (Pennsylvania Act 146 of 2022: a licensed physician); Tex. Ins. Code §§ 4201.153(d) and 4201.156 (Texas: a physician or other provider; no automated decision); W. Va. Code R. § 114-95-6.2 (West Virginia: a clinical peer); Fla. Stat. § 641.51(4) (Florida HMOs: a physician); IC 27-1-37.5-20(a)(1)(A) (Indiana: a clinical peer); 02-031 C.M.R. ch. 850, § 8(D)(2) (Maine Bureau of Insurance: a clinical peer); Miss. Code Ann. § 41-83-31 (Mississippi SB 2140, 2024: a physician licensed to practice); RSA 420-J:6, III-IV (New Hampshire: a qualified health care provider); R.I. Gen. Laws § 27-18.9-5(b)(1) (Rhode Island: a licensed practitioner of the ordering provider's kind); Ala. SB 63 (2026), enrolled, § 1(b)(3) (Alabama: a licensed physician or other health care professional); Wyo. Stat. § 26-55-104(a) (Wyoming: a physician or other appropriate licensed provider); 36 O.S. § 6570.3 (Oklahoma: a physician or licensed mental health professional); MCL 500.2212e(5), (6) (Michigan: a licensed physician); Neb. LB 77 (2025), sec. 4(1) (Nebraska: a physician); 2023 Tenn. Pub. Acts ch. 395, § 4 (T.C.A. § 56-7-3603(b) as numbered there) (Tennessee: a licensed physician or same-specialty professional); RCW 48.43.830(3)(a) (Washington, as amended by E2SSB 5395, 2026 ch. 157: a licensed physician or health professional); Ark. Code § 23-99-1111(c)(1) (Arkansas Act 575 of 2023: a physician); D.C. Code § 31-3875.06(a)(1) (District of Columbia: a physician); N.D.C.C. § 26.1-36.12-03 (North Dakota: a licensed physician or pharmacist); Utah Code § 31A-22-650(3)(e) (Utah: an individual who has knowledge of the medical condition or disease of the enrollee, or consults with a specialist who has); Utah Code § 31A-22-650(6)(e) (Utah SB 319, 2026: an adverse preauthorization determination regarding clinical or medical necessity is made by an individual who has knowledge of the medical condition or disease of the enrollee, or consults with a specialist who has, exercises independent medical judgment, and does not rely solely on recommendations from any other source; from 2027-01-01); 18 Del. C. § 3582(e)(1), (3) (Delaware: a physician; policies issued or renewed from 2027-01-01); Iowa Code § 514F.8A(2)(a) (Iowa HF 2635, 2026 ch. 1087: a qualified reviewer; from 2027-01-01); Iowa Code § 514F.8(2A) (Iowa HF 2635, 2026 ch. 1087, Sec. 2: for a prior authorization request for a service based on medical necessity, an artificial intelligence-based algorithm or system may not be the sole basis of a decision to deny, delay or downgrade it; in force since 2026-07-01); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); ANS Resolução Normativa nº 424/2017, Arts. 6 and 8 (Brazil: where the plan and the attending professional differ in medical opinion, a junta médica decides; \"A junta médica deverá ser composta somente por médicos\"); Code de la sécurité sociale, art. L315-1 VIII and L315-2 (France: \"Les missions du service du contrôle médical sont exercées par les praticiens conseils\"; the accord préalable); KVG (SR 832.10) Art. 57 and Art. 58(3)(a) (Switzerland: for the benefits designated, the prior consent of the insurer's Vertrauensarzt); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct); Cal. Health & Safety Code § 1367.01(e), (k)(2) and Cal. Ins. Code § 10123.135(e), (j)(2) (SB 1120, Stats. 2024, ch. 879: an artificial intelligence, algorithm or other software tool shall not deny, delay or modify health care services based in whole or in part on medical necessity; only a licensed physician or a licensed health care professional competent in the clinical issues decides); Tex. Ins. Code § 4201.156 (SB 815, 89th Leg., effective 2025-09-01, for a plan delivered, issued or renewed on or after 2026-01-01: a utilization review agent may not use an automated decision system to make, wholly or partly, an adverse determination; (c) not administrative support or fraud detection); Md. Code, Ins. § 15-10B-05.1(D) (HB 820, 2025 Md. Laws ch. 747, from 2025-10-01: an artificial intelligence, algorithm or other software tool may not deny, delay or modify health care services); A.R.S. §§ 20-3103, 20-3407 (Laws 2025, ch. 165, from 2026-07-01: before a health care insurer denies a claim, or a prior authorization, on medical necessity, the medical director individually reviews the denial, exercising independent medical judgment)",
    "jurisdictions": [
     "BR",
     "CH",
+    "CL",
     "EU",
     "FR",
     "GB",
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
     "US",
     "US-AL",
     "US-AR",
@@ -1639,11 +1958,14 @@
     "US-VT",
     "US-WA",
     "US-WV",
-    "US-WY"
+    "US-WY",
+    "UY",
+    "ZA"
    ],
    "from": {
     "GB": "2026-02-05",
-    "US-DE": "2027-01-01"
+    "US-DE": "2027-01-01",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1120",
@@ -1703,7 +2025,21 @@
     "https://bvsms.saude.gov.br/bvs/saudelegis/ans/2017/res0424_27_06_2017.html",
     "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038887516/",
     "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1995/1328_1328_1328/20260701/de/pdf-a/fedlex-data-admin-ch-eli-cc-1995-1328_1328_1328-20260701-de-pdf-a.pdf",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16",
+    "https://downloads.leginfo.legislature.ca.gov/pubinfo_2023.zip",
+    "https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00815F.htm",
+    "https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_747_hb0820t.pdf",
+    "https://www.azleg.gov/ars/20/03103.htm"
    ],
    "page": "https://stk-evidence.com/act-priorauth.deny_medical"
   },
@@ -1714,20 +2050,41 @@
    "description": "Refuse a service asked for in advance, for a reason other than medical necessity.",
    "subject": "health",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Iowa Code § 514F.8(2A) (Iowa HF 2635, 2026 ch. 1087, Sec. 2: for a prior authorization request for a service based on medical necessity, an artificial intelligence-based algorithm or system may not be the sole basis of a decision to deny, delay or downgrade it; in force since 2026-07-01); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Iowa Code § 514F.8(2A) (Iowa HF 2635, 2026 ch. 1087, Sec. 2: for a prior authorization request for a service based on medical necessity, an artificial intelligence-based algorithm or system may not be the sole basis of a decision to deny, delay or downgrade it; in force since 2026-07-01); UK GDPR Art. 22B(1) (Data (Use and Access) Act 2025, s. 80, in force from 2026-02-05 by SI 2026/82, reg. 2(j): a significant decision based entirely or partly on special categories of personal data, health among them, may not be taken based solely on automated processing, unless the condition of Art. 22B(2) or (3) is met); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review); POPIA s. 71(1) (South Africa, Protection of Personal Information Act 4 of 2013, in force 2020-07-01: no decision with legal consequences or affecting the person to a substantial degree based solely on automated processing intended to profile, including performance at work, credit worthiness, reliability, location, health, personal preferences or conduct; not where s. 71(2) applies); Loi n° 09-08, art. 11 (Morocco: no decision producing legal effects is taken on the sole basis of automated processing intended to define a profile or evaluate aspects of personality; not a decision in a contract where the person could present observations, nor one satisfying the person's requests); Ley N° 29733, art. 23 (Peru: a right not to be subject to a decision with legal or significant effects based only on processing intended to evaluate aspects of personality or conduct; not in the negotiation, conclusion or performance of a contract, or an evaluation for joining a public entity); Ley N° 18.331, art. 16 (Uruguay, as worded by Ley N° 18.719 from 2011-01-01: a right not to be subject to a decision with legal effects that significantly affects the person, based on automated processing intended to evaluate aspects of personality, such as work performance, credit, reliability or conduct)",
    "jurisdictions": [
+    "CL",
     "EU",
+    "FR",
     "GB",
-    "US-IA"
+    "KE",
+    "MA",
+    "MU",
+    "NG",
+    "PE",
+    "RU",
+    "US-IA",
+    "UY",
+    "ZA"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
     "https://www.legis.iowa.gov/docs/publications/iactc/91.2/CH1087.pdf",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272",
+    "https://inforegulator.org.za/wp-content/uploads/2025/08/PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013.pdf",
+    "https://www.cndp.ma/wp-content/uploads/2023/11/Loi-09-08-Fr.pdf",
+    "https://cdn.www.gob.pe/uploads/document/file/272360/Ley%20N%C2%BA%2029733.pdf.pdf",
+    "https://www.impo.com.uy/bases/leyes/18331-2008/16"
    ],
    "page": "https://stk-evidence.com/act-priorauth.refuse"
   },
@@ -1738,18 +2095,31 @@
    "description": "Refuse money back the customer asks for.",
    "subject": "general",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
+    "CL",
     "EU",
-    "GB"
+    "FR",
+    "GB",
+    "KE",
+    "MU",
+    "NG",
+    "RU"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-refund.refuse"
   },
@@ -1787,18 +2157,31 @@
    "description": "Decide that a reported electronic transfer error did not happen, or not correct it.",
    "subject": "payments",
    "side": "person",
-   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5)",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3); UK GDPR Arts. 22A and 22C (in force from 2026-02-05: Data (Use and Access) Act 2025, s. 80 and Sch. 6, by SI 2026/82, reg. 2(j), (z8); not for a decision taken before that day, reg. 5); Data Protection Act, 2019 (Kenya) s. 35(1) (in force 2019-11-25: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning or significantly affects the person; not where s. 35(2) applies); Nigeria Data Protection Act, 2023 s. 37(1) (in force 2023-06-12: a right not to be subject to a decision based solely on automated processing of personal data, including profiling, which produces legal or similar significant effects; not where s. 37(2) applies; s. 37(3), the right to obtain human intervention); Data Protection Act 2017 (Mauritius) s. 38(1) (in force 2018-01-15: a right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects or significantly affects the person; not where s. 38(2) applies); Federal Law No. 152-FZ, Art. 16(1)-(2) (Russia, On Personal Data: a decision producing legal consequences or otherwise affecting rights and lawful interests is not taken on the sole basis of automated processing, save with written consent or where a federal law so provides); Loi n° 78-17, art. 47 (France: no decision producing legal effects or significantly affecting a person is taken on the sole basis of automated processing, including profiling, save the cases of GDPR Art. 22(2)(a) and (c)); Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis (Chile, from 2027-10-15 by Ley N° 21.855: a right not to be subject to decisions based on automated processing, including profiling, with legal or significant effects; not in the cases of its letters a, b and c; in every case the right to human intervention and review)",
    "jurisdictions": [
+    "CL",
     "EU",
-    "GB"
+    "FR",
+    "GB",
+    "KE",
+    "MU",
+    "NG",
+    "RU"
    ],
    "from": {
-    "GB": "2026-02-05"
+    "GB": "2026-02-05",
+    "CL": "2027-10-15"
    },
    "sources": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.legislation.gov.uk/ukpga/2025/18/section/80",
-    "https://www.legislation.gov.uk/uksi/2026/82/made"
+    "https://www.legislation.gov.uk/uksi/2026/82/made",
+    "https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf",
+    "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf",
+    "http://www.kremlin.ru/acts/bank/24154/print",
+    "https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes",
+    "https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272"
    ],
    "page": "https://stk-evidence.com/act-transfer.error_refuse"
   }

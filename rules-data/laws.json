@@ -1,6 +1,6 @@
 {
- "rule": 15,
- "version": "4bbb7c956c5777200aae63a0a006b922b36ce5fe18765c96c37c12af1305c710",
+ "rule": 16,
+ "version": "6a6eae6c67d9f3a7adc8dfee49b5cbafc8d92f8a83e386973ae895340a9655eb",
  "licence": "CC BY 4.0, https://creativecommons.org/licenses/by/4.0/",
  "source": "https://stk-evidence.com/rules",
  "laws": [
@@ -52,6 +52,78 @@
    "beside": [
     "coverage.deny_medical",
     "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "CL-cre-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "url": "https://stk-evidence.com/rules#CL-cre-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "law": "Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis",
+   "jurisdiction": "CL",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "CL-gen-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "url": "https://stk-evidence.com/rules#CL-gen-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "law": "Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis",
+   "jurisdiction": "CL",
+   "subject": "general",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "decision.review",
+    "payment_arrangement.refuse",
+    "refund.refuse"
+   ]
+  },
+  {
+   "anchor": "CL-hea-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "url": "https://stk-evidence.com/rules#CL-hea-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "law": "Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis",
+   "jurisdiction": "CL",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "CL-ins-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "url": "https://stk-evidence.com/rules#CL-ins-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "law": "Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis",
+   "jurisdiction": "CL",
+   "subject": "insurance",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "insclaim.partial",
+    "insclaim.refuse",
+    "policy.cancel",
+    "policy.nonrenew",
+    "policy.refuse"
+   ]
+  },
+  {
+   "anchor": "CL-pay-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "url": "https://stk-evidence.com/rules#CL-pay-ley-n-21-719-art-primero-ley-n-19-628-art-8-bis",
+   "law": "Ley N° 21.719, art. primero, Ley N° 19.628 art. 8° bis",
+   "jurisdiction": "CL",
+   "subject": "payments",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "dispute.refuse",
+    "fraud.refuse",
+    "transfer.error_refuse"
    ]
   },
   {
@@ -151,6 +223,33 @@
    ]
   },
   {
+   "anchor": "FR-cre-loi-n-78-17-art-47",
+   "url": "https://stk-evidence.com/rules#FR-cre-loi-n-78-17-art-47",
+   "law": "Loi n° 78-17, art. 47",
+   "jurisdiction": "FR",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "FR-gen-loi-n-78-17-art-47",
+   "url": "https://stk-evidence.com/rules#FR-gen-loi-n-78-17-art-47",
+   "law": "Loi n° 78-17, art. 47",
+   "jurisdiction": "FR",
+   "subject": "general",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "decision.review",
+    "payment_arrangement.refuse",
+    "refund.refuse"
+   ]
+  },
+  {
    "anchor": "FR-hea-code-de-la-s-curit-sociale-art-l315-1-viii-l315-2",
    "url": "https://stk-evidence.com/rules#FR-hea-code-de-la-s-curit-sociale-art-l315-1-viii-l315-2",
    "law": "Code de la sécurité sociale, art. L315-1 VIII and L315-2",
@@ -160,6 +259,51 @@
    "beside": [
     "coverage.deny_medical",
     "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "FR-hea-loi-n-78-17-art-47",
+   "url": "https://stk-evidence.com/rules#FR-hea-loi-n-78-17-art-47",
+   "law": "Loi n° 78-17, art. 47",
+   "jurisdiction": "FR",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "FR-ins-loi-n-78-17-art-47",
+   "url": "https://stk-evidence.com/rules#FR-ins-loi-n-78-17-art-47",
+   "law": "Loi n° 78-17, art. 47",
+   "jurisdiction": "FR",
+   "subject": "insurance",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "insclaim.partial",
+    "insclaim.refuse",
+    "policy.cancel",
+    "policy.nonrenew",
+    "policy.refuse"
+   ]
+  },
+  {
+   "anchor": "FR-pay-loi-n-78-17-art-47",
+   "url": "https://stk-evidence.com/rules#FR-pay-loi-n-78-17-art-47",
+   "law": "Loi n° 78-17, art. 47",
+   "jurisdiction": "FR",
+   "subject": "payments",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "dispute.refuse",
+    "fraud.refuse",
+    "transfer.error_refuse"
    ]
   },
   {
@@ -278,6 +422,78 @@
    ]
   },
   {
+   "anchor": "KE-cre-data-protection-act-2019-kenya-s-35-1",
+   "url": "https://stk-evidence.com/rules#KE-cre-data-protection-act-2019-kenya-s-35-1",
+   "law": "Data Protection Act, 2019 (Kenya) s. 35(1)",
+   "jurisdiction": "KE",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "KE-gen-data-protection-act-2019-kenya-s-35-1",
+   "url": "https://stk-evidence.com/rules#KE-gen-data-protection-act-2019-kenya-s-35-1",
+   "law": "Data Protection Act, 2019 (Kenya) s. 35(1)",
+   "jurisdiction": "KE",
+   "subject": "general",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "decision.review",
+    "payment_arrangement.refuse",
+    "refund.refuse"
+   ]
+  },
+  {
+   "anchor": "KE-hea-data-protection-act-2019-kenya-s-35-1",
+   "url": "https://stk-evidence.com/rules#KE-hea-data-protection-act-2019-kenya-s-35-1",
+   "law": "Data Protection Act, 2019 (Kenya) s. 35(1)",
+   "jurisdiction": "KE",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "KE-ins-data-protection-act-2019-kenya-s-35-1",
+   "url": "https://stk-evidence.com/rules#KE-ins-data-protection-act-2019-kenya-s-35-1",
+   "law": "Data Protection Act, 2019 (Kenya) s. 35(1)",
+   "jurisdiction": "KE",
+   "subject": "insurance",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "insclaim.partial",
+    "insclaim.refuse",
+    "policy.cancel",
+    "policy.nonrenew",
+    "policy.refuse"
+   ]
+  },
+  {
+   "anchor": "KE-pay-data-protection-act-2019-kenya-s-35-1",
+   "url": "https://stk-evidence.com/rules#KE-pay-data-protection-act-2019-kenya-s-35-1",
+   "law": "Data Protection Act, 2019 (Kenya) s. 35(1)",
+   "jurisdiction": "KE",
+   "subject": "payments",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "dispute.refuse",
+    "fraud.refuse",
+    "transfer.error_refuse"
+   ]
+  },
+  {
    "anchor": "KR-ins-185-96-2",
    "url": "https://stk-evidence.com/rules#KR-ins-185-96-2",
    "law": "보험업법 제185조 ① and ③ and 시행령 제96조의2",
@@ -290,6 +506,284 @@
     "insclaim.refuse",
     "liability.decide",
     "totalloss.decide"
+   ]
+  },
+  {
+   "anchor": "MA-cre-loi-n-09-08-art-11",
+   "url": "https://stk-evidence.com/rules#MA-cre-loi-n-09-08-art-11",
+   "law": "Loi n° 09-08, art. 11",
+   "jurisdiction": "MA",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "MA-hea-loi-n-09-08-art-11",
+   "url": "https://stk-evidence.com/rules#MA-hea-loi-n-09-08-art-11",
+   "law": "Loi n° 09-08, art. 11",
+   "jurisdiction": "MA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "MU-cre-data-protection-act-2017-mauritius-s-38-1",
+   "url": "https://stk-evidence.com/rules#MU-cre-data-protection-act-2017-mauritius-s-38-1",
+   "law": "Data Protection Act 2017 (Mauritius) s. 38(1)",
+   "jurisdiction": "MU",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "MU-gen-data-protection-act-2017-mauritius-s-38-1",
+   "url": "https://stk-evidence.com/rules#MU-gen-data-protection-act-2017-mauritius-s-38-1",
+   "law": "Data Protection Act 2017 (Mauritius) s. 38(1)",
+   "jurisdiction": "MU",
+   "subject": "general",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "decision.review",
+    "payment_arrangement.refuse",
+    "refund.refuse"
+   ]
+  },
+  {
+   "anchor": "MU-hea-data-protection-act-2017-mauritius-s-38-1",
+   "url": "https://stk-evidence.com/rules#MU-hea-data-protection-act-2017-mauritius-s-38-1",
+   "law": "Data Protection Act 2017 (Mauritius) s. 38(1)",
+   "jurisdiction": "MU",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "MU-ins-data-protection-act-2017-mauritius-s-38-1",
+   "url": "https://stk-evidence.com/rules#MU-ins-data-protection-act-2017-mauritius-s-38-1",
+   "law": "Data Protection Act 2017 (Mauritius) s. 38(1)",
+   "jurisdiction": "MU",
+   "subject": "insurance",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "insclaim.partial",
+    "insclaim.refuse",
+    "policy.cancel",
+    "policy.nonrenew",
+    "policy.refuse"
+   ]
+  },
+  {
+   "anchor": "MU-pay-data-protection-act-2017-mauritius-s-38-1",
+   "url": "https://stk-evidence.com/rules#MU-pay-data-protection-act-2017-mauritius-s-38-1",
+   "law": "Data Protection Act 2017 (Mauritius) s. 38(1)",
+   "jurisdiction": "MU",
+   "subject": "payments",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "dispute.refuse",
+    "fraud.refuse",
+    "transfer.error_refuse"
+   ]
+  },
+  {
+   "anchor": "NG-cre-nigeria-data-protection-act-2023-s-37-1",
+   "url": "https://stk-evidence.com/rules#NG-cre-nigeria-data-protection-act-2023-s-37-1",
+   "law": "Nigeria Data Protection Act, 2023 s. 37(1)",
+   "jurisdiction": "NG",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "NG-gen-nigeria-data-protection-act-2023-s-37-1",
+   "url": "https://stk-evidence.com/rules#NG-gen-nigeria-data-protection-act-2023-s-37-1",
+   "law": "Nigeria Data Protection Act, 2023 s. 37(1)",
+   "jurisdiction": "NG",
+   "subject": "general",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "decision.review",
+    "payment_arrangement.refuse",
+    "refund.refuse"
+   ]
+  },
+  {
+   "anchor": "NG-hea-nigeria-data-protection-act-2023-s-37-1",
+   "url": "https://stk-evidence.com/rules#NG-hea-nigeria-data-protection-act-2023-s-37-1",
+   "law": "Nigeria Data Protection Act, 2023 s. 37(1)",
+   "jurisdiction": "NG",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "NG-ins-nigeria-data-protection-act-2023-s-37-1",
+   "url": "https://stk-evidence.com/rules#NG-ins-nigeria-data-protection-act-2023-s-37-1",
+   "law": "Nigeria Data Protection Act, 2023 s. 37(1)",
+   "jurisdiction": "NG",
+   "subject": "insurance",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "insclaim.partial",
+    "insclaim.refuse",
+    "policy.cancel",
+    "policy.nonrenew",
+    "policy.refuse"
+   ]
+  },
+  {
+   "anchor": "NG-pay-nigeria-data-protection-act-2023-s-37-1",
+   "url": "https://stk-evidence.com/rules#NG-pay-nigeria-data-protection-act-2023-s-37-1",
+   "law": "Nigeria Data Protection Act, 2023 s. 37(1)",
+   "jurisdiction": "NG",
+   "subject": "payments",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "dispute.refuse",
+    "fraud.refuse",
+    "transfer.error_refuse"
+   ]
+  },
+  {
+   "anchor": "PE-cre-ley-n-29733-art-23",
+   "url": "https://stk-evidence.com/rules#PE-cre-ley-n-29733-art-23",
+   "law": "Ley N° 29733, art. 23",
+   "jurisdiction": "PE",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "PE-hea-ley-n-29733-art-23",
+   "url": "https://stk-evidence.com/rules#PE-hea-ley-n-29733-art-23",
+   "law": "Ley N° 29733, art. 23",
+   "jurisdiction": "PE",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "RU-cre-federal-law-no-152-fz-art-16-1-2",
+   "url": "https://stk-evidence.com/rules#RU-cre-federal-law-no-152-fz-art-16-1-2",
+   "law": "Federal Law No. 152-FZ, Art. 16(1)-(2)",
+   "jurisdiction": "RU",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "RU-gen-federal-law-no-152-fz-art-16-1-2",
+   "url": "https://stk-evidence.com/rules#RU-gen-federal-law-no-152-fz-art-16-1-2",
+   "law": "Federal Law No. 152-FZ, Art. 16(1)-(2)",
+   "jurisdiction": "RU",
+   "subject": "general",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "decision.review",
+    "payment_arrangement.refuse",
+    "refund.refuse"
+   ]
+  },
+  {
+   "anchor": "RU-hea-federal-law-no-152-fz-art-16-1-2",
+   "url": "https://stk-evidence.com/rules#RU-hea-federal-law-no-152-fz-art-16-1-2",
+   "law": "Federal Law No. 152-FZ, Art. 16(1)-(2)",
+   "jurisdiction": "RU",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "RU-ins-federal-law-no-152-fz-art-16-1-2",
+   "url": "https://stk-evidence.com/rules#RU-ins-federal-law-no-152-fz-art-16-1-2",
+   "law": "Federal Law No. 152-FZ, Art. 16(1)-(2)",
+   "jurisdiction": "RU",
+   "subject": "insurance",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "insclaim.partial",
+    "insclaim.refuse",
+    "policy.cancel",
+    "policy.nonrenew",
+    "policy.refuse"
+   ]
+  },
+  {
+   "anchor": "RU-pay-federal-law-no-152-fz-art-16-1-2",
+   "url": "https://stk-evidence.com/rules#RU-pay-federal-law-no-152-fz-art-16-1-2",
+   "law": "Federal Law No. 152-FZ, Art. 16(1)-(2)",
+   "jurisdiction": "RU",
+   "subject": "payments",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "dispute.refuse",
+    "fraud.refuse",
+    "transfer.error_refuse"
    ]
   },
   {
@@ -466,6 +960,19 @@
    ]
   },
   {
+   "anchor": "US-AZ-hea-a-r-s-20-3103-20-3407",
+   "url": "https://stk-evidence.com/rules#US-AZ-hea-a-r-s-20-3103-20-3407",
+   "law": "A.R.S. §§ 20-3103, 20-3407",
+   "jurisdiction": "US-AZ",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
    "anchor": "US-CA-cre-11-ccr-7221-a-b-1-a",
    "url": "https://stk-evidence.com/rules#US-CA-cre-11-ccr-7221-a-b-1-a",
    "law": "11 CCR § 7221(a), (b)(1)(A)",
@@ -504,6 +1011,19 @@
    "anchor": "US-CA-hea-cal-health-safety-code-1367-01-cal-ins-code-10123-135-sb-1120-stats-2024-ch-879",
    "url": "https://stk-evidence.com/rules#US-CA-hea-cal-health-safety-code-1367-01-cal-ins-code-10123-135-sb-1120-stats-2024-ch-879",
    "law": "Cal. Health & Safety Code § 1367.01 and Cal. Ins. Code § 10123.135 (SB 1120, Stats. 2024, ch. 879)",
+   "jurisdiction": "US-CA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-CA-hea-cal-health-safety-code-1367-01-e-k-2-cal-ins-code-10123-135-e-j-2",
+   "url": "https://stk-evidence.com/rules#US-CA-hea-cal-health-safety-code-1367-01-e-k-2-cal-ins-code-10123-135-e-j-2",
+   "law": "Cal. Health & Safety Code § 1367.01(e), (k)(2) and Cal. Ins. Code § 10123.135(e), (j)(2)",
    "jurisdiction": "US-CA",
    "subject": "health",
    "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
@@ -893,6 +1413,19 @@
    "beside": [
     "insclaim.partial",
     "totalloss.decide"
+   ]
+  },
+  {
+   "anchor": "US-MD-hea-md-code-ins-15-10b-05-1-d",
+   "url": "https://stk-evidence.com/rules#US-MD-hea-md-code-ins-15-10b-05-1-d",
+   "law": "Md. Code, Ins. § 15-10B-05.1(D)",
+   "jurisdiction": "US-MD",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
    ]
   },
   {
@@ -1370,6 +1903,19 @@
    ]
   },
   {
+   "anchor": "US-TX-hea-tex-ins-code-4201-156",
+   "url": "https://stk-evidence.com/rules#US-TX-hea-tex-ins-code-4201-156",
+   "law": "Tex. Ins. Code § 4201.156",
+   "jurisdiction": "US-TX",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
    "anchor": "US-TX-hea-tex-ins-code-4201-356",
    "url": "https://stk-evidence.com/rules#US-TX-hea-tex-ins-code-4201-356",
    "law": "Tex. Ins. Code § 4201.356",
@@ -1509,6 +2055,68 @@
    "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
    "beside": [
     "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "UY-cre-ley-n-18-331-art-16",
+   "url": "https://stk-evidence.com/rules#UY-cre-ley-n-18-331-art-16",
+   "law": "Ley N° 18.331, art. 16",
+   "jurisdiction": "UY",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "UY-hea-ley-n-18-331-art-16",
+   "url": "https://stk-evidence.com/rules#UY-hea-ley-n-18-331-art-16",
+   "law": "Ley N° 18.331, art. 16",
+   "jurisdiction": "UY",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "ZA-cre-popia-s-71-1",
+   "url": "https://stk-evidence.com/rules#ZA-cre-popia-s-71-1",
+   "law": "POPIA s. 71(1)",
+   "jurisdiction": "ZA",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "ZA-hea-popia-s-71-1",
+   "url": "https://stk-evidence.com/rules#ZA-hea-popia-s-71-1",
+   "law": "POPIA s. 71(1)",
+   "jurisdiction": "ZA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
    ]
   }
  ]

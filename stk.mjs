@@ -149,6 +149,8 @@ function subjectsOf(text) {
 // and applies on the day, whether or not their laws are read; the Checked list only says what was read.
 const H15 = "The Checked list places no intent.";
 export function placedByLaw(text) { return text.split("\n").includes(H15); }
+const H16 = "A jurisdiction not on the Checked list for the subject of an intent is answered as if none were given.";   // from Rule 16 (CEO 2026-11-24): an answer either has a law beside it or is an AI's
+export function unreadStrict(text) { return text.split("\n").includes(H16); }
 
 // With no jurisdiction given: the jurisdictions whose laws, written beside the intent and applying on the day, send it to a person,
 // sorted; [] when none does (a finish, a trigger, other, closed, not listed). Given jurisdictions, the answer may differ (decideAt).
@@ -207,6 +209,7 @@ export function decideAt(text, intent, trigger, where = null, day = null) {
   const marks = sj === undefined ? ["not checked"] : codes.flatMap((code) => [...near(code)].map((c) => checked.get(sj + "|" + c) || "not checked"));
   const status = marks.includes("not checked") ? "not checked" : (marks.includes("read") ? "read" : "none found");
   if (status !== "read" && !placedByLaw(text)) return { answer: dated, status };   // before Rule 15: only "read" answered by them
+  if (status === "not checked" && unreadStrict(text)) return { answer: dated, status };   // from Rule 16: not checked answers as none given
   if (dated === "finish" || strict === "finish" || trigger !== "unknown" || typeof i !== "string" || !beside.has(i)) return { answer: dated, status };
   const named = codes.some((c) => [...beside.get(i)].some(([g, f]) => applies(f) && near(c).has(g)));
   return { answer: named ? "escalate" : "finish", status };
@@ -351,7 +354,8 @@ export async function askWhere(intent, trigger, jurisdiction, { conversationId, 
   try {
     const i = typeof intent === "string" ? intent.trim().toLowerCase() : intent, t = typeof trigger === "string" ? trigger.trim().toLowerCase() : trigger;
     if (current && where !== null) status = decideAt(current.text, i, t, where).status;
-    else if (current && answer === "escalate") because = becauseAt(current.text, i, t);
+    if (current && answer === "escalate" && (where === null || (status === "not checked" && unreadStrict(current.text))))
+      because = becauseAt(current.text, i, t);   // from Rule 16 also for a jurisdiction not checked: whose laws sent it
   } catch {}
   return { answer, read: status === "read", status, because };
 }

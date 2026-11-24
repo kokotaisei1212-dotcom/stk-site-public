@@ -156,6 +156,13 @@ def _published(text, intent):
 
 
 H15 = "The Checked list places no intent."   # from Rule 15 (CEO 2026-11-24): what was read is written and shown, and moves nothing
+H16 = "A jurisdiction not on the Checked list for the subject of an intent is answered as if none were given."   # from Rule 16 (CEO 2026-11-24): an answer either has a law beside it or is an AI's
+
+
+def unread_strict(text):
+    """From Rule 16: given jurisdictions, one whose laws on the intent's subject are not checked answers as with none given
+    (the strictest of every jurisdiction read), so a person only by a law written beside the intent."""
+    return re.search(r"^" + re.escape(H16) + r"$", text, re.M) is not None
 
 
 def placed_by_law(text):
@@ -215,6 +222,8 @@ def decide_at(text, intent, trigger, where=None, day=None):
     marks = [checked.get((sj, c), "not checked") for code in codes for c in near(code)] if sj else ["not checked"]
     status = "not checked" if "not checked" in marks else ("read" if "read" in marks else "none found")
     if status != "read" and not placed_by_law(text):    # before Rule 15: only "read" answered by the jurisdictions' laws
+        return dated, status
+    if status == "not checked" and unread_strict(text):   # from Rule 16: not checked answers as none given
         return dated, status
     if dated == "finish" or strict == "finish" or trigger != "unknown" or not isinstance(i, str) or i not in beside:
         return dated, status
@@ -572,8 +581,8 @@ def ask_where(intent, trigger, jurisdiction, conversation_id=None, **fields):
             t = trigger.strip().lower() if isinstance(trigger, str) else trigger
             if where is not None:
                 status = decide_at(_rules["text"], i, t, where)[1]
-            elif a == "escalate":
-                because = because_at(_rules["text"], i, t)
+            if a == "escalate" and (where is None or (status == "not checked" and unread_strict(_rules["text"]))):
+                because = because_at(_rules["text"], i, t)   # from Rule 16 also for a jurisdiction not checked: whose laws sent it
     except Exception:
         pass
     return {"answer": a, "read": status == "read", "status": status, "because": because}

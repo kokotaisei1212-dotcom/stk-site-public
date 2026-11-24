@@ -108,7 +108,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <p id="ks" role="status"></p>
 <div id="keysout" hidden></div>
 </section>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "license": "https://creativecommons.org/licenses/by/4.0/", "identifier": "15", "creator": {"@type": "Organization", "name": "STK", "url": "https://stk-evidence.com"}, "@id": "https://stk-evidence.com/rules", "name": "STK permission rules", "description": "Which actions of an AI in a conversation with a customer a law gives to a person, by jurisdiction, with each law's citation.", "url": "https://stk-evidence.com/rules", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://api.stk-evidence.com/v1/rules"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "license": "https://creativecommons.org/licenses/by/4.0/", "identifier": "16", "creator": {"@type": "Organization", "name": "STK", "url": "https://stk-evidence.com"}, "@id": "https://stk-evidence.com/rules", "name": "STK permission rules", "description": "Which actions of an AI in a conversation with a customer a law gives to a person, by jurisdiction, with each law's citation.", "url": "https://stk-evidence.com/rules", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://api.stk-evidence.com/v1/rules"}]}</script>
 <script>
 (function(){
   var f = document.getElementById('kf'), s = document.getElementById('ks'), k = document.getElementById('keysout');
@@ -166,7 +166,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
       if (url) {                                  // the live key: a card, or an invoice (CEO 2026-11-24: some companies cannot register a card)
         var iv = document.createElement('button'); iv.type = 'button'; iv.id = 'invoice'; iv.textContent = 'Pay by invoice';
         var il = document.createElement('p'); il.id = 'invoicenote';
-        var more = 'By invoice: each month on one invoice, due within 30 days, paid on its page by card or US bank account (ACH). You may owe up to the larger of $5,000 and three times the highest invoice you have paid.';
+        var more = 'By invoice: each month on one invoice, due within 30 days, paid on its page by card or US bank account (ACH). Until your first invoice is paid you may owe up to $5,000; once one is paid by its due date, there is no limit.';
         iv.onclick = function(){
           iv.disabled = true;
           post({email: em, pay: 'invoice'}, v.live).then(function(r){
