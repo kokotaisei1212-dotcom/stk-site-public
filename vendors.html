@@ -49,7 +49,7 @@
 <li>There: <code>stk.ask(intent, trigger, conversation_id=cid)</code>. On <code>finish</code> your AI goes on; on anything else it hands the conversation over, as it does today.</li>
 <li>When a person joins a conversation that got <code>finish</code>: <code>stk.joined(cid)</code>.</li>
 </ol>
-<p>Without an answer within 300 ms, or on any error, <code>ask()</code> returns <code>escalate</code>, unless <a href="/rules-full#else">a grant</a> holds. <a href="/docs">Docs</a> · <a href="/docs#setup">Setup guides</a></p>
+<p>Without an answer within 3 seconds, or on any error, <code>ask()</code> returns <code>escalate</code>, unless <a href="/rules-full#else">a grant</a> holds. <a href="/docs">Docs</a> · <a href="/docs#setup">Setup guides</a></p>
 
 <h2 id="key">Whose key</h2>
 <p>Keys are taken with an email address, on the <a href="/#keys">first page</a> or with <code>POST /v1/keys</code>. Permissions made with a live key are billed to the account that key belongs to; a test key is never billed. One key used for several companies' conversations bills one account for all of them. <a href="/price">Price</a></p>

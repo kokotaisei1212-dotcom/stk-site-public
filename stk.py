@@ -36,14 +36,14 @@ rules leaves a not_listed line there, for your own count; STK is not told.
 When STK's answer says a newer version of the rules, this file reads the rules again and applies them again; if they
 now say escalate, it returns "escalate" and tells STK a person has it, so that permission is not billed. The same
 conversation and intent that got finish today (UTC) gets finish again without calling STK (after a restart, today's
-file is read again; with ON_ROW only while the process runs). Without an answer within 300 ms, or on any error, ask()
+file is read again; with ON_ROW only while the process runs). Without an answer within 3 seconds, or on any error, ask()
 returns "escalate"; if a late answer was a permission, STK is told a person has it, so it is not billed.
 
 Each answer of STK's also brings a grant, signed by STK, for this account and this version of the rules, for 1 hour (never
 past the next April 15 or October 15, 00:00 UTC, the only days a restriction takes effect, nor past the moment the
 account would be unpaid 60 days). It is kept in the rows folder (a grant line, at most every 5 minutes), with the rules
 it names, so a process started again while STK cannot be reached finishes under it too (not with ON_ROW). If
-STK cannot be reached (no answer within 300 ms, or an error reaching it) while the last grant holds, the rules here say
+STK cannot be reached (no answer within 3 seconds, or an error reaching it) while the last grant holds, the rules here say
 finish and the queue is not full, ask() returns "finish" and the seal waits in a queue, kept as a queued line; it is
 sent as soon as STK answers again, and STK signs it as it signs any seal. The grant gone, or QUEUE_MAX seals waiting:
 "escalate", as before. A receipt has two times: recorded_ms, when this file recorded the action (your claim), and
@@ -61,7 +61,7 @@ import hashlib, json, os, re, secrets, sys, threading, time, urllib.error, urlli
 
 KEY = os.environ.get("STK_KEY", "")   # your key, from the environment (STK_KEY): the test key first, the live key when you go live
 API = os.environ.get("STK_API", "https://api.stk-evidence.com")
-TIMEOUT = 0.3
+TIMEOUT = 3.0                                # seconds ask() waits for STK (2026-11-24: 0.3 to 3; STK bills nothing it took longer for)
 QUEUE_MAX = 10000      # seals waiting for STK at most; past it, "escalate"
 QUEUE_RETRY = 5        # seconds between tries to send the queue, and a person joining STK could not be told yet
 RULES_RETRY = 10       # seconds after the rules could not be read in which ask() escalates without trying again
@@ -588,7 +588,7 @@ def _ask_any(intent, trigger, conversation_id, fields, where):
     intent = intent.strip().lower() if isinstance(intent, str) else intent      # " Order.Status " is order.status
     trigger = trigger.strip().lower() if isinstance(trigger, str) else trigger
     if not _rules:                            # the first ask of this process reads the rules first (up to 2 seconds),
-        try:                                  # outside the 300 ms that STK's answer has
+        try:                                  # outside the 3 seconds that STK's answer has
             _read_saved()
         except Exception:
             pass

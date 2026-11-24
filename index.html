@@ -47,16 +47,18 @@ html{scroll-behavior:smooth}
 @media (min-width:768px){.hero h1{font-size:89.6px}}
 .cta{display:inline-block;margin-top:40px;font-size:17.25px;line-height:1.5;padding:16px 24px;border-radius:4px;color:var(--bg);background:var(--ink);text-decoration:none}
 .cue{position:absolute;left:50%;bottom:40px;width:16px;height:16px;margin-left:-8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg)}   /* more below */
-.promise,.tool{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad) 0}
-/* What STK promises (CEO 2026-11-24, as Visa's "what Visa stands for"): a large heading; three of the same size, apart by a rule */
-.promise{max-width:calc(1200px + 2 * var(--pad))}
+.tool{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad) 0}
+/* What STK promises (CEO 2026-11-24, as Visa's "what Visa stands for"): a band the width of the screen, dark grey, white words;
+   a large heading; three of the same size, apart by a lighter grey rule */
+.promise{background:#1F1F22;color:#FFFFFF;padding:var(--sec) var(--pad);margin:var(--sec) 0 0}
+.promise .in{max-width:1200px;margin:0 auto}
 .promise h2{margin:0 0 64px;font-size:40.25px;font-weight:400;line-height:1.25;letter-spacing:-.02em;text-align:center}
 @media (min-width:768px){.promise h2{font-size:59.8px}}
 .promise ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr}
 .promise li{font-size:21.85px;line-height:1.5;letter-spacing:-.01em;text-align:center;padding:40px 0}
-.promise li + li{border-top:1px solid var(--line)}
+.promise li + li{border-top:1px solid #6E6E73}
 .promise a{color:inherit}
-@media (min-width:900px){.promise ul{grid-template-columns:repeat(3,minmax(0,1fr))}.promise li{padding:16px 40px}.promise li + li{border-top:0;border-left:1px solid var(--line)}}
+@media (min-width:900px){.promise ul{grid-template-columns:repeat(3,minmax(0,1fr))}.promise li{padding:16px 40px}.promise li + li{border-top:0;border-left:1px solid #6E6E73}}
 .tool{scroll-margin-top:var(--bar)}
 .tool p{margin:16px 0 0;font-size:17.25px;line-height:1.55}
 .tool .only{margin:8px 0 0;font-size:13.8px;color:var(--muted)}
@@ -65,7 +67,9 @@ html{scroll-behavior:smooth}
 .tool #kf{display:flex;flex-wrap:wrap;gap:16px;margin:0}
 .tool #kf input{flex:1 1 14rem;min-width:0;font:inherit;font-size:18.4px;line-height:1.5;border-radius:4px;padding:8px 16px;color:var(--ink);background:var(--bg);border:1px solid var(--line)}
 .tool #ks:empty{display:none}
-.tool #card{margin-top:16px}
+.tool #card,.tool #invoice{margin:16px 16px 0 0}
+.tool #invoice{color:var(--ink);background:var(--bg)}
+.tool #invoicenote{margin:8px 0 0;font-size:13.8px;line-height:1.5;color:var(--muted)}
 .tool #pricenote{margin:16px 0 0;font-size:14.95px;line-height:1.5;color:var(--muted)}
 .tool #pricenote a{color:inherit}
 .price{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad);font-size:17.25px;line-height:1.55}
@@ -80,14 +84,14 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <a class="cta" href="#keys">Get an API key</a>
 <span class="cue" aria-hidden="true"></span>
 </section>
-<section class="promise" aria-labelledby="promise">
+<section class="promise" aria-labelledby="promise"><div class="in">
 <h2 id="promise">What STK promises</h2>
 <ul>
 <li><a href="/rules">Everything the law allows, your AI can finish alone.</a></li>
 <li>Every one is signed.</li>
 <li>STK never sees the decision. Only a 32-byte hash reaches us.</li>
 </ul>
-</section>
+</div></section>
 <section class="tool wrap" id="keys" aria-label="Get an API key">
 <form id="kf"><input id="em" type="email" required autocomplete="email" placeholder="email" aria-label="email"><button type="submit">Get an API key</button></form>
 <p class="only">Email only. Test keys are free.</p>
@@ -130,7 +134,20 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
         n.innerHTML = 'Next: set one as STK_KEY and ask. <a href="/docs">Docs</a><br>$' + rate + ' per action an AI finishes alone.<br>$0 when a person must decide. $0 until you use it. <a href="/price">Price</a>';
         k.after(n);
       }
-      if (url) n.after(b);
+      if (url) {                                  // the live key: a card, or an invoice (CEO 2026-11-24: some companies cannot register a card)
+        var iv = document.createElement('button'); iv.type = 'button'; iv.id = 'invoice'; iv.textContent = 'Pay by invoice';
+        var il = document.createElement('p'); il.id = 'invoicenote';
+        il.textContent = 'By invoice: each month on one invoice, due within 30 days, paid on its page by card or US bank account (ACH). You may owe up to the larger of $5,000 and three times the highest invoice you have paid.';
+        iv.onclick = function(){
+          iv.disabled = true;
+          post({email: em, pay: 'invoice'}, v.live).then(function(r){
+            iv.disabled = false;
+            if (r[0] === 200 && r[1].pay === 'invoice') { done = true; b.remove(); iv.remove(); il.textContent = 'Your live key signs now. ' + (r[1].note || ''); }
+            else { s.textContent = (r[1] && r[1].message) || 'STK cannot do this just now. Try again in a minute.'; }
+          }, function(){ iv.disabled = false; s.textContent = 'STK cannot be reached. Try again in a minute.'; });
+        };
+        n.after(b); b.after(iv); iv.after(il);
+      }
       function check(id){                         // the card done: the live key, if it was not given at once
         if (done || !m || (id && id !== m[0])) return;
         if (v.live) { if (id) { done = true; b.remove(); } return; }

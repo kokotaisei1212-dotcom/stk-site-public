@@ -24,13 +24,13 @@
 // stk_verify.py. An intent on no list of the rules leaves a not_listed line there, for your own count; STK is not told.
 // When STK's answer says a newer version of the rules, this file reads them again and applies them again; if they now
 // say escalate, it escalates and tells STK a person has it, so it is not billed. The same conversation and intent that
-// got finish today (UTC) gets finish again without calling STK. Without an answer within 300 ms, or on any error,
+// got finish today (UTC) gets finish again without calling STK. Without an answer within 3 seconds, or on any error,
 // ask() escalates; a late permission is told to STK as a person joining, so it is not billed.
 // Each answer of STK's also brings a grant, signed by STK, for this account and this version of the rules, for 1 hour
 // (never past the next April 15 or October 15, 00:00 UTC, the only days a restriction takes effect, nor past the moment
 // the account would be unpaid 60 days). It is kept in the rows folder (a grant line, at most every 5 minutes), with the
 // rules it names, so a process started again while STK cannot be reached finishes under it too (not with onRow).
-// If STK cannot be reached (no answer within 300 ms, or an error reaching it) while the last grant holds, the rules here
+// If STK cannot be reached (no answer within 3 seconds, or an error reaching it) while the last grant holds, the rules here
 // say finish and the queue is not full, ask() returns "finish" and the seal waits in a queue, kept as a queued line; it
 // is sent as soon as STK answers again, and STK signs it as any seal. The grant gone, or queueMax seals waiting:
 // "escalate", as before. A receipt has two times: recorded_ms, when this file recorded the action (your claim), and
@@ -50,7 +50,7 @@ import { pathToFileURL } from "node:url";
 export const config = {
   key: (typeof process !== "undefined" && process.env && process.env.STK_KEY) || "",   // your key, from the environment (STK_KEY): the test key first, the live key when you go live
   api: process.env.STK_API || "https://api.stk-evidence.com",
-  timeout: 300,
+  timeout: 3000,          // ms ask() waits for STK (2026-11-24: 300 to 3000; STK bills nothing it took longer for)
   rowsDir: process.env.STK_ROWS_DIR || "stk-rows",
   onRow: null,           // or a function(line): each line, for your own store
   queueMax: 10000,       // seals waiting for STK at most; past it, "escalate"
@@ -359,7 +359,7 @@ export async function askWhere(intent, trigger, jurisdiction, { conversationId, 
 async function askAny(intent, trigger, conversationId, fields, where) {
   if (typeof intent === "string") intent = intent.trim().toLowerCase();   // " Order.Status " is order.status
   if (typeof trigger === "string") trigger = trigger.trim().toLowerCase();
-  if (!current) {   // the first ask of this process reads the rules first (up to 2 seconds), outside STK's 300 ms
+  if (!current) {   // the first ask of this process reads the rules first (up to 2 seconds), outside STK's 3 seconds
     try { await readSaved(); } catch {}
     if (rulesFailed !== null && performance.now() - rulesFailed < config.rulesRetry) { if (!rulesUnderGrant()) return "escalate"; }   // just failed: not 2 s more each ask
     else {
