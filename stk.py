@@ -148,6 +148,15 @@ def _published(text, intent):
     return False
 
 
+H15 = "The Checked list places no intent."   # from Rule 15 (CEO 2026-11-24): what was read is written and shown, and moves nothing
+
+
+def placed_by_law(text):
+    """From Rule 15: given jurisdictions, an intent goes to a person only where a law of one of them is written beside it and
+    applies on the day, whether or not their laws are read (the Checked list only says what was read)."""
+    return re.search(r"^" + re.escape(H15) + r"$", text, re.M) is not None
+
+
 def decide_at(text, intent, trigger, where=None, day=None):
     """(answer, status) on a day (YYYY-MM-DD, UTC; today when None). status: None when no jurisdiction is given; else "read",
     "none found", "not checked", or "not published" for an action the rules do not list (answered escalate). Only "read" can answer less strictly than with none given. Rules older than Rule 9 (or
@@ -198,12 +207,28 @@ def decide_at(text, intent, trigger, where=None, day=None):
     sj = subject.get(i) if isinstance(i, str) else None
     marks = [checked.get((sj, c), "not checked") for code in codes for c in near(code)] if sj else ["not checked"]
     status = "not checked" if "not checked" in marks else ("read" if "read" in marks else "none found")
-    if status != "read":
+    if status != "read" and not placed_by_law(text):    # before Rule 15: only "read" answered by the jurisdictions' laws
         return dated, status
-    if dated == "finish" or strict == "finish" or trigger != "unknown" or i not in beside:
+    if dated == "finish" or strict == "finish" or trigger != "unknown" or not isinstance(i, str) or i not in beside:
         return dated, status
     named = any(applies(g, f) and g in near(c) for c in codes for g, f in beside[i].items())
     return ("escalate" if named else "finish"), status
+
+
+def because_at(text, intent, trigger, day=None):
+    """From Rule 10's text on: the jurisdictions whose laws, written beside the intent and applying on the day (today when None),
+    send it to a person when no jurisdiction is given, sorted; [] when none does (a finish, a trigger, other, closed, not listed).
+    Given jurisdictions, the answer may differ (decide_at)."""
+    laws = _items(text, _H10)
+    if laws is None or trigger != "unknown" or not isinstance(intent, str):
+        return []
+    day = day or _day_now()
+    beside = {}
+    for x in laws:
+        k, _, v = x.partition(": ")
+        beside[k] = {g.split(" from ")[0]: (g.split(" from ")[1] if " from " in g else None) for g in v.split(", ")}
+    i = intent[13:] if intent.startswith("conversation.") and intent[13:] in beside else intent
+    return sorted(g for g, f in beside.get(i, {}).items() if f is None or f <= day)
 
 
 def _decide9(text, intent, trigger, codes):
@@ -524,21 +549,27 @@ def ask(intent, trigger, conversation_id=None, **fields):
 def ask_where(intent, trigger, jurisdiction, conversation_id=None, **fields):
     """ask(), for the jurisdictions whose laws apply to this decision (from Rule 9): a code or a list of codes, ISO 3166-1
     (US, GB), ISO 3166-2 (US-WA) or EU; UK is read as GB. Returns {"answer": "finish" or "escalate", "read": True or
-    False, "status": "read", "none found", "not checked" or "not published"}. "not published": an action the rules do not
-    list, answered "escalate"; STK claims nothing of it. Only "read" (a law that names a person was found; read True)
-    answers by those jurisdictions' laws; "none found" (read, no such law found) and "not checked" answer as ask(), the
-    strictest. The codes are kept in the row, as "jurisdiction"; STK still receives only the seal."""
+    False, "status": "read", "none found", "not checked" or "not published", "because": [codes]}. "not published": an action
+    the rules do not list, answered "escalate"; STK claims nothing of it. From Rule 15, the answer is by those jurisdictions'
+    laws whatever the status: a person only where a law of one of them is written beside the action; the status says only
+    what was read. (Before Rule 15, only "read" answered by them; "none found" and "not checked" answered as ask().) With no
+    jurisdiction given (None), the answer is the strictest and "because" names the jurisdictions whose laws send the action
+    to a person: giving yours may change the answer. The codes and the status are kept in the row, as "jurisdiction" and
+    "jurisdiction_status"; STK still receives only the seal."""
     where = jurisdictions(jurisdiction)
     a = _ask_any(intent, trigger, conversation_id, fields, where)
-    status = "not checked"
+    status, because = "not checked", []
     try:
-        if where is not None and _rules:
+        if _rules:
             i = intent.strip().lower() if isinstance(intent, str) else intent
             t = trigger.strip().lower() if isinstance(trigger, str) else trigger
-            status = decide_at(_rules["text"], i, t, where)[1]
+            if where is not None:
+                status = decide_at(_rules["text"], i, t, where)[1]
+            elif a == "escalate":
+                because = because_at(_rules["text"], i, t)
     except Exception:
         pass
-    return {"answer": a, "read": status == "read", "status": status}
+    return {"answer": a, "read": status == "read", "status": status, "because": because}
 
 
 def _judge(text, intent, trigger, where):
@@ -623,6 +654,7 @@ def _ask_stk(intent, trigger, cid, fields, r, answer, decided, late, where=None)
     row = dict(fields, intent=intent, trigger=trigger, **({} if cid is None else {"conversation_id": cid}))
     if where is not None:
         row["jurisdiction"] = where           # ask_where: the codes given, sealed with the row
+        row["jurisdiction_status"] = decide_at(r["text"], intent, trigger, where)[1]   # what was read of them: written, moves nothing
     text = row_text(row)
     nonce = secrets.token_bytes(32)
     seal = seal_of(nonce, text)

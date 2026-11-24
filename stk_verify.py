@@ -142,6 +142,15 @@ def _published(text, intent):
     return False
 
 
+H15 = "The Checked list places no intent."   # from Rule 15 (CEO 2026-11-24): what was read is written and shown, and moves nothing
+
+
+def placed_by_law(text):
+    """From Rule 15: given jurisdictions, an intent goes to a person only where a law of one of them is written beside it and
+    applies on the day, whether or not their laws are read (the Checked list only says what was read)."""
+    return re.search(r"^" + re.escape(H15) + r"$", text, re.M) is not None
+
+
 def decide_at(text, intent, trigger, where=None, day=None):
     """(answer, status) on a day (YYYY-MM-DD, UTC; today when None). status: None when no jurisdiction is given; else "read",
     "none found", "not checked", or "not published" for an action the rules do not list (answered escalate). Only "read" can answer less strictly than with none given. Rules older than Rule 9 (or
@@ -192,9 +201,9 @@ def decide_at(text, intent, trigger, where=None, day=None):
     sj = subject.get(i) if isinstance(i, str) else None
     marks = [checked.get((sj, c), "not checked") for code in codes for c in near(code)] if sj else ["not checked"]
     status = "not checked" if "not checked" in marks else ("read" if "read" in marks else "none found")
-    if status != "read":
+    if status != "read" and not placed_by_law(text):    # before Rule 15: only "read" answered by the jurisdictions' laws
         return dated, status
-    if dated == "finish" or strict == "finish" or trigger != "unknown" or i not in beside:
+    if dated == "finish" or strict == "finish" or trigger != "unknown" or not isinstance(i, str) or i not in beside:
         return dated, status
     named = any(applies(g, f) and g in near(c) for c in codes for g, f in beside[i].items())
     return ("escalate" if named else "finish"), status

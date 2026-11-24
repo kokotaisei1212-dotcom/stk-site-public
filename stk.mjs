@@ -138,6 +138,26 @@ function subjectsOf(text) {
   return subject;
 }
 
+// From Rule 15 (CEO 2026-11-24): given jurisdictions, an intent goes to a person only where a law of one of them is written beside it
+// and applies on the day, whether or not their laws are read; the Checked list only says what was read.
+const H15 = "The Checked list places no intent.";
+export function placedByLaw(text) { return text.split("\n").includes(H15); }
+
+// With no jurisdiction given: the jurisdictions whose laws, written beside the intent and applying on the day, send it to a person,
+// sorted; [] when none does (a finish, a trigger, other, closed, not listed). Given jurisdictions, the answer may differ (decideAt).
+export function becauseAt(text, intent, trigger, day = null) {
+  const laws = items(text, H10);
+  if (laws === null || trigger !== "unknown" || typeof intent !== "string") return [];
+  day = day || today();
+  const beside = new Map();
+  for (const x of laws) {
+    const [k, v] = pair(x);
+    beside.set(k, new Map(v.split(", ").map((g) => g.includes(" from ") ? g.split(" from ") : [g, null])));
+  }
+  const i = intent.startsWith("conversation.") && beside.has(intent.slice(13)) ? intent.slice(13) : intent;
+  return [...(beside.get(i) || new Map())].filter(([, f]) => f === null || f <= day).map(([g]) => g).sort();
+}
+
 // { answer, status } on a day (YYYY-MM-DD, UTC; today when omitted). status: null when no jurisdiction is given; else "read",
 // "none found" or "not checked". Only "read" can answer less strictly than with none given. Rules older than Rule 9 (or Rule 9's,
 // which wrote no days): every law applies from the day it is cited.
@@ -179,8 +199,8 @@ export function decideAt(text, intent, trigger, where = null, day = null) {
   const sj = typeof i === "string" ? subject.get(i) : undefined;
   const marks = sj === undefined ? ["not checked"] : codes.flatMap((code) => [...near(code)].map((c) => checked.get(sj + "|" + c) || "not checked"));
   const status = marks.includes("not checked") ? "not checked" : (marks.includes("read") ? "read" : "none found");
-  if (status !== "read") return { answer: dated, status };
-  if (dated === "finish" || strict === "finish" || trigger !== "unknown" || !beside.has(i)) return { answer: dated, status };
+  if (status !== "read" && !placedByLaw(text)) return { answer: dated, status };   // before Rule 15: only "read" answered by them
+  if (dated === "finish" || strict === "finish" || trigger !== "unknown" || typeof i !== "string" || !beside.has(i)) return { answer: dated, status };
   const named = codes.some((c) => [...beside.get(i)].some(([g, f]) => applies(f) && near(c).has(g)));
   return { answer: named ? "escalate" : "finish", status };
 }
@@ -311,18 +331,22 @@ export async function ask(intent, trigger, { conversationId, ...fields } = {}) {
 }
 
 // ask(), for the jurisdictions whose laws apply to this decision (from Rule 9): a code or a list of codes, ISO 3166-1 (US, GB),
-// ISO 3166-2 (US-WA) or EU; UK is read as GB. { answer: "finish" or "escalate", read: true or false, status: "read", "none found" or
-// "not checked" }. Only "read" (a law that names a person was found) answers by those jurisdictions' laws; "none found" and
-// "not checked" answer as ask(), the strictest. The codes are kept in the row, as "jurisdiction"; STK still receives only the seal.
+// ISO 3166-2 (US-WA) or EU; UK is read as GB. { answer: "finish" or "escalate", read: true or false, status: "read", "none found",
+// "not checked" or "not published", because: [codes] }. From Rule 15 the answer is by those jurisdictions' laws whatever the status:
+// a person only where a law of one of them is written beside the action; the status says only what was read. (Before Rule 15, only
+// "read" answered by them.) With no jurisdiction given (null), the answer is the strictest and because names the jurisdictions whose
+// laws send the action to a person. The codes and the status are kept in the row, as "jurisdiction" and "jurisdiction_status";
+// STK still receives only the seal.
 export async function askWhere(intent, trigger, jurisdiction, { conversationId, ...fields } = {}) {
   const where = jurisdictions(jurisdiction);
   const answer = await askAny(intent, trigger, conversationId, fields, where);
-  let status = "not checked";
+  let status = "not checked", because = [];
   try {
-    if (where !== null && current) status = decideAt(current.text, typeof intent === "string" ? intent.trim().toLowerCase() : intent,
-      typeof trigger === "string" ? trigger.trim().toLowerCase() : trigger, where).status;
+    const i = typeof intent === "string" ? intent.trim().toLowerCase() : intent, t = typeof trigger === "string" ? trigger.trim().toLowerCase() : trigger;
+    if (current && where !== null) status = decideAt(current.text, i, t, where).status;
+    else if (current && answer === "escalate") because = becauseAt(current.text, i, t);
   } catch {}
-  return { answer, read: status === "read", status };
+  return { answer, read: status === "read", status, because };
 }
 
 async function askAny(intent, trigger, conversationId, fields, where) {
@@ -376,7 +400,10 @@ async function run(intent, trigger, conversationId, fields, state, settled, wher
 async function ask1(intent, trigger, cid, fields, state, settled, r, where = null) {
   const row = { ...fields, intent, trigger };
   if (cid !== null) row.conversation_id = cid;
-  if (where !== null) row.jurisdiction = where;            // askWhere: the codes given, sealed with the row
+  if (where !== null) {                                    // askWhere: the codes given, and what was read of them, sealed with the row
+    row.jurisdiction = where;
+    row.jurisdiction_status = decideAt(r.text, intent, trigger, where).status;   // written; moves nothing
+  }
   const text = rowText(row);
   const nonce = randomBytes(32);
   const seal = sealOf(nonce, text);
