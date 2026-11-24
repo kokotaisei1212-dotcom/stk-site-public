@@ -1,11 +1,17 @@
 """STK: ask before your AI hands a conversation to a person. https://stk-evidence.com/docs
 
     import stk
-    if stk.ask(intent, trigger, conversation_id=cid) == "finish":
+    r = stk.ask_where(intent, trigger, "US-TX", conversation_id=cid)   # the jurisdiction whose laws govern the decision
+    if r["answer"] == "finish":
         ...  # your AI goes on with the conversation
     else:
         ...  # hand it to a person, as your code does today
     stk.joined(cid)   # a person joined a conversation that got finish: that permission is taken off its day's bill
+
+    # without a jurisdiction, the strictest of every jurisdiction's laws:
+    if stk.ask(intent, trigger, conversation_id=cid) == "finish":
+        ...
+    # given none, ask_where(intent, trigger, None) returns because: the jurisdictions whose laws sent it to a person
 
 trigger: a trigger of the rules' Triggers list (https://stk-evidence.com/rules-full#triggers) that happened in the
 conversation, each defined there word for word:

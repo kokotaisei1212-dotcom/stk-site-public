@@ -1,0 +1,1515 @@
+{
+ "rule": 15,
+ "version": "4bbb7c956c5777200aae63a0a006b922b36ce5fe18765c96c37c12af1305c710",
+ "licence": "CC BY 4.0, https://creativecommons.org/licenses/by/4.0/",
+ "source": "https://stk-evidence.com/rules",
+ "laws": [
+  {
+   "anchor": "AU-hea-private-health-insurance-act-2007-s-75-15-1-b",
+   "url": "https://stk-evidence.com/rules#AU-hea-private-health-insurance-act-2007-s-75-15-1-b",
+   "law": "Private Health Insurance Act 2007 s 75-15(1)(b)",
+   "jurisdiction": "AU",
+   "subject": "health",
+   "kind": "A, a qualified person",
+   "beside": [
+    "claim.refuse"
+   ]
+  },
+  {
+   "anchor": "BR-hea-ans-resolu-o-normativa-n-424-2017-arts-6-8",
+   "url": "https://stk-evidence.com/rules#BR-hea-ans-resolu-o-normativa-n-424-2017-arts-6-8",
+   "law": "ANS Resolução Normativa nº 424/2017, Arts. 6 and 8",
+   "jurisdiction": "BR",
+   "subject": "health",
+   "kind": "A, a qualified person",
+   "beside": [
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "CA-QC-ins-cqlr-c-d-9-2",
+   "url": "https://stk-evidence.com/rules#CA-QC-ins-cqlr-c-d-9-2",
+   "law": "CQLR c. D-9.2",
+   "jurisdiction": "CA-QC",
+   "subject": "insurance",
+   "kind": "A, a qualified person",
+   "beside": [
+    "insclaim.decide",
+    "insclaim.partial",
+    "insclaim.refuse",
+    "liability.decide",
+    "totalloss.decide"
+   ]
+  },
+  {
+   "anchor": "CH-hea-kvg-sr-832-10-art-57-art-58-3-a",
+   "url": "https://stk-evidence.com/rules#CH-hea-kvg-sr-832-10-art-57-art-58-3-a",
+   "law": "KVG (SR 832.10) Art. 57 and Art. 58(3)(a)",
+   "jurisdiction": "CH",
+   "subject": "health",
+   "kind": "A, a qualified person",
+   "beside": [
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "DE-ins-bdsg-37-1-nr-2",
+   "url": "https://stk-evidence.com/rules#DE-ins-bdsg-37-1-nr-2",
+   "law": "BDSG § 37(1) Nr. 2",
+   "jurisdiction": "DE",
+   "subject": "insurance",
+   "kind": "B, a right on request",
+   "beside": [
+    "insclaim.partial",
+    "insclaim.refuse"
+   ]
+  },
+  {
+   "anchor": "EU-cre-directive-eu-2023-2225-art-18-8",
+   "url": "https://stk-evidence.com/rules#EU-cre-directive-eu-2023-2225-art-18-8",
+   "law": "Directive (EU) 2023/2225 Art. 18(8)",
+   "jurisdiction": "EU",
+   "subject": "credit",
+   "kind": "Not named in the rules' list of kinds",
+   "beside": [
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "EU-cre-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "url": "https://stk-evidence.com/rules#EU-cre-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3)",
+   "jurisdiction": "EU",
+   "subject": "credit",
+   "kind": "C, a category of decision",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "EU-gen-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "url": "https://stk-evidence.com/rules#EU-gen-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3)",
+   "jurisdiction": "EU",
+   "subject": "general",
+   "kind": "C, a category of decision",
+   "beside": [
+    "decision.review",
+    "payment_arrangement.refuse",
+    "refund.refuse"
+   ]
+  },
+  {
+   "anchor": "EU-hea-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "url": "https://stk-evidence.com/rules#EU-hea-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3)",
+   "jurisdiction": "EU",
+   "subject": "health",
+   "kind": "C, a category of decision",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "EU-ins-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "url": "https://stk-evidence.com/rules#EU-ins-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3)",
+   "jurisdiction": "EU",
+   "subject": "insurance",
+   "kind": "C, a category of decision",
+   "beside": [
+    "insclaim.partial",
+    "insclaim.refuse",
+    "policy.cancel",
+    "policy.nonrenew",
+    "policy.refuse"
+   ]
+  },
+  {
+   "anchor": "EU-pay-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "url": "https://stk-evidence.com/rules#EU-pay-gdpr-regulation-eu-2016-679-art-22-1-3",
+   "law": "GDPR (Regulation (EU) 2016/679) Art. 22(1) and (3)",
+   "jurisdiction": "EU",
+   "subject": "payments",
+   "kind": "C, a category of decision",
+   "beside": [
+    "dispute.refuse",
+    "fraud.refuse",
+    "transfer.error_refuse"
+   ]
+  },
+  {
+   "anchor": "FR-hea-code-de-la-s-curit-sociale-art-l315-1-viii-l315-2",
+   "url": "https://stk-evidence.com/rules#FR-hea-code-de-la-s-curit-sociale-art-l315-1-viii-l315-2",
+   "law": "Code de la sécurité sociale, art. L315-1 VIII and L315-2",
+   "jurisdiction": "FR",
+   "subject": "health",
+   "kind": "A, a qualified person",
+   "beside": [
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "GB-cre-uk-gdpr-arts-22a-22c",
+   "url": "https://stk-evidence.com/rules#GB-cre-uk-gdpr-arts-22a-22c",
+   "law": "UK GDPR Arts. 22A and 22C",
+   "jurisdiction": "GB",
+   "subject": "credit",
+   "kind": "B, a right on request",
+   "beside": [
+    "account.refuse",
+    "collections.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "GB-gen-uk-gdpr-arts-22a-22c",
+   "url": "https://stk-evidence.com/rules#GB-gen-uk-gdpr-arts-22a-22c",
+   "law": "UK GDPR Arts. 22A and 22C",
+   "jurisdiction": "GB",
+   "subject": "general",
+   "kind": "B, a right on request",
+   "beside": [
+    "decision.review",
+    "payment_arrangement.refuse",
+    "refund.refuse"
+   ]
+  },
+  {
+   "anchor": "GB-hea-uk-gdpr-art-22b-1",
+   "url": "https://stk-evidence.com/rules#GB-hea-uk-gdpr-art-22b-1",
+   "law": "UK GDPR Art. 22B(1)",
+   "jurisdiction": "GB",
+   "subject": "health",
+   "kind": "C, a category of decision",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "GB-hea-uk-gdpr-arts-22a-22c",
+   "url": "https://stk-evidence.com/rules#GB-hea-uk-gdpr-arts-22a-22c",
+   "law": "UK GDPR Arts. 22A and 22C",
+   "jurisdiction": "GB",
+   "subject": "health",
+   "kind": "B, a right on request",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse",
+    "coverage.deny_medical",
+    "coverage.refuse",
+    "decision.appeal",
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "GB-ins-uk-gdpr-arts-22a-22c",
+   "url": "https://stk-evidence.com/rules#GB-ins-uk-gdpr-arts-22a-22c",
+   "law": "UK GDPR Arts. 22A and 22C",
+   "jurisdiction": "GB",
+   "subject": "insurance",
+   "kind": "B, a right on request",
+   "beside": [
+    "insclaim.partial",
+    "insclaim.refuse",
+    "policy.cancel",
+    "policy.nonrenew",
+    "policy.refuse"
+   ]
+  },
+  {
+   "anchor": "GB-pay-uk-gdpr-arts-22a-22c",
+   "url": "https://stk-evidence.com/rules#GB-pay-uk-gdpr-arts-22a-22c",
+   "law": "UK GDPR Arts. 22A and 22C",
+   "jurisdiction": "GB",
+   "subject": "payments",
+   "kind": "B, a right on request",
+   "beside": [
+    "dispute.refuse",
+    "fraud.refuse",
+    "transfer.error_refuse"
+   ]
+  },
+  {
+   "anchor": "IN-hea-irdai-master-circular-on-health-insurance-business-2024-05-29-irdai-hlt-cir-pro-84-5-2024-para-17-a",
+   "url": "https://stk-evidence.com/rules#IN-hea-irdai-master-circular-on-health-insurance-business-2024-05-29-irdai-hlt-cir-pro-84-5-2024-para-17-a",
+   "law": "IRDAI Master Circular on Health Insurance Business, 2024-05-29 (IRDAI/HLT/CIR/PRO/84/5/2024), para. 17(a)",
+   "jurisdiction": "IN",
+   "subject": "health",
+   "kind": "C, a category of decision",
+   "beside": [
+    "claim.deny_medical",
+    "claim.refuse"
+   ]
+  },
+  {
+   "anchor": "IN-ins-irdai-master-circular-on-protection-policyholders-interests-2024-irdai-pp-gr-cir-misc-117-9-2024-with-insurance-act-1938-s-64um",
+   "url": "https://stk-evidence.com/rules#IN-ins-irdai-master-circular-on-protection-policyholders-interests-2024-irdai-pp-gr-cir-misc-117-9-2024-with-insurance-act-1938-s-64um",
+   "law": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024 (IRDAI/PP&GR/CIR/MISC/117/9/2024), with the Insurance Act, 1938, s. 64UM",
+   "jurisdiction": "IN",
+   "subject": "insurance",
+   "kind": "A, a qualified person",
+   "beside": [
+    "insclaim.decide",
+    "insclaim.partial",
+    "insclaim.refuse",
+    "totalloss.decide"
+   ]
+  },
+  {
+   "anchor": "KR-ins-185-96-2",
+   "url": "https://stk-evidence.com/rules#KR-ins-185-96-2",
+   "law": "보험업법 제185조 ① and ③ and 시행령 제96조의2",
+   "jurisdiction": "KR",
+   "subject": "insurance",
+   "kind": "A, a qualified person",
+   "beside": [
+    "insclaim.decide",
+    "insclaim.partial",
+    "insclaim.refuse",
+    "liability.decide",
+    "totalloss.decide"
+   ]
+  },
+  {
+   "anchor": "US-hea-29-cfr-2560-503-1-h-3-iii-h-4-m-7",
+   "url": "https://stk-evidence.com/rules#US-hea-29-cfr-2560-503-1-h-3-iii-h-4-m-7",
+   "law": "29 CFR § 2560.503-1(h)(3)(iii), (h)(4) and (m)(7)",
+   "jurisdiction": "US",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-hea-42-cfr-422-566-d",
+   "url": "https://stk-evidence.com/rules#US-hea-42-cfr-422-566-d",
+   "law": "42 CFR § 422.566(d)",
+   "jurisdiction": "US",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-hea-42-cfr-422-590",
+   "url": "https://stk-evidence.com/rules#US-hea-42-cfr-422-590",
+   "law": "42 CFR § 422.590",
+   "jurisdiction": "US",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-hea-42-cfr-423-566-d",
+   "url": "https://stk-evidence.com/rules#US-hea-42-cfr-423-566-d",
+   "law": "42 CFR § 423.566(d)",
+   "jurisdiction": "US",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-hea-42-cfr-423-590-f-2",
+   "url": "https://stk-evidence.com/rules#US-hea-42-cfr-423-590-f-2",
+   "law": "42 CFR § 423.590(f)(2)",
+   "jurisdiction": "US",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-hea-42-cfr-438-210-b-3",
+   "url": "https://stk-evidence.com/rules#US-hea-42-cfr-438-210-b-3",
+   "law": "42 CFR § 438.210(b)(3)",
+   "jurisdiction": "US",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-hea-42-cfr-438-406-b-2",
+   "url": "https://stk-evidence.com/rules#US-hea-42-cfr-438-406-b-2",
+   "law": "42 CFR § 438.406(b)(2)",
+   "jurisdiction": "US",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-hea-42-cfr-457-1230-d-chip-managed-care-applying-438-210",
+   "url": "https://stk-evidence.com/rules#US-hea-42-cfr-457-1230-d-chip-managed-care-applying-438-210",
+   "law": "42 CFR § 457.1230(d) (CHIP managed care, applying § 438.210)",
+   "jurisdiction": "US",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-hea-45-cfr-147-136-b-group-individual-coverage-applying-29-cfr-2560-503-1",
+   "url": "https://stk-evidence.com/rules#US-hea-45-cfr-147-136-b-group-individual-coverage-applying-29-cfr-2560-503-1",
+   "law": "45 CFR § 147.136(b) (group and individual coverage, applying 29 CFR § 2560.503-1)",
+   "jurisdiction": "US",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-AL-hea-ala-sb-63-2026-enrolled-1-b-3",
+   "url": "https://stk-evidence.com/rules#US-AL-hea-ala-sb-63-2026-enrolled-1-b-3",
+   "law": "Ala. SB 63 (2026), enrolled, § 1(b)(3)",
+   "jurisdiction": "US-AL",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-AR-hea-ark-code-23-99-1111-c-1",
+   "url": "https://stk-evidence.com/rules#US-AR-hea-ark-code-23-99-1111-c-1",
+   "law": "Ark. Code § 23-99-1111(c)(1)",
+   "jurisdiction": "US-AR",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-AZ-hea-a-r-s-20-2510-b",
+   "url": "https://stk-evidence.com/rules#US-AZ-hea-a-r-s-20-2510-b",
+   "law": "A.R.S. § 20-2510(B)",
+   "jurisdiction": "US-AZ",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-AZ-hea-a-r-s-20-2535-c",
+   "url": "https://stk-evidence.com/rules#US-AZ-hea-a-r-s-20-2535-c",
+   "law": "A.R.S. § 20-2535(C)",
+   "jurisdiction": "US-AZ",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-AZ-hea-a-r-s-20-3103",
+   "url": "https://stk-evidence.com/rules#US-AZ-hea-a-r-s-20-3103",
+   "law": "A.R.S. § 20-3103",
+   "jurisdiction": "US-AZ",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-AZ-hea-a-r-s-20-3407",
+   "url": "https://stk-evidence.com/rules#US-AZ-hea-a-r-s-20-3407",
+   "law": "A.R.S. § 20-3407",
+   "jurisdiction": "US-AZ",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-CA-cre-11-ccr-7221-a-b-1-a",
+   "url": "https://stk-evidence.com/rules#US-CA-cre-11-ccr-7221-a-b-1-a",
+   "law": "11 CCR § 7221(a), (b)(1)(A)",
+   "jurisdiction": "US-CA",
+   "subject": "credit",
+   "kind": "B, a right on request",
+   "beside": [
+    "account.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "US-CA-gen-11-ccr-7221-a-b-1-a",
+   "url": "https://stk-evidence.com/rules#US-CA-gen-11-ccr-7221-a-b-1-a",
+   "law": "11 CCR § 7221(a), (b)(1)(A)",
+   "jurisdiction": "US-CA",
+   "subject": "general",
+   "kind": "B, a right on request",
+   "beside": [
+    "payment_arrangement.refuse"
+   ]
+  },
+  {
+   "anchor": "US-CA-hea-cal-health-safety-code-1367-01",
+   "url": "https://stk-evidence.com/rules#US-CA-hea-cal-health-safety-code-1367-01",
+   "law": "Cal. Health & Safety Code § 1367.01",
+   "jurisdiction": "US-CA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-CA-hea-cal-health-safety-code-1367-01-cal-ins-code-10123-135-sb-1120-stats-2024-ch-879",
+   "url": "https://stk-evidence.com/rules#US-CA-hea-cal-health-safety-code-1367-01-cal-ins-code-10123-135-sb-1120-stats-2024-ch-879",
+   "law": "Cal. Health & Safety Code § 1367.01 and Cal. Ins. Code § 10123.135 (SB 1120, Stats. 2024, ch. 879)",
+   "jurisdiction": "US-CA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-CO-cre-c-r-s-6-1-1705-1-a-ii",
+   "url": "https://stk-evidence.com/rules#US-CO-cre-c-r-s-6-1-1705-1-a-ii",
+   "law": "C.R.S. § 6-1-1705(1)(a)(II)",
+   "jurisdiction": "US-CO",
+   "subject": "credit",
+   "kind": "B, a right on request",
+   "beside": [
+    "account.refuse",
+    "credit.refuse",
+    "limit.lower"
+   ]
+  },
+  {
+   "anchor": "US-CO-gen-c-r-s-6-1-1705-1-a-ii",
+   "url": "https://stk-evidence.com/rules#US-CO-gen-c-r-s-6-1-1705-1-a-ii",
+   "law": "C.R.S. § 6-1-1705(1)(a)(II)",
+   "jurisdiction": "US-CO",
+   "subject": "general",
+   "kind": "B, a right on request",
+   "beside": [
+    "decision.review"
+   ]
+  },
+  {
+   "anchor": "US-CO-hea-c-r-s-10-16-112-7-5-b",
+   "url": "https://stk-evidence.com/rules#US-CO-hea-c-r-s-10-16-112-7-5-b",
+   "law": "C.R.S. § 10-16-112.7(5)(b)",
+   "jurisdiction": "US-CO",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-CO-hea-c-r-s-10-16-113-3-b-iii-a-iv-a",
+   "url": "https://stk-evidence.com/rules#US-CO-hea-c-r-s-10-16-113-3-b-iii-a-iv-a",
+   "law": "C.R.S. § 10-16-113(3)(b)(III)(A), (IV)(A)",
+   "jurisdiction": "US-CO",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-CO-hea-c-r-s-10-16-113-5",
+   "url": "https://stk-evidence.com/rules#US-CO-hea-c-r-s-10-16-113-5",
+   "law": "C.R.S. § 10-16-113(5)",
+   "jurisdiction": "US-CO",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-CT-hea-conn-gen-stat-38a-591c-a-1",
+   "url": "https://stk-evidence.com/rules#US-CT-hea-conn-gen-stat-38a-591c-a-1",
+   "law": "Conn. Gen. Stat. § 38a-591c(a)(1)",
+   "jurisdiction": "US-CT",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-CT-hea-conn-gen-stat-38a-591e-c-1",
+   "url": "https://stk-evidence.com/rules#US-CT-hea-conn-gen-stat-38a-591e-c-1",
+   "law": "Conn. Gen. Stat. § 38a-591e(c)(1)",
+   "jurisdiction": "US-CT",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-DC-hea-d-c-code-31-3875-06-a-1",
+   "url": "https://stk-evidence.com/rules#US-DC-hea-d-c-code-31-3875-06-a-1",
+   "law": "D.C. Code § 31-3875.06(a)(1)",
+   "jurisdiction": "US-DC",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-DC-hea-d-c-code-31-3875-06-b",
+   "url": "https://stk-evidence.com/rules#US-DC-hea-d-c-code-31-3875-06-b",
+   "law": "D.C. Code § 31-3875.06(b)",
+   "jurisdiction": "US-DC",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-DE-hea-18-del-c-3582-e-1-3",
+   "url": "https://stk-evidence.com/rules#US-DE-hea-18-del-c-3582-e-1-3",
+   "law": "18 Del. C. § 3582(e)(1), (3)",
+   "jurisdiction": "US-DE",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-DE-hea-18-del-c-3582-e-2",
+   "url": "https://stk-evidence.com/rules#US-DE-hea-18-del-c-3582-e-2",
+   "law": "18 Del. C. § 3582(e)(2)",
+   "jurisdiction": "US-DE",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-FL-hea-fla-stat-627-6141",
+   "url": "https://stk-evidence.com/rules#US-FL-hea-fla-stat-627-6141",
+   "law": "Fla. Stat. § 627.6141",
+   "jurisdiction": "US-FL",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-FL-hea-fla-stat-641-51-4",
+   "url": "https://stk-evidence.com/rules#US-FL-hea-fla-stat-641-51-4",
+   "law": "Fla. Stat. § 641.51(4)",
+   "jurisdiction": "US-FL",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-GA-hea-o-c-g-a-33-46-21-e",
+   "url": "https://stk-evidence.com/rules#US-GA-hea-o-c-g-a-33-46-21-e",
+   "law": "O.C.G.A. § 33-46-21(e)",
+   "jurisdiction": "US-GA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-GA-hea-o-c-g-a-33-46-22",
+   "url": "https://stk-evidence.com/rules#US-GA-hea-o-c-g-a-33-46-22",
+   "law": "O.C.G.A. § 33-46-22",
+   "jurisdiction": "US-GA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-GA-hea-o-c-g-a-33-46-7-1-c",
+   "url": "https://stk-evidence.com/rules#US-GA-hea-o-c-g-a-33-46-7-1-c",
+   "law": "O.C.G.A. § 33-46-7.1(c)",
+   "jurisdiction": "US-GA",
+   "subject": "health",
+   "kind": "C, a category of decision",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-IA-hea-iowa-code-514f-8-2a",
+   "url": "https://stk-evidence.com/rules#US-IA-hea-iowa-code-514f-8-2a",
+   "law": "Iowa Code § 514F.8(2A)",
+   "jurisdiction": "US-IA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical",
+    "priorauth.refuse"
+   ]
+  },
+  {
+   "anchor": "US-IA-hea-iowa-code-514f-8a-2-a",
+   "url": "https://stk-evidence.com/rules#US-IA-hea-iowa-code-514f-8a-2-a",
+   "law": "Iowa Code § 514F.8A(2)(a)",
+   "jurisdiction": "US-IA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-IA-hea-iowa-code-514f-8a-4",
+   "url": "https://stk-evidence.com/rules#US-IA-hea-iowa-code-514f-8a-4",
+   "law": "Iowa Code § 514F.8A(4)",
+   "jurisdiction": "US-IA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-ID-hea-idaho-code-41-3930-1-b",
+   "url": "https://stk-evidence.com/rules#US-ID-hea-idaho-code-41-3930-1-b",
+   "law": "Idaho Code § 41-3930(1)(b)",
+   "jurisdiction": "US-ID",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-IL-hea-215-ilcs-134-45-d",
+   "url": "https://stk-evidence.com/rules#US-IL-hea-215-ilcs-134-45-d",
+   "law": "215 ILCS 134/45(d)",
+   "jurisdiction": "US-IL",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-IL-hea-215-ilcs-134-45-i",
+   "url": "https://stk-evidence.com/rules#US-IL-hea-215-ilcs-134-45-i",
+   "law": "215 ILCS 134/45(i)",
+   "jurisdiction": "US-IL",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-IL-hea-215-ilcs-134-85-e-2",
+   "url": "https://stk-evidence.com/rules#US-IL-hea-215-ilcs-134-85-e-2",
+   "law": "215 ILCS 134/85(e)(2)",
+   "jurisdiction": "US-IL",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-IN-hea-ic-27-1-37-5-20-a-1-a",
+   "url": "https://stk-evidence.com/rules#US-IN-hea-ic-27-1-37-5-20-a-1-a",
+   "law": "IC 27-1-37.5-20(a)(1)(A)",
+   "jurisdiction": "US-IN",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-IN-hea-ic-27-1-37-5-20-a-1-b",
+   "url": "https://stk-evidence.com/rules#US-IN-hea-ic-27-1-37-5-20-a-1-b",
+   "law": "IC 27-1-37.5-20(a)(1)(B)",
+   "jurisdiction": "US-IN",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-IN-hea-ic-27-1-52-9",
+   "url": "https://stk-evidence.com/rules#US-IN-hea-ic-27-1-52-9",
+   "law": "IC 27-1-52-9",
+   "jurisdiction": "US-IN",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-KY-hea-krs-304-17a-607-2-b",
+   "url": "https://stk-evidence.com/rules#US-KY-hea-krs-304-17a-607-2-b",
+   "law": "KRS 304.17A-607(2)(b)",
+   "jurisdiction": "US-KY",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-KY-hea-krs-304-17a-617-4-b",
+   "url": "https://stk-evidence.com/rules#US-KY-hea-krs-304-17a-617-4-b",
+   "law": "KRS 304.17A-617(4)(b)",
+   "jurisdiction": "US-KY",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-KY-ins-krs-304-9-430-1-a",
+   "url": "https://stk-evidence.com/rules#US-KY-ins-krs-304-9-430-1-a",
+   "law": "KRS 304.9-430(1)(a)",
+   "jurisdiction": "US-KY",
+   "subject": "insurance",
+   "kind": "A, a qualified person",
+   "beside": [
+    "insclaim.decide",
+    "insclaim.partial",
+    "insclaim.refuse",
+    "liability.decide",
+    "totalloss.decide"
+   ]
+  },
+  {
+   "anchor": "US-MA-hea-958-cmr-3-306-2",
+   "url": "https://stk-evidence.com/rules#US-MA-hea-958-cmr-3-306-2",
+   "law": "958 CMR 3.306(2)",
+   "jurisdiction": "US-MA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-MA-hea-m-g-l-c-176o-12-a",
+   "url": "https://stk-evidence.com/rules#US-MA-hea-m-g-l-c-176o-12-a",
+   "law": "M.G.L. c. 176O, § 12(a)",
+   "jurisdiction": "US-MA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-MA-ins-m-g-l-c-26-8g-212-cmr-2-02-1-2-04-1-a",
+   "url": "https://stk-evidence.com/rules#US-MA-ins-m-g-l-c-26-8g-212-cmr-2-02-1-2-04-1-a",
+   "law": "M.G.L. c. 26, § 8G and 212 CMR 2.02(1), 2.04(1)(a)",
+   "jurisdiction": "US-MA",
+   "subject": "insurance",
+   "kind": "A, a qualified person",
+   "beside": [
+    "insclaim.partial",
+    "totalloss.decide"
+   ]
+  },
+  {
+   "anchor": "US-MD-hea-md-code-ins-15-10b-05-1-c-4-d",
+   "url": "https://stk-evidence.com/rules#US-MD-hea-md-code-ins-15-10b-05-1-c-4-d",
+   "law": "Md. Code, Ins. § 15-10B-05.1(c)(4), (d)",
+   "jurisdiction": "US-MD",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-MD-hea-md-code-ins-15-10b-07-a-b",
+   "url": "https://stk-evidence.com/rules#US-MD-hea-md-code-ins-15-10b-07-a-b",
+   "law": "Md. Code, Ins. § 15-10B-07(a), (b)",
+   "jurisdiction": "US-MD",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-MD-hea-md-code-ins-15-10b-09-1",
+   "url": "https://stk-evidence.com/rules#US-MD-hea-md-code-ins-15-10b-09-1",
+   "law": "Md. Code, Ins. § 15-10B-09.1",
+   "jurisdiction": "US-MD",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-ME-hea-02-031-c-m-r-ch-850-8-d-2",
+   "url": "https://stk-evidence.com/rules#US-ME-hea-02-031-c-m-r-ch-850-8-d-2",
+   "law": "02-031 C.M.R. ch. 850, § 8(D)(2)",
+   "jurisdiction": "US-ME",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-ME-hea-24-a-m-r-s-4304-7",
+   "url": "https://stk-evidence.com/rules#US-ME-hea-24-a-m-r-s-4304-7",
+   "law": "24-A M.R.S. § 4304(7)",
+   "jurisdiction": "US-ME",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-MI-hea-mcl-500-2212e-5-6",
+   "url": "https://stk-evidence.com/rules#US-MI-hea-mcl-500-2212e-5-6",
+   "law": "MCL 500.2212e(5), (6)",
+   "jurisdiction": "US-MI",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-MI-hea-mcl-500-2212e-8-9",
+   "url": "https://stk-evidence.com/rules#US-MI-hea-mcl-500-2212e-8-9",
+   "law": "MCL 500.2212e(8), (9)",
+   "jurisdiction": "US-MI",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-MN-hea-minn-stat-62m-06-subd-3",
+   "url": "https://stk-evidence.com/rules#US-MN-hea-minn-stat-62m-06-subd-3",
+   "law": "Minn. Stat. § 62M.06, subd. 3",
+   "jurisdiction": "US-MN",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-MN-hea-minn-stat-62m-09-subd-3",
+   "url": "https://stk-evidence.com/rules#US-MN-hea-minn-stat-62m-09-subd-3",
+   "law": "Minn. Stat. § 62M.09, subd. 3",
+   "jurisdiction": "US-MN",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-MO-hea-rsmo-376-1361-2",
+   "url": "https://stk-evidence.com/rules#US-MO-hea-rsmo-376-1361-2",
+   "law": "RSMo 376.1361.2",
+   "jurisdiction": "US-MO",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-MS-hea-miss-code-ann-41-83-31",
+   "url": "https://stk-evidence.com/rules#US-MS-hea-miss-code-ann-41-83-31",
+   "law": "Miss. Code Ann. § 41-83-31",
+   "jurisdiction": "US-MS",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-MT-hea-mca-33-32-210-1-2-4",
+   "url": "https://stk-evidence.com/rules#US-MT-hea-mca-33-32-210-1-2-4",
+   "law": "MCA 33-32-210(1), (2), (4)",
+   "jurisdiction": "US-MT",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-MT-hea-mca-33-32-210-3",
+   "url": "https://stk-evidence.com/rules#US-MT-hea-mca-33-32-210-3",
+   "law": "MCA 33-32-210(3)",
+   "jurisdiction": "US-MT",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-NC-hea-n-c-gen-stat-58-50-61-d",
+   "url": "https://stk-evidence.com/rules#US-NC-hea-n-c-gen-stat-58-50-61-d",
+   "law": "N.C. Gen. Stat. § 58-50-61(d)",
+   "jurisdiction": "US-NC",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-NC-hea-n-c-gen-stat-58-50-61-j",
+   "url": "https://stk-evidence.com/rules#US-NC-hea-n-c-gen-stat-58-50-61-j",
+   "law": "N.C. Gen. Stat. § 58-50-61(j)",
+   "jurisdiction": "US-NC",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-ND-hea-n-d-c-c-26-1-36-12-03",
+   "url": "https://stk-evidence.com/rules#US-ND-hea-n-d-c-c-26-1-36-12-03",
+   "law": "N.D.C.C. § 26.1-36.12-03",
+   "jurisdiction": "US-ND",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-ND-hea-n-d-c-c-26-1-36-12-04",
+   "url": "https://stk-evidence.com/rules#US-ND-hea-n-d-c-c-26-1-36-12-04",
+   "law": "N.D.C.C. § 26.1-36.12-04",
+   "jurisdiction": "US-ND",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-NE-hea-neb-lb-77-2025-sec-4-1",
+   "url": "https://stk-evidence.com/rules#US-NE-hea-neb-lb-77-2025-sec-4-1",
+   "law": "Neb. LB 77 (2025), sec. 4(1)",
+   "jurisdiction": "US-NE",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-NE-hea-neb-lb-77-2025-sec-5",
+   "url": "https://stk-evidence.com/rules#US-NE-hea-neb-lb-77-2025-sec-5",
+   "law": "Neb. LB 77 (2025), sec. 5",
+   "jurisdiction": "US-NE",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-NH-hea-rsa-420-j-5-i-b-ii-a",
+   "url": "https://stk-evidence.com/rules#US-NH-hea-rsa-420-j-5-i-b-ii-a",
+   "law": "RSA 420-J:5, I(b), II(a)",
+   "jurisdiction": "US-NH",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-NH-hea-rsa-420-j-6-iii-iv",
+   "url": "https://stk-evidence.com/rules#US-NH-hea-rsa-420-j-6-iii-iv",
+   "law": "RSA 420-J:6, III-IV",
+   "jurisdiction": "US-NH",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-NJ-hea-n-j-s-a-17b-30-55-12",
+   "url": "https://stk-evidence.com/rules#US-NJ-hea-n-j-s-a-17b-30-55-12",
+   "law": "N.J.S.A. 17B:30-55.12",
+   "jurisdiction": "US-NJ",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-NJ-hea-n-j-s-a-17b-30-55-8",
+   "url": "https://stk-evidence.com/rules#US-NJ-hea-n-j-s-a-17b-30-55-8",
+   "law": "N.J.S.A. 17B:30-55.8",
+   "jurisdiction": "US-NJ",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-NM-hea-13-10-17-14-e-nmac",
+   "url": "https://stk-evidence.com/rules#US-NM-hea-13-10-17-14-e-nmac",
+   "law": "13.10.17.14(E) NMAC",
+   "jurisdiction": "US-NM",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-NM-hea-13-10-22-9-nmac",
+   "url": "https://stk-evidence.com/rules#US-NM-hea-13-10-22-9-nmac",
+   "law": "13.10.22.9 NMAC",
+   "jurisdiction": "US-NM",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-NV-hea-nrs-695g-150-1",
+   "url": "https://stk-evidence.com/rules#US-NV-hea-nrs-695g-150-1",
+   "law": "NRS 695G.150(1)",
+   "jurisdiction": "US-NV",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-NY-hea-n-y-ins-law-4903-a",
+   "url": "https://stk-evidence.com/rules#US-NY-hea-n-y-ins-law-4903-a",
+   "law": "N.Y. Ins. Law § 4903(a)",
+   "jurisdiction": "US-NY",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-NY-hea-n-y-ins-law-4904-d",
+   "url": "https://stk-evidence.com/rules#US-NY-hea-n-y-ins-law-4904-d",
+   "law": "N.Y. Ins. Law § 4904(d)",
+   "jurisdiction": "US-NY",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-OH-hea-ohio-rev-code-1751-80-b",
+   "url": "https://stk-evidence.com/rules#US-OH-hea-ohio-rev-code-1751-80-b",
+   "law": "Ohio Rev. Code § 1751.80(B)",
+   "jurisdiction": "US-OH",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-OK-hea-36-o-s-6570-3",
+   "url": "https://stk-evidence.com/rules#US-OK-hea-36-o-s-6570-3",
+   "law": "36 O.S. § 6570.3",
+   "jurisdiction": "US-OK",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-OK-hea-36-o-s-6570-4",
+   "url": "https://stk-evidence.com/rules#US-OK-hea-36-o-s-6570-4",
+   "law": "36 O.S. § 6570.4",
+   "jurisdiction": "US-OK",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-OR-hea-ors-743b-423-2-f",
+   "url": "https://stk-evidence.com/rules#US-OR-hea-ors-743b-423-2-f",
+   "law": "ORS 743B.423(2)(f)",
+   "jurisdiction": "US-OR",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-PA-hea-40-p-s-991-2152-c",
+   "url": "https://stk-evidence.com/rules#US-PA-hea-40-p-s-991-2152-c",
+   "law": "40 P.S. § 991.2152(c)",
+   "jurisdiction": "US-PA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-PA-hea-40-p-s-991-2161-b-1-d",
+   "url": "https://stk-evidence.com/rules#US-PA-hea-40-p-s-991-2161-b-1-d",
+   "law": "40 P.S. § 991.2161(b)(1), (d)",
+   "jurisdiction": "US-PA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-RI-hea-r-i-gen-laws-27-18-9-5-b-1",
+   "url": "https://stk-evidence.com/rules#US-RI-hea-r-i-gen-laws-27-18-9-5-b-1",
+   "law": "R.I. Gen. Laws § 27-18.9-5(b)(1)",
+   "jurisdiction": "US-RI",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-RI-hea-r-i-gen-laws-27-18-9-7-b-2",
+   "url": "https://stk-evidence.com/rules#US-RI-hea-r-i-gen-laws-27-18-9-7-b-2",
+   "law": "R.I. Gen. Laws § 27-18.9-7(b)(2)",
+   "jurisdiction": "US-RI",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-SD-hea-sdcl-58-17h-18",
+   "url": "https://stk-evidence.com/rules#US-SD-hea-sdcl-58-17h-18",
+   "law": "SDCL § 58-17H-18",
+   "jurisdiction": "US-SD",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-SD-hea-sdcl-58-17i-7",
+   "url": "https://stk-evidence.com/rules#US-SD-hea-sdcl-58-17i-7",
+   "law": "SDCL § 58-17I-7",
+   "jurisdiction": "US-SD",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-TN-hea-2023-tenn-pub-acts-ch-395-4-t-c-a-56-7-3603-b-as-numbered-there",
+   "url": "https://stk-evidence.com/rules#US-TN-hea-2023-tenn-pub-acts-ch-395-4-t-c-a-56-7-3603-b-as-numbered-there",
+   "law": "2023 Tenn. Pub. Acts ch. 395, § 4 (T.C.A. § 56-7-3603(b) as numbered there)",
+   "jurisdiction": "US-TN",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-TN-hea-2023-tenn-pub-acts-ch-395-4-t-c-a-56-7-3604-a-1-as-numbered-there",
+   "url": "https://stk-evidence.com/rules#US-TN-hea-2023-tenn-pub-acts-ch-395-4-t-c-a-56-7-3604-a-1-as-numbered-there",
+   "law": "2023 Tenn. Pub. Acts ch. 395, § 4 (T.C.A. § 56-7-3604(a)(1) as numbered there)",
+   "jurisdiction": "US-TN",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-TX-hea-tex-ins-code-4201-356",
+   "url": "https://stk-evidence.com/rules#US-TX-hea-tex-ins-code-4201-356",
+   "law": "Tex. Ins. Code § 4201.356",
+   "jurisdiction": "US-TX",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-TX-hea-tex-ins-code-4201-153-d-4201-156",
+   "url": "https://stk-evidence.com/rules#US-TX-hea-tex-ins-code-4201-153-d-4201-156",
+   "law": "Tex. Ins. Code §§ 4201.153(d) and 4201.156",
+   "jurisdiction": "US-TX",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-TX-ins-tex-ins-code-4101-001-a-1-4101-051",
+   "url": "https://stk-evidence.com/rules#US-TX-ins-tex-ins-code-4101-001-a-1-4101-051",
+   "law": "Tex. Ins. Code § 4101.001(a)(1) and § 4101.051",
+   "jurisdiction": "US-TX",
+   "subject": "insurance",
+   "kind": "A, a qualified person",
+   "beside": [
+    "insclaim.decide",
+    "insclaim.partial",
+    "insclaim.refuse",
+    "liability.decide",
+    "totalloss.decide"
+   ]
+  },
+  {
+   "anchor": "US-UT-hea-utah-code-31a-22-650-3-e",
+   "url": "https://stk-evidence.com/rules#US-UT-hea-utah-code-31a-22-650-3-e",
+   "law": "Utah Code § 31A-22-650(3)(e)",
+   "jurisdiction": "US-UT",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-UT-hea-utah-code-31a-22-650-6-e",
+   "url": "https://stk-evidence.com/rules#US-UT-hea-utah-code-31a-22-650-6-e",
+   "law": "Utah Code § 31A-22-650(6)(e)",
+   "jurisdiction": "US-UT",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-VA-hea-14vac5-216-40-c-1",
+   "url": "https://stk-evidence.com/rules#US-VA-hea-14vac5-216-40-c-1",
+   "law": "14VAC5-216-40(C)(1)",
+   "jurisdiction": "US-VA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-VT-hea-vermont-dfr-rule-h-2009-03-3-1-g-2-a-physician",
+   "url": "https://stk-evidence.com/rules#US-VT-hea-vermont-dfr-rule-h-2009-03-3-1-g-2-a-physician",
+   "law": "Vermont DFR Rule H-2009-03 § 3.1(G)(2) (a physician)",
+   "jurisdiction": "US-VT",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-VT-hea-vermont-dfr-rule-h-2009-03-3-3-d-8-reviewers-including-a-physician",
+   "url": "https://stk-evidence.com/rules#US-VT-hea-vermont-dfr-rule-h-2009-03-3-3-d-8-reviewers-including-a-physician",
+   "law": "Vermont DFR Rule H-2009-03 § 3.3(D)(8) (reviewers including a physician)",
+   "jurisdiction": "US-VT",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  },
+  {
+   "anchor": "US-WA-hea-rcw-48-43-830-3-a",
+   "url": "https://stk-evidence.com/rules#US-WA-hea-rcw-48-43-830-3-a",
+   "law": "RCW 48.43.830(3)(a)",
+   "jurisdiction": "US-WA",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-WV-hea-w-va-code-r-114-95-6-2",
+   "url": "https://stk-evidence.com/rules#US-WV-hea-w-va-code-r-114-95-6-2",
+   "law": "W. Va. Code R. § 114-95-6.2",
+   "jurisdiction": "US-WV",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "claim.deny_medical",
+    "coverage.deny_medical",
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-WY-hea-wyo-stat-26-55-104-a",
+   "url": "https://stk-evidence.com/rules#US-WY-hea-wyo-stat-26-55-104-a",
+   "law": "Wyo. Stat. § 26-55-104(a)",
+   "jurisdiction": "US-WY",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "priorauth.deny_medical"
+   ]
+  },
+  {
+   "anchor": "US-WY-hea-wyo-stat-26-55-106-a-b",
+   "url": "https://stk-evidence.com/rules#US-WY-hea-wyo-stat-26-55-106-a-b",
+   "law": "Wyo. Stat. § 26-55-106(a), (b)",
+   "jurisdiction": "US-WY",
+   "subject": "health",
+   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
+   "beside": [
+    "decision.appeal"
+   ]
+  }
+ ]
+}

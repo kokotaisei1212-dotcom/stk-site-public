@@ -1,8 +1,13 @@
 // STK: ask before your AI hands a conversation to a person. https://stk-evidence.com/docs
 //
-//   import { ask, joined } from "./stk.mjs";
-//   if (await ask(intent, trigger, { conversationId }) === "finish") { /* your AI goes on */ } else { /* hand it to a person */ }
+//   import { askWhere, ask, joined } from "./stk.mjs";
+//   const r = await askWhere(intent, trigger, "US-TX", { conversationId });   // the jurisdiction whose laws govern the decision
+//   if (r.answer === "finish") { /* your AI goes on */ } else { /* hand it to a person */ }
 //   await joined(conversationId);   // a person joined a conversation that got finish: taken off its day's bill
+//
+//   // without a jurisdiction, the strictest of every jurisdiction's laws:
+//   if (await ask(intent, trigger, { conversationId }) === "finish") { /* ... */ }
+//   // given none, askWhere(intent, trigger, null) returns because: the jurisdictions whose laws sent it to a person
 //
 // trigger: a trigger of the rules' Triggers list (https://stk-evidence.com/rules-full#triggers) that happened in the
 // conversation: customer_asked, distressed, angry, bereavement, threat, legal_claim; or unknown when none of them

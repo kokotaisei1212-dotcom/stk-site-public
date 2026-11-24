@@ -1,3 +1,16 @@
 User-agent: *
-Disallow: /404
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://stk-evidence.com/sitemap.xml
