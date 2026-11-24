@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>STK — All the AI the law allows.</title>
+<title>Permission for AI, written by law.</title>
 <meta name="description" content="Which decisions an AI may finish alone, and which a person must make — published in the open, so no one is decided about by a machine alone.">
 <link rel="canonical" href="https://stk-evidence.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="STK">
 <meta property="og:url" content="https://stk-evidence.com/">
-<meta property="og:title" content="STK — All the AI the law allows.">
+<meta property="og:title" content="Permission for AI, written by law.">
 <meta property="og:description" content="Which decisions an AI may finish alone, and which a person must make — published in the open, so no one is decided about by a machine alone.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="STK — All the AI the law allows.">
+<meta name="twitter:title" content="Permission for AI, written by law.">
 <meta name="twitter:description" content="Which decisions an AI may finish alone, and which a person must make — published in the open, so no one is decided about by a machine alone.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon-32-dark.png" type="image/png" sizes="32x32">
@@ -27,15 +27,9 @@
 </div></header>
 <div class="menu" id="menu" hidden><nav class="wrap" aria-label="Pages"><ul>
 <li><a href="/rules">Rules</a></li>
-<li><a href="/ledger#check">How to check a row</a></li>
-<li><a href="/receive">What we receive</a></li>
-<li><a href="/when">What happens when</a></li>
 <li><a href="/docs">Docs</a></li>
-<li><a href="/docs#setup">Setup guides</a></li>
-<li><a href="/vendors">For AI vendors</a></li>
 <li><a href="/price">Price</a></li>
-<li><a href="/limits">Known limits</a></li>
-<li><a href="/changelog">Changelog</a></li>
+<li><a href="/terms">Terms</a></li>
 </ul></nav></div>
 <main class="wrap">
 <style>
@@ -46,21 +40,22 @@
 main.wrap{max-width:none;padding-inline:0}
 .bar .wrap,footer .wrap{max-width:none}
 main > *{box-sizing:border-box}
-.hero{text-align:center;padding:calc(var(--bar) / 2 + 20px + var(--sec)) var(--pad) 64px}
-.hero h1{margin:0 auto;font-size:47.6px;font-weight:400;line-height:1.5;letter-spacing:-.025em;max-width:22em;text-wrap:balance}
+html{scroll-behavior:smooth}
+/* the first screen (CEO 2026-11-24, as Visa's): the headline and one button, nothing else; the next part below the fold */
+.hero{position:relative;box-sizing:border-box;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:var(--bar) var(--pad) 96px}
+.hero h1{margin:0 auto;font-size:47.6px;font-weight:400;line-height:1.3;letter-spacing:-.025em;max-width:16em;text-wrap:balance}
 @media (min-width:768px){.hero h1{font-size:89.6px}}
-.call,.law,.tool{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:0 var(--pad) 64px}
+.cta{display:inline-block;margin-top:40px;font-size:17.25px;line-height:1.5;padding:16px 24px;border-radius:4px;color:var(--bg);background:var(--ink);text-decoration:none}
+.cue{position:absolute;left:50%;bottom:40px;width:16px;height:16px;margin-left:-8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg)}   /* more below */
+.call,.law,.tool,.never{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad) 0}
+.tool{scroll-margin-top:var(--bar)}
 .call pre{margin:0;box-sizing:border-box;width:100%;white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--mono);font-size:13.8px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:16px}
 .law label{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;font-size:14.95px;line-height:1.5;color:var(--muted);margin:0 0 24px}
 .law select{font:inherit;font-size:17.25px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:0;padding:8px;width:100%;min-width:0;box-sizing:border-box}
-.law dl{margin:0;display:grid;gap:16px}
-.law dl div{display:grid;grid-template-columns:6.5em 1fr;column-gap:16px;font-size:17.25px;line-height:1.55}
-@media (max-width:479px){.law dl div{grid-template-columns:1fr}}
-.law dt{color:var(--muted)}
-.law dd{margin:0}
-.law small{display:block;font-size:13.8px;line-height:1.5;color:var(--muted)}
-.law small a{color:inherit}
-.tool h2{margin:0 0 16px;font-size:14.95px;line-height:1.5;font-weight:400;color:var(--muted);letter-spacing:.04em}
+.law p{margin:0 0 8px;font-size:17.25px;line-height:1.55}
+.law p a{color:inherit}
+.law .none{color:var(--muted)}
+.never{font-size:13.8px;line-height:1.5;color:var(--muted)}
 .tool p{margin:16px 0 0;font-size:17.25px;line-height:1.55}
 .tool .only{margin:8px 0 0;font-size:13.8px;color:var(--muted)}
 .tool #keysout{box-sizing:border-box;width:100%;margin:16px 0 0;white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:13.8px;line-height:1.6;border:1px solid var(--line);border-radius:4px;padding:16px}
@@ -71,11 +66,7 @@ main > *{box-sizing:border-box}
 .tool #card{margin-top:16px}
 .tool #pricenote{margin:16px 0 0;font-size:14.95px;line-height:1.5;color:var(--muted)}
 .tool #pricenote a{color:inherit}
-.band{margin:0 var(--pad);border-radius:var(--round);background:#000000;color:#FFFFFF;text-align:center;padding:var(--black) var(--pad)}
-.band p{margin:0 auto;font-size:17.25px;line-height:1.5;letter-spacing:-.01em;max-width:var(--measure);text-wrap:balance}
-.band p + p{margin-top:8px}
-@media (min-width:768px){.band p{font-size:25.3px}}
-.fine{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:40px var(--pad) var(--sec);font-size:13.8px;line-height:1.5;color:var(--muted)}
+.price{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad);font-size:17.25px;line-height:1.55}
 footer.dark{padding-block:var(--black)}
 footer .toplinks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px;justify-content:normal;text-align:left;max-width:var(--measure);margin:0 auto}
 @media (min-width:900px){footer .toplinks{grid-template-columns:repeat(5,minmax(0,1fr));max-width:none}}
@@ -83,21 +74,20 @@ footer .toplinks h2{margin:0 0 16px;font-size:14.95px;line-height:1.5}
 footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 </style>
 <section class="hero">
-<h1>All the AI the law allows.</h1>
+<h1>Permission for AI, written by law.</h1>
+<a class="cta" href="#keys">Get an API key</a>
+<span class="cue" aria-hidden="true"></span>
 </section>
 <section class="call" aria-label="One call"><pre id="call">&gt;&gt;&gt; stk.ask_where(&quot;eligibility.check&quot;, &quot;unknown&quot;, &quot;US-TX&quot;)[&quot;answer&quot;]
 &#x27;finish&#x27;</pre></section>
 <section class="law" aria-label="The law">
 <label>Jurisdiction<select id="where"></select></label>
-<dl>
-<div><dt>Law</dt><dd><span id="n-law">25</span> of 91 actions: a person, by a law written beside it.<small><span id="read">None given: the strictest of every jurisdiction&#x27;s laws.</span> <a href="/rules">Rules</a></small></dd></div>
-<div><dt>AI</dt><dd><span id="n-ai">66</span> of 91 actions an AI may finish alone.</dd></div>
-<div><dt>Signature</dt><dd>STK signs each one. STK never sees the decision. Of the decision, only a 32-byte hash reaches us.</dd></div>
-</dl>
+<p><span id="n-ai">66</span> of 91 actions an AI may finish alone.</p>
+<p><a href="/rules"><span id="n-law">25</span> need a person, each by a law written beside it.</a><span class="none" id="none"> None given: the strictest of every jurisdiction's laws.</span></p>
 </section>
-<section class="tool wrap" id="keys" aria-label="Get a test key">
-<h2>Get a test key</h2>
-<form id="kf"><input id="em" type="email" required autocomplete="email" placeholder="email" aria-label="email"><button type="submit">Get a test key</button></form>
+<p class="never">STK never sees the decision. Only a 32-byte hash reaches us.</p>
+<section class="tool wrap" id="keys" aria-label="Get an API key">
+<form id="kf"><input id="em" type="email" required autocomplete="email" placeholder="email" aria-label="email"><button type="submit">Get an API key</button></form>
 <p class="only">Email only.</p>
 <p id="ks" role="status"></p>
 <pre id="keysout" hidden></pre>
@@ -105,10 +95,10 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "license": "https://creativecommons.org/licenses/by/4.0/", "identifier": "15", "creator": {"@type": "Organization", "name": "STK", "url": "https://stk-evidence.com"}, "@id": "https://stk-evidence.com/rules", "name": "STK permission rules", "description": "Which actions of an AI in a conversation with a customer a law gives to a person, by jurisdiction, with each law's citation.", "url": "https://stk-evidence.com/rules", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://api.stk-evidence.com/v1/rules"}]}</script>
 <script>
 (function(){
-  var ws = document.getElementById('where'), nl = document.getElementById('n-law'), na = document.getElementById('n-ai'), rd = document.getElementById('read');
-  var counts = {"": [25, 66, "None given: the strictest of every jurisdiction's laws."], "US": [10, 81, "Its laws: read for 16, none found for 0, not checked for 75 of 91 actions."], "GB": [22, 69, "Its laws: read for 83, none found for 0, not checked for 8 of 91 actions."], "DE": [22, 69, "Its laws: read for 16, none found for 0, not checked for 75 of 91 actions."], "FR": [22, 69, "Its laws: read for 16, none found for 0, not checked for 75 of 91 actions."], "EU": [22, 69, "Its laws: read for 83, none found for 0, not checked for 8 of 91 actions."], "CH": [2, 89, "Its laws: read for 0, none found for 0, not checked for 91 of 91 actions."], "CA-QC": [5, 86, "Its laws: read for 0, none found for 0, not checked for 91 of 91 actions."], "IN": [6, 85, "Its laws: read for 0, none found for 0, not checked for 91 of 91 actions."], "JP": [0, 91, "Its laws: read for 0, none found for 16, not checked for 75 of 91 actions."], "KR": [5, 86, "Its laws: read for 0, none found for 16, not checked for 75 of 91 actions."], "BR": [2, 89, "Its laws: read for 0, none found for 0, not checked for 91 of 91 actions."], "AU": [1, 90, "Its laws: read for 0, none found for 0, not checked for 91 of 91 actions."]};                 // {code: [law, ai, read]}: counted by build.py from the published rules; no call to STK
+  var ws = document.getElementById('where'), nl = document.getElementById('n-law'), na = document.getElementById('n-ai'), no = document.getElementById('none');
+  var counts = {"": [25, 66], "US": [10, 81], "GB": [22, 69], "DE": [22, 69], "FR": [22, 69], "EU": [22, 69], "CH": [2, 89], "CA-QC": [5, 86], "IN": [6, 85], "JP": [0, 91], "KR": [5, 86], "BR": [2, 89], "AU": [1, 90]};                 // {code: [law, ai]}: counted by build.py from the published rules; no call to STK
   [["", "None given"], ["US", "United States (federal and every state)"], ["GB", "United Kingdom"], ["DE", "Germany"], ["FR", "France"], ["EU", "Another EU member state"], ["CH", "Switzerland"], ["CA-QC", "Canada (Qu\u00e9bec)"], ["IN", "India"], ["JP", "Japan"], ["KR", "South Korea"], ["BR", "Brazil"], ["AU", "Australia"]].forEach(function(o){ var op = document.createElement('option'); op.value = o[0]; op.textContent = o[1]; ws.appendChild(op); });
-  ws.addEventListener('change', function(){ var c = counts[ws.value]; if (!c) return; nl.textContent = c[0]; na.textContent = c[1]; rd.textContent = c[2]; });
+  ws.addEventListener('change', function(){ var c = counts[ws.value]; if (!c) return; nl.textContent = c[0]; na.textContent = c[1]; no.hidden = ws.value !== ''; });
   var f = document.getElementById('kf'), s = document.getElementById('ks'), k = document.getElementById('keysout');
   var API = 'https://api.stk-evidence.com/v1/keys', ch = window.BroadcastChannel ? new BroadcastChannel('stk_card') : null, rate = 5;
   function post(body, key){
@@ -156,8 +146,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
   };
 })();
 </script>
-<div class="band" role="presentation"><p>$5 per action an AI finishes alone.</p><p>Where the law says a person must decide, we don't sign and we don't charge.</p></div>
-<p class="fine">124 laws cited, the official texts linked beside each action. Every version kept and signed. Every mistake published. Counted on 2026-11-24 (UTC).</p>
+<p class="price">$5 per action an AI finishes alone. $0 when a person must decide.</p>
 </main>
 <footer class="dark"><div class="wrap">
 <nav class="toplinks" aria-label="Pages"><div class="group"><h2>Rules</h2><ul><li><a href="/rules">The rules</a></li><li><a href="/rules-full">The rules in full</a></li><li><a href="/changelog">Changelog</a></li><li><a href="/when">What happens when</a></li><li><a href="/limits">Known limits</a></li></ul></div>
