@@ -58,6 +58,9 @@ code,pre,kbd{font-family:var(--mono);font-size:.9em}
 .doc pre{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:14px 16px;overflow-x:auto;line-height:1.55;font-size:13px;margin:0 0 16px}
 .doc .table{margin:0 0 20px;overflow-x:auto}
 .doc table{width:100%;border-collapse:collapse;font-size:14px}
+.doc .how-set{margin-top:40px;font-size:13px;color:var(--muted)}   /* Price: how the prices were set, small, at the bottom (CEO 2026-11-24) */
+.doc .how-set h2{font-size:15px}
+.doc .how-set table{font-size:12px}
 .doc th{text-align:left;font-weight:400;color:var(--muted);font-size:13px;padding:0 16px 8px 0;border-bottom:1px solid var(--line);vertical-align:bottom}
 .doc td{padding:12px 16px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
 .doc td:last-child,.doc th:last-child{padding-right:0}

@@ -238,6 +238,10 @@
 - Answer: {"receipt": {"v": 2, "seal", "time_ms", "recorded_ms", "rule_version", "account", "which_key", "kid"}, "sig": Ed25519 of the receipt, base64, "rule_version", "rule", "grant", "grant_sig"}. One call is one permission, and is billed.
 - Docs: https://stk-evidence.com/docs
 
+## Price
+
+- $7, $5 or $3 per action an AI finishes alone, by the key's use. $0 when a person must decide. A test key is never billed. https://stk-evidence.com/price
+
 ## Licence
 
 - The rules: Creative Commons Attribution 4.0 (CC BY 4.0), https://creativecommons.org/licenses/by/4.0/ . Name STK as the source and say what you changed.
