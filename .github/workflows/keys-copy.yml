@@ -13,7 +13,14 @@ jobs:
   copy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: the repository, by git alone (no action whose runtime GitHub retires)
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF_NAME}"
+          git checkout -q -B "${GITHUB_REF_NAME}" FETCH_HEAD
       - name: Copy the public keys
         run: |
           r=$(python3 scripts/keys_copy.py)
@@ -21,7 +28,7 @@ jobs:
           if [ "$r" = changed ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add keys.json && git commit -qm "keys.json: public keys copied (append-only)" && git push -q
+            git add keys.json && git commit -qm "keys.json: public keys copied (append-only)" && git push -q origin "HEAD:${GITHUB_REF_NAME}"
             # third-party copies (CEO 2026-11-21): Software Heritage keeps this repository with its history; the
             # Internet Archive keeps keys.json as served. Free, no account; a failure here changes nothing above.
             curl -s -m 60 -X POST "https://archive.softwareheritage.org/api/1/origin/save/git/url/https://github.com/${GITHUB_REPOSITORY}/" || true
