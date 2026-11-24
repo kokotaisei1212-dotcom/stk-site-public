@@ -44,6 +44,7 @@
 // Node 18 or later, nothing to install.
 import { createHash, randomBytes } from "node:crypto";
 import { appendFile, mkdir, readFile } from "node:fs/promises";
+import { appendFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 export const config = {
@@ -374,6 +375,10 @@ async function askAny(intent, trigger, conversationId, fields, where) {
   const first = await Promise.race([answered, timer]);
   if (state.how === null) state.how = first !== "late" ? "answer" : (state.covered() ? "grant" : "late");   // first to settle wins
   state.late = state.how === "late";
+  if (state.late && state.seal) {                          // stopped waiting: if this process ends before STK's answer comes, a
+    state.tell = { id: randomBytes(8).toString("hex"), time_ms: Date.now(), seal: state.seal, why: "no answer within the wait: ask() returned escalate" };
+    lateOpen.set(state.tell.id, state.tell);                 // to_tell line is kept at its end, and STK is told when it starts again
+  }
   state.settle();
   if (state.how === "grant") return "finish";
   return state.late ? "escalate" : first;
@@ -413,6 +418,7 @@ async function ask1(intent, trigger, cid, fields, state, settled, r, where = nul
   const text = rowText(row);
   const nonce = randomBytes(32);
   const seal = sealOf(nonce, text);
+  state.seal = seal;                                       // known to ask(): if it stops waiting, it keeps the seal to tell STK
   let recorded = nowMs();
   const g = grant;
   state.covered = () => grantOk(r.version);
@@ -431,13 +437,17 @@ async function ask1(intent, trigger, cid, fields, state, settled, r, where = nul
       await enqueue(cid, intent, text, nonce, seal, recorded, g || grant);
       return state.answer("finish");
     }
-    try { await postJoined("no answer from STK", seal); } catch {} throw e;   // it may have been counted: taken off; once only (STK most often never had it, and a join lowers the bill)
+    await settled;
+    if (state.tell) { lateOpen.delete(state.tell.id); await tellAs(state.tell); }   // ask() stopped waiting: told now, or when STK answers
+    else { try { await postJoined("no answer from STK", seal); } catch {} }   // it may have been counted: taken off (STK takes nothing off for a seal it never counted)
+    throw e;
   }
   keepGrant(a);
   if (!a.sig) {
     state.answer("escalate");                                // not signed: no permission, not billed
     await settled;
     if (state.how === "grant") await write({ not_signed: { seal, recorded_ms: recorded, why: a.not_signed || "STK did not sign it" } });   // ask() had returned finish under the grant
+    if (state.tell) lateOpen.delete(state.tell.id);          // not signed: nothing to tell
     return;
   }
   const line = { row: text, nonce: nonce.toString("hex"), receipt: a.receipt, sig: a.sig };
@@ -461,8 +471,10 @@ async function ask1(intent, trigger, cid, fields, state, settled, r, where = nul
   await settled;                                             // ask() has returned, on time or not
   if (result === "finish" && state.late) {                   // too late: your code has handed it to a person
     if (key !== null) { done.set.delete(key); done.seals.delete(key); }
-    await tell("the answer came after ask() returned", seal);   // its joined line takes it off your count too
+    if (state.tell) { lateOpen.delete(state.tell.id); await tellAs({ ...state.tell, why: "the answer came after ask() returned" }); }
+    else await tell("the answer came after ask() returned", seal);   // its joined line takes it off your count too
   }
+  if (state.tell) lateOpen.delete(state.tell.id);            // the answer came: nothing is left to keep at this process's end
   await saveKey(line.receipt.kid);
 }
 
@@ -616,6 +628,25 @@ async function tell(why, seal = null) {
   try { await postJoined(why, seal); return true; } catch {}
   const t = { id: randomBytes(8).toString("hex"), time_ms: Date.now(), seal, why };
   try { await write({ to_tell: t }); } catch {}             // your onRow threw: kept while this process runs
+  tells.set(t.id, t);
+  startTeller();
+  return false;
+}
+
+// An ask() that stopped waiting and whose answer has not come: at this process's end, kept as a to_tell line (written at
+// once: an exit handler cannot wait), so STK is told when the process starts again (2026-11-24).
+const lateOpen = new Map();
+process.on("exit", () => {
+  if (!lateOpen.size || config.onRow) return;                      // with your onRow, your function keeps the lines; it cannot run here
+  try {
+    mkdirSync(config.rowsDir, { recursive: true });
+    for (const t of lateOpen.values()) appendFileSync(join(config.rowsDir, today() + ".jsonl"), JSON.stringify({ to_tell: t }) + "\n");
+  } catch {}
+  lateOpen.clear();
+});
+
+async function tellAs(t) {   // a to_tell line already kept: told now (a joined line of it), or kept to be told as soon as STK answers
+  try { await postJoined(t.why, t.seal ?? null, t.id); return true; } catch {}
   tells.set(t.id, t);
   startTeller();
   return false;

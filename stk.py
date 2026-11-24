@@ -604,7 +604,7 @@ def _ask_any(intent, trigger, conversation_id, fields, where):
                 _rules_failed["at"] = time.monotonic()
                 if not _rules_under_grant():  # a restart while STK is away: the kept grant and its rules, or escalate
                     return "escalate"
-    got, ready, decided, late = {}, threading.Event(), threading.Event(), [None, None]
+    got, ready, decided, late = {}, threading.Event(), threading.Event(), [None, None, None, None]   # how, grant, the seal, the to_tell kept
 
     def answer(d):                            # the result, handed over before anything that may wait
         if "d" not in got:
@@ -624,6 +624,12 @@ def _ask_any(intent, trigger, conversation_id, fields, where):
     with _lock:
         if late[0] is None:                   # first to settle wins: the answer, the grant, or late
             late[0] = "answer" if on_time else ("grant" if covered else "late")
+    if late[0] == "late" and late[2]:         # stopped waiting: if this process ends before STK's answer comes, a to_tell line
+        t = {"id": secrets.token_hex(8), "time_ms": int(time.time() * 1000), "seal": late[2],   # is kept at its end, and STK is
+             "why": "no answer within the wait: ask() returned escalate"}                       # told when it starts again
+        with _lock:
+            _late_open[t["id"]] = t
+        late[3] = t
     decided.set()
     if late[0] == "grant":
         return "finish"
@@ -665,6 +671,7 @@ def _ask_stk(intent, trigger, cid, fields, r, answer, decided, late, where=None)
     text = row_text(row)
     nonce = secrets.token_bytes(32)
     seal = seal_of(nonce, text)
+    late[2] = seal                            # known to ask(): if it stops waiting, it keeps the seal to tell STK
     recorded = _now_ms()
     with _lock:
         g = dict(_grant) if _grant.get("g") else None
@@ -690,10 +697,15 @@ def _ask_stk(intent, trigger, cid, fields, r, answer, decided, late, where=None)
         if how == "grant" and g:                    # STK not reached, the grant holds: finish now, the seal waits in the queue
             _enqueue(cid, intent, text, nonce, seal, recorded, g)
             return answer("finish")
-        try:                                  # it may have been signed and counted: taken off. Once only: STK most often
-            _post_joined("no answer from STK", seal)    # never had it, and a join lowers the day's bill
-        except Exception:
-            pass
+        decided.wait()
+        if late[3]:                           # ask() stopped waiting: told now, or kept and told when STK answers
+            _settle_late(late[3]["id"])
+            _tell_as(late[3])
+        else:
+            try:                              # it may have been signed and counted: taken off (STK takes nothing off for a
+                _post_joined("no answer from STK", seal)    # seal it never counted)
+            except Exception:
+                pass
         raise
     _keep_grant(a)
     _learn_receipt_clock(a)
@@ -702,6 +714,8 @@ def _ask_stk(intent, trigger, cid, fields, r, answer, decided, late, where=None)
         decided.wait()
         if late[0] == "grant":                # ask() had already returned finish under the grant: kept, so it is known
             _write({"not_signed": {"seal": seal, "recorded_ms": recorded, "why": a.get("not_signed") or "STK did not sign it"}})
+        if late[3]:
+            _settle_late(late[3]["id"])       # not signed: nothing to tell
         return
     line = {"row": text, "nonce": nonce.hex(), "receipt": a["receipt"], "sig": a["sig"]}
     result = "finish"
@@ -732,7 +746,13 @@ def _ask_stk(intent, trigger, cid, fields, r, answer, decided, late, where=None)
         with _lock:
             _finished["done"].discard((cid, intent))
             _finished["seals"].pop((cid, intent), None)
-        _tell("the answer came after ask() returned", seal)    # its joined line takes it off your count too
+        if late[3]:                           # ask() stopped waiting: told now, or kept and told when STK answers
+            _settle_late(late[3]["id"])
+            _tell_as(dict(late[3], why="the answer came after ask() returned"))
+        else:
+            _tell("the answer came after ask() returned", seal)    # its joined line takes it off your count too
+    if late[3]:
+        _settle_late(late[3]["id"])           # the answer came: nothing is left to keep at this process's end
     _save_key(line["receipt"]["kid"])
 
 
@@ -862,6 +882,43 @@ def _tell(why, seal=None):
         _write({"to_tell": t})
     except Exception:
         pass                                  # your ON_ROW raised: kept while this process runs
+    with _lock:
+        _tells[t["id"]] = t
+    _start_teller()
+    return False
+
+
+_late_open = {}                            # id -> an ask() that stopped waiting and whose answer has not come yet
+
+
+def _settle_late(tid):
+    with _lock:
+        _late_open.pop(tid, None)
+
+
+def _keep_late_at_exit():
+    """At this process's end: each ask() that stopped waiting and whose answer has not come is kept as a to_tell line,
+    so STK is told when the process starts again; a permission it signed late is then taken off (2026-11-24)."""
+    with _lock:
+        left = list(_late_open.values()); _late_open.clear()
+    for t in left:
+        try:
+            _write({"to_tell": t})
+        except Exception:
+            pass
+
+
+import atexit as _atexit
+_atexit.register(_keep_late_at_exit)
+
+
+def _tell_as(t):
+    """A to_tell line already kept: told now (a joined line of it), or kept to be told as soon as STK answers."""
+    try:
+        _post_joined(t["why"], t.get("seal"), of=t["id"])
+        return True
+    except Exception:
+        pass
     with _lock:
         _tells[t["id"]] = t
     _start_teller()
