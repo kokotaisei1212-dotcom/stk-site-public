@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT · Copyright (c) 2026 Taisei Izawa (井澤大成)
 """Is this permission STK's?
 
     python3 stk_verify.py <file.jsonl> [keys.json] [rules.json]

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT · Copyright (c) 2026 Taisei Izawa (井澤大成)
 """STK: ask before your AI hands a conversation to a person. https://stk-evidence.com/docs
 
     import stk
