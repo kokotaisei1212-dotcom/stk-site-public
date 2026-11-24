@@ -113,6 +113,14 @@ if (r.answer === "finish") {
 </script>
 <p>Your code may hand any conversation to a person: STK never requires a <code>finish</code>. If STK cannot answer, your AI hands the conversation to a person, unless a grant holds. STK never sees the conversation.</p>
 
+<h2 id="mcp">MCP</h2>
+<p>For an AI client that speaks MCP (Model Context Protocol). Free, no key:</p>
+<pre class="code">{ "mcpServers": {
+    "stk": { "command": "npx", "args": ["-y", "stk-mcp"] } } }</pre>
+<p>Only when you need a signature, add your key:</p>
+<pre class="code">{ "mcpServers": {
+    "stk": { "command": "npx", "args": ["-y", "stk-mcp"], "env": { "STK_KEY": "your key" } } } }</pre>
+<p>Three tools: <code>stk_where</code> and <code>stk_actions</code>, free and with no key, send STK nothing; <code>stk_ask</code>, with <code>STK_KEY</code>, sends only the seal; each action an AI finishes alone is billed, $0 when a person must decide (<a href="/price">Price</a>). Each permission is kept in <code>~/.stk-mcp/rows/&lt;day&gt;.jsonl</code>: the row (the action, the trigger, the jurisdiction and your content), its random bytes and STK's receipt; STK never has them.</p>
 <h2 id="trigger">trigger</h2>
 <div class="table"><table>
 <tbody>
