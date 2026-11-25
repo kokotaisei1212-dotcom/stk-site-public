@@ -4987,6 +4987,26 @@
    "invalid_note": null,
    "root": null,
    "root_sig": null
+  },
+  {
+   "kid": "20270612-3e30e36a",
+   "day": "2027-06-12",
+   "public_key": "K1tJlqvXQRZdAN9wj4n+kUmlbLlkseErFr6as3ajE+s=",
+   "algorithm": "Ed25519",
+   "invalid": null,
+   "invalid_note": null,
+   "root": null,
+   "root_sig": null
+  },
+  {
+   "kid": "20270612-3f8278d4",
+   "day": "2027-06-12",
+   "public_key": "WPAf0mBS9694NnYvZJ1P3em9NjM6WNQU6+Tyt6U+Wys=",
+   "algorithm": "Ed25519",
+   "invalid": null,
+   "invalid_note": null,
+   "root": null,
+   "root_sig": null
   }
  ]
 }
