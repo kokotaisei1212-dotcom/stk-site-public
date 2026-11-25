@@ -1,0 +1,26 @@
+# A one-time check from outside the operator's Mac (CEO 2026-11-25): started by hand only, then this file is taken off.
+name: outside-check
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: site, API, health, rules, a receipt
+        run: |
+          set -u; fail=""
+          c=$(curl -sS -o p.html -w '%{http_code}' https://stk-evidence.com/); grep -q "Your AI finishes everything the law does not give to a person." p.html && echo "1 site: PASS ($c)" || { echo "1 site: FAIL ($c)"; fail="$fail 1"; }
+          h=$(curl -sS https://api.stk-evidence.com/v1/health); echo "$h" | grep -q '"ok":true' && echo "2 health: PASS $h" || { echo "2 health: FAIL $h"; fail="$fail 2"; }
+          r=$(curl -sS https://api.stk-evidence.com/v1/rules | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d["number"], d["version"][:12])'); [ "${r%% *}" = 17 ] && echo "3 rules: PASS $r" || { echo "3 rules: FAIL $r"; fail="$fail 3"; }
+          curl -sS -o stk_verify.py https://stk-evidence.com/stk_verify.py && python3 -m pip install -q cryptography
+          cat > receipt.json <<'J'
+          {"receipt": {"v": 2, "seal": "d6d092b82efbdefdfe9d5541613c06b86c415c56746761e7a818fe6cbade96dc", "time_ms": 1795580646114, "recorded_ms": 1795580643647, "rule_version": "29ac953f826078fd15f332c706b846a447162d2f80aee3e10dc798ea97a6af1a", "account": "642a36da29004570", "which_key": "test", "kid": "20261125-5fefced6"}, "sig": "kO2nvHx4ogjipdpxRRFGX8sZM5Ro43a0o0NHcQDI+75jakGZCWsE5M6eHAAOvuHXsScNp2/vm6ESgy9+6QZ+Bw=="}
+          J
+          v=$(python3 stk_verify.py --receipt receipt.json 2>&1); echo "4 receipt (stk_verify.py from the site, keys from the API): $v"
+          echo "$v" | grep -q "^STK's" || fail="$fail 4"
+          curl -sS -o keys.json https://raw.githubusercontent.com/kokotaisei1212-dotcom/stk-site-public/main/keys.json
+          v2=$(python3 stk_verify.py --receipt receipt.json keys.json 2>&1); echo "5 receipt (keys from the public repository's copy, not STK's API): $v2"
+          echo "$v2" | grep -q "^STK's" || fail="$fail 5"
+          [ -z "$fail" ] && echo "ALL PASS" || { echo "FAIL:$fail"; exit 1; }
