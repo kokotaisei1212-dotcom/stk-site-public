@@ -76,9 +76,9 @@
 
 <h2 id="unpaid">If an invoice is not paid</h2>
 <ol>
-  <li>If the card is declined, the invoice stays open: Stripe tries the card again, and the invoice can be paid from its link. STK asks Stripe to send an open invoice again on its due date and 7, 30 and 53 days after. <code>GET /v1/health</code> with your key lists your unpaid invoices.</li>
-  <li>Sixty days after it was issued and still unpaid, STK signs nothing for your account: the file answers <code>escalate</code> to every ask, and nothing is billed.</li>
-  <li>When it is paid, STK signs again.</li>
+  <li>If the card is declined, the invoice stays open: Stripe tries the card again, and the invoice can be paid from its link. STK asks Stripe to send an open invoice again on its due date and 7, 30 and 53 days after. <code>GET /v1/health</code> with your key lists your unpaid invoices and the moment STK stops signing for each.</li>
+  <li>When STK stops: a card's weekly invoice (due when issued), 60 days after it was issued. An account paying by invoice that has paid an invoice by its due date, from the minute its invoice is past its due date. An account paying by invoice that has not yet paid one, 60 days after its due date, or earlier at its limit. From then the file answers <code>escalate</code> to every ask, and nothing is billed.</li>
+  <li>When it is paid, STK signs again: at once when Stripe tells STK, and at the latest at its next hourly read of Stripe. A payment from a US bank account (ACH) counts when Stripe marks the invoice paid, which Stripe says takes up to 4 business days. No one at STK does anything.</li>
 </ol>
 
 <h2 id="charges">What STK charges for</h2>
