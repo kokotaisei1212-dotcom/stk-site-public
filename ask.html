@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>When you would ask a person · STK</title>
+<meta name="description" content="Leaving, your data, your email, an invoice, refunds, a company name or tax ID: the answer to each, with no one to ask.">
+<link rel="canonical" href="https://stk-evidence.com/ask">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="STK">
+<meta property="og:url" content="https://stk-evidence.com/ask">
+<meta property="og:title" content="When you would ask a person · STK">
+<meta property="og:description" content="Leaving, your data, your email, an invoice, refunds, a company name or tax ID: the answer to each, with no one to ask.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="When you would ask a person · STK">
+<meta name="twitter:description" content="Leaving, your data, your email, an invoice, refunds, a company name or tax ID: the answer to each, with no one to ask.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon-32-dark.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/stk-icon-512-dark.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/site.dc35048.css">
+</head>
+<body class="page">
+<header class="bar" id="bar"><div class="wrap">
+<a class="mark" href="/" aria-label="STK, the first page"><span class="case"><span class="cell">STK</span></span><span class="nub"></span></a>
+<button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+</div></header>
+<div class="menu" id="menu" hidden><nav class="wrap" aria-label="Pages"><ul>
+<li><a href="/rules">Rules</a></li>
+<li><a href="/ledger#check">How to check a row</a></li>
+<li><a href="/receive">What we receive</a></li>
+<li><a href="/when">What happens when</a></li>
+<li><a href="/docs">Docs</a></li>
+<li><a href="/docs#setup">Setup guides</a></li>
+<li><a href="/vendors">For AI vendors</a></li>
+<li><a href="/price">Price</a></li>
+<li><a href="/limits">Known limits</a></li>
+<li><a href="/changelog">Changelog</a></li>
+</ul></nav></div>
+<main class="wrap">
+<div class="doc">
+<div class="eyebrow">Docs</div>
+<h1>When you would ask a person</h1>
+<p class="lead">Each answer here is how STK works. No person decides any of them.</p>
+
+<h2 id="leave">Leaving STK</h2>
+<p>Stop calling STK. Nothing more is billed from then. An invoice still open stays due and is paid from its link. An account whose keys were never used is deleted 30 days after it was made. Any other account is kept, with its payment records, until 7 years after its last day with an ask or a person joining, and then deleted.</p>
+
+<h2 id="data">Your personal data</h2>
+<p>STK holds your email address and the hashes of your keys. Stripe holds your payment records for STK: invoices, the day's counts on them, and your card as Stripe keeps it (STK sees its brand and last 4 digits only). STK never receives a conversation: of a permission it receives only a 32-byte seal.</p>
+<p>They are deleted 7 years after your account's last day with an ask or a person joining, or 30 days after the account was made if its keys were never used. Payment records are kept that long as payment records. Anything else about your data: the address in the <a href="/privacy">Privacy Policy</a>.</p>
+
+<h2 id="email">Changing your email address</h2>
+<p>An account's address cannot be changed. Take new keys with the new address on <a href="/#keys">the first page</a> and put them in your code; stop using the old keys. Invoices of the old account stay due until paid.</p>
+
+<h2 id="invoice">A question about an invoice</h2>
+<p>An invoice is $5 for each permission STK signed for your live key, less those a person joined the same day. <a href="/docs#ledger"><code>GET /v1/ledger</code></a> gives each day's counts, and your own rows file holds each receipt: <a href="/ledger#check">how to check a row</a>. A row that fails the check is not one STK stands behind.</p>
+
+<h2 id="refund">Refunds</h2>
+<p>STK makes no refund on request. What you are billed is set by the number of permissions STK signed, and you can check each one, line by line. When STK finds a mistake in what it billed, it takes it off your next invoice and records it in the <a href="/changelog">Changelog</a>.</p>
+
+<h2 id="tax">A company name or tax ID on the invoice</h2>
+<p>STK's invoices name the account by its email address. STK does not put a company name or a tax ID on them, and adds no tax. Each invoice, and the receipt of its payment, is sent by Stripe to your account's address.</p>
+</div>
+</main>
+<footer class="dark"><div class="wrap">
+<div class="top">
+<div class="brand"><a class="mark" href="/" aria-label="STK, the first page"><span class="case"><span class="cell">STK.</span></span><span class="nub"></span></a></div>
+<div><h2>The rule</h2><ul><li><a href="/rules">Rules</a></li><li><a href="/changelog">Changelog</a></li></ul></div>
+<div><h2>Check</h2><ul><li><a href="/ledger#check">How to check a row</a></li><li><a href="/receive">What we receive</a></li><li><a href="/when">What happens when</a></li></ul></div>
+<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/docs#setup">Setup guides</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
+<div><h2>Terms</h2><ul><li><a href="/price">Price</a></li><li><a href="/limits">Known limits</a></li><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/dpa">DPA</a></li><li><a href="/subprocessors">Subprocessors</a></li><li><a href="/vendor-review">Vendor review</a></li><li><a href="/msa">MSA</a></li></ul></div>
+<div><h2>Contact</h2><ul><li><a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a></li><li><a href="https://www.linkedin.com/in/taisei-izawa-8140123b9">LinkedIn</a></li></ul></div>
+</div>
+<div class="end"><p>© 2026 STK</p>
+<p class="last">All the AI the law allows.</p></div>
+</div></footer>
+<script>
+(function(){
+  var bar = document.getElementById('bar'), menu = document.getElementById('menu'), btn = document.getElementById('burger');
+  function line(){ bar.classList.toggle('scrolled', window.scrollY > 0); }
+  window.addEventListener('scroll', line, {passive: true}); line();
+  function open(v){ menu.hidden = !v; btn.setAttribute('aria-expanded', v ? 'true' : 'false'); document.documentElement.classList.toggle('locked', v); }
+  btn.addEventListener('click', function(){ open(menu.hidden); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); } });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) open(false); });
+})();
+</script>
+</body>
+</html>

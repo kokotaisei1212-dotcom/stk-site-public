@@ -120,6 +120,12 @@
 <h2 id="fails">When a check fails</h2>
 <p>That line is not a permission STK can stand behind: leave it out of your count, and out of any reply to the invoice. One marked <code>cancelled</code> that fails check 3 is expected: your file told STK a person had it, and it was taken off the bill.</p>
 
+<h2 id="returned">Where a receipt comes from</h2>
+<p>A receipt is STK's answer to <a href="/docs#ask"><code>POST /v1/ask</code></a>: <code>receipt</code> and <code>sig</code>, with the rules in use and the grant. stk.py and stk.mjs write it into the line of that action, beside your row and its random bytes, at once; a seal that waited in the queue gets its receipt when STK answers again.</p>
+
+<h2 id="invoice">A receipt and an invoice</h2>
+<p>A receipt is one permission: STK's signature that one action was decided by a named version of the rules, at a time, for your account. It is kept by you, never by STK, and checks without STK. An invoice is a bill: Stripe's, for a week (by card) or a month (by invoice), of $5 for each permission STK signed for your live key, less those a person joined the same day. Each line of the invoice's count is a receipt in your file; a receipt of a test key, or of a permission a person joined in time (the same day, or within 10 minutes after it ended), is on no invoice.</p>
+
 <h2 id="keep">Where your lines are kept</h2>
 <p>stk.py and stk.mjs write each line to <code>stk-rows/&lt;day&gt;.jsonl</code> next to your code, or give it to a function of yours (for a place where files are not kept, like a serverless function), or, if the folder cannot be written, print it to standard output. They also keep the signed rules they applied, the public key of each receipt, and a <code>joined</code> line each time they tell STK a person has a conversation. Each permission's line is kept before <code>ask()</code> returns. A permission that arrives after your code stopped waiting is kept as it came, followed by a <code>joined</code> line with its seal; if STK cannot be told then, a <code>to_tell</code> line first, and the <code>joined</code> line when STK answers. An intent on no list of the rules leaves a <code>not_listed</code> line, for your own count; STK is not told.</p>
 <p>Nobody can give one back: STK never had it. <a href="/limits#rows">Known limits</a></p>
