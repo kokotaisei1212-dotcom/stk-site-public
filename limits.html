@@ -158,7 +158,7 @@
 <p><strong>Who pays.</strong> Nobody: what is not signed is not billed.</p>
 
 <h2 id="load-test">What a load test found</h2>
-<p><strong>What happens.</strong> A record of a load test run from 2026-11-19: of 150 companies, 450 company-days, 300 days were billed less than the test counted, by 1.32% in all. No day was billed more. The cause is not known. A second run of the same 150 companies, started 2026-11-21 at 04:36 UTC to find it, was stopped at 14:15 UTC the same day, before it ended.</p>
+<p><strong>What happens.</strong> A record of a load test run from 2026-11-19: of 150 companies, 450 company-days, 300 days were billed less than the test counted, by 1.32% in all. No day was billed more. The cause, found on 2026-11-25: on a day STK's server starts again, each process counts its own share of a company's day, and a process that started cannot know which seals the one before it counted; so the day is billed by the largest share, less every share's people joining, and the smaller shares are not billed. It never bills twice; it bills less. Those were the days the server started again. STK's server starts again when new code is deployed, which STK no longer does, or when Render, which runs it, starts it again. It is kept as it is: anything else would keep a record that grows with every permission, or could bill twice. A second run of the same 150 companies, started 2026-11-21 at 04:36 UTC, was stopped at 14:15 UTC the same day, before it ended.</p>
 <p><strong>Who pays.</strong> Nobody is billed more: on those days the bill was lower than the test's own count.</p>
 
 <h2 id="unused">Keys never used</h2>
