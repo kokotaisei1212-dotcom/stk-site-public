@@ -59,12 +59,12 @@
 <p><strong>What you can do.</strong> Call <code>stk.joined()</code> when the person joins, the same day (UTC).</p>
 
 <h2>STK does not know how a conversation ended</h2>
-<p><strong>What happens.</strong> STK does not see whether a customer came back after a permitted conversation. A permitted intent stays permitted until a new version of the rules puts it on the Never list, with a law that names a person for it. A report does not take it off.</p>
+<p><strong>What happens.</strong> STK does not see whether a customer came back after a permitted conversation. A permitted intent stays permitted: the line was read on 2026-11-25 and does not change. A report does not take it off.</p>
 <p><strong>Who pays.</strong> You, in those conversations.</p>
 <p><strong>What you can do.</strong> Check your conversations against what you kept; stop calling STK for an intent whenever you choose. Report a <code>finish</code> that went wrong: <code>POST /v1/incident</code>, dated and public.</p>
 
 <h2>A report closes nothing</h2>
-<p><strong>What happens.</strong> A report is a dated, public row. Only STK takes an intent off the Permitted list, in a new version of the rules, and only by putting it on the Never list with a law that names a person for it; when that law stops naming one, the intent is permitted again.</p>
+<p><strong>What happens.</strong> A report is a dated, public row. No report and no version moves an intent to the other side: the line was read on 2026-11-25 and does not change.</p>
 <p><strong>Who pays.</strong> Nobody is billed for an intent that is not permitted: the file does not call STK for it.</p>
 
 <h2>A leaked key works until you replace it</h2>
@@ -158,7 +158,7 @@
 <p><strong>Who pays.</strong> Nobody: what is not signed is not billed.</p>
 
 <h2 id="load-test">What a load test found</h2>
-<p><strong>What happens.</strong> In a load test of 150 companies, 450 company-days (from 2026-11-19), 300 days were billed less than the test counted, by 1.32% in all. No day was billed more. The cause is not known. A second run of the same 150 companies, started 2026-11-21 at 04:36 UTC to find it, was stopped at 14:15 UTC the same day, before it ended; it will be run again on a day not yet set.</p>
+<p><strong>What happens.</strong> A record of a load test run from 2026-11-19: of 150 companies, 450 company-days, 300 days were billed less than the test counted, by 1.32% in all. No day was billed more. The cause is not known. A second run of the same 150 companies, started 2026-11-21 at 04:36 UTC to find it, was stopped at 14:15 UTC the same day, before it ended.</p>
 <p><strong>Who pays.</strong> Nobody is billed more: on those days the bill was lower than the test's own count.</p>
 
 <h2 id="unused">Keys never used</h2>

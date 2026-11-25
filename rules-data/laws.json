@@ -1,6 +1,6 @@
 {
- "rule": 16,
- "version": "6a6eae6c67d9f3a7adc8dfee49b5cbafc8d92f8a83e386973ae895340a9655eb",
+ "rule": 17,
+ "version": "29ac953f826078fd15f332c706b846a447162d2f80aee3e10dc798ea97a6af1a",
  "licence": "CC BY 4.0, https://creativecommons.org/licenses/by/4.0/",
  "source": "https://stk-evidence.com/rules",
  "laws": [
@@ -1625,28 +1625,6 @@
    "url": "https://stk-evidence.com/rules#US-ND-hea-n-d-c-c-26-1-36-12-04",
    "law": "N.D.C.C. § 26.1-36.12-04",
    "jurisdiction": "US-ND",
-   "subject": "health",
-   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
-   "beside": [
-    "decision.appeal"
-   ]
-  },
-  {
-   "anchor": "US-NE-hea-neb-lb-77-2025-sec-4-1",
-   "url": "https://stk-evidence.com/rules#US-NE-hea-neb-lb-77-2025-sec-4-1",
-   "law": "Neb. LB 77 (2025), sec. 4(1)",
-   "jurisdiction": "US-NE",
-   "subject": "health",
-   "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
-   "beside": [
-    "priorauth.deny_medical"
-   ]
-  },
-  {
-   "anchor": "US-NE-hea-neb-lb-77-2025-sec-5",
-   "url": "https://stk-evidence.com/rules#US-NE-hea-neb-lb-77-2025-sec-5",
-   "law": "Neb. LB 77 (2025), sec. 5",
-   "jurisdiction": "US-NE",
    "subject": "health",
    "kind": "Not named in the rules' list of kinds, which counts most laws of the United States beside health actions as A; the citation says whom",
    "beside": [
