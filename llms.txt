@@ -1,6 +1,6 @@
 # STK
 
-> STK publishes one set of rules, the same for every company, that says which actions of an AI in a conversation with a customer a law gives to a person, by jurisdiction, with each law's citation and the address of its official text. A company's code applies them on its own side (stk.py, stk.mjs) and sends STK only a 32-byte seal of a finish, which STK signs as a receipt. The rules are STK's reading of the law, not legal advice.
+> Your AI finishes everything the law does not give to a person. Every action your AI finishes alone carries STK's permission. One line of code. We never receive the conversation.
 
 ## The rules
 
