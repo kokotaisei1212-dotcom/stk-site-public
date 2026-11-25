@@ -19,8 +19,8 @@ jobs:
           {"receipt": {"v": 2, "seal": "d6d092b82efbdefdfe9d5541613c06b86c415c56746761e7a818fe6cbade96dc", "time_ms": 1795580646114, "recorded_ms": 1795580643647, "rule_version": "29ac953f826078fd15f332c706b846a447162d2f80aee3e10dc798ea97a6af1a", "account": "642a36da29004570", "which_key": "test", "kid": "20261125-5fefced6"}, "sig": "kO2nvHx4ogjipdpxRRFGX8sZM5Ro43a0o0NHcQDI+75jakGZCWsE5M6eHAAOvuHXsScNp2/vm6ESgy9+6QZ+Bw=="}
           J
           v=$(python3 stk_verify.py --receipt receipt.json 2>&1); echo "4 receipt (stk_verify.py from the site, keys from the API): $v"
-          echo "$v" | grep -q "^STK's" || fail="$fail 4"
+          echo "$v" | grep -q "^STK signed the seal" || fail="$fail 4"
           curl -sS -o keys.json https://raw.githubusercontent.com/kokotaisei1212-dotcom/stk-site-public/main/keys.json
           v2=$(python3 stk_verify.py --receipt receipt.json keys.json 2>&1); echo "5 receipt (keys from the public repository's copy, not STK's API): $v2"
-          echo "$v2" | grep -q "^STK's" || fail="$fail 5"
+          echo "$v2" | grep -q "^STK signed the seal" || fail="$fail 5"
           [ -z "$fail" ] && echo "ALL PASS" || { echo "FAIL:$fail"; exit 1; }
