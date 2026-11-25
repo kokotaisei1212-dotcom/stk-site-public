@@ -106,6 +106,9 @@
 <p><strong>What happens.</strong> STK sends no email about it. When the card is declined, Stripe tries the card again. STK asks Stripe to send an open invoice again to your account's address on its due date and 7, 30 and 53 days after; whether Stripe also emails you each time a charge fails is a setting of STK's Stripe account. Do not count on an email. Unpaid, the invoice is still open, and 60 days after it was issued STK signs nothing for your account.</p>
 <p><strong>What you can do.</strong> <code>GET /v1/health</code> with your key lists your unpaid invoices and the day STK stops signing.</p>
 
+<h2 id="payment-max">One payment is at most $999,999.99</h2>
+<p><strong>What happens.</strong> Stripe takes one payment in US dollars of at most $999,999.99 by any method but a card. A company whose bill to STK would be larger than that is settled with that company, one by one.</p>
+
 <h2 id="test-live">A test key in production, a live key in a test</h2>
 <p><strong>What happens.</strong> STK cannot tell where a key is used. A test key in production gets the same answers, is never billed, and its rows check as a test key's, not as live permissions. A live key in a test is billed.</p>
 
@@ -154,7 +157,7 @@
 <p><strong>What you can do.</strong> Give each server its own folder (<code>STK_ROWS_DIR</code>).</p>
 
 <h2 id="limits">How much STK signs</h2>
-<p><strong>What happens.</strong> STK signs up to 20,000,000 permissions a day (UTC) for a live key; 10,000 until an invoice of its account has been paid. A test key: 1,000. The seals of a day, of all accounts together, are each counted once, up to 46,930,325 in a day (46,930,325 seals in 511 MB, filled once on 2026-11-21 on a Mac; the next one was refused); past that, STK signs no new seal that day and the file answers <code>escalate</code>. They are kept in the API's memory only: when the API restarts they are lost, and a seal signed before the restart and sent again the same day is counted again in the count after the restart; the day is billed the larger of the two counts, not their sum, so it is not billed twice. Past the limits above, STK signs nothing more that day and the file answers <code>escalate</code>, with the reason in <code>not_signed</code>. 300 new accounts an hour are made in all, and 3 calls an hour come from one address; then <code>POST /v1/keys</code> answers 429, saying when it opens again (a call with one of your keys is not held up). One account can make 10 reports in 24 hours.</p>
+<p><strong>What happens.</strong> STK signs up to 20,000,000 permissions a day (UTC) for a live key; 10,000 until an invoice of its account has been paid. A test key: 1,000. The seals of a day, of all accounts together, are each counted once, up to 129,138,682 in a day (129,138,682 seals in 1408 MB, filled once on 2026-11-25 on a Mac; the next one was refused); past that, STK signs no new seal that day and the file answers <code>escalate</code>. They are kept in the API's memory only: when the API restarts they are lost, and a seal signed before the restart and sent again the same day is counted again in the count after the restart; the day is billed the larger of the two counts, not their sum, so it is not billed twice. Past the limits above, STK signs nothing more that day and the file answers <code>escalate</code>, with the reason in <code>not_signed</code>. 300 new accounts an hour are made in all, and 3 calls an hour come from one address; then <code>POST /v1/keys</code> answers 429, saying when it opens again (a call with one of your keys is not held up). One account can make 10 reports in 24 hours.</p>
 <p><strong>Who pays.</strong> Nobody: what is not signed is not billed.</p>
 
 <h2 id="load-test">What a load test found</h2>
