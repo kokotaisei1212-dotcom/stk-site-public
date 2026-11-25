@@ -107,7 +107,7 @@
 <p><strong>What you can do.</strong> <code>GET /v1/health</code> with your key lists your unpaid invoices and the day STK stops signing.</p>
 
 <h2 id="payment-max">One payment is at most $999,999.99</h2>
-<p><strong>What happens.</strong> Stripe takes one payment in US dollars of at most $999,999.99 by any method but a card. A company whose bill to STK would be larger than that is settled with that company, one by one.</p>
+<p><strong>What happens.</strong> Stripe takes one payment in US dollars of at most $999,999.99 by any method but a card, and does not issue an invoice above it that a bank account can pay. A week or a month above it is split by STK on its own into invoices of at most $999,999.98, which together are its amount to the cent, each sent with its own page (or charged to your card); no one is asked.</p>
 
 <h2 id="test-live">A test key in production, a live key in a test</h2>
 <p><strong>What happens.</strong> STK cannot tell where a key is used. A test key in production gets the same answers, is never billed, and its rows check as a test key's, not as live permissions. A live key in a test is billed.</p>
