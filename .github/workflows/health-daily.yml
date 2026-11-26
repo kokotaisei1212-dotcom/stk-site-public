@@ -4,7 +4,8 @@
 name: health-daily
 on:
   schedule:
-    - cron: "7 0 * * *"            # 00:07 UTC, 09:07 in Tokyo
+    - cron: "7 0,6,12,18 * * *"    # asked: once a day. GitHub drops scheduled runs: keys-copy, set hourly, ran 26 times
+                                   # from 2026-11-17 to 11-26, up to 12 h apart. Four a day so that one lands each day.
   workflow_dispatch:
     inputs:
       url:
