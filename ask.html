@@ -44,14 +44,14 @@
 <p class="lead">Each answer here is how STK works. No person decides any of them.</p>
 
 <h2 id="leave">Leaving STK</h2>
-<p>Stop calling STK. Nothing more is billed from then. An invoice still open stays due and is paid from its link. An account whose keys were never used is deleted 30 days after it was made. Any other account is kept, with its payment records, until 7 years after its last day with an ask or a person joining, and then deleted.</p>
+<p>Send one call with either key to <code>POST /v1/stop</code> (<a href="/docs#stop">how</a>): every key stops, what is owed is debited once, and STK ends its authorization to debit your bank account. Nothing more is billed. An account whose keys were never used is deleted 30 days after it was made. Any other account is kept, with its payment records, until 7 years after its last day with an ask or a person joining, and then deleted.</p>
 
 <h2 id="data">Your personal data</h2>
 <p>STK holds your email address and the hashes of your keys. Stripe holds your payment records for STK: invoices, the day's counts on them, their debits, and your bank account as Stripe keeps it (STK sees its bank and last 4 digits only). STK never receives a conversation: of a permission it receives only a 32-byte seal.</p>
 <p>They are deleted 7 years after your account's last day with an ask or a person joining, or 30 days after the account was made if its keys were never used. Payment records are kept that long as payment records. Anything else about your data: the address in the <a href="/privacy">Privacy Policy</a>.</p>
 
 <h2 id="email">Changing your email address</h2>
-<p>An account's address cannot be changed. Take new keys with the new address on <a href="/#keys">the first page</a> and put them in your code; stop using the old keys. Invoices of the old account stay due until paid.</p>
+<p>An account's address cannot be changed. Take new keys with the new address on <a href="/#keys">the first page</a> and put them in your code; to end the old account, send <code>POST /v1/stop</code> with one of its keys: what it owes is debited once.</p>
 
 <h2 id="invoice">A question about an invoice</h2>
 <p>An invoice is $5 for each permission STK signed for your live key, less those a person joined the same day. <a href="/docs#ledger"><code>GET /v1/ledger</code></a> gives each day's counts, and your own rows file holds each receipt: <a href="/ledger#check">how to check a row</a>. A row that fails the check is not one STK stands behind.</p>
@@ -60,7 +60,7 @@
 <p>STK makes no refund on request. What you are billed is set by the number of permissions STK signed, and you can check each one, line by line.</p>
 
 <h2 id="tax">A company name or tax ID on the invoice</h2>
-<p>STK's invoices name the account by its email address. STK does not put a company name or a tax ID on them, and adds no tax. Each invoice, and the receipt of its payment, is sent by Stripe to your account's address.</p>
+<p>STK's invoices name the account by its email address. STK does not put a company name or a tax ID on them, and adds no tax. STK sends one email a month with the month's amount; Stripe sends none.</p>
 </div>
 </main>
 <footer class="dark"><div class="wrap">

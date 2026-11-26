@@ -77,16 +77,16 @@
 
 <h2 id="questionnaire">Security questionnaire, answered</h2>
 <div class="table"><table><thead><tr><th>Question</th><th>Answer</th></tr></thead><tbody>
-<tr><td>Where is data stored?</td><td>STK's records: Stripe. The API runs on Render in Singapore and keeps the day's seal set in memory only. <a href="/subprocessors">Subprocessors</a></td></tr>
+<tr><td>Where is data stored?</td><td>STK's records: Stripe. The API runs on Render in Virginia, United States and keeps the day's seal set in memory only. <a href="/subprocessors">Subprocessors</a></td></tr>
 <tr><td>How long is it kept?</td><td>A seal: not written down, except the seal of a permission reported; the day's set in memory is let go 10 minutes after the day ends (UTC). The account's email address and keys' hashes: until 7 years after its last day with an ask or a person joining, or 30 days after it was made if its live key was never used. Billing records: kept by Stripe as payment records. Reports: 7 years.</td></tr>
 <tr><td>Encryption in transit</td><td>HTTPS only, port 443. Every answer carries Strict-Transport-Security.</td></tr>
 <tr><td>Encryption at rest</td><td>STK stores nothing at rest of its own. Its records are held by Stripe under Stripe's terms; STK does not encrypt them itself.</td></tr>
 <tr><td>Access management</td><td>One person operates STK and is the only one with access to Render, Stripe, GitHub and the domain. Secrets are kept as owner-only files and in Render's environment, never in a repository. Whether multi-factor authentication is turned on for each of these accounts has not been checked for this page, so it is not stated here; this page states only what has been checked.</td></tr>
 <tr><td>Key management</td><td>Receipts are signed with Ed25519 keys, two a day, made 200 days ahead. Their private halves are kept in Stripe, encrypted with a key that is only in Render's environment. Their public keys are in <code>GET /v1/rules?keys=1</code> and are copied, never shortened, to the public site repository by a job GitHub is asked to run every hour (it has run 5 to 10 hours apart). Customer keys are kept only as HMAC-SHA256 hashes and are replaced with <code>POST /v1/keys</code>.</td></tr>
 <tr><td>Staff and background checks</td><td>One person, the operator, Taisei Izawa, an individual in Toyama, Japan. No background check process.</td></tr>
-<tr><td>Incident response</td><td>An hourly check of <code>/v1/health</code> emails the operator when it fails. Each incident is written in the <a href="/changelog">Changelog</a> with what it could do to a company. No on-call rotation, no response time promised.</td></tr>
+<tr><td>Incident response</td><td>Nothing outside STK checks <code>/v1/health</code> on a schedule; STK emails its operator 30 days before its domain or a certificate ends. Each incident is written in the <a href="/changelog">Changelog</a> with what it could do to a company. No on-call rotation, no response time promised.</td></tr>
 <tr><td>Business continuity</td><td>One API instance in one region, no failover. State is in Stripe; a redeploy took about 40 seconds on 2026-11-18. If STK does not answer within 3 seconds, the libraries hand the conversation to a person, unless a grant from STK's last answer holds (1 hour at most): then they finish and send the seal when STK answers again. See Continuity below.</td></tr>
-<tr><td>Subprocessors</td><td>Render (the API, and the website from 2026-11-22), Stripe, Vercel (the domain's registration and DNS until its transfer to Name.com, no earlier than 2026-12-15), GitHub (the website's public repository and its copy of STK's public keys) and Name.com (the domain, once transferred): what each holds is on <a href="/subprocessors">Subprocessors</a>. A new or replaced one is listed at least 14 days before it starts.</td></tr>
+<tr><td>Subprocessors</td><td>Render (the API, and the website from 2026-11-22), Stripe, Vercel (the domain's registration and DNS), GitHub (the website's public repository and its copy of STK's public keys), Resend (STK's emails), Zoho (mail to stk-evidence.com) and Apple iCloud Mail (mail to STK's address): what each holds is on <a href="/subprocessors">Subprocessors</a>. A new or replaced one is listed at least 14 days before it starts.</td></tr>
 <tr><td>Further subcontracting</td><td>None beyond the subprocessors listed.</td></tr>
 <tr><td>Audit rights</td><td>None offered. No audit or inspection clause.</td></tr>
 <tr><td>Data deletion</td><td>On request by email (<a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a>), the account's email address and keys' hashes; billing records stay with Stripe as payment records. STK holds no row and nothing of the company's customers to delete.</td></tr>
@@ -107,7 +107,7 @@
 <p>How STK's claims can be checked without one:</p>
 <ul>
 <li>The rules are public, and each version is fixed by its SHA-256 and STK's signature.</li>
-<li>Every receipt is signed with a public key published seven days before it signs.</li>
+<li>Every receipt is signed with a public key published 200 days before it signs.</li>
 <li>The company keeps its own rows and can check each one, and STK's invoice, without STK: <a href="/ledger">How to check a row</a>.</li>
 <li>stk.py, stk.mjs and stk_verify.py are files the company reads and runs on its own side.</li>
 <li>What STK cannot do, or does not do, is written on <a href="/limits">Known limits</a>; its mistakes are in the <a href="/changelog">Changelog</a>.</li>

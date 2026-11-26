@@ -47,7 +47,7 @@
 <h2 id="how">How it is billed</h2>
 <ul class="no">
   <li><strong>$0 until you use it.</strong> Keys cost nothing; there is no minimum.</li>
-  <li><strong>$5 for each permission</strong> under these rules (the domain <code>conversation</code>, <a href="/rules-full#scope">what it covers</a>): each seal your live key sends that STK signs, whatever the action, the jurisdiction or the key.</li>
+  <li><strong>$5 for each permission</strong> under these rules (the domain <code>conversation</code>, <a href="/rules-full#scope">what it covers</a>): each seal your live key sends that STK signs, whatever the action or the jurisdiction. A test key is never billed.</li>
   <li><strong>$0 when a person joins it the same day (UTC).</strong> Told by 00:10 UTC the day after, with the permission's seal (stk.py and stk.mjs send it while the process that got the permission still runs), it still counts for its day. Told on a later day after that: it stays billed.</li>
   <li>Each month (UTC) is debited on the 1st of the next, from 01:00 UTC, from the US bank account you registered once when you took your live key. You do nothing. You receive one email a month: the month's amount, once it is debited.</li>
 </ul>
@@ -77,8 +77,8 @@
 <h2 id="unpaid">If a debit is refused</h2>
 <ol>
   <li>A debit counts as paid for signing from when it begins. Your bank answers within 4 business days.</li>
-  <li>Refused for want of money: STK debits it again 3 days later, at most 3 times in all. Until the last is refused, STK signs as usual.</li>
-  <li>Refused for any other reason (the account closed, no such account, debits not authorized), or the third time for want of money: from then the file answers <code>escalate</code> to every ask, and nothing is billed. The month's email says so. <code>GET /v1/health</code> with your key says so too.</li>
+  <li>Refused for want of money: STK debits it again 3 days later, at most 3 times in all. STK signs as usual throughout. The third refused: STK does not try again, that month is not owed, and nothing stops.</li>
+  <li>Refused for any other reason (the account closed, no such account, debits not authorized): from then the file answers <code>escalate</code> to every ask, and nothing is billed. The month's email says so. <code>GET /v1/health</code> with your key says so too.</li>
   <li>To sign again: register a bank account (<code>POST /v1/keys/bank</code> with your live key, <a href="/docs#bank">Docs</a>). STK debits it at once and signs again from your next call. No one at STK does anything.</li>
   <li>What STK signed while a debit was under way is billed as any day. If it is never paid, STK loses it.</li>
 </ol>
