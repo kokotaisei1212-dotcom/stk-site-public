@@ -118,6 +118,7 @@ Connection: close
     <tr><td><strong>Direction</strong></td><td>Outbound from your servers to STK only. STK opens no connection to your network.</td></tr>
     <tr><td><strong>Calls</strong></td><td><code>GET /v1/rules</code>, <code>POST /v1/ask</code>, <code>POST /v1/joined</code>. If you use them: <code>GET /v1/ledger</code>, <code>POST /v1/incident</code>, <code>GET /v1/health</code></td></tr>
     <tr><td><strong>Body</strong></td><td><code>{"seal": "&lt;64 hex&gt;", "recorded_ms": &lt;ms&gt;}</code>, from the queue also <code>"grant"</code> and <code>"grant_sig"</code>; <code>POST /v1/joined</code>: none, or <code>{"seal": "&lt;64 hex&gt;"}</code></td></tr>
+    <tr><td><strong>What leaves, what does not</strong></td><td>The body above, and your key in the <code>X-STK-Key</code> header. What STK receives and what it never receives: <a href="/vendor-review#receives">Vendor review</a>, <a href="/vendor-review#not-received">what STK does not receive</a>.</td></tr>
     <tr><td><strong>Addresses</strong></td><td>Its addresses are shared and can change: list the name, not the addresses.</td></tr>
     <tr><td><strong>Timeout</strong></td><td>stk.py and stk.mjs wait at most 3 seconds; without an answer they return <code>escalate</code>, and your code hands the conversation over, unless <a href="/rules-full#else">a grant</a> holds.</td></tr>
   </tbody>
