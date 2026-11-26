@@ -68,7 +68,7 @@
   <li>Anything with your test key.</li>
   <li>Every ask the rules answer <code>escalate</code>: the file does not call STK.</li>
   <li>The same conversation and intent asked again the same day (UTC) on the same server: the file does not call STK again.</li>
-  <li>A seal STK did not sign: a debit refused for good, unpaid 60 days, no published key, or STK not answering.</li>
+  <li>A seal STK did not sign: a debit refused for good, no published key, or STK not answering.</li>
   <li><strong>An answer of STK that came too late to be used is not billed.</strong> An answer STK itself took more than 3 seconds for (the time the files wait) is signed and never billed, whatever your code did. An answer that came after your code stopped waiting, or never reached it, while no grant held: the file tells STK a person has it; if your process ends first, the file keeps that and tells STK when it starts again (its first <code>ask()</code> with a conversation). Under a grant the file finishes, and the permission is billed. If STK cannot be told: after 00:10 UTC the day after, it stays billed.</li>
   <li>On a day (UTC) STK's server started again (a deploy, or after it stopped): the permissions of the smaller of the two counts, before and after the start. The day is billed as the larger count less every person joining that day. Each count is written to Stripe every 2 minutes; what was not written when the server stopped is not billed.</li>
   <li>A day whose signing key STK made invalid, for every company. Not yet on an invoice: taken off. Already on one: a credit note from Stripe (an open invoice owes less; a paid one is refunded, or credited to the next invoice when it cannot be).</li>
@@ -112,7 +112,7 @@
 
 <h2 id="holds">What STK holds</h2>
 <ul>
-  <li>One right only: if a debit is refused for good, or an account is unpaid for 60 days, STK stops signing. It is a condition in the <a href="/terms">Terms</a>, not part of the rules. There is no other remedy and no interest.</li>
+  <li>One right only: if a debit is refused for good, STK stops signing. It is a condition in the <a href="/terms">Terms</a>, not part of the rules. There is no other remedy and no interest.</li>
 </ul>
 
 <h2 id="currency">Currency and tax</h2>
