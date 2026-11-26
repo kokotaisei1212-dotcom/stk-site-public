@@ -78,8 +78,7 @@ html{scroll-behavior:smooth}
 .tool #ks:empty{display:none}
 .tool #kf[hidden],.tool [hidden]{display:none}   /* keys taken: the form to take them is gone */
 .tool #pay{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 0}
-.tool #invoice{color:var(--ink);background:var(--bg)}
-.tool #invoicenote{margin:8px 0 0;font-size:13.8px;line-height:1.5;color:var(--muted)}
+.tool #banknote{margin:8px 0 0;font-size:13.8px;line-height:1.5;color:var(--muted)}
 .tool #pricenote{margin:16px 0 0;font-size:14.95px;line-height:1.5;color:var(--muted)}
 .tool #pricenote a{color:inherit}
 .price{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad);font-size:17.25px;line-height:1.55}
@@ -112,7 +111,7 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <script>
 (function(){
   var f = document.getElementById('kf'), s = document.getElementById('ks'), k = document.getElementById('keysout');
-  var API = 'https://api.stk-evidence.com/v1/keys', ch = window.BroadcastChannel ? new BroadcastChannel('stk_card') : null, rate = 5;
+  var API = 'https://api.stk-evidence.com/v1/keys', ch = window.BroadcastChannel ? new BroadcastChannel('stk_bank') : null, rate = 5;
   function post(body, key){
     var h = {'Content-Type': 'application/json'}; if (key) h['X-STK-Key'] = key;
     return fetch(API, {method: 'POST', headers: h, body: JSON.stringify(body)}).then(function(r){ return r.json().then(function(j){ return [r.status, j]; }); });
@@ -137,10 +136,10 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
     k.hidden = false;
     f.hidden = true; var o = document.querySelector('.tool .only'); if (o) o.hidden = true;   // keys taken: the form to take them goes
   }
-  var q = new URLSearchParams(location.search).get('card');
-  if (q) {                                        // this tab is back from Stripe's page: tell the tab with the keys, and close
+  var q = new URLSearchParams(location.search).get('bank');
+  if (q) {                                        // this tab is back from Stripe's page: tell the tab with the keys at once, and close
     if (ch) ch.postMessage(q);
-    s.textContent = 'The card is registered. Your keys are on the page where you took them.';
+    s.textContent = 'Your bank account is registered. Your live key is on the page where you took your keys.';
     setTimeout(function(){ window.close(); }, 300);
   }
   f.onsubmit = function(e){
@@ -149,41 +148,31 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
     post({email: em}).then(function(a){
       if (a[0] === 409) { s.innerHTML = 'This email already has keys.<br>To add one, send POST /v1/keys with your live key. <a href="/docs#get-keys">Docs</a>'; return; }
       if (a[0] !== 200) { s.textContent = (a[1] && a[1].message) || 'STK cannot do this just now. Try again in a minute.'; return; }
-      var v = {test: a[1].test_key, live: a[1].live_key || ''}, url = a[1].card_url, m = (url || '').match(/cs_(live|test)_[A-Za-z0-9]+/), done = false;
+      var v = {test: a[1].test_key, live: ''}, url = a[1].bank_url, done = false, asking = false;
       show(v);
       var b = document.createElement('button');
-      b.type = 'button'; b.id = 'card'; b.textContent = 'Register a card';
+      b.type = 'button'; b.id = 'bank'; b.textContent = 'Register your bank account';
       b.onclick = function(){ window.open(url, '_blank'); };
-      var n = document.getElementById('pricenote');
-      if (!n) {
-        n = document.createElement('p'); n.id = 'pricenote';
-        n.innerHTML = 'Next: set one as STK_KEY and ask. <a href="/docs">Docs</a>';
-        k.after(n);
-        var pn = document.createElement('p'); pn.id = 'pricenote2';
-        pn.innerHTML = 'Test keys are free. $' + rate + ' per action an AI finishes alone. <a href="/price">Price</a>';
-        n.after(pn);
-      }
-      if (url) {                                  // the live key: a card, or an invoice (CEO 2026-11-24: some companies cannot register a card)
-        var iv = document.createElement('button'); iv.type = 'button'; iv.id = 'invoice'; iv.textContent = 'Pay by invoice';
-        var il = document.createElement('p'); il.id = 'invoicenote';
-        var more = 'By invoice: each month on one invoice, due within 30 days, paid on its page by card or US bank account (ACH). Until your first invoice is paid you may owe up to $5,000; once one is paid by its due date, there is no limit.';
-        iv.onclick = function(){
-          iv.disabled = true;
-          post({email: em, pay: 'invoice'}, v.live).then(function(r){
-            iv.disabled = false;
-            if (r[0] === 200 && r[1].pay === 'invoice') { done = true; b.remove(); iv.remove(); il.textContent = 'Your live key signs now. ' + more; }   // said once chosen, not before
-            else { s.textContent = (r[1] && r[1].message) || 'STK cannot do this just now. Try again in a minute.'; }
-          }, function(){ iv.disabled = false; s.textContent = 'STK cannot be reached. Try again in a minute.'; });
-        };
-        var bs = document.createElement('div'); bs.id = 'pay'; bs.append(b, iv);
-        n.after(bs); bs.after(il);
-      }
-      function check(id){                         // the card done: the live key, if it was not given at once
-        if (done || !m || (id && id !== m[0])) return;
-        if (v.live) { if (id) { done = true; b.remove(); } return; }
-        post({email: em, card: m[0]}, v.test).then(function(r){
-          if (r[0] === 200 && r[1].live_key) { done = true; v.live = r[1].live_key; show(v); b.remove(); }
-        }, function(){});
+      var n = document.createElement('p'); n.id = 'pricenote';
+      n.innerHTML = 'Your live key comes when your bank account is registered, once. <a href="/docs#pay">Docs</a>';
+      k.after(n);
+      var pn = document.createElement('p'); pn.id = 'pricenote2';
+      pn.innerHTML = 'Test keys are free. $' + rate + ' per action an AI finishes alone. <a href="/price">Price</a>';
+      n.after(pn);
+      var bs = document.createElement('div'); bs.id = 'pay'; bs.append(b);
+      var bl = document.createElement('p'); bl.id = 'banknote';
+      bl.textContent = 'US bank account required. The only way STK is paid: a US bank account, debited each month (ACH). Nothing is debited when you register it. You receive one email a month. Nothing else is ever asked of you.';
+      pn.after(bs); bs.after(bl);
+      function check(id){                         // the bank page done: the live key, in one call
+        if (done || asking) return;
+        asking = true;
+        post(id ? {email: em, bank: id} : {email: em}, v.test).then(function(r){
+          asking = false;
+          if (r[0] === 200 && r[1].live_key) {
+            done = true; v.live = r[1].live_key; show(v); b.remove(); bl.remove();
+            n.innerHTML = 'Next: set one as STK_KEY and ask. <a href="/docs">Docs</a>';
+          }
+        }, function(){ asking = false; });
       }
       if (ch) ch.onmessage = function(ev){ check(ev.data); };
       window.addEventListener('focus', function(){ check(''); });

@@ -49,7 +49,7 @@
 <li><b>When your library recorded it.</b> <code>recorded_ms</code>, your library's own time. For a seal that waited in the library's queue while STK could not be reached, also the grant STK signed earlier, which the library sends back.</li>
 <li><b>Your key.</b> In the header <code>X-STK-Key</code>: whose permission it is, and whether it is billed.</li>
 </ul>
-<p>STK adds its own time when the seal arrives, and signs the seal, both times and the version of the rules. When a person joins a conversation, STK receives a count, with no body or with the seal of the permission it is for. At signup STK receives the email address the invoices go to; the card is entered on Stripe's page and STK never receives its number.</p>
+<p>STK adds its own time when the seal arrives, and signs the seal, both times and the version of the rules. When a person joins a conversation, STK receives a count, with no body or with the seal of the permission it is for. At signup STK receives the email address the month's email goes to; the bank account is entered on Stripe's page and STK never receives its number.</p>
 
 <h2>What STK does not receive</h2>
 <p>The content of the decision: the intent, the trigger, the words of the conversation in text or audio. Patient information: no name, date of birth, member ID, diagnosis, service or claim. Your customer's data: no name, email address, phone number, account number or any other ID. The one exception is a report you choose to make: <code>POST /v1/incident</code> carries the intent you give with it.</p>

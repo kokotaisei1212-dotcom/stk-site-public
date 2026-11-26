@@ -68,7 +68,7 @@
 <p><strong>Who pays.</strong> Nobody is billed for an intent that is not permitted: the file does not call STK for it.</p>
 
 <h2>A leaked key works until you replace it</h2>
-<p><strong>What happens.</strong> STK cannot tell a leaked key from yours. Until you replace it, a leaked live key can get up to 20,000,000 permissions a day signed (UTC), billed to you at $5 each ($100,000,000); 10,000 a day ($50,000) until an invoice of yours has been paid.</p>
+<p><strong>What happens.</strong> STK cannot tell a leaked key from yours. Until you replace it, a leaked live key can get up to 20,000,000 permissions a day signed (UTC), billed to you at $5 each ($100,000,000); 10,000 a day ($50,000) until a debit of yours has gone through.</p>
 <p><strong>What you can do.</strong> To replace your keys, leaked or not: <code>POST /v1/keys</code> with your account's email and your live key in <code>X-STK-Key</code>. The new keys come back once; the old ones stop at once. If your live key itself leaked, whoever has it can do the same.</p>
 
 <h2 id="rows">STK cannot give a row back</h2>
@@ -80,13 +80,13 @@
 <p><strong>Who acts.</strong> A person at STK: finding out that a key leaked, and running the one command that marks it invalid. Nothing finds a leak by itself.</p>
 
 <h2 id="your-key-leaks">Your own key leaks</h2>
-<p><strong>What happens.</strong> Anyone with your live key can get permissions signed and billed to your account until the key stops, and can make new keys or change the account's card, which can lock you out. <code>POST /v1/keys/revoke</code> with either key stops every key of the account at once (<a href="/docs#revoke">how</a>).</p>
+<p><strong>What happens.</strong> Anyone with your live key can get permissions signed and billed to your account until the key stops, and can make new keys or change the account's bank account, which can lock you out. <code>POST /v1/keys/revoke</code> with either key stops every key of the account at once (<a href="/docs#revoke">how</a>).</p>
 <p><strong>Who pays.</strong> Nothing signed after the revoke is billed. What was signed before it is billed as usual: STK cannot tell which of it was not yours.</p>
-<p><strong>What you can do.</strong> Revoke as soon as you know, then take new keys with your account's card. Each step is in <code>GET /v1/ledger</code>.</p>
+<p><strong>What you can do.</strong> Revoke as soon as you know, then take new keys with your account's bank account. Each step is in <code>GET /v1/ledger</code>.</p>
 
-<h2 id="another-card">New keys asked with another card</h2>
-<p><strong>What happens.</strong> Someone who knows your account's address and has no key can ask for new keys with a card that is not the account's. They start 7 days later, and your keys stop then. Until then every answer to your keys carries <code>"notice"</code>, and from 2026-12-05 12:00 UTC one email goes to the account's address; before that day no email is sent. A company that reads neither for 7 days loses its keys to that card.</p>
-<p><strong>What you can do.</strong> Act on <code>"notice"</code>: one call to <code>POST /v1/keys/cancel</code> with your live key stops it. With your account's own card, <code>POST /v1/keys/reissue</code> gives you new keys at once, whatever is waiting.</p>
+<h2 id="another-card">New keys asked with another bank account</h2>
+<p><strong>What happens.</strong> Someone who knows your account's address and has no key can ask for new keys with a bank account that is not the account's. They start 7 days later, and your keys stop then. Until then every answer to your keys carries <code>"notice"</code>, and from 2026-12-05 12:00 UTC one email goes to the account's address; before that day no email is sent. A company that reads neither for 7 days loses its keys to that bank account.</p>
+<p><strong>What you can do.</strong> Act on <code>"notice"</code>: one call to <code>POST /v1/keys/cancel</code> with your live key stops it. With your account's own bank account, <code>POST /v1/keys/reissue</code> gives you new keys at once, whatever is waiting.</p>
 
 <h2 id="intent-not-checked">STK does not see the intent</h2>
 <p><strong>What happens.</strong> STK receives the seal and its time only, so it does not check that the intent and trigger your code put in the row are what the conversation was about, or that your code applied the rules before calling. A call with a seal is signed and billed whatever the row says. stk_verify.py later shows a row the rules did not permit as not a permission; STK cannot know of it.</p>
@@ -97,17 +97,21 @@
 <h2 id="first-hour">A key made on the day it signs</h2>
 <p><strong>What happens.</strong> STK makes its signing keys 200 days ahead, two a day, and keeps them in Stripe, so a server that starts again signs with the same keys. Only when both of a day's keys have been made invalid does STK make a key that day and sign with it at once. Until the next copy, that key's public key is in Stripe, and in the files of the companies that got a receipt signed with it (stk.py and stk.mjs save it), only. If it were deleted in Stripe in that time, what was signed with it passes check 2 only with the company's own saved key.</p>
 
-<h2 id="card">An invoice is paid by card</h2>
-<p><strong>What happens.</strong> Each invoice is charged to the card registered with the live key, the Monday after its week. A week's amount the card does not cover is declined: the invoice stays open, Stripe tries the card again by the retry settings of STK's Stripe account (STK does not set when), and it can be paid from its link. Paying one invoice in several parts is not offered. The other way to pay is by invoice (<a href="/docs#pay">how</a>).</p>
-<p><strong>What you can do.</strong> Register a card whose limit covers a week, or pay an open invoice from its page with a card that covers it.</p>
+<h2 id="only-ach">US bank account required</h2>
+<p><strong>What happens.</strong> STK is paid one way only: a US bank account, debited by STK (ACH). A company with no US bank account cannot have a live key. There is no card, no invoice to pay yourself, and nothing per country.</p>
+<p><strong>What you can do.</strong> Register a US bank account once (<a href="/docs#keys">how</a>). The test key needs none.</p>
+
+<h2 id="debit-refused">A debit is refused</h2>
+<p><strong>What happens.</strong> Your bank answers a debit within 4 business days; STK signs from when the debit begins. Refused for want of money, it is debited again 3 days later, 3 tries in all, and STK signs meanwhile. Refused for good (the third time, or once for a closed account, no such account, or debits not authorized): STK signs nothing for your account from the next call, and the month's email says so. STK cannot debit a refused account again by itself: the US bank network's rules allow a refused debit to be presented again twice at most, and after the other refusals Stripe ends the authorization.</p>
+<p><strong>What you can do.</strong> Register a bank account (<code>POST /v1/keys/bank</code> with your live key): it is debited at once and STK signs again from your next call. <code>GET /v1/health</code> with your key says whether STK signs for your account.</p>
 <p><strong>A part paid.</strong> An invoice paid in part (by a credit note, for example) is unpaid until the rest is paid: 60 days after it was issued, STK signs nothing for your account, as for one not paid at all. The next ask after the rest is paid is signed.</p>
 
-<h2 id="email">A declined card</h2>
-<p><strong>What happens.</strong> STK sends no email about it. When the card is declined, Stripe tries the card again. STK asks Stripe to send an open invoice again to your account's address on its due date and 7, 30 and 53 days after; whether Stripe also emails you each time a charge fails is a setting of STK's Stripe account. Do not count on an email. Unpaid, the invoice is still open, and 60 days after it was issued STK signs nothing for your account.</p>
-<p><strong>What you can do.</strong> <code>GET /v1/health</code> with your key lists your unpaid invoices and the moment STK stops signing for each.</p>
+<h2 id="email">One email a month</h2>
+<p><strong>What happens.</strong> STK sends one email a month to the account's address, once the month's debits have gone through or one is refused for good (from 2026-12-11 12:00 UTC). Stripe holds no address of the account and sends none, except the one email the US bank network's rules require when the authorization is given. No email comes when a debit begins, when it is tried again, or when it is refused before the last try.</p>
+<p><strong>What you can do.</strong> <code>GET /v1/health</code> with your key says whether STK signs for your account; <code>GET /v1/ledger</code> gives each day's counts.</p>
 
 <h2 id="payment-max">One payment is at most $999,999.99</h2>
-<p><strong>What happens.</strong> Stripe takes one payment in US dollars of at most $999,999.99 by any method but a card, and does not issue an invoice above it that a bank account can pay. A week or a month above it is split by STK on its own into as few invoices as it takes, of equal amounts (each at most $999,999.98), which together are its amount to the cent, each sent with its own page (or charged to your card); no one is asked.</p>
+<p><strong>What happens.</strong> Stripe takes one debit in US dollars of at most $999,999.99, and does not issue an invoice above it that a bank account can pay. A month above it is debited by STK on its own as several debits of equal amounts (each at most $999,999.98), together its amount to the cent. You see one amount, in the month's one email; no one is asked.</p>
 
 <h2 id="test-live">A test key in production, a live key in a test</h2>
 <p><strong>What happens.</strong> STK cannot tell where a key is used. A test key in production gets the same answers, is never billed, and its rows check as a test key's, not as live permissions. A live key in a test is billed.</p>
@@ -131,7 +135,7 @@
 <p><strong>Who pays.</strong> STK.</p>
 
 <h2 id="anyone-signs-up">An address that is not yours</h2>
-<p><strong>What happens.</strong> STK does not check that whoever signs up owns the address: it sends no email when keys are made. Someone could take keys under an address that is not theirs; the invoices for what they ask go to that address. New keys for an account come only from its live key; from the account's own card, proven on a card page (<a href="/docs#reissue">how</a>); from another card, 7 days after they are asked, unless the live key cancels them; or, while its keys have never been used, from the same address again, 10 minutes after they were made. The keys before stop each time.</p>
+<p><strong>What happens.</strong> STK does not check that whoever signs up owns the address: it sends no email when keys are made. Someone could take keys under an address that is not theirs; a live key needs a bank account registered, and what they ask is debited from that bank account, but the month's email goes to the address. New keys for an account come only from its live key; from the account's own bank account, proven on a bank page (<a href="/docs#reissue">how</a>); from another bank account, 7 days after they are asked, unless the live key cancels them; or, while its keys have never been used, from the same address again, 10 minutes after they were made. The keys before stop each time.</p>
 
 <h2 id="no-records">STK that cannot reach Stripe</h2>
 <p><strong>What happens.</strong> STK signs only with keys whose public keys it has already written to Stripe; each day's keys are made 200 days ahead. With no published key for the day it signs nothing: every ask with a key is answered <code>escalate</code>, with no row, and nothing is billed. If it cannot read whether an account is unpaid for two hours, it answers 503: stk.py and stk.mjs finish under a grant they hold and send the seal when STK answers again; with no grant, <code>escalate</code>. Your conversations go to people, as your code does today. <code>GET /v1/health</code> says <code>"ok": false</code>. When it can write a public key again, the next ask is answered by the rules. Nobody has to do anything. The same 503 comes for a moment when STK is deployed, until the process before it stops.</p>
@@ -157,7 +161,7 @@
 <p><strong>What you can do.</strong> Give each server its own folder (<code>STK_ROWS_DIR</code>).</p>
 
 <h2 id="limits">How much STK signs</h2>
-<p><strong>What happens.</strong> STK signs up to 20,000,000 permissions a day (UTC) for a live key; 10,000 until an invoice of its account has been paid. A test key: 1,000. The seals of a day, of all accounts together, are each counted once, up to 129,138,682 in a day (129,138,682 seals in 1408 MB, filled once on 2026-11-25 on a Mac; the next one was refused); past that, STK signs no new seal that day and the file answers <code>escalate</code>. They are kept in the API's memory only: when the API restarts they are lost, and a seal signed before the restart and sent again the same day is counted again in the count after the restart; the day is billed the larger of the two counts, not their sum, so it is not billed twice. Past the limits above, STK signs nothing more that day and the file answers <code>escalate</code>, with the reason in <code>not_signed</code>. 300 new accounts an hour are made in all, and 3 calls an hour come from one address; then <code>POST /v1/keys</code> answers 429, saying when it opens again (a call with one of your keys is not held up). One account can make 10 reports in 24 hours.</p>
+<p><strong>What happens.</strong> STK signs up to 20,000,000 permissions a day (UTC) for a live key; 10,000 until a debit of its account has gone through. A test key: 1,000. The seals of a day, of all accounts together, are each counted once, up to 129,138,682 in a day (129,138,682 seals in 1408 MB, filled once on 2026-11-25 on a Mac; the next one was refused); past that, STK signs no new seal that day and the file answers <code>escalate</code>. They are kept in the API's memory only: when the API restarts they are lost, and a seal signed before the restart and sent again the same day is counted again in the count after the restart; the day is billed the larger of the two counts, not their sum, so it is not billed twice. Past the limits above, STK signs nothing more that day and the file answers <code>escalate</code>, with the reason in <code>not_signed</code>. 300 new accounts an hour are made in all, and 3 calls an hour come from one address; then <code>POST /v1/keys</code> answers 429, saying when it opens again (a call with one of your keys is not held up). One account can make 10 reports in 24 hours.</p>
 <p><strong>Who pays.</strong> Nobody: what is not signed is not billed.</p>
 
 <h2 id="load-test">What a load test found</h2>
@@ -167,7 +171,7 @@
 <h2 id="unused">Keys never used</h2>
 <p><strong>What happens.</strong> An account with no day of <code>POST /v1/ask</code> or <code>POST /v1/joined</code> sent to Stripe in the 30 days after it was made is deleted, with its email address. A day lost when STK's server stopped does not count. The same address can get keys again.</p>
 <p><strong>What you can do.</strong> Make one <code>ask()</code> that gets <code>finish</code> with your live key within 30 days (one with the test key does not count).</p>
-<p><strong>A card page lost.</strong> Both keys are given in one call, the live key signing once a card is registered. If the card page is closed before a card is registered, <code>POST /v1/keys</code> with the address and either key gives a new card page, the keys unchanged.</p>
+<p><strong>The return from the bank page lost.</strong> The live key is given when the bank page's session comes back. If the page is closed, or the tab with the keys, before it comes back, <code>POST /v1/keys</code> with the address and the test key gives the live key if the bank account was registered, or a new bank page if not.</p>
 
 <h2 id="receipt-limits">What a receipt does not prove</h2>
 <p><strong>What happens.</strong> A receipt does not prove that every conversation was sealed (a company can choose not to call STK); that the row is a true record of the conversation; that a person actually took over, or what that person did; that the time is attested by anyone other than STK; that STK's handling of its signing keys has been audited (it has not); or that the rules are sufficient for any one company's legal duties. <a href="/ledger#proves">What a receipt proves, and what it does not</a></p>

@@ -66,7 +66,7 @@ Connection: close
 <tr><td><strong>Your key</strong></td><td>In <code>X-STK-Key</code>: whose permission it is, and whether it is billed (<code>live</code>) or not (<code>test</code>).</td></tr>
 <tr><td><strong>The time</strong></td><td>STK's own clock when the seal arrives. It is in the signed receipt, beside <code>recorded_ms</code>.</td></tr>
 <tr><td><strong>A person joining</strong></td><td><code>POST /v1/joined</code>: a count, with no body or with the seal of the permission it is for.</td></tr>
-<tr><td><strong>At signup</strong></td><td>The email address the invoices go to. The keys come back once; STK keeps only their hashes. The card is registered on Stripe's page and kept by Stripe; STK never receives its number.</td></tr>
+<tr><td><strong>At signup</strong></td><td>The email address the month's email goes to. The keys come back once; STK keeps only their hashes. The bank account is registered on Stripe's page and kept by Stripe; STK never receives its number.</td></tr>
 </tbody>
 </table></div>
 <p>The request also carries what every HTTPS request carries: the address it comes from, and the headers shown above. STK writes neither down for <code>POST /v1/ask</code>.</p>

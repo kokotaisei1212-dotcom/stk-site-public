@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Price · STK</title>
-<meta name="description" content="$5 per action an AI finishes alone. $0 when a person must decide. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars; or monthly by invoice.">
+<meta name="description" content="$5 per action an AI finishes alone. $0 when a person must decide. Each month (UTC) debited on the 1st from the US bank account registered once (ACH), the only way STK is paid.">
 <link rel="canonical" href="https://stk-evidence.com/price">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="STK">
 <meta property="og:url" content="https://stk-evidence.com/price">
 <meta property="og:title" content="Price · STK">
-<meta property="og:description" content="$5 per action an AI finishes alone. $0 when a person must decide. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars; or monthly by invoice.">
+<meta property="og:description" content="$5 per action an AI finishes alone. $0 when a person must decide. Each month (UTC) debited on the 1st from the US bank account registered once (ACH), the only way STK is paid.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Price · STK">
-<meta name="twitter:description" content="$5 per action an AI finishes alone. $0 when a person must decide. Each week (Monday to Sunday, UTC) invoiced the next Monday and charged that day to the card registered, in US dollars; or monthly by invoice.">
+<meta name="twitter:description" content="$5 per action an AI finishes alone. $0 when a person must decide. Each month (UTC) debited on the 1st from the US bank account registered once (ACH), the only way STK is paid.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon-32-dark.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/stk-icon-512-dark.png" type="image/png" sizes="512x512">
@@ -49,7 +49,7 @@
   <li><strong>$0 until you use it.</strong> Keys cost nothing; there is no minimum.</li>
   <li><strong>$5 for each permission</strong> under these rules (the domain <code>conversation</code>, <a href="/rules-full#scope">what it covers</a>): each seal your live key sends that STK signs, whatever the action, the jurisdiction or the key.</li>
   <li><strong>$0 when a person joins it the same day (UTC).</strong> Told by 00:10 UTC the day after, with the permission's seal (stk.py and stk.mjs send it while the process that got the permission still runs), it still counts for its day. Told on a later day after that: it stays billed.</li>
-  <li>Each Monday, Stripe makes the invoice for the week before (Monday to Sunday, UTC) and charges it the same day to the card you registered when you took your live key. STK has no screen for it and sends no email about it. It is due when issued.</li>
+  <li>Each month (UTC) is debited on the 1st of the next, from 01:00 UTC, from the US bank account you registered once when you took your live key. You do nothing. You receive one email a month: the month's amount, once it is debited.</li>
 </ul>
 
 <h2 id="example">An example</h2>
@@ -68,17 +68,19 @@
   <li>Anything with your test key.</li>
   <li>Every ask the rules answer <code>escalate</code>: the file does not call STK.</li>
   <li>The same conversation and intent asked again the same day (UTC) on the same server: the file does not call STK again.</li>
-  <li>A seal STK did not sign: unpaid 60 days, no published key, or STK not answering.</li>
+  <li>A seal STK did not sign: a debit refused for good, unpaid 60 days, no published key, or STK not answering.</li>
   <li><strong>An answer of STK that came too late to be used is not billed.</strong> An answer STK itself took more than 3 seconds for (the time the files wait) is signed and never billed, whatever your code did. An answer that came after your code stopped waiting, or never reached it, while no grant held: the file tells STK a person has it; if your process ends first, the file keeps that and tells STK when it starts again (its first <code>ask()</code> with a conversation). Under a grant the file finishes, and the permission is billed. If STK cannot be told: after 00:10 UTC the day after, it stays billed.</li>
   <li>On a day (UTC) STK's server started again (a deploy, or after it stopped): the permissions of the smaller of the two counts, before and after the start. The day is billed as the larger count less every person joining that day. Each count is written to Stripe every 2 minutes; what was not written when the server stopped is not billed.</li>
   <li>A day whose signing key STK made invalid, for every company. Not yet on an invoice: taken off. Already on one: a credit note from Stripe (an open invoice owes less; a paid one is refunded, or credited to the next invoice when it cannot be).</li>
 </ul>
 
-<h2 id="unpaid">If an invoice is not paid</h2>
+<h2 id="unpaid">If a debit is refused</h2>
 <ol>
-  <li>If the card is declined, the invoice stays open: Stripe tries the card again, and the invoice can be paid from its link. STK asks Stripe to send an open invoice again on its due date and 7, 30 and 53 days after. <code>GET /v1/health</code> with your key lists your unpaid invoices and the moment STK stops signing for each.</li>
-  <li>When STK stops: a card's weekly invoice (due when issued), 60 days after it was issued. An account paying by invoice that has paid an invoice by its due date, from the minute its invoice is past its due date. An account paying by invoice that has not yet paid one, 60 days after its due date, or earlier at its limit. From then the file answers <code>escalate</code> to every ask, and nothing is billed.</li>
-  <li>When it is paid, STK signs again: at once when Stripe tells STK, and at the latest at its next hourly read of Stripe. A payment from a US bank account (ACH) counts when Stripe marks the invoice paid, which Stripe says takes up to 4 business days. No one at STK does anything.</li>
+  <li>A debit counts as paid for signing from when it begins. Your bank answers within 4 business days.</li>
+  <li>Refused for want of money: STK debits it again 3 days later, at most 3 times in all. Until the last is refused, STK signs as usual.</li>
+  <li>Refused for any other reason (the account closed, no such account, debits not authorized), or the third time for want of money: from then the file answers <code>escalate</code> to every ask, and nothing is billed. The month's email says so. <code>GET /v1/health</code> with your key says so too.</li>
+  <li>To sign again: register a bank account (<code>POST /v1/keys/bank</code> with your live key, <a href="/docs#bank">Docs</a>). STK debits it at once and signs again from your next call. No one at STK does anything.</li>
+  <li>What STK signed while a debit was under way is billed as any day. If it is never paid, STK loses it.</li>
 </ol>
 
 <h2 id="charges">What STK charges for</h2>
@@ -88,32 +90,33 @@
 <h2 id="uses">One price</h2>
 <p>One price for every key. A key may be taken with a <code>use</code> you declare (<a href="/docs#keys">Docs</a>): it is kept as information and changes no price. An action that requires human review is never signed, so it costs $0.</p>
 
-<h2 id="pay">A card, or an invoice</h2>
-<p>Usable with no card registered: choose to pay by invoice, on <a href="/#keys">the first page</a> once your keys are shown (Pay by invoice), or by the API (<a href="/docs#pay">how</a>). Each month's permissions (UTC) are on one invoice in dollars, sent on the 1st and due within 30 days, paid on its page by a card or a US bank account (ACH). The price is the same. An account paying by invoice that has paid an invoice by its due date has no limit: STK signs nothing for it only while one of its invoices is past its due date, and the answer says how much paying lets it sign again. One that has not yet paid an invoice may owe up to $5,000 (its open invoices and its month so far): at 80% of it, its days so far are invoiced at once, due in 30 days, and its address is emailed; at the limit, nothing is signed until a payment is confirmed.</p>
+<h2 id="pay">One way to pay</h2>
 <ul>
-  <li>By card: the card is charged weekly, on the Monday after the week closes. The customer does nothing after the first minute.</li>
-  <li>STK never receives a bank account number or a card number. Both are held by Stripe.</li>
+  <li><strong>US bank account required.</strong> This is the only way: a US bank account, debited by STK (ACH). No card, no invoice to pay yourself, no other way in any country.</li>
+  <li>You register it once, on Stripe's page: you sign in to your bank and authorize the debits. That is the last thing STK asks of you.</li>
+  <li>A month above $999,999.99 is debited in several equal parts, together its amount to the cent. You see one amount.</li>
+  <li>STK never receives your full account number: Stripe holds it.</li>
 </ul>
 
 <h2 id="why-stripe">Why Stripe</h2>
 <ul>
   <li>STK holds no billing ledger and has no store of its own. Every count is written to Stripe, where the customer can read it without asking STK.</li>
   <li>The record is Stripe's, so it survives STK disappearing, and STK cannot quietly revise its own numbers.</li>
-  <li>The invoice and the payment page are Stripe's. STK has no billing screen of its own.</li>
+  <li>The invoices and the debits are Stripe's. STK has no billing screen of its own.</li>
 </ul>
 
-<p><strong>Counting.</strong> Every billed day appears on the company's Stripe invoice as its own entry, with that day's count of permissions. The company reads the count on its own invoice, without asking STK. STK holds no billing ledger of its own; once an invoice is issued, its lines are fixed, and a correction can only be a credit note the company sees. If a count is wrong, it is wrong in a place the company can see.</p>
-<p><strong>Why weekly.</strong> A week (Monday to Sunday, UTC) is closed the following Monday and charged that day. This is STK's own condition, not a requirement on the company. Its effect for the company: the amount is small and frequent rather than large and monthly, the first charge arrives within days of the first use, and stopping costs nothing: there is no term and no notice period.</p>
+<p><strong>Counting.</strong> Every billed day is its own entry on the month's invoice at Stripe, with that day's count of permissions; <code>GET /v1/ledger</code> gives each day's counts. STK holds no billing ledger of its own; once an invoice is issued, its lines are fixed, and a correction can only be a credit note the company sees. If a count is wrong, it is wrong in a place the company can see.</p>
+<p><strong>Why monthly.</strong> One debit a month, one email a month. There is no term and no notice period: leaving is one call (<a href="/ask#leave">how</a>).</p>
 
 <p id="rules-free"><strong>The rules are free. The price is for a receipt.</strong> The rules are published under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, and using them costs nothing, with STK or without it (<a href="/rules#licence">the licence</a>). What is priced is the receipt: an optional proof of conformity by a third party, STK, signed for one action. The receipt is not part of the rules, and following the rules does not need one.</p>
 
 <h2 id="holds">What STK holds</h2>
 <ul>
-  <li>One right only: if an account is unpaid for 60 days, STK stops signing. It is a condition in the <a href="/terms">Terms</a>, not part of the rules. There is no other remedy and no interest.</li>
+  <li>One right only: if a debit is refused for good, or an account is unpaid for 60 days, STK stops signing. It is a condition in the <a href="/terms">Terms</a>, not part of the rules. There is no other remedy and no interest.</li>
 </ul>
 
 <h2 id="currency">Currency and tax</h2>
-<p>US dollars. The invoice is $5 times the week's count of permissions in conversations. STK adds no tax to it.</p>
+<p>US dollars. The month is $5 times its count of permissions in conversations. STK adds no tax to it.</p>
 <section id="how-set" class="how-set">
 <h2 id="why-5">How this price was set</h2>
 <p>A record, kept as it was on 2026-11-24, that the price was not set at STK's discretion; it changes nothing. Until 2026-11-24 a key's price was set by its use, each 35% of the published or derived cost of the same work by a person, rounded to the dollar; where no figure was found, $5. From 2026-11-24 there is one price, $5. The figures:</p>
