@@ -483,7 +483,7 @@ Conditions the laws read put on completing an intent without human review there:
 <p>So every intent is where it is because of a law or its absence, and anyone can check each one against the official text and the reasons published with it. Only STK makes a new version; no call does.</p>
 <h2 id="else">What else decides whether STK signs</h2>
 <ul>
-<li>The limits of a day (UTC): a live key, 20,000,000 permissions a day, 10,000 until an invoice of its account has been paid; a test key, 1,000 a day. Past the limit, STK does not sign.</li>
+<li>The limit of a day (UTC): a test key, 1,000 permissions a day; past it, STK does not sign. A live key has no limit.</li>
 <li>An account whose debit was refused for good, or with an invoice unpaid 60 days after it was issued: STK signs nothing for it until it is paid. This is a condition of STK's service, in the <a href="/terms">Terms</a>; the current text of the rules does not hold it (earlier versions had it as clause 0).</li>
 <li>STK does not sign when it has no published signing key for today, while a starting server has not yet read its records in Stripe, or when it has not read from Stripe for 2 hours whether the account is unpaid. In the last two, STK answers 503: as when it cannot be reached, a grant that holds covers it.</li>
 <li>When a signing key is declared invalid, every day it signed is billed nothing.</li>
