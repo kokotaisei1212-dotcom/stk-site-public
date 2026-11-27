@@ -27,11 +27,10 @@
 </div></header>
 <div class="menu" id="menu" hidden><nav class="wrap" aria-label="Pages"><ul>
 <li><a href="/rules">Rules</a></li>
-<li><a href="/ledger#check">How to check a row</a></li>
-<li><a href="/receive">What we receive</a></li>
+<li><a href="/ledger" aria-current="page">The ledger</a></li>
+<li><a href="/receive">What STK receives</a></li>
 <li><a href="/when">What happens when</a></li>
 <li><a href="/docs">Docs</a></li>
-<li><a href="/docs#setup">Setup guides</a></li>
 <li><a href="/vendors">For AI vendors</a></li>
 <li><a href="/price">Price</a></li>
 <li><a href="/limits">Known limits</a></li>
@@ -51,7 +50,7 @@
 <tr><td><code>seal</code></td><td>SHA-256 of the 32 random bytes followed by your row: 64 hex. With <code>recorded_ms</code>, the only thing of yours STK received.</td></tr>
 <tr><td><code>time_ms</code></td><td>When STK signed it, in milliseconds since 1970 (UTC). What STK attests, and the day it is billed for.</td></tr>
 <tr><td><code>recorded_ms</code></td><td>When your library recorded the action, in milliseconds since 1970 (UTC): your own claim, not STK's. Apart from <code>time_ms</code> by the time the call took (STK accepts them up to a minute apart), unless the seal waited in the library's queue while STK could not be reached: then up to 1 hour apart.</td></tr>
-<tr><td><code>rule_version</code></td><td>The SHA-256 of the full text of the rules in use when STK signed it. <a href="/rules-full#all-texts">The rules</a></td></tr>
+<tr><td><code>rule_version</code></td><td>The SHA-256 of the full text of the rules in use when STK signed it. <a href="/rules-full#all-texts">The rules in full</a></td></tr>
 <tr><td><code>account</code></td><td>Your account's id at STK.</td></tr>
 <tr><td><code>which_key</code></td><td><code>test</code> or <code>live</code>. Only <code>live</code> is billed.</td></tr>
 <tr><td><code>kid</code></td><td>The key that signed it: one of the keys made for its day (UTC), two a day, 200 days ahead since 2026-11-21; a server that starts again signs with the same keys.</td></tr>
@@ -138,8 +137,8 @@
 <div class="top">
 <div class="brand"><a class="mark" href="/" aria-label="STK, the first page"><span class="case"><span class="cell">STK.</span></span><span class="nub"></span></a></div>
 <div><h2>The rule</h2><ul><li><a href="/rules">Rules</a></li><li><a href="/changelog">Changelog</a></li></ul></div>
-<div><h2>Check</h2><ul><li><a href="/ledger#check">How to check a row</a></li><li><a href="/receive">What we receive</a></li><li><a href="/when">What happens when</a></li></ul></div>
-<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/docs#setup">Setup guides</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
+<div><h2>Check</h2><ul><li><a href="/ledger">The ledger</a></li><li><a href="/receive">What STK receives</a></li><li><a href="/when">What happens when</a></li></ul></div>
+<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
 <div><h2>Terms</h2><ul><li><a href="/price">Price</a></li><li><a href="/limits">Known limits</a></li><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/dpa">DPA</a></li><li><a href="/subprocessors">Subprocessors</a></li><li><a href="/vendor-review">Vendor review</a></li><li><a href="/msa">MSA</a></li></ul></div>
 <div><h2>Contact</h2><ul><li><a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a></li><li><a href="https://www.linkedin.com/in/taisei-izawa-8140123b9">LinkedIn</a></li></ul></div>
 </div>

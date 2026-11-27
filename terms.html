@@ -27,11 +27,10 @@
 </div></header>
 <div class="menu" id="menu" hidden><nav class="wrap" aria-label="Pages"><ul>
 <li><a href="/rules">Rules</a></li>
-<li><a href="/ledger#check">How to check a row</a></li>
-<li><a href="/receive">What we receive</a></li>
+<li><a href="/ledger">The ledger</a></li>
+<li><a href="/receive">What STK receives</a></li>
 <li><a href="/when">What happens when</a></li>
 <li><a href="/docs">Docs</a></li>
-<li><a href="/docs#setup">Setup guides</a></li>
 <li><a href="/vendors">For AI vendors</a></li>
 <li><a href="/price">Price</a></li>
 <li><a href="/limits">Known limits</a></li>
@@ -43,15 +42,15 @@
 <h1>Terms of Service</h1>
 <p class="muted">Last updated: November 27, 2026</p>
 
-<h2>1. Who we are</h2>
-<p>STK is provided by Taisei Izawa (井澤大成), an individual in Toyama, Japan ("we").</p>
+<h2>1. Who provides STK</h2>
+<p>STK is a service provided by Taisei Izawa (井澤大成), an individual in Toyama, Japan. In these terms, "STK" means its provider, or the service, as the context requires.</p>
 <p>Contact: <a href="https://www.linkedin.com/in/taisei-izawa-8140123b9" rel="noopener">LinkedIn</a>.<br>Email: <a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a></p>
 
 <h2>2. Agreement</h2>
 <p>Taking an STK key with <code>POST /v1/keys</code> means you accept these terms and the <a href="/dpa">Data Processing Agreement</a>. If you take a key for an organisation, you confirm you may bind it.</p>
 
 <h2>3. The service</h2>
-<p>An API at <code>api.stk-evidence.com</code>, and two files, stk.py and stk.mjs, that run in your code. Before your AI hands a conversation to a person, the file decides <code>finish</code> or <code>escalate</code> on your side from one set of rules, the same for every company, published in full and signed by STK at <a href="/rules-full">Rules</a> and <code>GET /v1/rules</code>. Every change to the rules is dated in <code>GET /v1/rules?history=1</code>. On <code>finish</code> it sends STK the seal of your row (SHA-256 of 32 random bytes and the row), and STK signs it with the time and the rules version: that is a permission. The row and the random bytes stay with you (<a href="/ledger">The ledger</a>). With the seal STK receives the time your file recorded the action, and for a seal sent from the file's queue the grant STK signed; nothing else: a request with any other field is refused. A report (<code>POST /v1/incident</code>) carries the intent you report and, if you give them, its jurisdictions.</p>
+<p>An API at <code>api.stk-evidence.com</code>, and two files, stk.py and stk.mjs, that run in your code. Before your AI hands a conversation to a person, the file decides <code>finish</code> or <code>escalate</code> on your side from one set of rules, the same for every company, published in full and signed by STK at <a href="/rules-full">The rules in full</a> and <code>GET /v1/rules</code>. Every change to the rules is dated in <code>GET /v1/rules?history=1</code>. On <code>finish</code> it sends STK the seal of your row (SHA-256 of 32 random bytes and the row), and STK signs it with the time and the rules version: that is a permission. The row and the random bytes stay with you (<a href="/ledger">The ledger</a>). With the seal STK receives the time your file recorded the action, and for a seal sent from the file's queue the grant STK signed; nothing else: a request with any other field is refused. A report (<code>POST /v1/incident</code>) carries the intent you report and, if you give them, its jurisdictions.</p>
 <p>The files stk.py, stk.mjs and stk_verify.py are released under the MIT License, Copyright (c) 2026 Taisei Izawa (井澤大成). The rules are under CC BY 4.0. The API and the service are under these Terms.</p>
 
 <h2>4. Keys</h2>
@@ -60,7 +59,7 @@
 <p>Your row stays with you, in the shape you choose: <code>intent</code> and <code>trigger</code> are all it must have. Of a row STK receives only its seal, 32 bytes from which nothing can be read back, and the time your file recorded it, so what you put in the row never reaches STK.</p>
 
 <h2>5. What STK permits</h2>
-<p>For an account whose debit was refused for good, STK signs nothing (section 7, a condition of these Terms). The rules say <code>escalate</code> whenever the trigger is not <code>unknown</code>, for <code>other</code>, for the intents never permitted, for any intent not on their lists, and for an intent STK closed (<a href="/rules-full#closed">closed names</a>); clause by clause in <a href="/rules-full">The rules</a>. Otherwise they say <code>finish</code>. There is no setting per company. STK never writes to your systems; your code acts on the answer.</p>
+<p>For an account whose debit was refused for good, STK signs nothing (section 7, a condition of these Terms). The rules say <code>escalate</code> whenever the trigger is not <code>unknown</code>, for <code>other</code>, for the intents never permitted, for any intent not on their lists, and for an intent STK closed (<a href="/rules-full#closed">closed names</a>); clause by clause in <a href="/rules-full">The rules in full</a>. Otherwise they say <code>finish</code>. There is no setting per company. STK never writes to your systems; your code acts on the answer.</p>
 
 <h2>6. Reports</h2>
 <p><code>POST /v1/incident</code> with the receipt and signature of one permission of your own live key, and the intent it was for, leaves one dated report. Every report is public in <code>GET /v1/rules?history=1</code>, with its intent and date, never the company. A report changes no rule and no answer, for you or anyone. Only STK closes an intent (<a href="/rules-full#closed">closed names</a>), in a new version of the rules, dated in the history. An intent is Never only with a law that names a person for it, written beside it with the address of its official text. The line was read on 2026-11-25, from the laws named in the record, and it does not change: no later version takes an intent off the Never list or lets an AI finish what it sends to a person. A new version can add a trigger, never take one off or change its words. STK's server does not start with a version that breaks Lock 1 (the law) or Lock 2 (the triggers): <a href="/rules-full#locks">the locks</a>.</p>
@@ -87,13 +86,13 @@
 <p>The service has no uptime commitment. When STK does not answer and no grant holds, stk.py and stk.mjs answer <code>escalate</code>, and your code must hand the conversation to a person, as it would without STK.</p>
 
 <h2>12. Leaving and ending</h2>
-<p id="leave">To leave, send one call with your live key to <code>POST /v1/stop</code>. Nothing is asked and nothing else is needed: every key stops at once, stk.py and stk.mjs hand every conversation to a person, what is owed (the days so far and any invoice not paid) is debited once, and then STK ends its authorization to debit your bank account. Nothing after it is billed. From then the address can take keys again, as a new account. Not calling STK also bills nothing: no month with no permission is billed. STK receives and keeps no row. Each day that is billed something is an invoice item with Stripe, holding that day's two counts (permissions, people joining) and what was billed; with the invoices, Stripe keeps them as payment records, and STK does not delete them. Each report is deleted 7 years after it was made. Your account (the address and the hashed keys, with Stripe) is deleted 7 years after its last day with an ask or a person joining, or 30 days after it was made if its live key was never used: an account in use stays. The address stays on the invoices Stripe keeps. <code>GET /v1/ledger</code> gives your days' counts at any time. We may end these terms with a notice in the <a href="/changelog">Changelog</a>. Fees for closed months remain payable.</p>
+<p id="leave">To leave, send one call with your live key to <code>POST /v1/stop</code>. Nothing is asked and nothing else is needed: every key stops at once, stk.py and stk.mjs hand every conversation to a person, what is owed (the days so far and any invoice not paid) is debited once, and then STK ends its authorization to debit your bank account. Nothing after it is billed. From then the address can take keys again, as a new account. Not calling STK also bills nothing: no month with no permission is billed. STK receives and keeps no row. Each day that is billed something is an invoice item with Stripe, holding that day's two counts (permissions, people joining) and what was billed; with the invoices, Stripe keeps them as payment records, and STK does not delete them. Each report is deleted 7 years after it was made. Your account (the address and the hashed keys, with Stripe) is deleted 7 years after its last day with an ask or a person joining, or 30 days after it was made if its live key was never used: an account in use stays. Stripe's invoices name the account by its id, not by its address. <code>GET /v1/ledger</code> gives your days' counts at any time. STK may end these terms with a notice in the <a href="/changelog">Changelog</a>. Fees for closed months remain payable.</p>
 
 <h2>13. Warranty and liability</h2>
 <p>The service is provided as described, without other warranties. To the extent the law allows, each party's liability under these terms is limited to the fees paid in the twelve months before the claim, and neither party is liable for indirect or consequential loss. Nothing limits liability for fraud, wilful misconduct, or breach of confidentiality or data obligations.</p>
 
 <h2>14. Changes</h2>
-<p>We post changes on this page with a new date. A new version of the rules is named by its number and the day it was published, its text fixed by its SHA-256, and dated in <code>GET /v1/rules?history=1</code>. A trigger, a reason or an explanation added, or an error corrected, is published the day it is made. Which actions go to a person, the line, was read on 2026-11-25, from the laws named in the record. It does not change.</p>
+<p>STK posts changes on this page with a new date. A new version of the rules is named by its number and the day it was published, its text fixed by its SHA-256, and dated in <code>GET /v1/rules?history=1</code>. A trigger, a reason or an explanation added, or an error corrected, is published the day it is made. Which actions go to a person, the line, was read on 2026-11-25, from the laws named in the record. It does not change.</p>
 
 <h2>15. Law and courts</h2>
 <p>These terms are governed by the laws of Japan. The Tokyo District Court has exclusive jurisdiction in the first instance.</p>
@@ -103,8 +102,8 @@
 <div class="top">
 <div class="brand"><a class="mark" href="/" aria-label="STK, the first page"><span class="case"><span class="cell">STK.</span></span><span class="nub"></span></a></div>
 <div><h2>The rule</h2><ul><li><a href="/rules">Rules</a></li><li><a href="/changelog">Changelog</a></li></ul></div>
-<div><h2>Check</h2><ul><li><a href="/ledger#check">How to check a row</a></li><li><a href="/receive">What we receive</a></li><li><a href="/when">What happens when</a></li></ul></div>
-<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/docs#setup">Setup guides</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
+<div><h2>Check</h2><ul><li><a href="/ledger">The ledger</a></li><li><a href="/receive">What STK receives</a></li><li><a href="/when">What happens when</a></li></ul></div>
+<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
 <div><h2>Terms</h2><ul><li><a href="/price">Price</a></li><li><a href="/limits">Known limits</a></li><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/dpa">DPA</a></li><li><a href="/subprocessors">Subprocessors</a></li><li><a href="/vendor-review">Vendor review</a></li><li><a href="/msa">MSA</a></li></ul></div>
 <div><h2>Contact</h2><ul><li><a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a></li><li><a href="https://www.linkedin.com/in/taisei-izawa-8140123b9">LinkedIn</a></li></ul></div>
 </div>

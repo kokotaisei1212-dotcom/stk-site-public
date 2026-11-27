@@ -27,11 +27,10 @@
 </div></header>
 <div class="menu" id="menu" hidden><nav class="wrap" aria-label="Pages"><ul>
 <li><a href="/rules">Rules</a></li>
-<li><a href="/ledger#check">How to check a row</a></li>
-<li><a href="/receive">What we receive</a></li>
+<li><a href="/ledger">The ledger</a></li>
+<li><a href="/receive">What STK receives</a></li>
 <li><a href="/when">What happens when</a></li>
 <li><a href="/docs">Docs</a></li>
-<li><a href="/docs#setup">Setup guides</a></li>
 <li><a href="/vendors">For AI vendors</a></li>
 <li><a href="/price">Price</a></li>
 <li><a href="/limits">Known limits</a></li>
@@ -43,17 +42,17 @@
 <h1>Privacy Policy</h1>
 <p class="muted">Last updated: November 27, 2026</p>
 
-<h2>1. Who we are</h2>
+<h2>1. Who provides STK</h2>
 <p>STK is provided by Taisei Izawa (井澤大成), an individual in Toyama, Japan.</p>
 <p>Contact: <a href="https://www.linkedin.com/in/taisei-izawa-8140123b9" rel="noopener">LinkedIn</a>.<br>Email: <a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a></p>
 
 <h2>2. Your account</h2>
-<p>When you take a key we keep your email address, the time the account was made, and your Stripe customer id. The key itself is not kept: only a keyed hash of it (HMAC-SHA256). The address is kept by STK in your Stripe customer's metadata, not as Stripe's customer email, so Stripe sends you nothing of its own, except the one email the US bank network's rules require when you authorize the debits. When you register your bank account, Stripe receives it on its page: the bank's name, the account holder's name, the routing number and the account number, the billing address, and the authorization to debit it; you sign in to your bank through Stripe (Financial Connections), which shares with Stripe only what it needs to debit the account. STK sees the bank's name and the last 4 digits only. STK sends you one email a month, the month's amount (from 2026-12-11 12:00 UTC), and one other only: from 2026-12-05 12:00 UTC, when new keys are asked for your account without a key and with a bank account other than its own, one notice to the account's address. Both are sent through Resend (<a href="/subprocessors">Subprocessors</a>). Stripe also emails the bank account's owner once, when the authorization is given, as the US bank network's rules require. When your keys are stopped or made again, or your bank account is changed, the event is kept in Stripe with its time, naming a bank account only by its bank and last 4 digits; your keys read it in <code>GET /v1/ledger</code>.</p>
+<p>When you take a key STK keeps your email address, the time the account was made, and your Stripe customer id. The key itself is not kept: only a keyed hash of it (HMAC-SHA256). The address is kept by STK in your Stripe customer's metadata, not as Stripe's customer email, so Stripe sends you nothing of its own, except the one email the US bank network's rules require when you authorize the debits. When you register your bank account, Stripe receives it on its page: the bank's name, the account holder's name, the routing number and the account number, the billing address, and the authorization to debit it; you sign in to your bank through Stripe (Financial Connections), which shares with Stripe only what it needs to debit the account. STK sees the bank's name and the last 4 digits only. STK sends you one email a month, the month's amount (from 2026-12-11 12:00 UTC), and one other only: from 2026-12-05 12:00 UTC, when new keys are asked for your account without a key and with a bank account other than its own, one notice to the account's address. Both are sent through Resend (<a href="/subprocessors">Subprocessors</a>). Stripe also emails the bank account's owner once, when the authorization is given, as the US bank network's rules require. When your keys are stopped or made again, or your bank account is changed, the event is kept in Stripe with its time, naming a bank account only by its bank and last 4 digits; your keys read it in <code>GET /v1/ledger</code>.</p>
 <p>To limit how many keys are taken, STK keeps the IP address of each <code>POST /v1/keys</code> in memory for one hour, dropped within the next 10 minutes, and writes it nowhere. To limit calls with a key that is not one of STK's, STK keeps in memory the IP address of each such call, with the times of its calls in the last minute; it is dropped when STK's server starts again, or, when more than 50,000 addresses are held, if it made no such call in the last minute; it is written nowhere.</p>
 
 
 <h2>3. Your customers' conversations</h2>
-<p>For these we act as your processor under the <a href="/dpa">DPA</a>. STK receives, for each permission, the seal: SHA-256 of 32 random bytes and your row, from which nothing can be read back; and the time your library recorded the action (for a seal from its queue, also the grant STK signed). Not the intent, not the trigger, not an id, no words of a conversation: your code decides from the public rules on your side, and a request with any other field is refused. A report you choose to make (<code>POST /v1/incident</code>) carries the intent you report and, if you give them, its jurisdictions. A person joining is a call with no body, or with the seal of the permission it is for. STK keeps no row and never receives one (<a href="/ledger">The ledger</a>); it keeps each day's counts.</p>
+<p>For these STK acts as your processor under the <a href="/dpa">DPA</a>. STK receives, for each permission, the seal: SHA-256 of 32 random bytes and your row, from which nothing can be read back; and the time your library recorded the action (for a seal from its queue, also the grant STK signed). Not the intent, not the trigger, not an id, no words of a conversation: your code decides from the public rules on your side, and a request with any other field is refused. A report you choose to make (<code>POST /v1/incident</code>) carries the intent you report and, if you give them, its jurisdictions. A person joining is a call with no body, or with the seal of the permission it is for. STK keeps no row and never receives one (<a href="/ledger">The ledger</a>); it keeps each day's counts.</p>
 
 <h2>4. This website</h2>
 <p>The site is served by Render (a static site, from 2026-11-22), which receives your IP address. It sets no tracking cookies, runs no analytics and loads nothing from anyone else.</p>
@@ -62,21 +61,21 @@
 <p>The companies on <a href="/subprocessors">Subprocessors</a>. Nobody else.</p>
 
 <h2>6. How long</h2>
-<p>STK receives and keeps no row. Each day that is billed something is an invoice item with Stripe, holding that day's two counts (permissions, people joining) and what was billed; with the invoices, Stripe keeps them as payment records, and STK does not delete them. Each report (its date, the intent you gave with it, and the seal of the permission reported) is deleted 7 years after it was made. Your account (the address and the hashed keys, with Stripe) is deleted 7 years after its last day with an ask or a person joining, or 30 days after it was made if its live key was never used: an account in use stays. The address stays on the invoices Stripe keeps. <code>GET /v1/ledger</code> gives your days' counts at any time. Stripe keeps payment records as the law requires.</p>
+<p>STK receives and keeps no row. Each day that is billed something is an invoice item with Stripe, holding that day's two counts (permissions, people joining) and what was billed; with the invoices, Stripe keeps them as payment records, and STK does not delete them. Each report (its date, the intent you gave with it, and the seal of the permission reported) is deleted 7 years after it was made. Your account (the address and the hashed keys, with Stripe) is deleted 7 years after its last day with an ask or a person joining, or 30 days after it was made if its live key was never used: an account in use stays. Stripe's invoices name the account by its id, not by its address. <code>GET /v1/ledger</code> gives your days' counts at any time. Stripe keeps payment records as the law requires.</p>
 
 <h2>7. Your rights</h2>
 <p>To see, correct or delete what STK keeps about your account (its email address and the keys' hashes), write to <a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a>. Billing records stay with Stripe as payment records. STK holds no row and nothing of your customers, so it has none of that to give, correct or delete.</p>
 
 <h2>8. Changes</h2>
-<p>We post changes on this page with a new date.</p>
+<p>STK posts changes on this page with a new date.</p>
 </div>
 </main>
 <footer class="dark"><div class="wrap">
 <div class="top">
 <div class="brand"><a class="mark" href="/" aria-label="STK, the first page"><span class="case"><span class="cell">STK.</span></span><span class="nub"></span></a></div>
 <div><h2>The rule</h2><ul><li><a href="/rules">Rules</a></li><li><a href="/changelog">Changelog</a></li></ul></div>
-<div><h2>Check</h2><ul><li><a href="/ledger#check">How to check a row</a></li><li><a href="/receive">What we receive</a></li><li><a href="/when">What happens when</a></li></ul></div>
-<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/docs#setup">Setup guides</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
+<div><h2>Check</h2><ul><li><a href="/ledger">The ledger</a></li><li><a href="/receive">What STK receives</a></li><li><a href="/when">What happens when</a></li></ul></div>
+<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
 <div><h2>Terms</h2><ul><li><a href="/price">Price</a></li><li><a href="/limits">Known limits</a></li><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/dpa">DPA</a></li><li><a href="/subprocessors">Subprocessors</a></li><li><a href="/vendor-review">Vendor review</a></li><li><a href="/msa">MSA</a></li></ul></div>
 <div><h2>Contact</h2><ul><li><a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a></li><li><a href="https://www.linkedin.com/in/taisei-izawa-8140123b9">LinkedIn</a></li></ul></div>
 </div>

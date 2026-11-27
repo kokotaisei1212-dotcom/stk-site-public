@@ -1,6 +1,6 @@
 # STK
 
-> Your AI finishes everything the law does not give to a person. Every action your AI finishes alone carries STK's permission. One line of code. We never receive the conversation.
+> Your AI finishes everything the law does not give to a person. Every action your AI finishes alone carries STK's permission. One line of code. STK never receives the conversation.
 
 ## The rules
 

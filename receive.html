@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>What we receive · STK</title>
-<meta name="description" content="One request STK received, byte for byte: a 32-byte seal, your key, and the time it came. Nothing of the conversation.">
+<title>What STK receives · STK</title>
+<meta name="description" content="For each permission STK receives a 32-byte SHA-256 seal, the time your library recorded it, and your key. Nothing of the conversation, the patient or your customer. One request, byte for byte.">
 <link rel="canonical" href="https://stk-evidence.com/receive">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="STK">
 <meta property="og:url" content="https://stk-evidence.com/receive">
-<meta property="og:title" content="What we receive · STK">
-<meta property="og:description" content="One request STK received, byte for byte: a 32-byte seal, your key, and the time it came. Nothing of the conversation.">
+<meta property="og:title" content="What STK receives · STK">
+<meta property="og:description" content="For each permission STK receives a 32-byte SHA-256 seal, the time your library recorded it, and your key. Nothing of the conversation, the patient or your customer. One request, byte for byte.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="What we receive · STK">
-<meta name="twitter:description" content="One request STK received, byte for byte: a 32-byte seal, your key, and the time it came. Nothing of the conversation.">
+<meta name="twitter:title" content="What STK receives · STK">
+<meta name="twitter:description" content="For each permission STK receives a 32-byte SHA-256 seal, the time your library recorded it, and your key. Nothing of the conversation, the patient or your customer. One request, byte for byte.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon-32-dark.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/stk-icon-512-dark.png" type="image/png" sizes="512x512">
@@ -27,11 +27,10 @@
 </div></header>
 <div class="menu" id="menu" hidden><nav class="wrap" aria-label="Pages"><ul>
 <li><a href="/rules">Rules</a></li>
-<li><a href="/ledger#check">How to check a row</a></li>
-<li><a href="/receive" aria-current="page">What we receive</a></li>
+<li><a href="/ledger">The ledger</a></li>
+<li><a href="/receive" aria-current="page">What STK receives</a></li>
 <li><a href="/when">What happens when</a></li>
 <li><a href="/docs">Docs</a></li>
-<li><a href="/docs#setup">Setup guides</a></li>
 <li><a href="/vendors">For AI vendors</a></li>
 <li><a href="/price">Price</a></li>
 <li><a href="/limits">Known limits</a></li>
@@ -43,10 +42,13 @@ table{display:block;max-width:100%;overflow-x:auto} td code{overflow-wrap:anywhe
 pre.bytes{white-space:pre-wrap;word-break:break-all}
 </style>
 <div class="doc">
-<div class="eyebrow">What we receive</div>
-<h1>What we receive</h1>
-<p class="lead">One permission, as it reached STK, byte for byte. Only the key is cut short here.</p>
-<p><strong>STK never sees the conversation. Only a 32-byte hash reaches us.</strong></p>
+<div class="eyebrow">What STK receives</div>
+<h1>What STK receives</h1>
+<p class="lead">For each permission STK receives a 32-byte SHA-256 seal, the time your library recorded it, and your key. Nothing of the conversation, the patient or your customer.</p>
+<p><strong>STK never sees the conversation. Only a 32-byte hash reaches STK.</strong></p>
+
+<h2 id="bytes">One permission, byte for byte</h2>
+<p>One permission, as it reached STK. Only the key is cut short here.</p>
 <pre class="code bytes">POST /v1/ask HTTP/1.1
 Accept-Encoding: identity
 Content-Length: 106
@@ -59,7 +61,7 @@ Connection: close
 {&quot;seal&quot;: &quot;f3fbd2a623e64bd72d2c223dcd44116f7b40335097adf239375bdf492a613382&quot;, &quot;recorded_ms&quot;: 1795229771677}</pre>
 <p>Received by api.stk-evidence.com on 2026-11-21 02:56:11 UTC, sent by stk.py with a test key. The key&#x27;s characters after its first nine are left out here.</p>
 
-<h2 id="receives">What STK receives</h2>
+<h2 id="receives">For each permission</h2>
 <div class="table"><table>
 <tbody>
 <tr><td><strong>The seal</strong></td><td>32 bytes, sent as 64 hex characters: SHA-256 of 32 random bytes and your row. A call with any other field is refused (422).</td></tr>
@@ -73,17 +75,38 @@ Connection: close
 <p>The request also carries what every HTTPS request carries: the address it comes from, and the headers shown above. STK writes neither down for <code>POST /v1/ask</code>.</p>
 
 <h2 id="not">What STK does not receive</h2>
-<p>The words of the conversation, in text or audio. The intent (only if you report a permission: <code>POST /v1/incident</code>). The trigger. A conversation id. Your customer's name, email address, phone number, account number or any other id. A confidence number. Your AI's name or version. The row in any form.</p>
+<p>The words of the conversation, in text or audio. The intent (only if you report a permission: <code>POST /v1/incident</code>). The trigger. A conversation id. Patient information: no name, date of birth, member ID, diagnosis, service or claim. Your customer's name, email address, phone number, account number or any other id. A confidence number. Your AI's name or version. The row in any form.</p>
 
 <h2 id="why-nothing">Why nothing comes back out of the seal</h2>
 <p>SHA-256 cannot be run backwards. A row has few possible values (an intent, a trigger), so the seal includes 32 random bytes that stay with you: to find a row from its seal, one would have to try 2<sup>256</sup> random values for each guess. Without the random bytes, the seal says nothing about the row; with them, anyone can check that a row is the one sealed.</p>
 
 <h2 id="kept">What STK keeps, and for how long</h2>
+<p>STK has no database. What STK keeps is kept on Stripe: each company's email address and the hashes of its keys, each billed day's counts, the invoices, and STK's signing keys (their private halves encrypted by STK).</p>
 <p>Of a permission: nothing written down, unless you report it. The receipt is not kept. In memory, the first 8 bytes of the SHA-256 of your account and the seal are kept for its day (UTC), from which no seal can be read back, so the same seal sent twice that day is counted once; they are let go 10 minutes after the day ends. A seal sent to <code>POST /v1/joined</code> is kept in memory with your account for 2 days, so that a person joining takes a permission off once only; then it is let go.</p>
 <p>Of your account: the email address and the keys' hashes, with Stripe, until 7 years after its last day with an ask or a person joining (30 days after it was made, if its live key was never used); each billed day's count of permissions and of people joining, and what was billed, on Stripe's invoices, which Stripe keeps as payment records. Each report you make: its date and the intent you give with it, public, and the seal of the permission reported, with Stripe, 7 years.</p>
 
 <h2 id="others">Who else sees it</h2>
-<p>Stripe: your email address and the keys' hashes, each day's count and amount, the invoices, STK's public keys and the reports. Render runs STK's server, so the requests pass through it, and through Cloudflare, which Render serves through. Render serves this site. Resend sends STK's one email a month, and the notice when new keys are asked for your account by someone else. The others STK uses, and what each holds: <a href="/subprocessors">Subprocessors</a>. The site loads nothing from any other company: no font, script or style; a test checks every page of it before it is published. <a href="/subprocessors">Subprocessors</a></p>
+<p>Stripe: your email address and the keys' hashes, each day's count and amount, the invoices, STK's public keys and the reports. Render runs STK's server, so the requests pass through it, and through Cloudflare, which Render serves through. Render serves this site. Resend sends STK's one email a month, and the notice when new keys are asked for your account by someone else. The others STK uses, and what each holds: <a href="/subprocessors">Subprocessors</a>. The site loads nothing from any other company: no font, script or style; a test checks every page of it before it is published.</p>
+
+<h2 id="hipaa">HIPAA</h2>
+<p>STK receives no protected health information, so STK's view is that a HIPAA business associate agreement is not needed. Whether one is needed for your use of STK is your legal team's decision.</p>
+
+<h2 id="keys">Signing keys</h2>
+<ul>
+<li><b>Method.</b> Ed25519.</li>
+<li><b>Rotation.</b> Two signing keys for each day (UTC). The first signs that day; the second signs only while the first is invalid. Each day's keys are made 200 days ahead (since 2026-11-21; the days to 2026-11-27 also have keys made in memory before then).</li>
+<li><b>Where the public keys are.</b> <code>https://api.stk-evidence.com/v1/rules?keys=1</code>; <a href="/keys.json">stk-evidence.com/keys.json</a>; the same file in the public repository <code>github.com/kokotaisei1212-dotcom/stk-site-public</code>. Your library also writes the public key of each receipt's key into your own rows file, beside the receipt.</li>
+</ul>
+
+<h2 id="if-stk-stops">If STK stops</h2>
+<p>Receipts already signed can still be checked. A receipt is checked with STK's public key, and the public keys stay where they were published, in the copies above and in your own rows file. Checking needs nothing from STK's server.</p>
+
+<h2 id="offline">Checking offline</h2>
+<p><a href="/stk_verify.py" download>stk_verify.py</a> checks a receipt with no network:</p>
+<pre class="code">pip install cryptography
+python3 stk_verify.py --from-file rows.jsonl          # the keys and rules your file kept
+python3 stk_verify.py --receipt receipt.json keys.json   # one receipt, with a copy of the public keys</pre>
+<p>For each line it checks three things: the seal is the SHA-256 of the random bytes and the row; STK's public key checks the signature; the version of the rules named in the receipt answers finish for the row.</p>
 
 <h2 id="rtt">Round trip</h2>
 <div class="table"><table><thead><tr><th>From</th><th>Calls</th><th>Median</th><th>90%</th><th>On</th></tr></thead><tbody><tr><td>A Mac, home internet (JP), to the API in Singapore (until 2026-11-26)</td><td>30</td><td>149 ms</td><td>156 ms</td><td>2026-11-17</td></tr><tr><td>A Mac, home internet (JP), to the API in Virginia</td><td>30</td><td>248 ms</td><td>350 ms</td><td>2026-11-27</td></tr></tbody></table></div><p>Each call: <code>POST /v1/ask</code> with a test key, from the first byte sent to the last byte of the answer, over a new HTTPS connection for each call, as stk.py makes them. From the eastern United States: <a href='/docs#speed'>Docs</a>.</p>
@@ -119,7 +142,7 @@ Connection: close
     <tr><td><strong>Direction</strong></td><td>Outbound from your servers to STK only. STK opens no connection to your network.</td></tr>
     <tr><td><strong>Calls</strong></td><td><code>GET /v1/rules</code>, <code>POST /v1/ask</code>, <code>POST /v1/joined</code>. If you use them: <code>GET /v1/ledger</code>, <code>POST /v1/incident</code>, <code>GET /v1/health</code></td></tr>
     <tr><td><strong>Body</strong></td><td><code>{"seal": "&lt;64 hex&gt;", "recorded_ms": &lt;ms&gt;}</code>, from the queue also <code>"grant"</code> and <code>"grant_sig"</code>; <code>POST /v1/joined</code>: none, or <code>{"seal": "&lt;64 hex&gt;"}</code></td></tr>
-    <tr><td><strong>What leaves, what does not</strong></td><td>The body above, and your key in the <code>X-STK-Key</code> header. What STK receives and what it never receives: <a href="/vendor-review#receives">Vendor review</a>, <a href="/vendor-review#not-received">what STK does not receive</a>.</td></tr>
+    <tr><td><strong>What leaves, what does not</strong></td><td>The body above, and your key in the <code>X-STK-Key</code> header. What STK receives and what it never receives: <a href="#receives">above</a>, and <a href="#not">what STK does not receive</a>.</td></tr>
     <tr><td><strong>Addresses</strong></td><td>Its addresses are shared and can change: list the name, not the addresses.</td></tr>
     <tr><td><strong>Timeout</strong></td><td>stk.py and stk.mjs wait at most 3 seconds; without an answer they return <code>escalate</code>, and your code hands the conversation over, unless <a href="/rules-full#else">a grant</a> holds.</td></tr>
   </tbody>
@@ -130,8 +153,8 @@ Connection: close
 <div class="top">
 <div class="brand"><a class="mark" href="/" aria-label="STK, the first page"><span class="case"><span class="cell">STK.</span></span><span class="nub"></span></a></div>
 <div><h2>The rule</h2><ul><li><a href="/rules">Rules</a></li><li><a href="/changelog">Changelog</a></li></ul></div>
-<div><h2>Check</h2><ul><li><a href="/ledger#check">How to check a row</a></li><li><a href="/receive">What we receive</a></li><li><a href="/when">What happens when</a></li></ul></div>
-<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/docs#setup">Setup guides</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
+<div><h2>Check</h2><ul><li><a href="/ledger">The ledger</a></li><li><a href="/receive">What STK receives</a></li><li><a href="/when">What happens when</a></li></ul></div>
+<div><h2>Build</h2><ul><li><a href="/docs">Docs</a></li><li><a href="/vendors">For AI vendors</a></li></ul></div>
 <div><h2>Terms</h2><ul><li><a href="/price">Price</a></li><li><a href="/limits">Known limits</a></li><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/dpa">DPA</a></li><li><a href="/subprocessors">Subprocessors</a></li><li><a href="/vendor-review">Vendor review</a></li><li><a href="/msa">MSA</a></li></ul></div>
 <div><h2>Contact</h2><ul><li><a href="mailto:izatai12@icloud.com">izatai12@icloud.com</a></li><li><a href="https://www.linkedin.com/in/taisei-izawa-8140123b9">LinkedIn</a></li></ul></div>
 </div>
