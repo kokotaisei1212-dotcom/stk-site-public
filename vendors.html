@@ -55,7 +55,7 @@
 <p>Keys are taken with an email address, on the <a href="/#keys">first page</a> or with <code>POST /v1/keys</code>. Permissions made with a live key are billed to the account that key belongs to; a test key is never billed. One key used for several companies' conversations bills one account for all of them. <a href="/price">Price</a></p>
 
 <h2 id="receives">What STK receives</h2>
-<p>The seal and the time the file recorded the action, and nothing else: the seal is SHA-256 of 32 random bytes followed by the row. The row and the random bytes stay on your side, with the receipt STK signs. <a href="/receive">What we receive</a></p>
+<p>The seal and the time the file recorded the action (for a seal from the file's queue, also the grant it finished under and STK's signature of it), with your key in a header, and nothing else: the seal is SHA-256 of 32 random bytes followed by the row. The row and the random bytes stay on your side, with the receipt STK signs. <a href="/receive">What we receive</a></p>
 
 <h2 id="rules">The rules</h2>
 <p>The same for every company, published and signed by STK: <code>GET https://api.stk-evidence.com/v1/rules</code>. The file applies them on your side. <a href="/rules">The rules</a></p>

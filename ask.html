@@ -54,13 +54,13 @@
 <p>An account's address cannot be changed. Take new keys with the new address on <a href="/#keys">the first page</a> and put them in your code; to end the old account, send <code>POST /v1/stop</code> with its live key: what it owes is debited once.</p>
 
 <h2 id="invoice">A question about an invoice</h2>
-<p>An invoice is $5 for each permission STK signed for your live key, less those a person joined the same day. <a href="/docs#ledger"><code>GET /v1/ledger</code></a> gives each day's counts, and your own rows file holds each receipt: <a href="/ledger#check">how to check a row</a>. A row that fails the check is not one STK stands behind.</p>
+<p>An invoice is $5 for each permission STK signed for your live key, less those a person joined the same day, with the exceptions on <a href="/price#uses">Price</a> (a late answer, a day STK's server started again, a day whose key was made invalid). <a href="/docs#ledger"><code>GET /v1/ledger</code></a> gives each day's counts, and your own rows file holds each receipt: <a href="/ledger#check">how to check a row</a>. A row that fails the check is not one STK stands behind.</p>
 
 <h2 id="refund">Refunds</h2>
 <p>STK makes no refund on request. What you are billed is set by the number of permissions STK signed, and you can check each one, line by line.</p>
 
 <h2 id="tax">A company name or tax ID on the invoice</h2>
-<p>STK's invoices name the account by its email address. STK does not put a company name or a tax ID on them, and adds no tax. STK sends one email a month with the month's amount; Stripe sends none.</p>
+<p>STK's invoices name the account by its account ID, the same <code>account</code> as in your receipts. STK does not put a company name or a tax ID on them, and adds no tax. STK sends one email a month with the month's amount; Stripe sends none of its own, except the one email the US bank network's rules require when you authorize the debits.</p>
 </div>
 </main>
 <footer class="dark"><div class="wrap">

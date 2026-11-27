@@ -73,6 +73,7 @@ async function personJoined(conversation) {   // where a person takes a conversa
 <pre class="code">STK_ROWS_DIR=/var/lib/yourapp/stk-rows/$(hostname)</pre>
 <p>2. A second copy every night, of the day that ended (in the server's crontab, 00:30 UTC):</p>
 <pre class="code">30 0 * * * cp /var/lib/yourapp/stk-rows/$(hostname)/$(date -u -d yesterday +\%F).jsonl /mnt/backup/stk-rows/</pre>
+<p>That <code>date -d yesterday</code> is GNU date (Linux). On macOS or BSD: <code>date -u -v-1d +\%F</code>.</p>
 <p>3. Where no file is kept (a serverless function): give each line to your own store. One that cannot be kept is told to STK as a person joining, and <code>ask()</code> returns <code>escalate</code>.</p>
 <pre class="code">import json, stk
 

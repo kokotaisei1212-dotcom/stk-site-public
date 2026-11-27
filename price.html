@@ -49,7 +49,7 @@
   <li><strong>$0 until you use it.</strong> Keys cost nothing; there is no minimum.</li>
   <li><strong>$5 for each permission</strong> under these rules (the domain <code>conversation</code>, <a href="/rules-full#scope">what it covers</a>): each seal your live key sends that STK signs, whatever the action or the jurisdiction. A test key is never billed.</li>
   <li><strong>$0 when a person joins it the same day (UTC).</strong> Told by 00:10 UTC the day after, with the permission's seal (stk.py and stk.mjs send it while the process that got the permission still runs), it still counts for its day. Told on a later day after that: it stays billed.</li>
-  <li>Each month (UTC) is debited on the 1st of the next, from 01:00 UTC, from the US bank account you registered once when you took your live key. You do nothing. You receive one email a month: the month's amount, once it is debited.</li>
+  <li>Each month (UTC) is debited on the 1st of the next, from 01:00 UTC, from the US bank account you registered once when you took your live key. You do nothing. You receive one email a month from STK (from 2026-12-11 12:00 UTC): the month's amount, once the month's debits have gone through or STK has stopped trying one. One other email only, if new keys are asked for your account by someone else (<a href="/docs#reissue">Docs</a>).</li>
 </ul>
 
 <h2 id="example">An example</h2>
@@ -69,16 +69,16 @@
   <li>Every ask the rules answer <code>escalate</code>: the file does not call STK.</li>
   <li>The same conversation and intent asked again the same day (UTC) on the same server: the file does not call STK again.</li>
   <li>A seal STK did not sign: a debit refused for good, no published key, or STK not answering.</li>
-  <li><strong>An answer of STK that came too late to be used is not billed.</strong> An answer STK itself took more than 3 seconds for (the time the files wait) is signed and never billed, whatever your code did. An answer that came after your code stopped waiting, or never reached it, while no grant held: the file tells STK a person has it; if your process ends first, the file keeps that and tells STK when it starts again (its first <code>ask()</code> with a conversation). Under a grant the file finishes, and the permission is billed. If STK cannot be told: after 00:10 UTC the day after, it stays billed.</li>
+  <li><strong>An answer of STK that came too late to be used is not billed.</strong> An answer STK itself took more than 3 seconds for (the time the files wait) is signed and not billed, unless a grant of your account held: then the file had finished under it, and the permission is billed. An answer that came after your code stopped waiting, or never reached it, while no grant held: the file tells STK a person has it; if your process ends first, the file keeps that and tells STK when it starts again (its first <code>ask()</code> with a conversation). Under a grant the file finishes, and the permission is billed. If STK cannot be told: after 00:10 UTC the day after, it stays billed.</li>
   <li>On a day (UTC) STK's server started again (a deploy, or after it stopped): the permissions of the smaller of the two counts, before and after the start. The day is billed as the larger count less every person joining that day. Each count is written to Stripe every 2 minutes; what was not written when the server stopped is not billed.</li>
   <li>A day whose signing key STK made invalid, for every company. Not yet on an invoice: taken off. Already on one: a credit note from Stripe (an open invoice owes less; a paid one is refunded, or credited to the next invoice when it cannot be).</li>
 </ul>
 
 <h2 id="unpaid">If a debit is refused</h2>
 <ol>
-  <li>A debit counts as paid for signing from when it begins. Your bank answers within 4 business days.</li>
-  <li>Refused for want of money: STK debits it again 3 days later, at most 3 times in all. STK signs as usual throughout. The third refused: STK does not try again, that month is not owed, and nothing stops.</li>
-  <li>Refused for any other reason (the account closed, no such account, debits not authorized): from then the file answers <code>escalate</code> to every ask, and nothing is billed. The month's email says so. <code>GET /v1/health</code> with your key says so too.</li>
+  <li>A debit counts as paid for signing from when it begins, before your bank answers.</li>
+  <li>Refused for want of money, or for any reason not in the next line: STK debits it again 3 days later, at most 3 times in all. STK signs as usual throughout. The third refused: STK does not try again, that month is not owed, and nothing stops.</li>
+  <li>Refused for good (the account closed, no such account, an invalid account number, the account restricted, or debits not authorized): from then the file answers <code>escalate</code> to every ask, and nothing is billed. The month's email says so. <code>GET /v1/health</code> with your key says so too.</li>
   <li>To sign again: register a bank account (<code>POST /v1/keys/bank</code> with your live key, <a href="/docs#bank">Docs</a>). STK debits it at once and signs again from your next call. No one at STK does anything.</li>
   <li>What STK signed while a debit was under way is billed as any day. If it is never paid, STK loses it.</li>
 </ol>
@@ -94,7 +94,7 @@
 <ul>
   <li><strong>US bank account required.</strong> This is the only way: a US bank account, debited by STK (ACH). No card, no invoice to pay yourself, no other way in any country.</li>
   <li>You register it once, on Stripe's page: you sign in to your bank and authorize the debits. That is the last thing STK asks of you.</li>
-  <li>A month above $999,999.99 is debited in several equal parts, together its amount to the cent. You see one amount.</li>
+  <li>A month above $999,999.99 is debited in several parts, as few and as equal as can be (the last can be a few cents less), each its own invoice, together its amount to the cent. The month's email gives one amount.</li>
   <li>STK never receives your full account number: Stripe holds it.</li>
 </ul>
 
@@ -119,7 +119,7 @@
 <p>US dollars. The month is $5 times its count of permissions in conversations. STK adds no tax to it.</p>
 <section id="how-set" class="how-set">
 <h2 id="why-5">How this price was set</h2>
-<p>A record, kept as it was on 2026-11-24, that the price was not set at STK's discretion; it changes nothing. Until 2026-11-24 a key's price was set by its use, each 35% of the published or derived cost of the same work by a person, rounded to the dollar; where no figure was found, $5. From 2026-11-24 there is one price, $5. The figures:</p>
+<p>A record, kept as it was on 2026-11-24, that the price was not set at STK's discretion; it changes nothing. Until 2026-11-24 a key's price was set by its use, each 35% of the published or derived cost of the same work by a person, rounded to the dollar; where no figure was found, $5 (each line below explains its figure). From 2026-11-24 there is one price, $5. The figures:</p>
 <ul>
 <li>Prior authorization, coverage, claims, eligibility and appeals.: $20.24 (× 35% = $7.08). Derived: <a href="https://www.bls.gov/oes/current/oes291141.htm">BLS OEWS, May 2025: registered nurses&#x27; median annual wage, $97,550; BLS ECEC, December 2025: total compensation 1.4265 times wages; 6,875 decisions a year by one reviewer: 27.5 a day × 250 working days, the 27.5 a day being the claim of a vendor, Toney Healthcare, not a published study</a>. Derived: $97,550 × 1.4265 ÷ 6,875 = $20.24, the cost of the decision itself, from a reviewer&#x27;s wage and the decisions a reviewer makes in a year. The count of decisions is not verified: it rests on a vendor&#x27;s claim. The $40 of Sahni et al. (Health Affairs Scholar 1(5):qxad053, 2023) is the whole administrative cost of one claim, not the cost of the decision, and the 35% is not taken of it.</li>
 <li>Credit decisions, account opening, limits and collections.: no figure. No published figure: No published count of credit decisions or collection accounts a year by one person was found. BLS OEWS, May 2025: Credit Analysts (13-2041), 67,800 employed, median annual wage $80,970; Loan Officers (13-2072), 301,400, median $74,180; Bill and Account Collectors (43-3011), 166,900, median $46,040. Without a count of decisions a year no cost per decision can be derived.</li>
@@ -127,7 +127,7 @@
 <li>Claims, policy decisions, liability and total loss.: no figure. No published figure: No published cost of one insurance claim or policy decision by a person was found. For reference only, not used per claim: BLS OEWS, May 2025, Claims Adjusters, Examiners and Investigators (13-1031), 356,100 employed, median annual wage $76,790, $36.92 an hour; 35% of an hour is $12.92, and of the loaded hour ($36.92 × 1.4265), $18.43.</li>
 <li>Any other contact with a customer: $13.50 (× 35% = $4.73). Published: <a href="https://www.gartner.com/en/documents/5164231">Gartner, February 2024: the median cost of one contact in an assisted channel</a></li>
 </ul>
-<p id="health-7">The $40 of Sahni et al. (Health Affairs Scholar 1(5):qxad053, 2023) is the whole administrative cost of one claim, not the cost of the decision. The $20.24 is the cost of the decision itself, derived from a reviewer's wage and the decisions a reviewer makes in a year: BLS OEWS, May 2025, registered nurses' median annual wage, $97,550, × 1.4265 (BLS ECEC, December 2025, total compensation to wages) ÷ 6,875 decisions a year (27.5 a day × 250 working days; the 27.5 a day is the claim of a vendor, Toney Healthcare, not a published study, and has not been verified).</p>
+<p id="health-7">Each line shows 35% to the cent; the price of a use was that, rounded to the dollar.</p>
 </section>
 </div>
 </main>

@@ -50,14 +50,20 @@
 </ol>
 <h2>The Lambda (Python)</h2>
 <pre class="code">import stk
-stk.ON_ROW = keep_line                                         # your function: each line to your own store
+
+def keep_line(line):                                        # yours: each line (a dict) to your own store
+    ...                                                     # S3, DynamoDB or another
+
+stk.ON_ROW = keep_line
 
 def lambda_handler(event, context):
     a = event["Details"]["ContactData"]["Attributes"]       # set by your flow: the intent your bot gave
     cid = event["Details"]["ContactData"]["ContactId"]
-    return {"decision": stk.ask(a.get("intent", "other"), a.get("trigger", "unknown"), conversation_id=cid)}</pre>
-<p>When an agent takes the contact over, a Lambda on that path can call <code>stk.joined(contact_id)</code>: a finish of it that day is taken off the bill. A Lambda is stopped when it returns: an answer from STK after 3 seconds may not be told to STK (<a href="/limits#serverless">Known limits</a>).</p>
-<p>Amazon Connect waits at most 8 seconds for a synchronous Lambda; stk.py itself stops waiting for STK at 3 seconds and returns <code>escalate</code>, unless a grant holds. A Lambda is stopped when it returns: call <code>stk.flush()</code> before it returns if seals may be waiting in the queue.</p>
+    decision = stk.ask(a.get("intent", "other"), a.get("trigger", "unknown"), conversation_id=cid)
+    stk.flush(timeout=2)                                    # a seal waiting in the queue is sent before the Lambda returns
+    return {"decision": decision}</pre>
+<p>When an agent takes the contact over, a Lambda on that path can call <code>stk.joined(contact_id)</code>: a finish of it that day is taken off the bill. An answer from STK after 3 seconds may not be told to STK once the Lambda has returned (<a href="/limits#serverless">Known limits</a>).</p>
+<p>Amazon Connect waits at most 8 seconds for a synchronous Lambda; stk.py itself stops waiting for STK at 3 seconds and returns <code>escalate</code>, unless a grant holds. A Lambda is stopped when it returns, so the example calls <code>stk.flush(timeout=2)</code> before it returns: a seal waiting in the queue is sent first, and the Lambda still answers within Amazon Connect's 8 seconds (at most 2 seconds reading the rules on a first <code>ask()</code>, 3 seconds waiting for STK, 2 for <code>flush</code>).</p>
 <p>The file goes inside Amazon Connect's Lambda: it decides there and sends STK only the seal and its time. The contact id and the intent stay in your row, with you. Keep what stk.py writes in your own store with <code>ON_ROW</code> (S3, DynamoDB or another): what happens to a Lambda's files is not on the pages read, so do not count on them.</p>
 <h2>Not known</h2><ul><li>The handover inside Amazon Lex or Amazon Q in Connect: not read.</li></ul>
 <h2>Read on 2026-11-17</h2>

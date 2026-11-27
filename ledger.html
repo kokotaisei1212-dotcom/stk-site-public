@@ -50,11 +50,11 @@
 <tr><td><code>v</code></td><td>The form of the receipt: 2, with both times; 1, from before 2026-11-21 or from a call with the seal alone, without <code>recorded_ms</code>.</td></tr>
 <tr><td><code>seal</code></td><td>SHA-256 of the 32 random bytes followed by your row: 64 hex. With <code>recorded_ms</code>, the only thing of yours STK received.</td></tr>
 <tr><td><code>time_ms</code></td><td>When STK signed it, in milliseconds since 1970 (UTC). What STK attests, and the day it is billed for.</td></tr>
-<tr><td><code>recorded_ms</code></td><td>When your library recorded the action, in milliseconds since 1970 (UTC): your own claim, not STK's. The same moment as <code>time_ms</code> unless the seal waited in the library's queue while STK could not be reached.</td></tr>
+<tr><td><code>recorded_ms</code></td><td>When your library recorded the action, in milliseconds since 1970 (UTC): your own claim, not STK's. Apart from <code>time_ms</code> by the time the call took (STK accepts them up to a minute apart), unless the seal waited in the library's queue while STK could not be reached: then up to 1 hour apart.</td></tr>
 <tr><td><code>rule_version</code></td><td>The SHA-256 of the full text of the rules in use when STK signed it. <a href="/rules-full#all-texts">The rules</a></td></tr>
 <tr><td><code>account</code></td><td>Your account's id at STK.</td></tr>
 <tr><td><code>which_key</code></td><td><code>test</code> or <code>live</code>. Only <code>live</code> is billed.</td></tr>
-<tr><td><code>kid</code></td><td>The key that signed it: one of the two keys made for its day (UTC), 200 days ahead; a server that starts again signs with the same keys.</td></tr>
+<tr><td><code>kid</code></td><td>The key that signed it: one of the keys made for its day (UTC), two a day, 200 days ahead since 2026-11-21; a server that starts again signs with the same keys.</td></tr>
 </tbody>
 </table></div>
 <p>Beside the receipt, in what your code keeps: <code>row</code> (your row, as the text that was sealed: <code>intent</code>, <code>trigger</code> and any fields of yours), <code>nonce</code> (the 32 random bytes, hex), <code>sig</code>, and <code>cancelled</code> when your file told STK a person has it before it answered (newer rules say <code>escalate</code>, or it could not be kept).</p>
@@ -86,7 +86,7 @@
 <li>That STK's handling of its signing keys has been audited. It has not.</li>
 <li>That the rules are sufficient for any one company's legal duties. Each company remains responsible for its own.</li>
 </ul>
-<p>STK attests to the time STK signed. The time the library recorded the action is the customer's own claim. In normal operation these are the same moment. When STK could not be reached, they differ, and the receipt shows both.</p>
+<p>STK attests to the time STK signed. The time the library recorded the action is the customer's own claim. In normal operation they are apart only by the time the call took. When STK could not be reached, they are further apart, and the receipt shows both.</p>
 
 <h2 id="receipt">A receipt and its signature only</h2>
 <p>With a receipt and its signature, and no row and no random bytes, anyone can check whether STK signed it:</p>

@@ -104,7 +104,7 @@
 - conversation.totalloss.decide: person (a law names a person). https://stk-evidence.com/act-totalloss.decide Official texts: https://tcss.legis.texas.gov/resources/IN/htm/IN.4101.htm https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIV/Chapter26/Section8G https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B3%B4%ED%97%98%EC%97%85%EB%B2%95 https://irdai.gov.in/document-detail?documentId=379110 https://legisquebec.gouv.qc.ca/en/showdoc/cs/D-9.2 https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56893
 - conversation.transfer.error_refuse: person (a law names a person). https://stk-evidence.com/act-transfer.error_refuse Official texts: https://eur-lex.europa.eu/eli/reg/2016/679/oj https://www.legislation.gov.uk/ukpga/2025/18/section/80 https://www.legislation.gov.uk/uksi/2026/82/made https://www.odpc.go.ke/wp-content/uploads/2024/02/TheDataProtectionAct__No24of2019.pdf https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf https://www.fscmauritius.org/media/105843/the-data-protection-act-2017.pdf http://www.kremlin.ru/acts/bank/24154/print https://www.cnil.fr/fr/le-cadre-national/la-loi-informatique-et-libertes https://www.leychile.cl/Consulta/obtxml?opt=7&idNorma=1209272
 
-## Laws (164): each with its anchor on https://stk-evidence.com/rules
+## Laws (126 laws, 164 rows: one for each law and subject): each with its anchor on https://stk-evidence.com/rules
 
 - [Private Health Insurance Act 2007 s 75-15(1)(b)](https://stk-evidence.com/rules#AU-hea-private-health-insurance-act-2007-s-75-15-1-b): AU, health, kind A, a qualified person; beside claim.refuse
 - [ANS Resolução Normativa nº 424/2017, Arts. 6 and 8](https://stk-evidence.com/rules#BR-hea-ans-resolu-o-normativa-n-424-2017-arts-6-8): BR, health, kind A, a qualified person; beside coverage.deny_medical, priorauth.deny_medical
@@ -273,9 +273,9 @@
 
 ## API: POST https://api.stk-evidence.com/v1/ask
 
-- Header: X-STK-Key: your key. Body: {"seal": "<64 hex characters>", "recorded_ms": <ms since 1970 UTC>}; any other field is refused with 422.
+- Header: X-STK-Key: your key. Body: {"seal": "<64 hex characters>", "recorded_ms": <ms since 1970 UTC>}, and for a seal that waited in the library's queue also "grant" and "grant_sig"; any other field is refused with 422.
 - Call it only for a finish your code decided from the rules. The seal is SHA-256 of 32 random bytes and your row (intent, trigger, any fields); the row stays with you.
-- Answer: {"receipt": {"v": 2, "seal", "time_ms", "recorded_ms", "rule_version", "account", "which_key", "kid"}, "sig": Ed25519 of the receipt, base64, "rule_version", "rule", "grant", "grant_sig"}. One call is one permission, and is billed.
+- Answer: {"receipt": {"v": 2, "seal", "time_ms", "recorded_ms", "rule_version", "account", "which_key", "kid"}, "sig": Ed25519 of the receipt, base64, "rule_version", "rule", "grant", "grant_sig"}. One call STK signs for your live key is one permission, billed as {SITE}/price says.
 - Docs: https://stk-evidence.com/docs
 
 ## Price

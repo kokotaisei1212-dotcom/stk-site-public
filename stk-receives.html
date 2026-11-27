@@ -64,7 +64,7 @@
 <h2>Signing keys</h2>
 <ul>
 <li><b>Method.</b> Ed25519.</li>
-<li><b>Rotation.</b> Two signing keys for each day (UTC). The first signs that day; the second signs the rest of the day only if the first is made invalid. Each day's keys are made 200 days ahead.</li>
+<li><b>Rotation.</b> Two signing keys for each day (UTC). The first signs that day; the second signs the rest of the day only if the first is made invalid. Each day's keys are made 200 days ahead (since 2026-11-21; the days to 2026-11-27 also have keys made in memory before then).</li>
 <li><b>Where the public keys are.</b> <code>https://api.stk-evidence.com/v1/rules?keys=1</code>; <a href="/keys.json">stk-evidence.com/keys.json</a>; the same file in the public repository <code>github.com/kokotaisei1212-dotcom/stk-site-public</code>. Your library also writes the public key of each receipt's key into your own rows file, beside the receipt.</li>
 </ul>
 
