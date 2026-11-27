@@ -44,6 +44,7 @@
 <p class="lead">What procurement, information security and legal look for first, on one page. Each answer is what STK's code and its other pages say. Where STK has nothing, the answer says so.</p>
 
 <h2 id="receives">What STK receives</h2>
+<p><strong>STK never sees the conversation. Only a 32-byte hash reaches us.</strong></p>
 <ul>
 <li>A 32-byte SHA-256 seal, sent as 64 hex characters, with the company's key in a header, and the time the company's library recorded the action. For a seal sent from the library's queue, also the grant STK signed. Nothing else: a request with any other field is refused.</li>
 <li>The row and the 32 random bytes that produced the seal stay with the company. STK never has them.</li>
