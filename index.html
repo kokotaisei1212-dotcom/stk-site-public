@@ -46,9 +46,8 @@ html{scroll-behavior:smooth}
 @media (min-width:768px){.hero h1{font-size:89.6px}}
 .hero .lead{margin:24px auto 0;font-size:21.85px;line-height:1.5;letter-spacing:-.01em;max-width:34em;text-wrap:balance}
 .hero .lead + .lead{margin-top:8px}
-.cta{display:inline-block;margin-top:40px;font-size:17.25px;line-height:1.5;padding:16px 24px;border-radius:4px;color:var(--bg);background:var(--ink);text-decoration:none}
 .cue{position:absolute;left:50%;bottom:40px;width:16px;height:16px;margin-left:-8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg)}   /* more below */
-.tool{max-width:calc(var(--measure) + 2 * var(--pad));margin:0 auto;padding:var(--sec) var(--pad) 0}
+.tool{box-sizing:border-box;width:100%;max-width:36rem;margin:40px auto 0;padding:0;text-align:left}   /* the keys on the first screen, under the two lines (CEO 2026-11-27) */
 /* What the STK API does (CEO 2026-11-27; the band of 2026-11-24): a band the width of the screen, dark grey, white words;
    a large heading; what it does, three, large; what it keeps, two, one size smaller; then the price */
 .does{background:#1F1F22;color:#FFFFFF;padding:var(--sec) var(--pad);margin:var(--sec) 0 0}
@@ -98,7 +97,12 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 <section class="hero">
 <h1>Permission for the power of AI, written by law.</h1>
 <p class="lead">One API call tells your AI which actions it may take and which belong to a person, grounded in law.</p>
-<a class="cta" href="#keys">Get an API key</a>
+<div class="tool" id="keys" role="region" aria-label="Get an API key">
+<form id="kf"><input id="em" type="email" required autocomplete="email" placeholder="email" aria-label="email"><button type="submit">Get an API key</button></form>
+<p class="only">Email only. Test keys are free.</p>
+<p id="ks" role="status"></p>
+<div id="keysout" hidden></div>
+</div>
 <span class="cue" aria-hidden="true"></span>
 </section>
 <section class="does" aria-labelledby="does"><div class="in">
@@ -114,12 +118,6 @@ footer .toplinks li{margin:0 0 8px;font-size:17.25px;line-height:1.5}
 </ul>
 <p class="cost">$5 per action your AI finishes alone. $0 when a person decides.</p>
 </div></section>
-<section class="tool wrap" id="keys" aria-label="Get an API key">
-<form id="kf"><input id="em" type="email" required autocomplete="email" placeholder="email" aria-label="email"><button type="submit">Get an API key</button></form>
-<p class="only">Email only. Test keys are free.</p>
-<p id="ks" role="status"></p>
-<div id="keysout" hidden></div>
-</section>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "license": "https://creativecommons.org/licenses/by/4.0/", "identifier": "17", "creator": {"@type": "Organization", "name": "STK", "url": "https://stk-evidence.com"}, "@id": "https://stk-evidence.com/rules", "name": "STK permission rules", "description": "One API call tells your AI which actions it may take and which belong to a person, grounded in law.", "url": "https://stk-evidence.com/rules", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://api.stk-evidence.com/v1/rules"}]}</script>
 <script>
 (function(){
